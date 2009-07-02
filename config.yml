@@ -1,0 +1,6 @@
+WORKDIR: "/home/gregf/staging"
+BASE: "/stage5"
+CONFIGS: "/etc/amd64"
+SCRIPTS: "/scripts"
+STAGEURL: "http://mirrors.kernel.org/gentoo/releases/amd64/current/stage3-amd64-20090625.tar.bz2"
+SNAPSHOTURL: "http://gentoo.osuosl.org/snapshots/portage-latest.tar.bz2"

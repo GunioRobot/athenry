@@ -1,0 +1,3 @@
+sys-apps/paludis bash-completion glsa inquisitio ruby-bindings vim-syntax zsh-completion xml
+app-editors/vim acl gpm nls perl python bash-completion -cscope -minimal ruby vim-pager -vim-with-x
+dev-util/git curl bash-completion
