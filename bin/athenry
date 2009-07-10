@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+# Distributed under the terms of the GNU General Public License v2
+# Copyright (c) 2009 Greg Fitzgerald <netzdamon@gmail.com>
+# vim: set sw=2 sts=2 et tw=80 :
+
+require 'rubygems'
+require 'commander'
+
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'athenry'
+
+program :name, 'Make Stage5'
+program :version, '0.0.1'
+program :description, 'Creates a Gentoo chroot and automates stage building'
+
+command :setup do |c|
+ c.syntax = 'athenry setup'
+ c.description = 'Fetches files and creates necessary directories'
+ c.when_called do |args, options|
+   Athenry::setup
+ end
+end
+
+command :build do |c|
+ c.syntax = 'athenry build'
+ c.description = 'Starts the build process'
+ c.when_called do |args, options|
+   Athenry::build
+ end
+end
+
