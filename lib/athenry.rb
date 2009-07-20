@@ -1,18 +1,21 @@
 require "athenry/config"
 require "athenry/helper"
+require "athenry/run"
 require "athenry/setup"
 require "athenry/build"
 
 module Athenry
   module Execute
-    def setup
+    def self.setup
       @setup ||= Setup.new
-      @setup.fetch
-      @setup.extract
     end
 
-    def build
+    def self.build
       @build ||= Build.new
+    end
+
+    def self.run
+      @run ||= Run.new
     end
   end
 end

@@ -18,7 +18,7 @@ command :setup do |c|
  c.syntax = 'athenry setup'
  c.description = 'Fetches files and creates necessary directories'
  c.when_called do |args, options|
-   Athenry::setup
+   Athenry::Execute::run.setup
  end
 end
 
@@ -26,7 +26,7 @@ command :build do |c|
  c.syntax = 'athenry build'
  c.description = 'Starts the build process'
  c.when_called do |args, options|
-   Athenry::build
+   Athenry::Execute::run.build
  end
 end
 
