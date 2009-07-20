@@ -1,3 +1,6 @@
-class Execute
-    # link the classes and runs the program 
+module Execute
+  def setup
+    fetch
+    extract
+  end
 end

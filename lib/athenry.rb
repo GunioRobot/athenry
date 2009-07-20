@@ -4,14 +4,16 @@ require "athenry/setup"
 require "athenry/build"
 
 module Athenry
+  module Execute
+    def setup
+      @setup ||= Setup.new
+      @setup.fetch
+      @setup.extract
+    end
 
-  def self.setup
-    @setup ||= Setup.new
+    def build
+      @build ||= Build.new
+    end
   end
-
-  def self.build
-    @build ||= Build.new
-  end
-
 end
 

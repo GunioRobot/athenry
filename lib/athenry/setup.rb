@@ -1,7 +1,7 @@
 class Setup < Helper
   def fetch
     announcing "Fetching #{CONFIG['WORKDIR']}" do
-      silent "wget -c #{CONFIG['STAGEURL']} -O #{CONFIG['WORKDIR']}/stage3-amd64-current.tar.bz"
+      silent "wget -c #{CONFIG['STAGEURL']} -O #{CONFIG['WORKDIR']}/stage3-amd64-current.tar.bz2"
     end
   end
 

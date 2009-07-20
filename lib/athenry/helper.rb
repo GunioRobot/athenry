@@ -9,7 +9,8 @@ class Helper
   end 
  
   def silent(command)
-    system "#{command} &> /dev/null"
+    #system "#{command} &> /dev/null"
+    system "#{command}"
   end
 
 end
