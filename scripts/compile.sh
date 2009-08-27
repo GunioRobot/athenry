@@ -1,40 +1,83 @@
 #!/bin/bash
 
-function paludis {
-    emerge dev-util/ccache sys-apps/paludis dev-util/git
+# Pick only one
+
+# Paludis
+PKG_NAME="paludis"
+PKG_INSTALL="paludis -i"
+PKG_REMOVE="paludis -u"
+PKG_SYNC="paludis -s"
+PKG_UPDATE="paludis -i everything"
+
+# Emerge
+#PKG_NAME="emerge"
+#PKG_INSTALL="emerge"
+#PKG_REMOVE="emerge -C"
+#PKG_SYNC="emerge --sync"
+#PKG_UPDATE="emerge -D world"
+
+# Pkgcore
+#PKG_NAME="pmerge"
+#PKG_INSTALL="pmerge"
+#PKG_REMOVE="pmerge -C"
+#PKG_SYNC="pmaint"
+#PKG_UPDATE="pmerge -uDs world"
+
+function error {
+    echo -ne " \033[31;01m*\033[0m ${@}\n";
 }
 
-function sync {
-    paludis --sync
+function announce {
+    echo -ne " \033[32;01m*\033[0m ${@}\n";
 }
 
-function mkcache {
-    mkdir -p /var/tmp/paludis
-    mkdir -p /usr/portage/.cache/names
-    mkdir -p /var/paludis/repositories/mpd/.cache/names
-    mkdir -p /var/paludis/repositories/gregf/.cache/names
+function bootstrap_pkgmanager {
+    if [ ${PKG_NAME} == "paludis" ]; then
+        mkdir -p /var/tmp/paludis
+        mkdir -p /usr/portage/.cache/names
+        mkdir -p /var/paludis/repositories/mpd/.cache/names
+        mkdir -p /var/paludis/repositories/gregf/.cache/names
+        chown -R paludisbuild:paludisbuild /etc/paludis /usr/portage /var/tmp/paludis /var/paludis
+        rebuild_cache
+    fi
 }
 
-function fixperm {
-    chown -R paludisbuild:paludisbuild /etc/paludis /usr/portage /var/tmp/paludis /var/paludis
-}
-
-function update_cache {
+function rebuild_cache {
     paludis --regenerate-installed-cache
     paludis --regenerate-installable-chace
 }
 
+function update_pkgmanager { 
+    emerge -D world 
+    
+    case ${PKG_NAME} in
+    paludis)
+        emerge sys-apps/paludis dev-util/git
+        ;;
+    pmerge)
+        emerge pkgcore
+        ;;
+    *)
+        error "Invalid package manager check your settings and try again!"
+        exit 1
+        ;;
+    esac
+}
+
+function sync {
+    ${PKG_SYNC}
+}
+
+
 function update_everything {
-    paludis --sync
-    paludis -i everything
+    ${PKG_UPDATE}
 }
 
 function main {
-    paludis
+    update_pkgmanager
+    bootstrap_pkgmanager
     sync
-    mkcache
-    fixperm
-    update_cache
+    rebuild_cache
     update_everything
 }
 
