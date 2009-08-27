@@ -1,11 +1,8 @@
 class Helper
-  LINE = 80
 
   def announcing(msg)
-    print msg 
+    puts "\e[32m*\e[0m #{msg} \n"
     yield
-    print "." * (LINE - msg.size - 6)
-    puts "\e[32m[DONE]\e[0m"
   end 
  
   def silent(command)
