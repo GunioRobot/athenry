@@ -10,6 +10,7 @@ begin
 rescue Gem::LoadError
   # handle the error somehow
 end
+
 $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'athenry'
