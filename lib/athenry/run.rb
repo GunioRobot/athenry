@@ -1,5 +1,12 @@
 module Athenry
   class Run
+    def initialize
+      unless File.directory?("#{CONFIG['BASE']}")
+        FileUtils.mkdir_p("#{CONFIG['BASE']}")
+      end
+      Dir.chdir("#{CONFIG['WORKDIR']}")
+    end
+    
     def setup
       Athenry::Execute::setup.fetch
       Athenry::Execute::setup.extract
@@ -14,11 +21,11 @@ module Athenry
     end
 
     def clean
-      Athenry::Execute::clean.test
+      Athenry::Execute::clean.unmount
     end
 
     def shell
-      Athenry::Execute::shell.shellinput
+      Athenry::Execute::shell
     end
   end
 end
