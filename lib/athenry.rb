@@ -1,3 +1,5 @@
+ATHENRY_ROOT = "#{File.dirname(__FILE__)}/.." unless defined?(ATHENRY_ROOT)
+
 require "athenry/config"
 require "athenry/helper"
 require "athenry/run"
