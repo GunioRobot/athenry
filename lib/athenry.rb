@@ -6,6 +6,7 @@ require "athenry/run"
 require "athenry/setup"
 require "athenry/build"
 require "athenry/clean"
+require "athenry/aliases"
 require "athenry/shell"
 
 module Athenry
