@@ -8,6 +8,7 @@ Setup Commands:
 fetch
 extract
 snapshot
+generate_bashscripts
 copy_scripts
 copy_configs
 
