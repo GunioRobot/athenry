@@ -1,5 +1,5 @@
 begin
-  gem "configatron", ">= 2.3"
+  gem "configatron", ">= 2.4"
   require "configatron"
 rescue Gem::LoadError
   # handle the error somehow
