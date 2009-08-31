@@ -21,5 +21,9 @@ module Athenry
     def shell
       Athenry::Execute::shell.shellinput
     end
+
+    def freshen
+      # More later
+    end
   end
 end

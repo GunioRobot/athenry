@@ -16,8 +16,8 @@ module Athenry
       @build ||= Build.new
     end
 
-    def self.run
-      @run ||= Run.new
+    def self.freshen
+      @freshen ||= Freshen.new
     end
 
     def self.clean
@@ -26,6 +26,10 @@ module Athenry
 
     def self.shell
       @shell ||= Shell.new
+    end
+    
+    def self.run
+      @run ||= Run.new
     end
   end
 end

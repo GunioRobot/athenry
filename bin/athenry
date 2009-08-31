@@ -35,11 +35,11 @@ command :build do |c|
  end
 end
 
-command :shell do |c|
- c.syntax = 'athenry shell'
- c.description = 'Run athenry commands directly through irb like shell'
+command :freshen do |c|
+ c.syntax = 'athenry freshen'
+ c.description = 'Freshen an existing stage'
  c.when_called do |args, options|
-   Athenry::Execute::run.shell
+   Athenry::Execute::run.freshen
  end
 end
 
@@ -48,5 +48,13 @@ command :clean do |c|
  c.description = 'Cleans up our mess'
  c.when_called do |args, options|
    Athenry::Execute::run.clean
+ end
+end
+
+command :shell do |c|
+ c.syntax = 'athenry shell'
+ c.description = 'Run athenry commands directly through irb like shell'
+ c.when_called do |args, options|
+   Athenry::Execute::run.shell
  end
 end
