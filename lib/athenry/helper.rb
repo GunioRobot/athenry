@@ -3,7 +3,7 @@ module Athenry
 
     def logger
       unless CONFIG.logfile.empty? or CONFIG.logfile.nil?
-        @logfile = File.new("#{CONFIG.logdir}/#{CONFIG.logfile}", "a")
+        @logfile = File.new("#{CONFIG.workdir}/#{CONFIG.logdir}/#{CONFIG.logfile}", "a")
       end
       yield
       @logfile.close
@@ -16,8 +16,8 @@ module Athenry
     end
 
     def generate_bash(template, outfile, data={})
-      erbfile = File.open("/home/gregf/code/active/athenry/templates/#{template}.erb", "r")
-      outfile = File.new("#{CONFIG.chrootdir}/root/#{outfile}", "w")
+      erbfile = File.open("#{ATHENRY_ROOT}/lib/athenry/templates/#{template}.erb", "r")
+      outfile = File.new("#{CONFIG.workdir}/#{CONFIG.chrootdir}/root/#{outfile}", "w")
       parse = ERB.new(erbfile, 0, "%<>")
 
       bash = parse.result
@@ -32,11 +32,11 @@ module Athenry
     def setup_environment
       dirs = [ CONFIG.chrootdir, CONFIG.logdir ]
       dirs.each do |dir|
-        unless File.directory?("#{dir}")
-          FileUtils.mkdir_p("#{dir}")
+        unless File.directory?("#{CONFIG.workdir}/#{dir}")
+          FileUtils.mkdir_p("#{CONFIG.workdir}/#{dir}")
         end
       end
-      raise "Can't chdir to #{CONFIG.workdir}" unless Dir.chdir("#{CONFIG.workdir}")
+      #raise "Can't chdir to #{CONFIG.workdir}" unless Dir.chdir("#{CONFIG.workdir}")
     end
 
     def must_be_root

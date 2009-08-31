@@ -9,16 +9,16 @@ module Athenry
     
     def mount
       announcing "Mounting dev, sys, and proc" do
-        cmd "mount -o bind /dev #{CONFIG.chrootdir}/dev"
-        cmd "mount -o bind /sys #{CONFIG.chrootdir}/sys"
-        cmd "mount -t proc none #{CONFIG.chrootdir}/proc"
+        cmd "mount -o bind /dev #{CONFIG.workdir}/#{CONFIG.chrootdir}/dev"
+        cmd "mount -o bind /sys #{CONFIG.workdir}/#{CONFIG.chrootdir}/sys"
+        cmd "mount -t proc none #{CONFIG.workdir}/#{CONFIG.chrootdir}/proc"
       end
     end
 
     def chroot
       announcing "Entering Chroot" do
-        cmd "chmod +x #{CONFIG.chrootdir}/root/compile.sh"
-        cmd "chroot #{CONFIG.chrootdir} /root/compile.sh"
+        cmd "chmod +x #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/compile.sh"
+        cmd "chroot #{CONFIG.workdir}/#{CONFIG.chrootdir} /root/compile.sh"
       end
     end
   end

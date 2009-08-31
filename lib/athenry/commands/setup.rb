@@ -18,7 +18,7 @@ module Athenry
 
     def extract
       announcing "Extracting stage file" do
-        cmd "tar xvjpf stage3-amd64-current.tar.bz2 -C #{CONFIG.chrootdir}"
+        cmd "tar xvjpf #{CONFIG.workdir}/stage3-amd64-current.tar.bz2 -C #{CONFIG.workdir}/#{CONFIG.chrootdir}"
       end
     end
 
@@ -28,7 +28,7 @@ module Athenry
           send_to_log("Portage snapshot already exists skipping fetch", "info")
         else
           cmd "wget -c #{CONFIG.snapshoturl} -O #{CONFIG.workdir}/portage-latest.tar.bz2"
-          cmd "tar xvjpf portage-latest.tar.bz2 -C #{CONFIG.chrootdir}/usr"
+          cmd "tar xvjpf #{CONFIG.workdir}/portage-latest.tar.bz2 -C #{CONFIG.workdir}/#{CONFIG.chrootdir}/usr"
         end
       end
     end
@@ -41,16 +41,16 @@ module Athenry
 
     def copy_scripts
       announcing "Copying scripts into chroot" do
-        cmd "cp -v #{CONFIG.scripts}/compile.sh #{CONFIG.chrootdir}/root/compile.sh"
+        cmd "cp -v #{CONFIG.scripts}/compile.sh #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/compile.sh"
       end
     end
 
     def copy_configs
       announcing "Copying configs into chroot" do
-        cmd "cp -v #{CONFIG.configs}/resolv.conf #{CONFIG.chrootdir}/etc/resolv.conf"
-        cmd "cp -v #{CONFIG.configs}/make.conf #{CONFIG.chrootdir}/etc/make.conf"
-        cmd "cp -vR #{CONFIG.configs}/paludis/ #{CONFIG.chrootdir}/etc/"
-        cmd "cp -vR #{CONFIG.configs}/portage/ #{CONFIG.chrootdir}/etc/"
+        cmd "cp -v #{CONFIG.configs}/resolv.conf #{CONFIG.workdir}/#{CONFIG.chrootdir}/etc/resolv.conf"
+        cmd "cp -v #{CONFIG.configs}/make.conf #{CONFIG.workdir}/#{CONFIG.chrootdir}/etc/make.conf"
+        cmd "cp -vR #{CONFIG.configs}/paludis/ #{CONFIG.workdir}/#{CONFIG.chrootdir}/etc/"
+        cmd "cp -vR #{CONFIG.configs}/portage/ #{CONFIG.workdir}/#{CONFIG.chrootdir}/etc/"
       end
     end
   end

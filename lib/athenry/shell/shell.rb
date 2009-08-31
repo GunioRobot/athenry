@@ -9,12 +9,12 @@ module Athenry
 
     def quit
       announcing "Exiting Athenry shell" do
-        exit 0
+        exit 0 
       end
     end
 
     def help
-      File.open("#{ATHENRY_ROOT}/templates/help.txt", 'r').each_line{ |line|
+      File.open("#{ATHENRY_ROOT}/lib/athenry/templates/help.txt", 'r').each_line{ |line|
         puts "#{line}"
       }
     end

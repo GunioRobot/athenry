@@ -4,9 +4,10 @@ module Athenry
     
     def unmount
       announcing "Unmounting dev, sys, and proc" do
-        cmd "umount #{CONFIG.chrootdir}/dev"
-        cmd "umount #{CONFIG.chrootdir}/sys"
-        cmd "umount #{CONFIG.chrootdir}/proc"
+        dirs = %w[ dev sys proc ]
+        dirs.each do |dir|
+          cmd "umount #{CONFIG.workdir}/#{CONFIG.chrootdir}/#{dir}"
+        end
       end
     end
   
