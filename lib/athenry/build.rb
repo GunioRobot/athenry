@@ -1,17 +1,24 @@
 module Athenry
-  class Build < Helper 
+  class Build
+    include Athenry::Helper
+
+    def initialize
+      must_be_root
+      check_for_setup
+    end
+    
     def mount
       announcing "Mounting dev, sys, and proc" do
-        silent "sudo mount -o bind /dev #{CONFIG.base}/dev"
-        silent "sudo mount -o bind /sys #{CONFIG.base}/sys"
-        silent "sudo mount -t proc none #{CONFIG.base}/proc"
+        cmd "mount -o bind /dev #{CONFIG.chrootdir}/dev"
+        cmd "mount -o bind /sys #{CONFIG.chrootdir}/sys"
+        cmd "mount -t proc none #{CONFIG.chrootdir}/proc"
       end
     end
 
     def chroot
       announcing "Entering Chroot" do
-        silent "sudo chmod +x #{CONFIG.base}/root/compile.sh"
-        silent "sudo chroot #{CONFIG.base} /root/compile.sh"
+        cmd "chmod +x #{CONFIG.chrootdir}/root/compile.sh"
+        cmd "chroot #{CONFIG.chrootdir} /root/compile.sh"
       end
     end
   end
