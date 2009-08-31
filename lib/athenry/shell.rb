@@ -1,10 +1,16 @@
 module Athenry
-  class Shell < Helper
-    alias :quit :exit
+  class Shell 
+    include Athenry::Helper
+    include Athenry::ShellAliases
+
+    def initialize
+      must_be_root
+    end
 
     def quit
-      puts "Exiting Athenry shell"
-      exit 0
+      announcing "Exiting Athenry shell" do
+        exit 0
+      end
     end
 
     def help
@@ -30,7 +36,7 @@ module Athenry
           execute command
         end
       rescue => e
-        $stderr.puts e.message
+        puts "No such command!"
         shellinput
       end
     end
