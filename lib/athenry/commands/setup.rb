@@ -18,8 +18,8 @@ module Athenry
 
     def extract
       announcing "Extracting stage file" do
-        cmd "tar xvjpf #{CONFIG.workdir}/stage3-amd64-current.tar.bz2 -C #{CONFIG.workdir}/#{CONFIG.chrootdir}"
-      end
+          cmd "tar xvjpf #{CONFIG.workdir}/stage3-amd64-current.tar.bz2 -C #{CONFIG.workdir}/#{CONFIG.chrootdir}"
+        end
     end
 
     def snapshot
@@ -28,8 +28,8 @@ module Athenry
           send_to_log("Portage snapshot already exists skipping fetch", "info")
         else
           cmd "wget -c #{CONFIG.snapshoturl} -O #{CONFIG.workdir}/portage-latest.tar.bz2"
-          cmd "tar xvjpf #{CONFIG.workdir}/portage-latest.tar.bz2 -C #{CONFIG.workdir}/#{CONFIG.chrootdir}/usr"
         end
+        cmd "tar xvjpf #{CONFIG.workdir}/portage-latest.tar.bz2 -C #{CONFIG.workdir}/#{CONFIG.chrootdir}/usr"
       end
     end
 
