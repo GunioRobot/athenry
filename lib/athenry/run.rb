@@ -4,6 +4,7 @@ module Athenry
       Athenry::Execute::setup.fetch
       Athenry::Execute::setup.extract
       Athenry::Execute::setup.snapshot
+      Athenry::Execute::setup.generate_bashscripts
       Athenry::Execute::setup.copy_scripts
       Athenry::Execute::setup.copy_configs
     end
@@ -14,7 +15,7 @@ module Athenry
     end
 
     def clean
-      Athenry::Execute::clean.test
+      Athenry::Execute::clean.unmount
     end
 
     def shell
