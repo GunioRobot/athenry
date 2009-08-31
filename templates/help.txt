@@ -1,0 +1,21 @@
+Athenry Shell Help:
+===================
+help - displays this
+quit - quits
+
+Setup Commands:
+---------------
+fetch
+extract
+snapshot
+copy_scripts
+copy_configs
+
+Build Commands:
+---------------
+mount
+chroot
+
+Clean Commands:
+---------------
+umount
