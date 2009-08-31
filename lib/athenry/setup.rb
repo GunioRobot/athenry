@@ -1,48 +1,56 @@
 module Athenry
-  class Setup < Helper
+  class Setup
+    include Athenry::Helper
     
     def initialize
-      unless File.directory?("#{CONFIG.base}")
-        FileUtils.mkdir_p("#{CONFIG.base}")
-      end
-      Dir.chdir("#{CONFIG.workdir}")
+      setup_environment
     end
     
     def fetch
-      announcing "Fetching" do
-        unless File.exists?("#{CONFIG.workdir}/stage3-amd64-current.tar.bz2")
-          silent "wget -c #{CONFIG.stageurl} -O #{CONFIG.workdir}/stage3-amd64-current.tar.bz2"
+      announcing "Fetching stage file" do
+        if File.exists?("#{CONFIG.workdir}/stage3-amd64-current.tar.bz2")
+          send_to_log("Stage file already exists skipping fetch", "info")
+        else
+          cmd "wget -c #{CONFIG.stageurl} -O #{CONFIG.workdir}/stage3-amd64-current.tar.bz2"
         end
       end
     end
 
     def extract
       announcing "Extracting stage file" do
-        silent "sudo tar xjpf stage3-amd64-current.tar.bz2 -C #{CONFIG.base}"
+        cmd "tar xvjpf stage3-amd64-current.tar.bz2 -C #{CONFIG.chrootdir}"
       end
     end
 
     def snapshot
       announcing "Fetching and extracting portage snapshot" do
-        unless File.exists?("#{CONFIG.workdir}/portage-latest.tar.bz2")
-          silent "wget -c #{CONFIG.snapshoturl} -O #{CONFIG.workdir}/portage-latest.tar.bz2"
+        if File.exists?("#{CONFIG.workdir}/portage-latest.tar.bz2")
+          send_to_log("Portage snapshot already exists skipping fetch", "info")
+        else
+          cmd "wget -c #{CONFIG.snapshoturl} -O #{CONFIG.workdir}/portage-latest.tar.bz2"
+          cmd "tar xvjpf portage-latest.tar.bz2 -C #{CONFIG.chrootdir}/usr"
         end
-        silent "sudo tar xjpf portage-latest.tar.bz2 -C #{CONFIG.base}/usr"
+      end
+    end
+
+    def generate_bashscripts
+      announcing "Generate bash configuration file" do
+        generate_bash("bashconfig", "config.bash")
       end
     end
 
     def copy_scripts
       announcing "Copying scripts into chroot" do
-        silent "sudo cp #{CONFIG.scripts}/compile.sh #{CONFIG.base}/root/compile.sh"
+        cmd "cp -v #{CONFIG.scripts}/compile.sh #{CONFIG.chrootdir}/root/compile.sh"
       end
     end
 
-    def copy_config
-      announcing "Copying CONFIG. into chroot" do
-        silent "sudo cp #{CONFIG.config}/resolv.conf #{CONFIG.base}/etc/resolv.conf"
-        silent "sudo cp #{CONFIG.config}/make.conf #{CONFIG.base}/etc/make.conf"
-        silent "sudo cp -R #{CONFIG.config}/paludis/ #{CONFIG.base}/etc/"
-        silent "sudo cp -R #{CONFIG.config}/portage/ #{CONFIG.base}/etc/"
+    def copy_configs
+      announcing "Copying configs into chroot" do
+        cmd "cp -v #{CONFIG.configs}/resolv.conf #{CONFIG.chrootdir}/etc/resolv.conf"
+        cmd "cp -v #{CONFIG.configs}/make.conf #{CONFIG.chrootdir}/etc/make.conf"
+        cmd "cp -vR #{CONFIG.configs}/paludis/ #{CONFIG.chrootdir}/etc/"
+        cmd "cp -vR #{CONFIG.configs}/portage/ #{CONFIG.chrootdir}/etc/"
       end
     end
   end
