@@ -1,27 +1,6 @@
 #!/bin/bash
 
-# Pick only one
-
-# Paludis
-PKG_NAME="paludis"
-PKG_INSTALL="paludis -i"
-PKG_REMOVE="paludis -u"
-PKG_SYNC="paludis -s"
-PKG_UPDATE="paludis -i everything"
-
-# Emerge
-#PKG_NAME="emerge"
-#PKG_INSTALL="emerge"
-#PKG_REMOVE="emerge -C"
-#PKG_SYNC="emerge --sync"
-#PKG_UPDATE="emerge -D world"
-
-# Pkgcore
-#PKG_NAME="pmerge"
-#PKG_INSTALL="pmerge"
-#PKG_REMOVE="pmerge -C"
-#PKG_SYNC="pmaint"
-#PKG_UPDATE="pmerge -uDs world"
+source /root/config.bash
 
 function error {
     echo -ne " \033[31;01m*\033[0m ${@}\n";
@@ -29,6 +8,36 @@ function error {
 
 function announce {
     echo -ne " \033[32;01m*\033[0m ${@}\n";
+}
+
+function set_pkgmanager {
+    case ${PKG_MANAGER} in 
+        paludis)
+            PKG_NAME="paludis"
+            PKG_INSTALL="paludis -i"
+            PKG_REMOVE="paludis -u"
+            PKG_SYNC="paludis -s"
+            PKG_UPDATE="paludis -i everything"
+        ;;
+        emerge)
+            PKG_NAME="emerge"
+            PKG_INSTALL="emerge"
+            PKG_REMOVE="emerge -C"
+            PKG_SYNC="emerge --sync"
+            PKG_UPDATE="emerge -D world"
+        ;;
+        pkgcore)
+            PKG_NAME="pmerge"
+            PKG_INSTALL="pmerge"
+            PKG_REMOVE="pmerge -C"
+            PKG_SYNC="pmaint"
+            PKG_UPDATE="pmerge -uDs world"
+        ;;
+        *)
+            error "${PKG_MANAGER} is not a valid choice"
+            exit 1
+        ;;
+    esac
 }
 
 function bootstrap_pkgmanager {
