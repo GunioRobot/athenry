@@ -26,7 +26,7 @@ module Athenry
     end
 
     def check_for_setup
-      raise "Must run setup before build" unless File.directory?(CONFIG.chrootdir) && File.directory?(CONFIG.logdir)
+      raise "Must run setup before build" unless File.directory?("#{CONFIG.workdir}/#{CONFIG.chrootdir}") && File.directory?("#{CONFIG.workdir}/#{CONFIG.logdir}")
     end
 
     def setup_environment
