@@ -4,6 +4,28 @@ TODO
 Release 0.1
 -----------
 
+State file
 Basic shell, should be it's own script, aliases, help
-Installation Instructions
+    * This is basically done just need to make sure everything is set
+Getting started guide (docs) use markdown
+Specify set(s) to build
+Comment some code
 
+Release 0.2
+-----------
+Use bond to tab complete shell
+Zsh tab completion for athenry bin
+Rake task for install/tests etc
+Split bash into modules
+Check config for errors and die quickly if there is
+
+Next
+----
+Whitelist filtering for eval
+freshen to update existing stages
+build should create a tarball (pull mkstage5 into project)
+Rebuild etc dir with some basic examples, have them as a submodule
+Organize config.yml into sections
+Ability to have more than one stage (prefixed names)
+Look for configs in various locations /etc/athenry $HOME/.config/athenry/ etc..
+Split helper into seperate files so we can include less/more as needed
