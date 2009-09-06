@@ -13,6 +13,7 @@ module Athenry
         cmd "mount -o bind /sys #{CONFIG.workdir}/#{CONFIG.chrootdir}/sys"
         cmd "mount -t proc none #{CONFIG.workdir}/#{CONFIG.chrootdir}/proc"
       end
+      send_to_state("build", "mount")
     end
 
     def chroot
@@ -20,6 +21,7 @@ module Athenry
         cmd "chmod +x #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/compile.sh"
         cmd "chroot #{CONFIG.workdir}/#{CONFIG.chrootdir} /root/compile.sh"
       end
+      send_to_state("build", "chroot")
     end
   end
 end

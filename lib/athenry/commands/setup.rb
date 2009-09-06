@@ -14,12 +14,14 @@ module Athenry
           cmd "wget -c #{CONFIG.stageurl} -O #{CONFIG.workdir}/stage3-amd64-current.tar.bz2"
         end
       end
+      send_to_state("setup", "fetch")
     end
 
     def extract
       announcing "Extracting stage file" do
           cmd "tar xvjpf #{CONFIG.workdir}/stage3-amd64-current.tar.bz2 -C #{CONFIG.workdir}/#{CONFIG.chrootdir}"
         end
+      send_to_state("setup", "extract")
     end
 
     def snapshot
@@ -31,18 +33,21 @@ module Athenry
         end
         cmd "tar xvjpf #{CONFIG.workdir}/portage-latest.tar.bz2 -C #{CONFIG.workdir}/#{CONFIG.chrootdir}/usr"
       end
+      send_to_state("setup", "snapshot")
     end
 
     def generate_bashscripts
       announcing "Generate bash configuration file" do
         generate_bash("bashconfig", "config.bash")
       end
+      send_to_state("setup", "generate_bashscripts")
     end
 
     def copy_scripts
       announcing "Copying scripts into chroot" do
         cmd "cp -v #{CONFIG.scripts}/compile.sh #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/compile.sh"
       end
+      send_to_state("setup", "copy_scripts")
     end
 
     def copy_configs
@@ -52,6 +57,7 @@ module Athenry
         cmd "cp -vR #{CONFIG.configs}/paludis/ #{CONFIG.workdir}/#{CONFIG.chrootdir}/etc/"
         cmd "cp -vR #{CONFIG.configs}/portage/ #{CONFIG.workdir}/#{CONFIG.chrootdir}/etc/"
       end
+      send_to_state("setup", "copy_configs")
     end
   end
 end
