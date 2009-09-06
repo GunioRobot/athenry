@@ -5,6 +5,7 @@ module Athenry
 
     def initialize
       must_be_root
+      $SHELL_IS_RUNNING = "true"
     end
 
     def quit
