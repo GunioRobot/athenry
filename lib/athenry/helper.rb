@@ -1,12 +1,27 @@
 module Athenry
   module Helper
+   
+    def error(msg)
+      puts "\e[31m*\e[0m #{msg} \n"
+    end
 
+    def success(msg)
+      puts "\e[32m*\e[0m #{msg} \n"
+    end
+
+    def warning(msg)
+      puts "\e[33m*\e[0m #{msg} \n"
+    end
+    
     def logger
-      unless CONFIG.logfile.empty? or CONFIG.logfile.nil?
-        @logfile = File.new("#{CONFIG.workdir}/#{CONFIG.logdir}/#{CONFIG.logfile}", "a")
+      begin
+        unless CONFIG.logfile.empty? or CONFIG.logfile.nil?
+          @logfile = File.new("#{CONFIG.workdir}/#{CONFIG.logdir}/#{CONFIG.logfile}", "a")
+        end
+        yield
+      ensure
+        @logfile.close
       end
-      yield
-      @logfile.close
     end
 
     def send_to_log(msg, level="error")
@@ -15,14 +30,26 @@ module Athenry
       end
     end
 
+    def send_to_state(stage, step)
+      if $? == 0
+        begin
+          statefile = File.new("#{CONFIG.workdir}/#{CONFIG.statedir}/#{CONFIG.statefile}", "w")
+          statefile.puts(%Q{#{stage}:#{state["#{stage}"]["#{step}"]}})
+        ensure
+          statefile.close
+        end
+      end
+    end
+
     def generate_bash(template, outfile, data={})
       erbfile = File.open("#{ATHENRY_ROOT}/lib/athenry/templates/#{template}.erb", "r")
       outfile = File.new("#{CONFIG.workdir}/#{CONFIG.chrootdir}/root/#{outfile}", "w")
-      parse = ERB.new(erbfile, 0, "%<>")
-
-      bash = parse.result
-      outfile.puts "#{bash}"
-      outfile.close
+      begin
+        parse = ERB.new(erbfile, 0, "%<>")
+        outfile.puts "#{parse.result}"
+      ensure
+        outfile.close
+      end
     end
 
     def check_for_setup
@@ -30,36 +57,48 @@ module Athenry
     end
 
     def setup_environment
-      dirs = [ CONFIG.chrootdir, CONFIG.logdir ]
+      dirs = [ CONFIG.chrootdir, CONFIG.logdir, CONFIG.statedir ]
       dirs.each do |dir|
         unless File.directory?("#{CONFIG.workdir}/#{dir}")
           FileUtils.mkdir_p("#{CONFIG.workdir}/#{dir}")
         end
       end
-      #raise "Can't chdir to #{CONFIG.workdir}" unless Dir.chdir("#{CONFIG.workdir}")
     end
 
     def must_be_root
-      raise 'Must run as root' unless Process.uid == 0
+      error('Must run as root') unless Process.uid == 0
     end
 
     def announcing(msg)
       logger do
         if @logfile then @logfile.puts "* #{msg} [#{Time.now}]\n" end
       end
-      puts "\e[32m*\e[0m #{msg} \n"
+      success("#{msg} \n")
       yield
     end 
 
-    def cmd(command)
-      logger do
-        pipe = IO.popen("#{command}")
-        pipe.each_line do |line|
-          if @logfile then @logfile.puts "#{line}" end
-          if CONFIG.verbose then puts "#{line}" end
+    def die(msg)
+      unless $? == 0
+        error("#{msg} \n")
+        unless $SHELL_IS_RUNNING
+          exit 1
         end
       end
     end
-  
+
+    def cmd(command)
+      logger do
+        begin
+          pipe = IO.popen("#{command}")
+          pipe.each_line do |line|
+            if @logfile then @logfile.puts "#{line}" end
+            if CONFIG.verbose then puts "#{line}" end
+          end
+        ensure
+          pipe.close
+        end
+      end
+      die("#{command} Failed to complete successfully")
+    end
   end
 end
