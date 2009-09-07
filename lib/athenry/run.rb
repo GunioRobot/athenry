@@ -25,5 +25,9 @@ module Athenry
     def freshen
       # More later
     end
+
+    def resume
+      Athenry::Execute::resume.from
+    end
   end
 end
