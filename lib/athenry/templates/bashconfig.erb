@@ -1,4 +1,6 @@
 #!/bin/bash
 
-OVERLAYS="<%= CONFIG.overlays %>"
+TIMEZONE="<%= CONFIG.timezone %>"
+OVERLAYS=( <%= CONFIG.overlays %> )
+SETS=( <%= CONFIG.sets %> )
 PKG_MANAGER="<%= CONFIG.pkgmanager %>"
