@@ -30,6 +30,16 @@ module Athenry
       end
     end
 
+    def is_mounted?
+      mtab ||= File.read("/etc/mtab")
+      if mtab =~ /#{CONFIG.chrootdir}\/(dev|proc|sys)/
+        return true
+      else
+        return false
+      end
+      mtab.close
+    end
+
     def send_to_state(stage, step)
       if $? == 0
         begin
