@@ -1,6 +1,5 @@
 module Athenry
   class Build
-    include Athenry::Helper
 
     def initialize
       must_be_root
@@ -8,10 +7,14 @@ module Athenry
     end
     
     def mount
-      announcing "Mounting dev, sys, and proc" do
-        cmd "mount -o bind /dev #{CONFIG.workdir}/#{CONFIG.chrootdir}/dev"
-        cmd "mount -o bind /sys #{CONFIG.workdir}/#{CONFIG.chrootdir}/sys"
-        cmd "mount -t proc none #{CONFIG.workdir}/#{CONFIG.chrootdir}/proc"
+      if is_mounted?
+        warning("dev, sys, proc are already mounted")
+      else
+        announcing "Mounting dev, sys, and proc" do
+          cmd "mount -o rbind /dev #{CONFIG.workdir}/#{CONFIG.chrootdir}/dev"
+          cmd "mount -o bind /sys #{CONFIG.workdir}/#{CONFIG.chrootdir}/sys"
+          cmd "mount -t proc none #{CONFIG.workdir}/#{CONFIG.chrootdir}/proc"
+        end
       end
       send_to_state("build", "mount")
     end
