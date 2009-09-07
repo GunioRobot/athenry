@@ -22,10 +22,6 @@ module Athenry
       Athenry::Execute::shell.shellinput
     end
 
-    def freshen
-      # More later
-    end
-
     def resume
       Athenry::Execute::resume.from
     end

@@ -17,10 +17,6 @@ module Athenry
       @build ||= Build.new
     end
 
-    def self.freshen
-      @freshen ||= Freshen.new
-    end
-
     def self.resume
       @resume ||= Resume.new
     end
