@@ -35,11 +35,11 @@ command :build do |c|
  end
 end
 
-command :freshen do |c|
- c.syntax = 'athenry freshen'
- c.description = 'Freshen an existing stage'
+command :resume do |c|
+ c.syntax = 'athenry resume'
+ c.description = 'Resume from last state'
  c.when_called do |args, options|
-   Athenry::Execute::run.freshen
+   Athenry::Execute::run.resume
  end
 end
 
