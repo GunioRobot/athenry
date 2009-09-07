@@ -1,6 +1,5 @@
 module Athenry
   class Setup
-    include Athenry::Helper
     
     def initialize
       setup_environment
