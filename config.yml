@@ -9,6 +9,7 @@ logdir: "log"
 logfile: "athenry.log"
 overlays: [gregf mpd]
 pkgmanager: "paludis"
-sets: [stage4 stage5]
+sets: [stage4]
 statedir: ".athenry"
 statefile: "state"
+timezone: "EST5EDT"
