@@ -40,20 +40,45 @@ function set_pkgmanager {
     esac
 }
 
+function setup_chroot {
+    if [ -e /usr/share/zoneinfo/${TIMEZONE} ]; then 
+        cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
+    fi
+    env-update
+    source /etc/profile
+    export PS1="(chroot) $PS1"
+}
+
 function bootstrap_pkgmanager {
     if [ ${PKG_NAME} == "paludis" ]; then
         mkdir -p /var/tmp/paludis
         mkdir -p /usr/portage/.cache/names
-        mkdir -p /var/paludis/repositories/mpd/.cache/names
-        mkdir -p /var/paludis/repositories/gregf/.cache/names
         chown -R paludisbuild:paludisbuild /etc/paludis /usr/portage /var/tmp/paludis /var/paludis
         rebuild_cache
     fi
 }
 
+function bootstrap_overlays {
+    if [ ${PKG_NAME} == "paludis" ]; then 
+        for overlay in ${OVERLAYS[*]}
+        do
+            paludis -s x-${overlay}
+            mkdir -p /var/paludis/repositories/${overlay}/.cache/names
+            chown -R paludisbuild:paludisbuild /var/paludis/repositories/${overlay}
+        done
+    fi
+}
+
+function install_sets {
+    for _set in ${SETS[*]}
+    do
+        ${PKG_INSTALL} "${_set}"
+    done
+}
+
 function rebuild_cache {
     paludis --regenerate-installed-cache
-    paludis --regenerate-installable-chace
+    paludis --regenerate-installable-chache
 }
 
 function update_pkgmanager { 
@@ -65,6 +90,9 @@ function update_pkgmanager {
         ;;
     pmerge)
         emerge pkgcore
+        ;;
+    emerge)
+        # Do nothing
         ;;
     *)
         error "Invalid package manager check your settings and try again!"
@@ -79,15 +107,48 @@ function sync {
 
 
 function update_everything {
+    if [ ${PKG_NAME} == "paludis" ]; then
+        export PALUDIS_OPTIONS="--log-level warning --continue-on-failure if-satisfied --dl-reinstall if-use-changed --dl-reinstall-scm weekly"
+    fi
     ${PKG_UPDATE}
 }
 
+function fix_broken {
+    case ${PKG_NAME} in
+        paludis)
+            export RECONCILIO_OPTIONS="--continue-on-failure if-satisfied"
+            reconcilio
+        ;;
+        pmerge)
+            # No idea how pkgcore works yet...
+        ;;
+        emerge)
+            revdep-rebuild -P -i
+        ;;
+        *)
+        error "Invalid package manager check your settings and try again!"
+        exit 1
+        ;;
+    esac
+}
+
 function main {
+    setup_chroot
+    set_pkgmanager
     update_pkgmanager
     bootstrap_pkgmanager
     sync
-    rebuild_cache
+    if [ ${OVERLAYS} ]; then
+        bootstrap_overlays
+    fi
+    if [ ${PKG_NAME} == "paludis"]; then
+        rebuild_cache
+    fi
     update_everything
+    fix_broken
+    if [ ${SETS} ]; then
+        install_sets
+    fi
 }
 
 
