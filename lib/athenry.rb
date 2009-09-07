@@ -21,6 +21,10 @@ module Athenry
       @freshen ||= Freshen.new
     end
 
+    def self.resume
+      @resume ||= Resume.new
+    end
+
     def self.clean
       @clean ||= Clean.new 
     end
