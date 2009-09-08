@@ -10,6 +10,11 @@ function announce {
     echo -ne " \033[32;01m*\033[0m ${@}\n";
 }
 
+function ctrl_c() {
+        error "Caught CTRL-C exiting soon as it's safe!"
+        exit 2
+}
+
 function set_pkgmanager {
     case ${PKG_MANAGER} in 
         paludis)
@@ -118,12 +123,15 @@ function fix_broken {
         paludis)
             export RECONCILIO_OPTIONS="--continue-on-failure if-satisfied"
             reconcilio
+            python-updater -P paludis
         ;;
         pmerge)
+            python-updater -P pkgcore
             # No idea how pkgcore works yet...
         ;;
         emerge)
-            revdep-rebuild -P -i
+            revdep-rebuild -P
+            python-updater -P portage
         ;;
         *)
         error "Invalid package manager check your settings and try again!"
@@ -132,7 +140,18 @@ function fix_broken {
     esac
 }
 
+function freshen {
+    trap ctrl_c INT
+    setup_chroot
+    set_pkgmanager
+    bootstrap_pkgmanager
+    sync
+    update_everything
+    fix_broken
+}
+
 function main {
+    trap ctrl_c INT
     setup_chroot
     set_pkgmanager
     update_pkgmanager
