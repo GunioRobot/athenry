@@ -1,7 +1,7 @@
 module Athenry
   module State 
     def state 
-      @states = {
+      @states ||= {
         "setup" => {
           "fetch" => 1,
           "extract" => 2,

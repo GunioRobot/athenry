@@ -1,6 +1,5 @@
 module Athenry
   class Shell 
-    include Athenry::Helper
     include Athenry::ShellAliases
 
     def initialize
@@ -21,8 +20,6 @@ module Athenry
     end
 
     def prompt
-      #print ">> "
-      #gets
       ask(">>")
     end   
 
@@ -31,7 +28,7 @@ module Athenry
     end
     
     def shellinput
-      puts "Type Help if you don't know what to do:"
+      puts "Type help for a list of commands:"
       begin
         while command = prompt 
           execute command
