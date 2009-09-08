@@ -1,6 +1,8 @@
 module Athenry
   module Helper
-   
+
+    private
+
     def error(msg)
       puts "\e[31m*\e[0m #{msg} \n"
     end

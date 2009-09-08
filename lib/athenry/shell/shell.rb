@@ -19,14 +19,6 @@ module Athenry
       }
     end
 
-    def prompt
-      ask(">>")
-    end   
-
-    def execute(cmd)
-      eval(cmd)
-    end
-    
     def shellinput
       puts "Type help for a list of commands:"
       begin
@@ -37,6 +29,16 @@ module Athenry
         puts "No such command!"
         shellinput
       end
+    end
+    
+    private
+    
+    def prompt
+      ask(">>")
+    end   
+
+    def execute(cmd)
+      eval(cmd)
     end
   end
 end
