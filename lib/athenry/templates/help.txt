@@ -3,7 +3,7 @@ Athenry Shell Help:
 help - displays this
 quit - quits
 
-Setup Commands:
+Setup:
 ---------------
 fetch
 extract
@@ -12,11 +12,15 @@ generate_bashscripts
 copy_scripts
 copy_configs
 
-Build Commands:
+Build:
 ---------------
 mount
 chroot
 
-Clean Commands:
+Resume:
+---------------
+continue
+
+Clean:
 ---------------
 umount

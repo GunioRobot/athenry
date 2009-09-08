@@ -35,6 +35,10 @@ module Athenry
     def unmount
       Athenry::Execute::clean.unmount
     end
+
+    def continue 
+      Athenry::Execute::resume.from
+    end
     
   end
 end
