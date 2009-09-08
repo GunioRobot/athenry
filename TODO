@@ -4,11 +4,8 @@ TODO
 Release 0.1
 -----------
 
-Basic shell, should be it's own script, aliases, help
-    * This is basically done just need to make sure everything is set
 Getting started guide (docs) use markdown
 Comment some code
-State files are done, need code for resuming
 
 Release 0.2
 -----------
