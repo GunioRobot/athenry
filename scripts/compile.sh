@@ -29,14 +29,7 @@ function set_pkgmanager {
             PKG_INSTALL="emerge"
             PKG_REMOVE="emerge -C"
             PKG_SYNC="emerge --sync"
-            PKG_UPDATE="emerge -D world"
-        ;;
-        pkgcore)
-            PKG_NAME="pmerge"
-            PKG_INSTALL="pmerge"
-            PKG_REMOVE="pmerge -C"
-            PKG_SYNC="pmaint"
-            PKG_UPDATE="pmerge -uDs world"
+            PKG_UPDATE="emerge --keep-going --update --deep @system @world"
         ;;
         *)
             error "${PKG_MANAGER} is not a valid choice"
@@ -87,14 +80,11 @@ function rebuild_cache {
 }
 
 function update_pkgmanager { 
-    emerge -D world 
+    emerge --keep-going --update --deep @system @world
     
     case ${PKG_NAME} in
     paludis)
         emerge sys-apps/paludis dev-util/git
-        ;;
-    pmerge)
-        emerge pkgcore
         ;;
     emerge)
         # Do nothing
@@ -118,16 +108,16 @@ function update_everything {
     ${PKG_UPDATE}
 }
 
+function update_configs {
+    echo "-5" | etc-update
+}
+
 function fix_broken {
     case ${PKG_NAME} in
         paludis)
             export RECONCILIO_OPTIONS="--continue-on-failure if-satisfied"
             reconcilio
             python-updater -P paludis
-        ;;
-        pmerge)
-            python-updater -P pkgcore
-            # No idea how pkgcore works yet...
         ;;
         emerge)
             revdep-rebuild -P
@@ -164,6 +154,7 @@ function main {
         rebuild_cache
     fi
     update_everything
+    update_configs
     fix_broken
     if [ ${SETS} ]; then
         install_sets
