@@ -15,7 +15,7 @@ $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'athenry'
 
-program :name, 'Make Stage5'
+program :name, 'Athenry'
 program :version, '0.0.1'
 program :description, 'Creates a Gentoo chroot and automates stage building'
 
