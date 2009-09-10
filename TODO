@@ -6,6 +6,7 @@ Release 0.1
 
 Getting started guide (docs) use markdown
 Comment some code
+Remove pointless/confusing config options for sane defaults.
 
 Release 0.2
 -----------
@@ -18,7 +19,7 @@ each bash function should exit upon failure
 Next
 ----
 default to pbzip2 if it's installed, else use tar
-Use bond to tab complete shel
+Use bond to tab complete shell
 Zsh tab completion for athenry bin
 Whitelist filtering for eval
 freshen to update existing stages
