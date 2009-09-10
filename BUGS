@@ -1,0 +1,4 @@
+Bugs
+====
+
+* Hitting ^C Currently does not die correctly
