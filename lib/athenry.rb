@@ -11,28 +11,27 @@ require "athenry/shell"
 module Athenry
   module Execute
     def self.setup
-      @setup ||= Setup.new
+      Setup.new
     end
 
     def self.build
-      @build ||= Build.new
+      Build.new
     end
 
     def self.resume
-      @resume ||= Resume.new
+      Resume.new
     end
 
     def self.clean
-      @clean ||= Clean.new 
+      Clean.new 
     end
 
     def self.shell
-      @shell ||= Shell.new
+      Shell.new
     end
     
     def self.run
-      @run ||= Run.new
+      Run.new
     end
   end
 end
-
