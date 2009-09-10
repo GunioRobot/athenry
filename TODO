@@ -9,18 +9,20 @@ Comment some code
 
 Release 0.2
 -----------
-Use bond to tab complete shell
-Zsh tab completion for athenry bin
+Freshen class for updating existing stages
 Rake task for install/tests etc
 Split bash into modules
 Check config for errors and die quickly if there is
+each bash function should exit upon failure
 
 Next
 ----
+default to pbzip2 if it's installed, else use tar
+Use bond to tab complete shel
+Zsh tab completion for athenry bin
 Whitelist filtering for eval
 freshen to update existing stages
 build should create a tarball (pull mkstage5 into project)
-Rebuild etc dir with some basic examples, have them as a submodule
 Organize config.yml into sections
 Ability to have more than one stage (prefixed names)
 Look for configs in various locations /etc/athenry $HOME/.config/athenry/ etc..
