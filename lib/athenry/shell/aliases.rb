@@ -1,5 +1,11 @@
 module Athenry
+  # These are all aliases for the shell command
+  # See the respective classes for more information.
+  # * {Athenry::Execute.setup}.
+  # * {Athenry::Execute.build}.
+  # * {Athenry::Execute.clean}.
   module ShellAliases
+    
     def fetch 
       Athenry::Execute::setup.fetch
     end

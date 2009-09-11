@@ -5,7 +5,10 @@ module Athenry
       must_be_root
       check_for_setup
     end
-    
+   
+    # First checks if dev,proc,sys are mounted if not we mount them and save
+    # state
+    # @return [String]
     def mount
       if is_mounted?
         warning("dev, sys, proc are already mounted")
@@ -19,6 +22,8 @@ module Athenry
       send_to_state("build", "mount")
     end
 
+    # Changes root and executes the scripts.
+    # @return [String]
     def chroot
       announcing "Entering Chroot" do
         cmd "chmod +x #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/compile.sh"

@@ -8,6 +8,8 @@ module Athenry
       load_state
     end
 
+    # Runs steps required to execute from last step.
+    # @return [String]
     def from
       begin
         start = resume["#{@current_state.first}"]["#{@current_state.last}"]
@@ -21,7 +23,10 @@ module Athenry
     end
 
     private
-
+    # Loads the current state into an instance variable
+    # Example:
+    #   load_state => Setup:2
+    # @return [String]
     def load_state
       begin
         statefile = "#{CONFIG.workdir}/#{CONFIG.statedir}/#{CONFIG.statefile}"

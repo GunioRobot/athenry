@@ -1,5 +1,7 @@
 module Athenry
   module State 
+    # Returns the save state files so we know what last sucessfully finished
+    # @return [Hash]
     def state 
       @states ||= {
         "setup" => {

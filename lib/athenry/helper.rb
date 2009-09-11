@@ -1,16 +1,29 @@
 module Athenry
   module Helper
 
-    private
-
+    # Displays an error message
+    # @param msg [String]
+    # @example
+    #   error("Error Will Robinson") => "* Error Will Robinson"
+    # @return [String]
     def error(msg)
       puts "\e[31m*\e[0m #{msg} \n"
     end
 
+    # Displays a success message
+    # @param msg [String]
+    # @example
+    #   error("FTW!") => "* FTW!"
+    # @return [String]
     def success(msg)
       puts "\e[32m*\e[0m #{msg} \n"
     end
 
+    # Displays a warning message
+    # @param msg [String]
+    # @example
+    #   warning("FTL!") => "* FTL!"
+    # @return [String]
     def warning(msg)
       puts "\e[33m*\e[0m #{msg} \n"
     end
@@ -32,6 +45,9 @@ module Athenry
       end
     end
 
+    # Looks at /etc/mtab on the host system and checks to see if dev,proc,sys
+    # are mounted.
+    # @return [Boolean]
     def is_mounted?
       mtab ||= File.read("/etc/mtab")
       if mtab =~ /#{CONFIG.chrootdir}\/(dev|proc|sys)/
@@ -41,7 +57,13 @@ module Athenry
       end
       mtab.close
     end
-
+  
+    # if the last command was sucessfull write the current state to file
+    # @param stage [String]
+    # @param step [String]
+    # @example
+    #   send_to_state("Setup", "copy_scripts")
+    # @return [String]
     def send_to_state(stage, step)
       if $? == 0
         begin
@@ -63,11 +85,14 @@ module Athenry
         outfile.close
       end
     end
-
+    
+    # Checks to make sure setup was run before any build command is ran.
+    # Looks for #{CONFIG.workdir} and #{CONFIG.chrootdir} to verify.
     def check_for_setup
       raise "Must run setup before build" unless File.directory?("#{CONFIG.workdir}/#{CONFIG.chrootdir}") && File.directory?("#{CONFIG.workdir}/#{CONFIG.logdir}")
     end
 
+    # Creates necessary dirs to setup our chroot.
     def setup_environment
       dirs = [ CONFIG.chrootdir, CONFIG.logdir, CONFIG.statedir ]
       dirs.each do |dir|
@@ -77,8 +102,10 @@ module Athenry
       end
     end
 
+    # Checks if the Process.uid is run by root. If not raise an error and die. 
+    # @return [String]
     def must_be_root
-      error('Must run as root') unless Process.uid == 0
+      Raise "Must run as root" unless Process.uid == 0
     end
 
     def announcing(msg)
@@ -89,10 +116,16 @@ module Athenry
       yield
     end 
 
+    # If the last exit status was not true then dispaly an error and exit,
+    # unless SHELL_IS_RUNNING is true, then just display the error and return
+    # @return [string]
+    # @param msg [String]
+    # @example
+    #   die "Foo bar" => "* Foo bar"
     def die(msg)
       unless $? == 0
         error("#{msg} \n")
-        unless $SHELL_IS_RUNNING
+        unless SHELL_IS_RUNNING
           exit 1
         end
       end

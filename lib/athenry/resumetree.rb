@@ -1,5 +1,7 @@
 module Athenry
   module ResumeTree 
+    # The steps required to resume from a specific saved state
+    # @return [Hash]
     def resume
       @resume ||= {
         "setup" => {

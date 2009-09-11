@@ -1,6 +1,9 @@
 module Athenry
   class Clean
-    
+   
+    # First we check if dev,sys,proc are already mounted, if
+    # they are we unmount them.
+    # @return [String]
     def unmount
       if !is_mounted?
         warning("dev, sys, and proc are already unmounted")
