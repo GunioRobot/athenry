@@ -23,13 +23,10 @@ v0.2 to be much more clear. I'll walk through each setting below.
     stageurl: "http://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3/stage3-amd64-20090903.tar.bz2"
     snapshoturl: "http://gentoo.osuosl.org/snapshots/portage-latest.tar.bz2"
     verbose: "true"
-    logdir: "log"
     logfile: "athenry.log"
     overlays: [gregf mpd]
     pkgmanager: "paludis" #or emerge
     sets: [stage4]
-    statedir: ".athenry"
-    statefile: "state"
     timezone: "EST5EDT"
 
 **workdir**: This is the directory the root directory that your stages, logs,
@@ -48,8 +45,6 @@ your workdir.
 **verbose**: Does what it implies, toggles verbose level. Even with this set to
 false you can tail the log file to see the progress.  
 
-**logdir**: Relative path to where logfiles are stored inside workdir.  
-
 **logfile**: If a filename is set it logs to logdir/logfile, if blank logging is
 disabled.  
 
@@ -63,10 +58,6 @@ added with relative ease if someone was interested enough to do testing.
 
 **sets**: An array listing set files to install, this is how we handle listing
 packages to be installed into our chroot.  
-
-**statedir**: Relative path to statedir that is stored inside workdir  
-
-**statefile**: Name of statefile stored in statedir
 
 **timezone**: Timezone to be set for your chroot.
 
