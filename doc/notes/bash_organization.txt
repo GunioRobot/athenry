@@ -1,0 +1,17 @@
+chroot.sh
+    - config
+    - functions
+    - setup chroot
+    - set package_manager
+    - <run something from lib>
+    lib/
+        - freshen
+        - stage1
+        - stage2
+        - stage3
+        - custom
+        - repair
+        - tar
+        - install_pkgmgr
+        - sync
+        - update everything
