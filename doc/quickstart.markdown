@@ -42,7 +42,7 @@ recursivley.
 chroot. As mentioned you can ignore this if you have already placed a stage3 in
 your workdir.  
 
-**stageurl**: This optional setting downloads a seed portage snapshot to be used
+**snapshoturl**: This optional setting downloads a seed portage snapshot to be used
 in our chroot. As mentioned you can ignore this if you already have placed a
 snapshot in your workdir.
 
