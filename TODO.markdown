@@ -4,7 +4,6 @@ TODO
 Release 0.1
 -----------
 
-* Remove pointless/confusing config options for sane defaults.
 * Get diffs from manny and mike merged
 * Test builds on quad
 * Branch/Tag Release
