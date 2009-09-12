@@ -27,7 +27,9 @@ module Athenry
     def warning(msg)
       puts "\e[33m*\e[0m #{msg} \n"
     end
-    
+   
+    # Writes verbose output to #{CONFIG.logfile} unless #{CONFIG.logfile} is nil
+    # @return [String]
     def logger
       begin
         unless CONFIG.logfile.empty? or CONFIG.logfile.nil?
@@ -39,6 +41,13 @@ module Athenry
       end
     end
 
+    # Writes messages to #{CONFIG.logfile}
+    # @param msg [String]
+    # @param level [String]
+    # @example
+    #   send_to_log("Epic Fail", level="error") => "ERROR: Epic Fail [Fri Sep 11
+    #   21:21:16 -0400 2009]
+    # @return [String]
     def send_to_log(msg, level="error")
       logger do
           if @logfile then @logfile.puts "#{level.upcase}: #{msg} [#{Time.now}]\n" end
@@ -75,6 +84,11 @@ module Athenry
       end
     end
 
+    # Takes a erb template file and output file, to generate bash from ruby
+    # @param template [File]
+    # @param outfile [File]
+    # @param data [Hash optional]
+    # @return [String]
     def generate_bash(template, outfile, data={})
       erbfile = File.open("#{ATHENRY_ROOT}/lib/athenry/templates/#{template}.erb", "r")
       outfile = File.new("#{CONFIG.workdir}/#{CONFIG.chrootdir}/root/#{outfile}", "w")
@@ -88,6 +102,8 @@ module Athenry
     
     # Checks to make sure setup was run before any build command is ran.
     # Looks for #{CONFIG.workdir} and #{CONFIG.chrootdir} to verify.
+    # @raise "Must run setup before build"
+    # @return [String]
     def check_for_setup
       raise "Must run setup before build" unless File.directory?("#{CONFIG.workdir}/#{CONFIG.chrootdir}") && File.directory?("#{CONFIG.workdir}/#{CONFIG.logdir}")
     end
@@ -103,11 +119,15 @@ module Athenry
     end
 
     # Checks if the Process.uid is run by root. If not raise an error and die. 
+    # @raise "Must run as root"
     # @return [String]
     def must_be_root
       Raise "Must run as root" unless Process.uid == 0
     end
 
+    # Wraps verbose out put in a message block for nicer verbose output
+    # @param msg [String]
+    # @return [String]
     def announcing(msg)
       logger do
         if @logfile then @logfile.puts "* #{msg} [#{Time.now}]\n" end
@@ -131,6 +151,12 @@ module Athenry
       end
     end
 
+    # Takes a shell command to run, decides verbose level, optionally logs
+    # output, and dies if the exit status was not 0
+    # @param command
+    # @example
+    #   cmd("uname -s") => "Linux"
+    # @return [String]
     def cmd(command)
       logger do
         begin

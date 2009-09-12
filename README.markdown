@@ -13,17 +13,27 @@ DESCRIPTION
 Athenry tries to stay as simple as possible to do a complex job. It will take
 your system configuration files from /etc and build gentoo stages. 
 
+For more information please refer to {file:about.markdown}
+
 REQUIREMENTS
 -------------
 Install the following gems:  
 
-* configatron 
-* visionmedia-commander
+* [configatron](http://github.com/markbates/configatron/tree/master)
+* [visionmedia-commander](http://github.com/visionmedia/commander/tree/master)
 
 INSTALLATION
 ------------
 
 See {file:quickstart.markdown}.
+
+DOCUMENTATION
+-------------
+You can build the documentation by running  
+
+    $ rake documentation:generate
+
+Files generated will be stored inside meta/documentation
 
 CREDITS
 --------
@@ -33,7 +43,7 @@ See {file:AUTHORS.markdown}.
 ROADMAP
 --------
 
-See {file:TODO}.
+See {file:TODO.markdown}.
 
 CHANGELOG
 ---------

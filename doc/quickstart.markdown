@@ -17,9 +17,9 @@ v0.2 to be much more clear. I'll walk through each setting below.
 
 `config.yml`
 
-    workdir: "/home/gregf/staging"
+    workdir: "/storage/staging"
     chrootdir: "stage5"
-    configs: "/home/gregf/code/active/athenry/etc/amd64"
+    configs: "/storage/athenry/etc/amd64"
     stageurl: "http://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3/stage3-amd64-20090903.tar.bz2"
     snapshoturl: "http://gentoo.osuosl.org/snapshots/portage-latest.tar.bz2"
     verbose: "true"
@@ -158,3 +158,9 @@ copying newer configs or debugging an issue painless.
     ---------------
     umount
     >>
+
+Note
+----
+
+Please refer to {file:about.markdown} for more information on Athenry. It is still in the
+very early stages and should not be relied upon. 

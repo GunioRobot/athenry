@@ -1,4 +1,6 @@
 Bugs
 ====
 
+List of known bugs.
+
 * Hitting ^C Currently does not die correctly

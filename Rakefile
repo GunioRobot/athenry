@@ -17,6 +17,7 @@ begin
                    '--files', 'doc/about.markdown',
                    '--files', 'doc/quickstart.markdown',
                    '--files', 'AUTHORS.markdown', 
+                   '--files', 'TODO.markdown',
                    '--files', 'MIT-LICENSE']
     end
     
@@ -28,6 +29,7 @@ begin
                    '--files', 'doc/about.markdown',
                    '--files', 'doc/quickstart.markdown',
                    '--files', 'AUTHORS.markdown', 
+                   '--files', 'TODO.markdown', 
                    '--files', 'MIT-LICENSE']
     end
   end

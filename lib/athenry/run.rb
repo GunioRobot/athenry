@@ -2,6 +2,7 @@ module Athenry
   class Run
     
     # Executes steps for setup
+    # @see Athenry::Setup
     def setup
       Athenry::Execute::setup.fetch
       Athenry::Execute::setup.extract
@@ -12,22 +13,26 @@ module Athenry
     end
 
     # Executes steps for build
+    # @see Athenry::Build
     def build
       Athenry::Execute::build.mount
       Athenry::Execute::build.chroot
     end
 
     # Executes steps to cleanup
+    # @see Athenry::Clean
     def clean
       Athenry::Execute::clean.unmount
     end
 
     # Executes the shell
+    # @see Athenry::Shell
     def shell
       Athenry::Execute::shell.shellinput
     end
 
     # Resumes from last saved state
+    # @see Athenry::Resume
     def resume
       Athenry::Execute::resume.from
     end
