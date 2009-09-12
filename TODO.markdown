@@ -4,9 +4,10 @@ TODO
 Release 0.1
 -----------
 
-* Getting started guide (docs) use markdown
-* Comment some code
 * Remove pointless/confusing config options for sane defaults.
+* Get diffs from manny and mike merged
+* Test builds on quad
+* Branch/Tag Release
 
 Release 0.2
 -----------
