@@ -20,31 +20,38 @@ require "athenry/shell"
 module Athenry
   # See {Athenry} for more information. 
   module Execute
+
+    # Initiates Setup [Class]
     # @see Athenry::Setup
     def self.setup
       Setup.new
     end
-    
+   
+    # Initiates Build [Class]
     # @see Athenry::Build
     def self.build
       Build.new
     end
 
+    # Initiates Resume [Class]
     # @see Athenry::Resume
     def self.resume
       Resume.new
     end
 
+    # Initiates Clean [Class]
     # @see Athenry::Clean
     def self.clean
       Clean.new 
     end
 
+    # Initiates Shell [Class]
     # @see Athenry::Shell
     def self.shell
       Shell.new
     end
     
+    # Initiates Run [Class]
     # @see Athenry::Run
     def self.run
       Run.new
