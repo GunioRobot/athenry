@@ -19,8 +19,12 @@ REQUIREMENTS
 -------------
 Install the following gems:  
 
-* [configatron](http://github.com/markbates/configatron/tree/master)
-* [visionmedia-commander](http://github.com/visionmedia/commander/tree/master)
+    $ gem sources -a http://gems.github.com
+    $ sudo gem install configatron
+    $ sudo gem install visionmedia-commander 
+
+* [configatron](http://github.com/markbates/configatron/tree/master)  
+* [visionmedia-commander](http://github.com/visionmedia/commander/tree/master)  
 
 INSTALLATION
 ------------
