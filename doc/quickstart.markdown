@@ -29,7 +29,7 @@ v0.2 to be much more clear. I'll walk through each setting below.
     sets: [stage4]
     timezone: "EST5EDT"
 
-**workdir**: This is the directory the root directory that your stages, logs,
+**workdir**: This is the directory the root directory where your stages, logs,
 state file, and downloaded files will be stored.  
 
 **chrootdir**: Relative path to where the chroot will be built.  
@@ -38,13 +38,10 @@ state file, and downloaded files will be stored.
 files used for building the chroot here. Blindly copies files to chrootdir/etc
 recursivley.  
 
-**stageurl**: This optional setting downloads a seed stage3 to be used in our
-chroot. As mentioned you can ignore this if you have already placed a stage3 in
-your workdir.  
+**stageurl**: This is the url where Athenry will grab the stage seed from.  
 
-**snapshoturl**: This optional setting downloads a seed portage snapshot to be used
-in our chroot. As mentioned you can ignore this if you already have placed a
-snapshot in your workdir.
+**snapshoturl**: This is the url where Athenry will grab the portage snapshot
+from. 
 
 **verbose**: Does what it implies, toggles verbose level. Even with this set to
 false you can tail the log file to see the progress.  

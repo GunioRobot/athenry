@@ -13,7 +13,7 @@ DESCRIPTION
 Athenry tries to stay as simple as possible to do a complex job. It will take
 your system configuration files from /etc and build gentoo stages. 
 
-For more information please refer to {file:about.markdown}
+For more information please refer to {file:about.markdown}.
 
 REQUIREMENTS
 -------------
