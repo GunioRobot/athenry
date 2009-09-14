@@ -45,7 +45,7 @@ module Athenry
     # @param msg [String]
     # @param level [String]
     # @example
-    #   send_to_log("Epic Fail", level="error") => "ERROR: Epic Fail [Fri Sep 11
+    #   send_to_log("Epic Fail", level="error") => "ERROR: Epic Fail [Fri Sep 13
     #   21:21:16 -0400 2009]
     # @return [String]
     def send_to_log(msg, level="error")
