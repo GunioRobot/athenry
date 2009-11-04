@@ -3,4 +3,5 @@
 *.bak
 *.old
 meta/**
+pkg/**
 .yardoc

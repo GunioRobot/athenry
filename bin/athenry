@@ -3,7 +3,6 @@
 # Copyright (c) 2009 Greg Fitzgerald <netzdamon@gmail.com>
 # vim: set sw=2 sts=2 et tw=80 :
 
-require 'rubygems'
 begin
   gem "visionmedia-commander", ">= 3.2"
   require "commander"
