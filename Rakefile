@@ -14,7 +14,7 @@ Jeweler::Tasks.new do |gem|
   gem.authors = ["Greg Fitzgerald"]
   gem.version = "0.0.1"
  
-  gem.add_dependency "visionmedia-commander", ">= 3.2"
+  gem.add_dependency "commander", ">= 3.2"
   gem.add_dependency "configatron", ">= 2.5"
  
   gem.add_development_dependency "yard"
