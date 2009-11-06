@@ -1,13 +1,6 @@
 TODO
 =====
 
-Release 0.1
------------
-
-* Get diffs from manny and mike merged
-* Test builds on quad
-* Branch/Tag Release
-
 Release 0.2
 -----------
 * Freshen class for updating existing stages
