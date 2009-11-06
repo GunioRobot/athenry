@@ -11,7 +11,12 @@ rescue Gem::LoadError
   # handle the error somehow
 end
 
-$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+athenrybase = __FILE__
+while File.symlink?(athenrybase)
+	athenrybase = File.expand_path(File.readlink(athenrybase), File.dirname(athenrybase))
+end
+
+$:.unshift(File.join(File.dirname(athenrybase), '..', 'lib'))
 
 require 'athenry'
 
