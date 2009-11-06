@@ -91,7 +91,7 @@ module Athenry
     # @return [String]
     def generate_bash(template, outfile, data={})
       erbfile = File.open("#{ATHENRY_ROOT}/lib/athenry/templates/#{template}.erb", "r")
-      outfile = File.new("#{CONFIG.workdir}/#{CONFIG.chrootdir}/root/#{outfile}", "w")
+      outfile = File.new("#{ATHENRY_ROOT}/scripts/athenry/lib/#{outfile}", "w")
       begin
         parse = ERB.new(erbfile, 0, "%<>")
         outfile.puts "#{parse.result}"
