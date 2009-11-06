@@ -13,5 +13,13 @@ CONFIG.logdir = "log"
 CONFIG.statedir = ".athenry"
 CONFIG.statefile = "state"
 CONFIG.scripts = "#{ATHENRY_ROOT}/scripts/"
+CONFIG.homeconfig = "#{ENV['HOME']}/.config/athenry/config.yml"
+CONFIG.etcconfig = "/etc/athenry/config.yml"
 
-CONFIG.configure_from_yaml("#{ATHENRY_ROOT}/config.yml") # Load configuration from yaml
+if File.readable?("#{CONFIG.homeconfig}")
+  CONFIG.configure_from_yaml("#{CONFIG.homeconfig}") # Load configuration from yaml
+elsif File.readable?("#{CONFIG.etcconfig}")
+  CONFIG.configure_from_yaml("#{CONFIG.etcconfig}") 
+else
+  raise "No configuration file present, please refer to the README."
+end
