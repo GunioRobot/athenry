@@ -1,11 +1,11 @@
-workdir: "/storage/staging"
+workdir: "/var/tmp/athenry"
 chrootdir: "stage5"
-configs: "/home/gregf/code/active/athenry/etc/amd64"
-stageurl: "http://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3/stage3-amd64-20090903.tar.bz2"
+configs: "/etc/athenry/etc/amd64"
+stageurl: "http://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3/stage3-amd64-20091029.tar.bz2"
 snapshoturl: "http://gentoo.osuosl.org/snapshots/portage-latest.tar.bz2"
 verbose: "true"
 logfile: "athenry.log"
-overlays: [gregf mpd]
+overlays: [sunrise mpd]
 pkgmanager: "paludis"
 sets: [stage4]
 timezone: "EST5EDT"
