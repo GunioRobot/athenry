@@ -1,5 +1,6 @@
 require 'rake'
 
+<<<<<<< HEAD
 #task :default => [:install]
 
 $LOAD_PATH.unshift('lib')
@@ -29,19 +30,44 @@ Jeweler::RubyforgeTasks.new do |t|
   t.doc_task = :yardoc
 end
 
+=======
+# =======================
+# = Documentation tasks =
+# =======================
+>>>>>>> b096f27... Use jeweler to make a gem
 begin
   require 'yard'
-  YARD::Rake::YardocTask.new(:yardoc) do |t|
-    t.files   = ['lib/**/*.rb']
-    t.options = ['--output-dir', File.join('meta', 'documentation'),
-                 '--title', 'Athenry YARD documentation',
-                 '--readme', 'README.markdown',
-                 '--files', 'doc/about.markdown',
-                 '--files', 'doc/quickstart.markdown',
-                 '--files', 'AUTHORS.markdown', 
-                 '--files', 'TODO.markdown',
-                 '--files', 'MIT-LICENSE']
+  require 'yard/rake/yardoc_task'
+  
+  task :documentation => :'documentation:generate'
+  namespace :documentation do
+    YARD::Rake::YardocTask.new :generate do |t|
+      t.files   = ['lib/**/*.rb']
+      t.options = ['--output-dir', File.join('meta', 'documentation'),
+                   '--title', 'Athenry YARD documentation',
+                   '--readme', 'README.markdown',
+                   '--files', 'doc/about.markdown',
+                   '--files', 'doc/quickstart.markdown',
+                   '--files', 'AUTHORS.markdown', 
+                   '--files', 'TODO.markdown',
+                   '--files', 'MIT-LICENSE']
+    end
+    
+    YARD::Rake::YardocTask.new :dotyardoc do |t|
+      t.files   = ['lib/**/*.rb']
+      t.options = ['--no-output',
+                   '--title', 'Athenry YARD documentation',
+                   '--readme', 'README.markdown',
+                   '--files', 'doc/about.markdown',
+                   '--files', 'doc/quickstart.markdown',
+                   '--files', 'AUTHORS.markdown', 
+                   '--files', 'TODO.markdown', 
+                   '--files', 'MIT-LICENSE']
+    end
   end
+  
 rescue LoadError
-  task :yardoc => :check_dependencies
+  desc 'You need the `yard` gem to generate documentation'
+  task :documentation
 end
+
