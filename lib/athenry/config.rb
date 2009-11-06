@@ -2,7 +2,6 @@ begin
   gem "configatron", ">= 2.5"
   require "configatron"
 rescue Gem::LoadError
-  # handle the error somehow
 end
 
 CONFIG = configatron # global alias, shorter than typing configatron
@@ -21,5 +20,5 @@ if File.readable?("#{CONFIG.homeconfig}")
 elsif File.readable?("#{CONFIG.etcconfig}")
   CONFIG.configure_from_yaml("#{CONFIG.etcconfig}") 
 else
-  raise "No configuration file present, please refer to the README."
+  raise "No configuration file present, please refer to doc/quickstart.markdown"
 end
