@@ -26,8 +26,7 @@ end
 begin
   require 'yard'
   require 'yard/rake/yardoc_task'
-  
-  task :documentation => :'documentation:generate'
+
   namespace :documentation do
     YARD::Rake::YardocTask.new :generate do |t|
       t.files   = ['lib/**/*.rb']
@@ -40,7 +39,7 @@ begin
                    '--files', 'TODO.markdown',
                    '--files', 'MIT-LICENSE']
     end
-    
+   
     YARD::Rake::YardocTask.new :dotyardoc do |t|
       t.files   = ['lib/**/*.rb']
       t.options = ['--no-output',
