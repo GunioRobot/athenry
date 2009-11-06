@@ -46,7 +46,7 @@ module Athenry
     end   
 
     def execute(cmd)
-      eval(cmd)
+        Athenry::ShellAliases.call(cmd)
     end
   end
 end
