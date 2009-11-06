@@ -35,6 +35,7 @@ begin
                    '--readme', 'README.markdown',
                    '--files', 'doc/about.markdown',
                    '--files', 'doc/quickstart.markdown',
+                   '--files', 'doc/release.markdown',
                    '--files', 'AUTHORS.markdown', 
                    '--files', 'TODO.markdown',
                    '--files', 'MIT-LICENSE']
@@ -47,6 +48,7 @@ begin
                    '--readme', 'README.markdown',
                    '--files', 'doc/about.markdown',
                    '--files', 'doc/quickstart.markdown',
+                   '--files', 'doc/release.markdown',
                    '--files', 'AUTHORS.markdown', 
                    '--files', 'TODO.markdown', 
                    '--files', 'MIT-LICENSE']

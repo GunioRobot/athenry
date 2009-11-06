@@ -10,6 +10,12 @@ Release 0.2
 * each bash function should exit upon failure
 * use playman/layman for adding overlays. 
 * Paludis should probably make use of update.rb after sync's
+* Use method.send and make shellaliases a class
+* Dynamicly create alias methods for shellalias using method_instaces(false) and instace_eval
+* Rename install.rb -> setup.rb
+    setup.rb clean|remove
+    setup.rb install
+    setup.rb options
 
 Next
 ----
@@ -23,3 +29,5 @@ Next
 * Ability to have more than one stage (prefixed names)
 * Look for configs in various locations /etc/athenry $HOME/.config/athenry/ etc..
 * Split helper into seperate files so we can include less/more as needed
+* Ability to build a chroot based on the current machines world file, parse /var/lib/portage/world
+* Ability for users to add bash code to be executed before and after our main scripts
