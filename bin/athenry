@@ -21,7 +21,7 @@ $:.unshift(File.join(File.dirname(athenrybase), '..', 'lib'))
 require 'athenry'
 
 program :name, 'Athenry'
-program :version, '0.0.1'
+program :version, Athenry::Version::STRING
 program :description, 'Creates a Gentoo chroot and automates stage building'
 program :help, 'Author', 'Greg Fitzgerald <netzdamon@gmail.com>'
 
