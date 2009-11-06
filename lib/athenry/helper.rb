@@ -45,7 +45,7 @@ module Athenry
     # @param msg [String]
     # @param level [String]
     # @example
-    #   send_to_log("Epic Fail", level="error") => "ERROR: Epic Fail [Fri Sep 11
+    #   send_to_log("Epic Fail", level="error") => "ERROR: Epic Fail [Fri Sep 13
     #   21:21:16 -0400 2009]
     # @return [String]
     def send_to_log(msg, level="error")
@@ -122,7 +122,7 @@ module Athenry
     # @raise "Must run as root"
     # @return [String]
     def must_be_root
-      Raise "Must run as root" unless Process.uid == 0
+      raise "Must run as root" unless Process.uid == 0
     end
 
     # Wraps verbose out put in a message block for nicer verbose output
