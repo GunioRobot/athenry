@@ -1,6 +1,15 @@
 require 'rake'
 
 # =======================
+# = Installation tasks =
+# =======================
+
+desc "install athenry"
+task :install do
+  system("./install.rb")
+end
+
+# =======================
 # = Documentation tasks =
 # =======================
 begin
