@@ -10,6 +10,17 @@ task :install do
 end
 
 # =======================
+# = Build Tar =
+# =======================
+
+namespace :build do
+  desc "Generate tarball"
+    task :tar do
+      system("tar -cjf athenry-latest.tar.bz2 ../athenry --exclude 'athenry-latest.tar.bz2' --exclude '.git' --exclude='.yardoc' --exclude '.gitignore' --exclude '.gitmodules'")
+  end
+end
+
+# =======================
 # = Documentation tasks =
 # =======================
 begin
