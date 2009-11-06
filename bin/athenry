@@ -25,7 +25,6 @@ program :version, '0.0.1'
 program :description, 'Creates a Gentoo chroot and automates stage building'
 program :help, 'Author', 'Greg Fitzgerald <netzdamon@gmail.com>'
 
-
 command :setup do |c|
  c.syntax = 'athenry setup'
  c.description = 'Fetches files and creates necessary directories'
