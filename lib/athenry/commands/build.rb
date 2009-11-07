@@ -22,14 +22,67 @@ module Athenry
       send_to_state("build", "mount")
     end
 
-    # Changes root and executes the scripts.
-    # @return [String]
+    def update_pkgmgr
+      announcing "Updating Package Manager" do
+        chroot update_pkgmgr
+      end
+      send_to_state("build", "update_pkgmgr")
+    end
+
+    def sync
+      announcing "Syncing Portage Tree" do
+        chroot sync
+      end
+      send_to_state("build", "sync")
+    end
+
+    def repair
+      announcing "Entering Repair Mode" do
+        chroot repair
+      end
+      send_to_state("build", "repair")
+    end
+
+    def freshen
+      announcing "Freshening" do
+        chroot freshen
+      end
+      send_to_state("build", "freshen")
+    end
+
     def chroot
       announcing "Entering Chroot" do
-        cmd "chmod +x #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/compile.sh"
-        cmd "chroot #{CONFIG.workdir}/#{CONFIG.chrootdir} /root/compile.sh"
+        chroot chroot
       end
       send_to_state("build", "chroot")
     end
+
+    def update_everything
+      announcing "Updating All Packages" do
+        chroot update_everything
+      end
+      send_to_state("build", "update_everything")
+    end
+
+    def install_overlays
+      announcing "Installing Overlays" do
+        chroot install_overlays
+      end
+      send_to_state("build", "install_overlays")
+    end
+
+    def tar
+      announcing "Creating Archive" do
+        chroot tar
+      end
+      send_to_state("build", "tar")
+    end
+
+    private
+
+    def chroot(action)
+      cmd "chroot #{CONFIG.workdir}/#{CONFIG.chrootdir} /root/athenry/run.sh #{action}"
+    end
+
   end
 end

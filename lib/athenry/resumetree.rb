@@ -12,7 +12,9 @@ module Athenry
           "5" => [ "copy_configs" ]
         },
         "build" => {
-          "1" => [ "chroot" ]
+          "1" => [ "mount", "install_pkgmgr", "sync", "install_overlays", "update_pkgmgr"  ],
+          "2" => [ "mount", "sync", "install_overlays", "update_pkgmgr" ],
+          "3" => [ "mount", "install_overlays", "update_pkgmgr" ]
         },
       }
     end

@@ -1,13 +1,14 @@
 #!/bin/bash
 
-source /root/config.bash
+source "${LIB}/config.sh"
+source "${LIB}/colors.sh"
 
 function error {
-    echo -ne " \033[31;01m*\033[0m ${@}\n";
+    echo -ne "${yellow}*${normal}${@}\n";
 }
 
 function announce {
-    echo -ne " \033[32;01m*\033[0m ${@}\n";
+    echo -ne "${green}*${normal} ${@}\n";
 }
 
 function ctrl_c() {
@@ -47,6 +48,10 @@ function setup_chroot {
     export PS1="(chroot) $PS1"
 }
 
+function sync {
+    ${PKG_SYNC}
+}
+
 function bootstrap_pkgmanager {
     if [ ${PKG_NAME} == "paludis" ]; then
         mkdir -p /var/tmp/paludis
@@ -79,28 +84,6 @@ function rebuild_cache {
     paludis --regenerate-installable-chache
 }
 
-function update_pkgmanager { 
-    emerge --keep-going --update --deep @system @world
-    
-    case ${PKG_NAME} in
-    paludis)
-        emerge sys-apps/paludis dev-util/git
-        ;;
-    emerge)
-        # Do nothing
-        ;;
-    *)
-        error "Invalid package manager check your settings and try again!"
-        exit 1
-        ;;
-    esac
-}
-
-function sync {
-    ${PKG_SYNC}
-}
-
-
 function update_everything {
     if [ ${PKG_NAME} == "paludis" ]; then
         export PALUDIS_OPTIONS="--log-level warning --continue-on-failure if-satisfied --dl-reinstall if-use-changed --dl-reinstall-scm weekly"
@@ -129,39 +112,5 @@ function fix_broken {
         ;;
     esac
 }
-
-function freshen {
-    trap ctrl_c INT
-    setup_chroot
-    set_pkgmanager
-    bootstrap_pkgmanager
-    sync
-    update_everything
-    fix_broken
-}
-
-function main {
-    trap ctrl_c INT
-    setup_chroot
-    set_pkgmanager
-    update_pkgmanager
-    bootstrap_pkgmanager
-    sync
-    if [ ${OVERLAYS} ]; then
-        bootstrap_overlays
-    fi
-    if [ ${PKG_NAME} == "paludis"]; then
-        rebuild_cache
-    fi
-    update_everything
-    update_configs
-    fix_broken
-    if [ ${SETS} ]; then
-        install_sets
-    fi
-}
-
-
-main
 
 #vim:set ft=sh ts=4 sw=4 noet:

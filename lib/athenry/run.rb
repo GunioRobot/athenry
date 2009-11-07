@@ -16,7 +16,10 @@ module Athenry
     # @see Athenry::Build
     def build
       Athenry::Execute::build.mount
-      Athenry::Execute::build.chroot
+      Athenry::Execute::build.install_pkgmgr
+      Athenry::Execute::build.sync
+      Athenry::Execute::build.install_overlays
+      Athenry::Execute::build.update_pkgmgr
     end
 
     # Executes steps to cleanup

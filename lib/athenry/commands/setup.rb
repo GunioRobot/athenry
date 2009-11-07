@@ -45,7 +45,7 @@ module Athenry
     # @return [String]
     def generate_bashscripts
       announcing "Generate bash configuration file" do
-        generate_bash("bashconfig", "config.bash")
+        generate_bash("bashconfig", "config.sh")
       end
       send_to_state("setup", "generate_bashscripts")
     end
@@ -54,7 +54,8 @@ module Athenry
     # @return [String]
     def copy_scripts
       announcing "Copying scripts into chroot" do
-        cmd "cp -v #{CONFIG.scripts}/compile.sh #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/compile.sh"
+        cmd "cp -Rv #{CONFIG.scripts}/athenry/ #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/"
+        cmd "chmod +x #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/athenry/run.sh"
       end
       send_to_state("setup", "copy_scripts")
     end
