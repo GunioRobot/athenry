@@ -6,7 +6,11 @@ require 'rake'
 
 desc "install athenry"
 task :install do
-  system("./install.rb")
+  system("setup.rb install")
+end
+desc "uninstall athenry"
+task :uninstall do
+  system("setup.rb uninstall")
 end
 
 # =======================
@@ -36,6 +40,7 @@ begin
                    '--files', 'doc/about.markdown',
                    '--files', 'doc/quickstart.markdown',
                    '--files', 'doc/release.markdown',
+                   '--files', 'doc/hacking.markdown',
                    '--files', 'AUTHORS.markdown', 
                    '--files', 'TODO.markdown',
                    '--files', 'MIT-LICENSE']
@@ -49,6 +54,7 @@ begin
                    '--files', 'doc/about.markdown',
                    '--files', 'doc/quickstart.markdown',
                    '--files', 'doc/release.markdown',
+                   '--files', 'doc/hacking.markdown',
                    '--files', 'AUTHORS.markdown', 
                    '--files', 'TODO.markdown', 
                    '--files', 'MIT-LICENSE']
