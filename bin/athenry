@@ -8,12 +8,11 @@ begin
   gem "commander", ">= 4.0"
   require "commander/import"
 rescue Gem::LoadError
-  # handle the error somehow
 end
 
 athenrybase = __FILE__
 while File.symlink?(athenrybase)
-	athenrybase = File.expand_path(File.readlink(athenrybase), File.dirname(athenrybase))
+  athenrybase = File.expand_path(File.readlink(athenrybase), File.dirname(athenrybase))
 end
 
 $:.unshift(File.join(File.dirname(athenrybase), '..', 'lib'))
@@ -26,41 +25,41 @@ program :description, 'Creates a Gentoo chroot and automates stage building'
 program :help, 'Author', 'Greg Fitzgerald <netzdamon@gmail.com>'
 
 command :setup do |c|
- c.syntax = 'athenry setup'
- c.description = 'Fetches files and creates necessary directories'
- c.when_called do |args, options|
-   Athenry::Execute::run.setup
- end
+  c.syntax = 'athenry setup'
+  c.description = 'Fetches files and creates necessary directories'
+  c.when_called do |args, options|
+    Athenry::Execute::run.setup
+  end
 end
 
 command :build do |c|
- c.syntax = 'athenry build'
- c.description = 'Starts the build process'
- c.when_called do |args, options|
-   Athenry::Execute::run.build
- end
+  c.syntax = 'athenry build'
+  c.description = 'Starts the build process'
+  c.when_called do |args, options|
+    Athenry::Execute::run.build
+  end
 end
 
 command :resume do |c|
- c.syntax = 'athenry resume'
- c.description = 'Resume from last state'
- c.when_called do |args, options|
-   Athenry::Execute::run.resume
- end
+  c.syntax = 'athenry resume'
+  c.description = 'Resume from last state'
+  c.when_called do |args, options|
+    Athenry::Execute::run.resume
+  end
 end
 
 command :clean do |c|
- c.syntax = 'athenry clean'
- c.description = 'Cleans up our mess'
- c.when_called do |args, options|
-   Athenry::Execute::run.clean
- end
+  c.syntax = 'athenry clean'
+  c.description = 'Cleans up our mess'
+  c.when_called do |args, options|
+    Athenry::Execute::run.clean
+  end
 end
 
 command :shell do |c|
- c.syntax = 'athenry shell'
- c.description = 'Run athenry commands directly through irb like shell'
- c.when_called do |args, options|
-   Athenry::Execute::run.shell
- end
+  c.syntax = 'athenry shell'
+  c.description = 'Run athenry commands directly through irb like shell'
+  c.when_called do |args, options|
+    Athenry::Execute::run.shell
+  end
 end
