@@ -52,6 +52,11 @@ ROADMAP
 
 See {file:TODO.markdown}.
 
+HACKING
+-------
+
+See {file:hacking.markdown}.
+
 CHANGELOG
 ---------
 - **Nov.10.06** v0.1a release. Initial alpha release for testing, can build stage4 and stage5's from a stage3. Basic resume support. 
