@@ -6,7 +6,6 @@ begin
   gem "commander", ">= 4.0"
   require "commander/import"
 rescue Gem::LoadError
-  # handle the error somehow
 end
 require 'fileutils'
 
@@ -34,18 +33,18 @@ program :help, 'Author', 'Greg Fitzgerald <netzdamon@gmail.com>'
 default_command :install
 
 command :install do |c|
- c.syntax = 'athenry install'
- c.description = 'Installs Athenry'
- c.when_called do |args, options|
-   install
+  c.syntax = 'athenry install'
+  c.description = 'Installs Athenry'
+  c.when_called do |args, options|
+    install
  end
 end
 
 command :uninstall do |c|
- c.syntax = 'athenry uninstall'
- c.description = 'Uninstalls Athenry'
- c.when_called do |args, options|
-   uninstall
+  c.syntax = 'athenry uninstall'
+  c.description = 'Uninstalls Athenry'
+  c.when_called do |args, options|
+    uninstall
  end
 end
 
