@@ -12,7 +12,7 @@ module Athenry
 
     # Exits the shell
     def quit
-      announcing "Exiting Athenry shell" do
+      announcing 'Exiting Athenry shell' do
         exit 0 
       end
     end
@@ -28,13 +28,13 @@ module Athenry
     # Takes user input and executes the ruby command
     # @return [String]
     def shellinput
-      puts "Type help for a list of commands:"
+      puts 'Type help for a list of commands:'
       begin
         while command = prompt 
           execute command
         end
       rescue => e
-        puts "No such command!"
+        puts 'No such command!'
         shellinput
       end
     end
@@ -42,7 +42,7 @@ module Athenry
     private
     
     def prompt
-      ask(">>")
+      ask('>>')
     end   
 
     def execute(cmd)

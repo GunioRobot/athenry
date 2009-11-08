@@ -17,7 +17,7 @@ module Athenry
           eval(step)
         end
       rescue 
-        error("Invalid resume point")
+        error('Invalid resume point')
         exit 1
       end
     end
@@ -31,10 +31,10 @@ module Athenry
       begin
         statefile = "#{CONFIG.workdir}/#{CONFIG.statedir}/#{CONFIG.statefile}"
         if File.file?("#{statefile}") && File.readable?("#{statefile}") 
-          @current_state = File.read(statefile).strip.split(":")
+          @current_state = File.read(statefile).strip.split(':')
         end
       rescue
-        error("Invalid no No Resume point")
+        error('Invalid no No Resume point')
         exit 1
       end
       return @current_state

@@ -58,7 +58,7 @@ module Athenry
     # are mounted.
     # @return [Boolean]
     def is_mounted?
-      mtab ||= File.read("/etc/mtab")
+      mtab ||= File.read('/etc/mtab')
       if mtab =~ /#{CONFIG.chrootdir}\/(dev|proc|sys)/
         return true
       else
@@ -90,8 +90,8 @@ module Athenry
     # @param data [Hash optional]
     # @return [String]
     def generate_bash(template, outfile, data={})
-      erbfile = File.open("#{ATHENRY_ROOT}/lib/athenry/templates/#{template}.erb", "r")
-      outfile = File.new("#{ATHENRY_ROOT}/scripts/athenry/lib/#{outfile}", "w")
+      erbfile = File.open("#{ATHENRY_ROOT}/lib/athenry/templates/#{template}.erb", 'r')
+      outfile = File.new("#{ATHENRY_ROOT}/scripts/athenry/lib/#{outfile}", 'w')
       begin
         parse = ERB.new(erbfile, 0, "%<>")
         outfile.puts "#{parse.result}"
@@ -122,7 +122,7 @@ module Athenry
     # @raise "Must run as root"
     # @return [String]
     def must_be_root
-      raise "Must run as root" unless Process.uid == 0
+      raise 'Must run as root' unless Process.uid == 0
     end
 
     # Wraps verbose out put in a message block for nicer verbose output
