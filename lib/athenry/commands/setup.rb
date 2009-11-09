@@ -61,10 +61,7 @@ module Athenry
     # @return [String]
     def copy_configs
       announcing 'Copying configs into chroot' do
-        cmd "cp -v #{CONFIG.configs}/resolv.conf #{CONFIG.workdir}/#{CONFIG.chrootdir}/etc/resolv.conf"
-        cmd "cp -v #{CONFIG.configs}/make.conf #{CONFIG.workdir}/#{CONFIG.chrootdir}/etc/make.conf"
-        cmd "cp -vR #{CONFIG.configs}/paludis/ #{CONFIG.workdir}/#{CONFIG.chrootdir}/etc/"
-        cmd "cp -vR #{CONFIG.configs}/portage/ #{CONFIG.workdir}/#{CONFIG.chrootdir}/etc/"
+        cmd "cp -vR #{CONFIG.configs}/* #{CONFIG.workdir}/#{CONFIG.chrootdir}/etc/"
       end
       send_to_state('setup', 'copy_configs')
     end
