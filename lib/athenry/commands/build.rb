@@ -11,77 +11,57 @@ module Athenry
     # @return [String]
     def mount
       if is_mounted?
-        warning("dev, sys, proc are already mounted")
+        warning('dev, sys, proc are already mounted')
       else
-        announcing "Mounting dev, sys, and proc" do
+        announcing 'Mounting dev, sys, and proc' do
           cmd "mount -o rbind /dev #{CONFIG.workdir}/#{CONFIG.chrootdir}/dev"
           cmd "mount -o bind /sys #{CONFIG.workdir}/#{CONFIG.chrootdir}/sys"
           cmd "mount -t proc none #{CONFIG.workdir}/#{CONFIG.chrootdir}/proc"
         end
       end
-      send_to_state("build", "mount")
+      send_to_state('build', 'mount')
     end
 
-    def update_pkgmgr
-      announcing "Updating Package Manager" do
-        chroot update_pkgmgr
+    def install_pkgmgr
+      announcing 'Installing Package Manager' do
+        chroot 'install_pkgmgr'
       end
-      send_to_state("build", "update_pkgmgr")
+      send_to_state('build', 'install_pkgmgr')
     end
 
     def sync
-      announcing "Syncing Portage Tree" do
-        chroot sync
+      announcing 'Syncing Portage Tree' do
+        chroot 'sync'
       end
-      send_to_state("build", "sync")
+      send_to_state('build', 'sync')
     end
 
     def repair
-      announcing "Entering Repair Mode" do
-        chroot repair
+      announcing 'Entering Repair Mode' do
+        chroot 'repair'
       end
-      send_to_state("build", "repair")
-    end
-
-    def freshen
-      announcing "Freshening" do
-        chroot freshen
-      end
-      send_to_state("build", "freshen")
-    end
-
-    def chroot
-      announcing "Entering Chroot" do
-        chroot chroot
-      end
-      send_to_state("build", "chroot")
+      send_to_state('build', 'repair')
     end
 
     def update_everything
-      announcing "Updating All Packages" do
-        chroot update_everything
+      announcing 'Updating All Packages' do
+        chroot 'update_everything'
       end
-      send_to_state("build", "update_everything")
+      send_to_state('build', 'update_everything')
     end
 
     def install_overlays
-      announcing "Installing Overlays" do
-        chroot install_overlays
+      announcing 'Installing Overlays' do
+        chroot 'install_overlays'
       end
-      send_to_state("build", "install_overlays")
+      send_to_state('build', 'install_overlays')
     end
 
     def tar
-      announcing "Creating Archive" do
-        chroot tar
+      announcing 'Creating Archive' do
+        chroot 'tar'
       end
-      send_to_state("build", "tar")
-    end
-
-    private
-
-    def chroot(action)
-      cmd "chroot #{CONFIG.workdir}/#{CONFIG.chrootdir} /root/athenry/run.sh #{action}"
+      send_to_state('build', 'tar')
     end
 
   end
