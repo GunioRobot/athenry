@@ -49,6 +49,9 @@ function setup_chroot {
 }
 
 function sync {
+    if [ ${PKG_NAME} == "paludis" ]; then
+        export PALUDIS_CARRY_OUT_UPDATES="yes"
+    fi
     ${PKG_SYNC}
 }
 
