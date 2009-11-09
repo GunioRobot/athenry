@@ -5,12 +5,11 @@ module Athenry
     def state 
       @states ||= {
         'setup' => {
-          'fetch' => 1,
-          'extract' => 2,
-          'snapshot' => 3,
-          'generate_bashscripts' => 4,
-          'copy_scripts' => 5,
-          'copy_configs' => 6,
+          'stage' => 1,
+          'snapshot' => 2,
+          'generate_bashscripts' => 3,
+          'copy_scripts' => 4,
+          'copy_configs' => 5,
         },
         'build' => {
           'mount' => 1,
