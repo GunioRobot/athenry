@@ -4,8 +4,7 @@ module Athenry
     # Executes steps for setup
     # @see Athenry::Setup
     def setup
-      Athenry::Execute::setup.fetch
-      Athenry::Execute::setup.extract
+      Athenry::Execute::setup.stage
       Athenry::Execute::setup.snapshot
       Athenry::Execute::setup.generate_bashscripts
       Athenry::Execute::setup.copy_scripts
@@ -19,7 +18,6 @@ module Athenry
       Athenry::Execute::build.install_pkgmgr
       Athenry::Execute::build.sync
       Athenry::Execute::build.install_overlays
-      Athenry::Execute::build.update_pkgmgr
     end
 
     # Executes steps to cleanup
