@@ -8,10 +8,8 @@ Release 0.2
 * Check config for errors and die quickly 
 * each bash function should exit upon failure
 * use playman/layman for adding overlays. 
-* Paludis should export PALUDIS_CARRY_OUT_UPDATES="yes" on sync
 * Use method.send and make shellaliases a class
 * Dynamicly create alias methods for shellalias using method_instaces(false) and instace_eval
-* Check downloaded files with md5sum
 * Be sure code lives up to guidelines in hacking.markdown
 * Fix resume tree its wrong right now
 * Mount and Unmount should be preformed automagically.
