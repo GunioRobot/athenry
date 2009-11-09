@@ -6,14 +6,9 @@ module Athenry
   # * {Athenry::Clean}.
   module ShellAliases
    
-    # @see Athenry::Setup#fetch
-    def fetch 
-      Athenry::Execute::setup.fetch
-    end
-
-    # @see Athenry::Setup#extract
-    def extract
-      Athenry::Execute::setup.extract
+    # @see Athenry::Setup#stage
+    def stage 
+      Athenry::Execute::setup.stage
     end
 
     # @see Athenry::Setup#snapshot
