@@ -33,7 +33,7 @@ module Athenry
     def logger
       begin
         unless CONFIG.logfile.empty? or CONFIG.logfile.nil?
-          @logfile = File.new("#{CONFIG.workdir}/#{CONFIG.logdir}/#{CONFIG.logfile}", "a")
+          @logfile = File.new("#{CONFIG.workdir}/#{CONFIG.logdir}/#{CONFIG.logfile}", 'a')
         end
         yield
       ensure
@@ -58,7 +58,7 @@ module Athenry
     # are mounted.
     # @return [Boolean]
     def is_mounted?
-      mtab ||= File.read('/etc/mtab')
+      mtab ||= File.read("/etc/mtab")
       if mtab =~ /#{CONFIG.chrootdir}\/(dev|proc|sys)/
         return true
       else
@@ -66,7 +66,7 @@ module Athenry
       end
       mtab.close
     end
-  
+
     # if the last command was sucessfull write the current state to file
     # @param stage [String]
     # @param step [String]
@@ -76,7 +76,7 @@ module Athenry
     def send_to_state(stage, step)
       if $? == 0
         begin
-          statefile = File.new("#{CONFIG.workdir}/#{CONFIG.statedir}/#{CONFIG.statefile}", "w")
+          statefile = File.new("#{CONFIG.workdir}/#{CONFIG.statedir}/#{CONFIG.statefile}", 'w')
           statefile.puts(%Q{#{stage}:#{state["#{stage}"]["#{step}"]}})
         ensure
           statefile.close
@@ -125,6 +125,24 @@ module Athenry
       raise 'Must run as root' unless Process.uid == 0
     end
 
+    # Takes a URI and parses it ruturning just the filename and extension
+    # @param [String]
+    # @example 
+    #   filename('http://www.example.com/path/to/file.tar.bz2') => file.tar.bz2
+    # @return [String]
+    def filename(filename)
+      filename = URI.parse(filename).path[%r{[^/]+\z}]
+    end
+
+    # Accepts a action to pass to the chroot
+    # @param action [String]
+    # @example 
+    #   chroot 'install_pkgmgr'
+    # @return [String]
+    def chroot(action)
+      cmd "chroot #{CONFIG.workdir}/#{CONFIG.chrootdir} /root/athenry/run.sh #{action}"
+    end
+
     # Wraps verbose out put in a message block for nicer verbose output
     # @param msg [String]
     # @return [String]
@@ -145,7 +163,7 @@ module Athenry
     def die(msg)
       unless $? == 0
         error("#{msg} \n")
-        unless SHELL_IS_RUNNING
+        unless $shell_is_running
           exit 1
         end
       end
