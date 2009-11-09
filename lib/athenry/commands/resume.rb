@@ -13,9 +13,7 @@ module Athenry
     def from
       begin
         start = resume["#{@current_state.first}"]["#{@current_state.last}"]
-        start.each do |step|
-          eval(step)
-        end
+        start.each { |step| eval(step) }
       rescue 
         error('Invalid resume point')
         exit 1
