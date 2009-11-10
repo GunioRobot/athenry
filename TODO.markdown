@@ -12,6 +12,8 @@ Release 0.2
 * Fix resume tree its wrong right now
 * Maybe a depends.rb or something for external libs
 * Direct Users to bugtracker in documentation/wiki
+* Examples dir for configuration
+* Create /usr/share/athenry-$version/{doc,examples}
 
 Next
 ----
