@@ -1,7 +1,7 @@
 ATHENRY_ROOT = "#{File.dirname(__FILE__)}/.." unless defined?(ATHENRY_ROOT)
 $shell_is_running = false
 
-require 'uri'
+require 'athenry/depends'
 require 'athenry/config'
 require 'athenry/version'
 require 'athenry/helper'

@@ -3,13 +3,6 @@
 # Copyright (c) 2009 Greg Fitzgerald <netzdamon@gmail.com>
 # vim: set sw=2 sts=2 et tw=80 :
 
-require 'rubygems'
-begin
-  gem "commander", ">= 4.0"
-  require "commander/import"
-rescue Gem::LoadError
-end
-
 athenrybase = __FILE__
 while File.symlink?(athenrybase)
   athenrybase = File.expand_path(File.readlink(athenrybase), File.dirname(athenrybase))

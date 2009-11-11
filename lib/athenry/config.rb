@@ -1,9 +1,3 @@
-begin
-  gem 'configatron', '>= 2.5'
-  require 'configatron'
-rescue Gem::LoadError
-end
-
 CONFIG = configatron # global alias, shorter than typing configatron
 
 # These I feel should be configurable, but not really left up to the user till
