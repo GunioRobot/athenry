@@ -6,11 +6,8 @@ Release 0.2
 * Split bash into modules
 * each bash function should exit upon failure
 * use playman/layman for adding overlays. 
-* Use method.send and make shellaliases a class
-* Dynamicly create alias methods for shellalias using method_instaces(false) and instace_eval
 * Be sure code lives up to guidelines in hacking.markdown
 * Fix resume tree its wrong right now
-* Maybe a depends.rb or something for external libs
 * Direct Users to bugtracker in documentation/wiki
 
 Next
