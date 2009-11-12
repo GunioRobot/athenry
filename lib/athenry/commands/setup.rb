@@ -12,7 +12,7 @@ module Athenry
         if File.exists?("#{CONFIG.workdir}/#{CONFIG.stageurl}")
           send_to_log('Stage file already exists skipping fetch', 'info')
         else
-          cmd "wget -nc -c #{CONFIG.stageurl} -P #{CONFIG.workdir}"
+          cmd "wget -c #{CONFIG.stageurl} -P #{CONFIG.workdir}"
           cmd "wget -c #{CONFIG.stageurl}.DIGESTS -P #{CONFIG.workdir}"
           cmd "wget -c #{CONFIG.stageurl}.CONTENTS -P #{CONFIG.workdir}"
         end
