@@ -75,6 +75,6 @@ def install
     end
   end
 
-  FileUtils.install( "#{ENV['PWD']}/config.yml", "#{@options['sysconfdir']}/config.yml.example", :mode => 0644, :verbose => true )
+  FileUtils.install( "#{ENV['PWD']}/examples/config.yml", "#{@options['sysconfdir']}/config.yml.example", :mode => 0644, :verbose => true )
 
 end
