@@ -105,17 +105,19 @@ module Athenry
     # @raise "Must run setup before build"
     # @return [String]
     def check_for_setup
-      raise "Must run setup before build" unless File.directory?("#{CONFIG.workdir}/#{CONFIG.chrootdir}") && File.directory?("#{CONFIG.workdir}/#{CONFIG.logdir}")
+      raise "Must run setup before build" unless \
+      File.directory?("#{CONFIG.workdir}/#{CONFIG.chrootdir}") && \
+      File.directory?("#{CONFIG.workdir}/#{CONFIG.logdir}")
     end
 
     # Creates necessary dirs to setup our chroot.
     def setup_environment
       dirs = [ CONFIG.chrootdir, CONFIG.logdir, CONFIG.statedir ]
-      dirs.each do |dir|
+      dirs.each { |dir|
         unless File.directory?("#{CONFIG.workdir}/#{dir}")
           FileUtils.mkdir_p("#{CONFIG.workdir}/#{dir}")
         end
-      end
+      }
     end
 
     # Checks if the Process.uid is run by root. If not raise an error and die. 
@@ -179,10 +181,10 @@ module Athenry
       logger do
         begin
           pipe = IO.popen("#{command}")
-          pipe.each_line do |line|
+          pipe.each_line { |line|
             if @logfile then @logfile.puts "#{line}" end
             if CONFIG.verbose then puts "#{line}" end
-          end
+          }
         ensure
           pipe.close
         end
