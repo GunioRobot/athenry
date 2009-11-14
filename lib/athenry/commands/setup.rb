@@ -19,7 +19,7 @@ module Athenry
         md5sum(CONFIG.stageurl, 'DIGESTS')
         extract(CONFIG.stageurl, "#{CONFIG.workdir}/#{CONFIG.chrootdir}")
       end
-      send_to_state('setup', 'fetch')
+      send_to_state('setup', 'stage')
     end
 
     # Fetches a portage snapshot and extracts it to #{CONFIG.chrootdir}/usr/
