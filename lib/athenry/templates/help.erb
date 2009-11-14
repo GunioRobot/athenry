@@ -1,7 +1,7 @@
 Athenry Shell Help:
 ===================
-help - displays this
-quit - quits
+* help 
+* quit 
 
 Setup:
 ---------------
@@ -13,6 +13,18 @@ Setup:
 Build:
 ---------------
 <% build.each do |cmd| %>
+* <%= cmd %>
+<% end %>
+
+Target:
+---------------
+<% target.each do |cmd| %>
+* <%= cmd %>
+<% end %>
+
+Freshen:
+---------------
+<% freshen.each do |cmd| %>
 * <%= cmd %>
 <% end %>
 
