@@ -4,4 +4,4 @@
 *.old
 meta/**
 .yardoc
-scripts/athenry/lib/config.sh
+config.sh
