@@ -4,8 +4,13 @@ module Athenry
   # * {Athenry::Setup}.
   # * {Athenry::Build}.
   # * {Athenry::Clean}.
+  # * {Athenry::Target}.
+  # * {Athenry::Resume}.
+  # * {Athenry::Freshen}.
   module ShellAliases
-    
+   
+    # Finds public class methods and dynamically builds alias methods for the shell command.
+    # @return [Method]
     def aliases
      klasses.each { |klass|
        klass.instance_methods(false).each { |meth|
@@ -17,7 +22,7 @@ module Athenry
     end
     
     def klasses
-      @klasses = [Athenry::Setup, Athenry::Build, Athenry::Clean]
+      @klasses = [Athenry::Setup, Athenry::Build, Athenry::Clean, Athenry::Target, Athenry::Resume, Athenry::Freshen]
     end 
   
   end
