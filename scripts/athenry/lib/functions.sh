@@ -17,6 +17,9 @@ function ctrl_c() {
 
 function die() {
     msg="${1}"
+    if [ -z ${msg} ]; then
+        msg = "Some asshole ran die without setting a message, something broke is all I can tell you. Sorry dude!"
+    fi
     error "${msg}"
     exit 1
 }
