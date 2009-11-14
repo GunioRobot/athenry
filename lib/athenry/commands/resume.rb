@@ -13,8 +13,7 @@ module Athenry
     # @return [String]
     def from
       begin
-        start = resume["#{@current_state.first}"]["#{@current_state.last}"]
-        start.each { |step| execute(step) }
+        send(resume["#{@current_state.first}"]["#{@current_state.last}"])
       rescue
         error('Invalid resume point')
         exit 1
@@ -36,7 +35,6 @@ module Athenry
         error('Invalid no No Resume point')
         exit 1
       end
-      return @current_state
     end
     
   end
