@@ -11,13 +11,22 @@ module Athenry
       Athenry::Execute::setup.copy_configs
     end
 
-    # Executes steps for build
+    # Executes a single command on the chroot
     # @see Athenry::Build
-    def build
-      Athenry::Execute::build.mount
-      Athenry::Execute::build.install_pkgmgr
-      Athenry::Execute::build.sync
-      Athenry::Execute::build.install_overlays
+    def build(args)
+      Athenry::Execute::build.target(*args)
+    end
+
+    # Executes a group set of commands on the chroot
+    # @see Athenry::Target
+    def target(args)
+      Athenry::Execute::target.build(*args)
+    end
+
+    # Updates an existing chroot 
+    # @see Athenry::Freshen
+    def freshen(args)
+      Athenry::Execute::freshen.update(*args)
     end
 
     # Executes steps to cleanup
@@ -25,7 +34,13 @@ module Athenry
     def clean
       Athenry::Execute::clean.unmount
     end
-
+  
+    # Executes steps to chroot into shell
+    # @see Athenry::Rescue
+    def rescue 
+      Athenry::Execute::rescue.target
+    end
+    
     # Executes the shell
     # @see Athenry::Shell
     def shell
