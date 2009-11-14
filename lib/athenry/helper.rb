@@ -83,7 +83,18 @@ module Athenry
         end
       end
     end
-
+   
+    # Takes CONFIG.overlays and builds an array usable by our erb template, 
+    # this is then used to generate a configuration file for bash.
+    # @return [Array]
+    def overlays_basharray
+      CONFIG.overlay_array=[]
+      CONFIG.overlays.each_with_index do |(k,v), i|
+        CONFIG.overlay_array.push("OVERLAYKEY[#{i.to_i}]=#{k.to_s.inspect}\n")
+        CONFIG.overlay_array.push("OVERLAYVAL[#{i.to_i}]=#{v.to_s.inspect}\n")
+      end
+    end
+    
     # Takes a erb template file and output file, to generate bash from ruby
     # @param template [File]
     # @param outfile [File]
@@ -104,10 +115,13 @@ module Athenry
     # Looks for #{CONFIG.workdir} and #{CONFIG.chrootdir} to verify.
     # @raise "Must run setup before build"
     # @return [String]
-    def check_for_setup
-      raise "Must run setup before build" unless \
-      File.directory?("#{CONFIG.workdir}/#{CONFIG.chrootdir}") && \
-      File.directory?("#{CONFIG.workdir}/#{CONFIG.logdir}")
+    def check_for_setup(run = nil)
+      dirs = [ CONFIG.chrootdir, CONFIG.logdir ]
+      dirs.each { |dir|
+        unless File.directory?("#{CONFIG.workdir}/#{dir}")
+          run.nil? ? raise("Must run setup before build") : Athenry::Execute::run.setup 
+        end
+      } 
     end
 
     # Creates necessary dirs to setup our chroot.
@@ -136,13 +150,28 @@ module Athenry
       filename = URI.parse(filename).path[%r{[^/]+\z}]
     end
 
+    # Sets global $set_nopaludis to either true or false. Used for builds where we want to force emerge, like updating a stage3.
+    # @param bool [Boolean]
+    # @example
+    #   set_nopaludis(:true) => $set_nopaludis => true
+    #   set_nopaludis(:false) => $set_nopaludis => false
+    def set_nopaludis(bool)
+      $set_nopaludis = bool
+    end
+
     # Accepts a action to pass to the chroot
     # @param action [String]
+    # @param dir [String, nil]
     # @example 
     #   chroot 'install_pkgmgr'
+    #   chroot('freshen', 'stage5')
     # @return [String]
-    def chroot(action)
-      cmd "chroot #{CONFIG.workdir}/#{CONFIG.chrootdir} /root/athenry/run.sh #{action}"
+    def chroot(action, chrootdir = CONFIG.chrootdir)
+        if $set_nopaludis == :true
+          cmd "chroot #{CONFIG.workdir}/#{chrootdir} /root/athenry/run.sh #{action} true"
+        else
+          cmd "chroot #{CONFIG.workdir}/#{chrootdir} /root/athenry/run.sh #{action}"
+        end
     end
 
     # Wraps verbose out put in a message block for nicer verbose output
@@ -170,10 +199,56 @@ module Athenry
         end
       end
     end
+    
+    # Copies build scripts into #{CONFIG.chrootdir}/root
+    # @param chroot [String]
+    # @return [String]
+    def update_scripts(chrootdir = CONFIG.chrootdir)
+      announcing 'Updating scripts in chroot' do
+        cmd "cp -Ruv #{CONFIG.scripts}/athenry/ #{CONFIG.workdir}/#{chrootdir}/root/"
+        cmd "chmod +x #{CONFIG.workdir}/#{chrootdir}/root/athenry/run.sh"
+      end
+    end
 
+    # Copies user config files into #{CONFIG.chrootdir}/etc
+    # @param chroot [String]
+    # @return [String]
+    def update_configs(chrootdir = CONFIG.chrootdir)
+      announcing 'Updating configs in chroot' do
+        cmd "cp -Ruv #{CONFIG.configs}/* #{CONFIG.workdir}/#{chrootdir}/etc/"
+      end
+    end
+
+    # Copies config files and scripts into the chroot that have changed
+    # @return [String]
+    def update_chroot
+      update_scripts
+      update_configs
+    end
+    
+    # First checks if dev,proc,sys are mounted if not we mount 
+    # @return [String]
+    def mount
+      if is_mounted?
+        warning('dev, sys, proc are already mounted')
+      else
+        announcing 'Mounting dev, sys, and proc' do
+          cmd "mount -o rbind /dev #{CONFIG.workdir}/#{CONFIG.chrootdir}/dev"
+          cmd "mount -o bind /sys #{CONFIG.workdir}/#{CONFIG.chrootdir}/sys"
+          cmd "mount -t proc none #{CONFIG.workdir}/#{CONFIG.chrootdir}/proc"
+        end
+      end
+    end
+   
+    # Loops through *args and uses method.send to evaluation ruby methods.
+    # @param [String]
+    def execute(*args)
+      args.each { |method| send(method) }
+    end
+    
     # Takes a shell command to run, decides verbose level, optionally logs
     # output, and dies if the exit status was not 0
-    # @param command
+    # @param command [String]
     # @example
     #   cmd("uname -s") => "Linux"
     # @return [String]
