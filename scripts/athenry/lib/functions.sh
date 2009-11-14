@@ -13,10 +13,14 @@ function announce {
 
 function ctrl_c() {
         error "Caught CTRL-C exiting soon as it's safe!"
-        exit 2
+        exit 1
 }
 
 function set_pkgmanager {
+    if [ "${NOPALUDIS}" == "true" ]; then
+        PKG_MANAGER="emerge"
+    fi
+    
     case ${PKG_MANAGER} in 
         paludis)
             PKG_NAME="paludis"
@@ -30,7 +34,7 @@ function set_pkgmanager {
             PKG_INSTALL="emerge"
             PKG_REMOVE="emerge -C"
             PKG_SYNC="emerge --sync"
-            PKG_UPDATE="emerge --keep-going --update --deep @system @world"
+            PKG_UPDATE="emerge --keep-going --update --deep system world"
         ;;
         *)
             error "${PKG_MANAGER} is not a valid choice"
@@ -56,12 +60,19 @@ function sync {
 }
 
 function bootstrap_pkgmanager {
-    if [ ${PKG_NAME} == "paludis" ]; then
-        mkdir -p /var/tmp/paludis
-        mkdir -p /usr/portage/.cache/names
-        chown -R paludisbuild:paludisbuild /etc/paludis /usr/portage /var/tmp/paludis /var/paludis
-        rebuild_cache
-    fi
+    case ${PKG_MANAGER} in 
+        paludis)
+            playman --layman-url http://github.com/gregf/gregf-overlay/raw/master/gregf.xml -a gregf
+            rebuild_cache
+        ;;
+        emerge)
+            layman -f -o http://github.com/gregf/gregf-overlay/raw/master/gregf.xml -k -a gregf 
+        ;;
+        *)
+            error "${PKG_MANAGER} is not a valid choice"
+            exit 1
+        ;;
+    esac
 }
 
 function bootstrap_overlays {
@@ -75,45 +86,13 @@ function bootstrap_overlays {
     fi
 }
 
-function install_sets {
-    for _set in ${SETS[*]}
-    do
-        ${PKG_INSTALL} "${_set}"
-    done
-}
-
 function rebuild_cache {
     paludis --regenerate-installed-cache
     paludis --regenerate-installable-chache
 }
 
-function update_everything {
-    if [ ${PKG_NAME} == "paludis" ]; then
-        export PALUDIS_OPTIONS="--log-level warning --continue-on-failure if-satisfied --dl-reinstall if-use-changed --dl-reinstall-scm weekly"
-    fi
-    ${PKG_UPDATE}
-}
-
 function update_configs {
     echo "-5" | etc-update
-}
-
-function fix_broken {
-    case ${PKG_NAME} in
-        paludis)
-            export RECONCILIO_OPTIONS="--continue-on-failure if-satisfied"
-            reconcilio
-            python-updater -P paludis
-        ;;
-        emerge)
-            revdep-rebuild -P
-            python-updater -P portage
-        ;;
-        *)
-        error "Invalid package manager check your settings and try again!"
-        exit 1
-        ;;
-    esac
 }
 
 #vim:set ft=sh ts=4 sw=4 noet:
