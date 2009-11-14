@@ -1,5 +1,3 @@
-emerge --keep-going --update --deep system world
-
 case ${PKG_NAME} in
 paludis)
     emerge sys-apps/paludis dev-util/git
