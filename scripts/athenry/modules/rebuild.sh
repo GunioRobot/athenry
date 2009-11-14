@@ -1,4 +1,4 @@
-case ${PKG_NAME} in
+case ${PKG_MANAGER} in
     paludis)
         export RECONCILIO_OPTIONS="--continue-on-failure if-satisfied"
         reconcilio

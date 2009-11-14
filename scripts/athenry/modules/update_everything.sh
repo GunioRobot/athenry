@@ -1,4 +1,4 @@
-if [ ${PKG_NAME} == "paludis" ]; then
+if [ ${PKG_MANAGER} == "paludis" ]; then
     export PALUDIS_OPTIONS="--log-level warning --continue-on-failure if-satisfied --dl-reinstall if-use-changed --dl-reinstall-scm weekly"
 fi
 ${PKG_UPDATE}

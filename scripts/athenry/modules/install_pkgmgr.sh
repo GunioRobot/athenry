@@ -1,4 +1,4 @@
-case ${PKG_NAME} in
+case ${PKG_MANAGER} in
 paludis)
     emerge sys-apps/paludis dev-util/git
     ;;

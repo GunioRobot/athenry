@@ -31,14 +31,12 @@ function set_pkgmanager {
     
     case ${PKG_MANAGER} in 
         paludis)
-            PKG_NAME="paludis"
             PKG_INSTALL="paludis -i"
             PKG_REMOVE="paludis -u"
             PKG_SYNC="paludis -s"
             PKG_UPDATE="paludis -i everything"
         ;;
         emerge)
-            PKG_NAME="emerge"
             PKG_INSTALL="emerge"
             PKG_REMOVE="emerge -C"
             PKG_SYNC="emerge --sync"
@@ -60,40 +58,14 @@ function setup_chroot {
 }
 
 function sync {
-    if [ ${PKG_NAME} == "paludis" ]; then
+    if [ ${PKG_MANAGER} == "paludis" ]; then
         export PALUDIS_CARRY_OUT_UPDATES="yes"
     fi
     ${PKG_SYNC}
 }
 
-function bootstrap_pkgmanager {
-    case ${PKG_MANAGER} in 
-        paludis)
-            playman --layman-url http://github.com/gregf/gregf-overlay/raw/master/gregf.xml -a gregf
-            rebuild_cache
-        ;;
-        emerge)
-            layman -f -o http://github.com/gregf/gregf-overlay/raw/master/gregf.xml -k -a gregf 
-        ;;
-        *)
-            die "${PKG_MANAGER} is not a valid choice"
-        ;;
-    esac
-}
-
-function bootstrap_overlays {
-    if [ ${PKG_NAME} == "paludis" ]; then 
-        for overlay in ${OVERLAYS[*]}
-        do
-            paludis -s x-${overlay}
-            mkdir -p /var/paludis/repositories/${overlay}/.cache/names
-            chown -R paludisbuild:paludisbuild /var/paludis/repositories/${overlay}
-        done
-    fi
-}
-
 function rebuild_cache {
-    if [ ${PKG_NAME} == "paludis" ]; then
+    if [ ${PKG_MANAGER} == "paludis" ]; then
         paludis --regenerate-installed-cache
         paludis --regenerate-installable-chache
     fi

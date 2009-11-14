@@ -2,7 +2,7 @@ if [ ${OVERLAYKEY} ]; then
   
     for (( x=0 ; x < ${#OVERLAYKEY[*]}; x++ )) 
     do
-        case $PKG_MANAGER in 
+        case ${PKG_MANAGER} in 
         paludis)
             # execute first command
             if [ -z ${OVERLAYVAL[$x]} ]; then
