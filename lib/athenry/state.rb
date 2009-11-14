@@ -12,13 +12,13 @@ module Athenry
           'copy_configs' => 5,
         },
         'build' => {
-          'mount' => 1,
+          'sync' => 1,
           'install_pkgmgr' => 2,
-          'sync' => 3,
-          'repair' => 4,
-          'update_everything' => 5,
-          'install_overlays' => 6,
-          'tar' => 7,
+          'update_everything' => 3,
+          'etc_update' => 4,
+          'install_overlays' => 5,
+          'install_sets' => 6,
+          'rebuild' => 7,
         },
       }
     end
