@@ -14,6 +14,6 @@ module Athenry
         end
       end
     end
-  
+
   end
 end
