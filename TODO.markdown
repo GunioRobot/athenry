@@ -4,12 +4,11 @@ TODO
 Release 0.2
 -----------
 * Target resume probably does not work
-* use playman/layman for adding overlays. 
 * Be sure code lives up to guidelines in hacking.markdown
 * Direct Users to bugtracker in documentation/wiki
 * Direct Users to mailinglist
-* Docs need to use textile, at least till github can do markdown in the wiki
-* Use .md for markdown / find out what there using for textfile
+* Use Jekyll for github pages, move wiki pages there.
+* Use .md for markdown
 * Create a Roadmap
 
 Release 0.3
