@@ -3,23 +3,28 @@ TODO
 
 Release 0.2
 -----------
-* Split bash into modules
-* each bash function should exit upon failure
+* Target resume probably does not work
 * use playman/layman for adding overlays. 
 * Be sure code lives up to guidelines in hacking.markdown
-* Fix resume tree its wrong right now
 * Direct Users to bugtracker in documentation/wiki
+* Direct Users to mailinglist
+* Docs need to use textile, at least till github can do markdown in the wiki
+* Use .md for markdown / find out what there using for textfile
+* Create a Roadmap
+
+Release 0.3
+-----------
+* Global option for passing a chrootdir, all methods should accept this.
+* Ability to have more than one stage (custom names)
+* Use readline for shell
+* Check config for errors and die quickly 
 
 Next
 ----
-* Freshen class for updating existing stages
-* Check config for errors and die quickly 
 * default to pbzip2 if it's installed, else use tar
-* Use readline for shell
-* freshen to update existing stages
 * build should create a tarball (pull mkstage5 into project)
-* Organize config.yml into sections
-* Ability to have more than one stage (prefixed names)
 * Split helper into seperate files so we can include less/more as needed
 * Ability to build a chroot based on the current machines world file, parse /var/lib/portage/world
 * Ability for users to add bash code to be executed before and after our main scripts
+* Ability to detect archive type and use correct tar options
+* Ability to build Exherbo stages (2.x)
