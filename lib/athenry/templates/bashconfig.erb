@@ -1,4 +1,9 @@
 TIMEZONE="<%= CONFIG.timezone %>"
-OVERLAYS=( <%= CONFIG.overlays %> )
 SETS=( <%= CONFIG.sets %> )
 PKG_MANAGER="<%= CONFIG.pkgmanager %>"
+ARCH="<%= CONFIG.arch %>"
+
+# Overlays Hash
+<% CONFIG.overlay_array.each do |name| %>
+<%= "#{name}" %>
+<% end %>
