@@ -6,8 +6,7 @@ emerge)
     # Do nothing
     ;;
 *)
-    error "Invalid package manager check your settings and try again!"
-    exit 1
+    die "Invalid package manager check your settings and try again!"
     ;;
 esac
 

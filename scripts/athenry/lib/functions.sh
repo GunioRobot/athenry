@@ -12,8 +12,7 @@ function announce {
 }
 
 function ctrl_c() {
-        error "Caught CTRL-C exiting soon as it's safe!"
-        exit 1
+        die "Caught CTRL-C exiting soon as it's safe!"
 }
 
 function die() {
@@ -43,8 +42,7 @@ function set_pkgmanager {
             PKG_UPDATE="emerge --keep-going --update --deep system world"
         ;;
         *)
-            error "${PKG_MANAGER} is not a valid choice"
-            exit 1
+            die "${PKG_MANAGER} is not a valid choice"
         ;;
     esac
 }
@@ -75,8 +73,7 @@ function bootstrap_pkgmanager {
             layman -f -o http://github.com/gregf/gregf-overlay/raw/master/gregf.xml -k -a gregf 
         ;;
         *)
-            error "${PKG_MANAGER} is not a valid choice"
-            exit 1
+            die "${PKG_MANAGER} is not a valid choice"
         ;;
     esac
 }
@@ -93,8 +90,10 @@ function bootstrap_overlays {
 }
 
 function rebuild_cache {
-    paludis --regenerate-installed-cache
-    paludis --regenerate-installable-chache
+    if [ ${PKG_NAME} == "paludis" ]; then
+        paludis --regenerate-installed-cache
+        paludis --regenerate-installable-chache
+    fi
 }
 
 function update_configs {

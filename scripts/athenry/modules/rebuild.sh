@@ -9,7 +9,6 @@ case ${PKG_NAME} in
         python-updater -P portage
     ;;
     *)
-    error "Invalid package manager check your settings and try again!"
-    exit 1
+    die "Invalid package manager check your settings and try again!"
     ;;
 esac
