@@ -3,7 +3,7 @@ module Athenry
 
     def initialize
       must_be_root
-      check_for_setup
+      check_for_setup(:run)
       update_chroot
       mount
     end
@@ -13,7 +13,7 @@ module Athenry
       Athenry::Execute::build.sync
       Athenry::Execute::build.update_everything
       Athenry::Execute::build.update_configs
-      Athenry::Execute::build.rebuid
+      Athenry::Execute::build.rebuild
     end
   
   end
