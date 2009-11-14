@@ -36,13 +36,13 @@ begin
       t.files   = ['lib/**/*.rb']
       t.options = ['--output-dir', File.join('meta', 'documentation'),
                    '--title', 'Athenry YARD documentation',
-                   '--readme', 'README.markdown',
-                   '--files', 'doc/about.markdown',
-                   '--files', 'doc/quickstart.markdown',
-                   '--files', 'doc/release.markdown',
-                   '--files', 'doc/hacking.markdown',
-                   '--files', 'AUTHORS.markdown', 
-                   '--files', 'TODO.markdown',
+                   '--readme', 'README.md',
+                   '--files', 'doc/about.md',
+                   '--files', 'doc/quickstart.md',
+                   '--files', 'doc/release.md',
+                   '--files', 'doc/hacking.md',
+                   '--files', 'AUTHORS.md', 
+                   '--files', 'TODO.md',
                    '--files', 'MIT-LICENSE']
     end
    
@@ -50,13 +50,13 @@ begin
       t.files   = ['lib/**/*.rb']
       t.options = ['--no-output',
                    '--title', 'Athenry YARD documentation',
-                   '--readme', 'README.markdown',
-                   '--files', 'doc/about.markdown',
-                   '--files', 'doc/quickstart.markdown',
-                   '--files', 'doc/release.markdown',
-                   '--files', 'doc/hacking.markdown',
-                   '--files', 'AUTHORS.markdown', 
-                   '--files', 'TODO.markdown', 
+                   '--readme', 'README.md',
+                   '--files', 'doc/about.md',
+                   '--files', 'doc/quickstart.md',
+                   '--files', 'doc/release.md',
+                   '--files', 'doc/hacking.md',
+                   '--files', 'AUTHORS.md', 
+                   '--files', 'TODO.md', 
                    '--files', 'MIT-LICENSE']
     end
   end
