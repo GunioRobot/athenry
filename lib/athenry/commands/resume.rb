@@ -1,10 +1,11 @@
 module Athenry
   class Resume
-    include Athenry::ShellAliases
-
+    include ShellAliases
+    
     def initialize
       must_be_root
       check_for_setup
+      aliases
       load_state
     end
 
@@ -13,8 +14,8 @@ module Athenry
     def from
       begin
         start = resume["#{@current_state.first}"]["#{@current_state.last}"]
-        start.each { |step| eval(step) }
-      rescue 
+        start.each { |step| execute(step) }
+      rescue
         error('Invalid resume point')
         exit 1
       end
@@ -37,6 +38,6 @@ module Athenry
       end
       return @current_state
     end
-
+    
   end
 end
