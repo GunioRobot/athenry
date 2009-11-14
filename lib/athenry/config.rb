@@ -1,18 +1,21 @@
 CONFIG = configatron # global alias, shorter than typing configatron
 
-# These I feel should be configurable, but not really left up to the user till
-# the configuration system is reworked.
+# Options we didn't really want to leave up the user as of right now. 
 CONFIG.logdir = 'log'
+CONFIG.chrootdir = "chroot"
+CONFIG.logfile = "#{CONFIG.chrootdir}.log"
 CONFIG.statedir = '.athenry'
 CONFIG.statefile = 'state'
 CONFIG.scripts = "#{ATHENRY_ROOT}/scripts/"
-CONFIG.homeconfig = "#{ENV['HOME']}/.config/athenry/config.yml"
-CONFIG.etcconfig = '/etc/athenry/config.yml'
+CONFIG.homeconfig = "#{ENV['HOME']}/.config/athenry/config.rb"
+CONFIG.etcconfig = '/etc/athenry/config.rb'
 
 if File.readable?("#{CONFIG.homeconfig}")
-  CONFIG.configure_from_yaml("#{CONFIG.homeconfig}") # Load configuration from yaml
+  require "#{CONFIG.homeconfig}"
+  CONFIG.configs = "#{ENV['home']}/.config/athenry/etc/#{CONFIG.arch}"
 elsif File.readable?("#{CONFIG.etcconfig}")
-  CONFIG.configure_from_yaml("#{CONFIG.etcconfig}") 
+  require "#{CONFIG.etcconfig}"
+  CONFIG.configs = "/etc/athenry/etc/#{CONFIG.arch}"
 else
   raise 'No configuration file present, please refer to doc/quickstart.markdown'
 end
