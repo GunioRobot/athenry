@@ -12,7 +12,7 @@ CONFIG.etcconfig = '/etc/athenry/config.rb'
 
 if File.readable?("#{CONFIG.homeconfig}")
   require "#{CONFIG.homeconfig}"
-  CONFIG.configs = "#{ENV['home']}/.config/athenry/etc/#{CONFIG.arch}"
+  CONFIG.configs = "#{ENV['HOME']}/.config/athenry/etc/#{CONFIG.arch}"
 elsif File.readable?("#{CONFIG.etcconfig}")
   require "#{CONFIG.etcconfig}"
   CONFIG.configs = "/etc/athenry/etc/#{CONFIG.arch}"
