@@ -1,0 +1,15 @@
+case ${PKG_NAME} in
+    paludis)
+        export RECONCILIO_OPTIONS="--continue-on-failure if-satisfied"
+        reconcilio
+        python-updater -P paludis
+    ;;
+    emerge)
+        revdep-rebuild -P
+        python-updater -P portage
+    ;;
+    *)
+    error "Invalid package manager check your settings and try again!"
+    exit 1
+    ;;
+esac
