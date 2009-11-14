@@ -3,10 +3,9 @@
 ATHENRY_ROOT="/root/athenry"
 LIB="${ATHENRY_ROOT}/lib"
 MODULES="${ATHENRY_ROOT}/modules"
+NOPALUDIS="$2"
 
 source "${LIB}/functions.sh"
-
-setup_chroot
 set_pkgmanager
 
 case $1 in
@@ -19,11 +18,14 @@ case $1 in
     repair)
         source "${MODULES}/repair.sh"
     ;;
-    freshen)
-        source "${MODULES}/freshen.sh"
+    rebuild)
+        source "${MODULES}/rebuild.sh"
     ;;
-    chroot)
-        source "${MODULES}/chroot.sh"
+    rescue)
+        bash --rcfile "${MODULES}/rescue.sh"
+    ;;
+    update_configs)
+        source "${MODULES}/update_configs.sh"
     ;;
     update_everything)
         source "${MODULES}/update_everything.sh"
