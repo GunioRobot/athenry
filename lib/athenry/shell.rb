@@ -1,2 +1,2 @@
-require 'athenry/shell/aliases'
 require 'athenry/shell/shell'
+require 'athenry/shell/aliases'
