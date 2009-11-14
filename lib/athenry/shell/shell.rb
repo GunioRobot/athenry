@@ -20,6 +20,8 @@ module Athenry
     def help
       setup ||= Athenry::Setup.instance_methods(false)
       build ||= Athenry::Build.instance_methods(false)
+      target ||= Athenry::Target.instance_methods(false)
+      freshen ||= Athenry::Freshen.instance_methods(false)
       clean ||= Athenry::Clean.instance_methods(false)
       
       template = ERB.new(File.open("#{ATHENRY_ROOT}/lib/athenry/templates/help.erb").read, 0, "%<>")
@@ -46,8 +48,5 @@ module Athenry
       ask('>>')
     end   
 
-    def execute(*args)
-      args.each { |method| send(method) }
-    end
   end
 end
