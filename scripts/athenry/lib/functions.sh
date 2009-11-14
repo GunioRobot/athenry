@@ -16,6 +16,12 @@ function ctrl_c() {
         exit 1
 }
 
+function die() {
+    msg="${1}"
+    error "${msg}"
+    exit 1
+}
+
 function set_pkgmanager {
     if [ "${NOPALUDIS}" == "true" ]; then
         PKG_MANAGER="emerge"
