@@ -75,6 +75,10 @@ def install
     end
   end
 
-  FileUtils.install( "#{ENV['PWD']}/examples/config.yml", "#{@options['sysconfdir']}/config.yml.example", :mode => 0644, :verbose => true )
+  FileUtils.install( "#{ENV['PWD']}/examples/config.rb", "#{@options['sysconfdir']}/config.rb.example", :mode => 0644, :verbose => true )
+
+  FileUtils.chown_R('root', 'root', "#{@options['sysconfdir']}", :verbose => true)
+  FileUtils.chown_R('root', 'root', "#{@options['destdir']}/#{@options['prefix']}", :verbose => true)
+  FileUtils.chown('root', 'root', "#{@options['bindir']}/athenry", :verbose=> true)
 
 end
