@@ -4,29 +4,12 @@ module Athenry
     def initialize
       must_be_root
       check_for_setup
+      update_chroot
+      mount
     end
-   
-    # First checks if dev,proc,sys are mounted if not we mount them and save
-    # state
-    # @return [String]
-    def mount
-      if is_mounted?
-        warning('dev, sys, proc are already mounted')
-      else
-        announcing 'Mounting dev, sys, and proc' do
-          cmd "mount -o rbind /dev #{CONFIG.workdir}/#{CONFIG.chrootdir}/dev"
-          cmd "mount -o bind /sys #{CONFIG.workdir}/#{CONFIG.chrootdir}/sys"
-          cmd "mount -t proc none #{CONFIG.workdir}/#{CONFIG.chrootdir}/proc"
-        end
-      end
-      send_to_state('build', 'mount')
-    end
-
-    def install_pkgmgr
-      announcing 'Installing Package Manager' do
-        chroot 'install_pkgmgr'
-      end
-      send_to_state('build', 'install_pkgmgr')
+    
+    def target(args)
+      args.each { |cmd| send(cmd) }
     end
 
     def sync
@@ -35,12 +18,12 @@ module Athenry
       end
       send_to_state('build', 'sync')
     end
-
-    def repair
-      announcing 'Entering Repair Mode' do
-        chroot 'repair'
+    
+    def install_pkgmgr
+      announcing 'Installing Package Manager' do
+        chroot 'install_pkgmgr'
       end
-      send_to_state('build', 'repair')
+      send_to_state('build', 'install_pkgmgr')
     end
 
     def update_everything
@@ -50,6 +33,13 @@ module Athenry
       send_to_state('build', 'update_everything')
     end
 
+    def etc_update 
+      announcing 'Running etc-update' do
+        chroot 'update_configs'
+      end
+      send_to_state('build', 'etc_update')
+    end
+
     def install_overlays
       announcing 'Installing Overlays' do
         chroot 'install_overlays'
@@ -57,11 +47,18 @@ module Athenry
       send_to_state('build', 'install_overlays')
     end
 
-    def tar
-      announcing 'Creating Archive' do
-        chroot 'tar'
+    def install_sets
+      announcing 'Installing Sets' do
+        chroot 'install_sets'
       end
-      send_to_state('build', 'tar')
+      send_to_state('build', 'install_overlays')
+    end
+
+    def rebuild
+      announcing 'Rebuilding' do
+        chroot 'rebuild'
+      end
+      send_to_state('build', 'rebuild')
     end
 
   end
