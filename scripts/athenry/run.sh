@@ -3,7 +3,6 @@
 ATHENRY_ROOT="/root/athenry"
 LIB="${ATHENRY_ROOT}/lib"
 MODULES="${ATHENRY_ROOT}/modules"
-NOPALUDIS="$2"
 
 source "${LIB}/functions.sh"
 set_pkgmanager
@@ -26,6 +25,9 @@ case $1 in
     ;;
     update_configs)
         source "${MODULES}/update_configs.sh"
+    ;;
+    install_sets)
+        source "${MODULES}/install_sets.sh"
     ;;
     update_everything)
         source "${MODULES}/update_everything.sh"

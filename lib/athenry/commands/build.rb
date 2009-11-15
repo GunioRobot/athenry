@@ -51,7 +51,7 @@ module Athenry
       announcing 'Installing Sets' do
         chroot 'install_sets'
       end
-      send_to_state('build', 'install_overlays')
+      send_to_state('build', 'install_sets')
     end
 
     def rebuild
