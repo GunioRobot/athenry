@@ -50,7 +50,7 @@ function set_pkgmanager {
             PKG_INSTALL="emerge"
             PKG_REMOVE="emerge -C"
             PKG_SYNC="emerge --sync"
-            PKG_UPDATE="emerge --keep-going --update --deep system world"
+            PKG_UPDATE="emerge --newuse --keep-going --update --deep system world"
         ;;
         *)
             die "${PKG_MANAGER} is not a valid choice"
@@ -77,12 +77,12 @@ function sync {
 function rebuild_cache {
     if [ ${PKG_MANAGER} == "paludis" ]; then
         paludis --regenerate-installed-cache
-        paludis --regenerate-installable-chache
+        paludis --regenerate-installable-cache
     fi
 }
 
-function bootstrap_pkgmanager {
-    if [ ${PKG_NAME} == "paludis" ]; then
+function bootstrap_pkgmgr {
+    if [ ${PKG_MANAGER} == "paludis" ]; then
         mkdir -p /var/tmp/paludis
         mkdir -p /var/paludis
         mkdir -p /usr/portage/.cache/names
