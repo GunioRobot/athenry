@@ -150,13 +150,35 @@ module Athenry
       filename = URI.parse(filename).path[%r{[^/]+\z}]
     end
 
-    # Sets global $set_nopaludis to either true or false. Used for builds where we want to force emerge, like updating a stage3.
-    # @param bool [Boolean]
+    # Takes a block with options. Runs any commands inside the block with the
+    # options changed, then resets them after all the commands are run.
+    # @param [Hash]
     # @example
-    #   set_nopaludis(:true) => $set_nopaludis => true
-    #   set_nopaludis(:false) => $set_nopaludis => false
-    def set_nopaludis(bool)
-      $set_nopaludis = bool
+    #   set_temp_options(:nopaludis => true) do
+    #     chroot("foo")
+    #     chroot("bar")
+    #   end
+    #
+    #   or
+    #
+    #   set_temp_options(:nopaludis => false, :freshen => true) do
+    #     chroot("foo")
+    #     chroot("bar")
+    #   end
+    # @return [String]
+    def set_temp_options(opts={})
+      set_nopaludis = opts[:nopaludis] || false
+      set_freshen = opts[:freshen] || false
+
+      if set_nopaludis then CONFIG.nopaludis=true end
+      if set_freshen then CONFIG.freshen=true end
+      yield
+      reset_temp_options
+    end
+
+    def reset_temp_options
+      CONFIG.nopaludis=false
+      CONFIG.freshen=false
     end
 
     # Accepts a action to pass to the chroot
@@ -167,11 +189,8 @@ module Athenry
     #   chroot('freshen', 'stage5')
     # @return [String]
     def chroot(action, chrootdir = CONFIG.chrootdir)
-        if $set_nopaludis == :true
-          cmd "chroot #{CONFIG.workdir}/#{chrootdir} /root/athenry/run.sh #{action} true"
-        else
-          cmd "chroot #{CONFIG.workdir}/#{chrootdir} /root/athenry/run.sh #{action}"
-        end
+      update_scripts
+      cmd "chroot #{CONFIG.workdir}/#{chrootdir} /root/athenry/run.sh #{action}"
     end
 
     # Wraps verbose out put in a message block for nicer verbose output
@@ -204,10 +223,9 @@ module Athenry
     # @param chroot [String]
     # @return [String]
     def update_scripts(chrootdir = CONFIG.chrootdir)
-      announcing 'Updating scripts in chroot' do
-        cmd "cp -Ruv #{CONFIG.scripts}/athenry/ #{CONFIG.workdir}/#{chrootdir}/root/"
-        cmd "chmod +x #{CONFIG.workdir}/#{chrootdir}/root/athenry/run.sh"
-      end
+      generate_bash('bashconfig', 'config.sh')
+      cmd "cp -Ru #{CONFIG.scripts}/athenry/ #{CONFIG.workdir}/#{chrootdir}/root/"
+      cmd "chmod +x #{CONFIG.workdir}/#{chrootdir}/root/athenry/run.sh"
     end
 
     # Copies user config files into #{CONFIG.chrootdir}/etc

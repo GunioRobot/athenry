@@ -1,3 +1,7 @@
+# Do not edit by hand, this file changes during runtime.
+# Make changes to config.rb
+#
+
 TIMEZONE="<%= CONFIG.timezone %>"
 SETS=( <%= CONFIG.sets %> )
 PKG_MANAGER="<%= CONFIG.pkgmanager %>"
@@ -7,3 +11,8 @@ ARCH="<%= CONFIG.arch %>"
 <% CONFIG.overlay_array.each do |name| %>
 <%= "#{name}" %>
 <% end %>
+
+# Temporary options
+# These change depending on what your building do not edit!
+FRESHEN="<%= CONFIG.freshen %>"
+NOPALUDIS="<%= CONFIG.nopaludis %>"
