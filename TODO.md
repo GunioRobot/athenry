@@ -8,6 +8,7 @@ Release 0.2
 * Direct Users to bugtracker in documentation/wiki
 * Direct Users to mailinglist
 * Use Jekyll for github pages, move wiki pages there.
+* Comment bash code see if yard with proccess it.
 * Use .md for markdown
 * Create a Roadmap
 
@@ -17,6 +18,7 @@ Release 0.3
 * Ability to have more than one stage (custom names)
 * Use readline for shell
 * Check config for errors and die quickly 
+* Make sync friendly to the gentoo mirrors cache a updated copy locally to be used.
 
 Next
 ----
@@ -27,3 +29,8 @@ Next
 * Ability for users to add bash code to be executed before and after our main scripts
 * Ability to detect archive type and use correct tar options
 * Ability to build Exherbo stages (2.x)
+    - Split modules into 3 catagories
+        - Gentoo
+        - Exherbo
+        - Shared
+    - Split functions and run as needed
