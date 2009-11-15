@@ -1,12 +1,12 @@
 case ${PKG_MANAGER} in
     paludis)
         export RECONCILIO_OPTIONS="--continue-on-failure if-satisfied"
-        reconcilio
-        python-updater -P paludis
+        reconcilio || die "reconcilio failed!"
+        python-updater -P paludis || die "python updater failed!"
     ;;
     emerge)
-        revdep-rebuild -P
-        python-updater -P portage
+        revdep-rebuild || die "revdep-rebuild failed!"
+        python-updater -P portage || die "python updater failed!"
     ;;
     *)
     die "Invalid package manager check your settings and try again!"

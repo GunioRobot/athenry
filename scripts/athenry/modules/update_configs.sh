@@ -1,1 +1,1 @@
-update_configs || die "Failed updating config files"
+echo "-5" | etc-update || die "Failed updating config files"
