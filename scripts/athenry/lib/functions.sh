@@ -4,7 +4,11 @@ source "${LIB}/config.sh"
 source "${LIB}/colors.sh"
 
 function error {
-    echo -ne "${yellow}*${normal}${@}\n";
+    echo -ne "${boldred}*${normal} ${@}\n";
+}
+
+function warning {
+    echo -ne "${yellow}*${normal} ${@}\n";
 }
 
 function announce {
@@ -17,7 +21,7 @@ function ctrl_c() {
 
 function die() {
     msg="${1}"
-    if [ -z ${msg} ]; then
+    if [ -z "${msg}" ]; then
         msg = "Some asshole ran die without setting a message, something broke is all I can tell you. Sorry dude!"
     fi
     error "${msg}"
@@ -29,6 +33,12 @@ function set_pkgmanager {
         PKG_MANAGER="emerge"
     fi
     
+    if [[ "${FRESHEN}" == "true" && "${PKG_MANAGER}" == "paludis" ]]; then
+        if [[ ! -x /usr/bin/paludis ]]; then
+            PKG_MANAGER="emerge"
+        fi 
+    fi
+
     case ${PKG_MANAGER} in 
         paludis)
             PKG_INSTALL="paludis -i"
@@ -71,8 +81,14 @@ function rebuild_cache {
     fi
 }
 
-function update_configs {
-    echo "-5" | etc-update
+function bootstrap_pkgmanager {
+    if [ ${PKG_NAME} == "paludis" ]; then
+        mkdir -p /var/tmp/paludis
+        mkdir -p /var/paludis
+        mkdir -p /usr/portage/.cache/names
+        chown -R paludisbuild:paludisbuild /etc/paludis /usr/portage /var/tmp/paludis /var/paludis
+        rebuild_cache
+    fi
 }
 
 #vim:set ft=sh ts=4 sw=4 noet:
