@@ -5,6 +5,7 @@ LIB="${ATHENRY_ROOT}/lib"
 MODULES="${ATHENRY_ROOT}/modules"
 
 source "${LIB}/functions.sh"
+setup_chroot
 set_pkgmanager
 
 case $1 in
@@ -42,8 +43,7 @@ case $1 in
         source "${MODULES}/install_pkgmgr.sh"
     ;;
     *)
-        error "Invalid action!"
-        exit 1
+        die "Invalid action!"
 esac
 
 #vim:set ft=sh ts=4 sw=4 noet:
