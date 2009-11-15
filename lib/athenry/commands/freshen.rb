@@ -10,10 +10,12 @@ module Athenry
 
     # Performs the steps required to freshen an existing chroot.
     def update(args)
-      Athenry::Execute::build.sync
-      Athenry::Execute::build.update_everything
-      Athenry::Execute::build.update_configs
-      Athenry::Execute::build.rebuild
+      set_temp_options(:freshen => true) do
+        Athenry::Execute::build.sync
+        Athenry::Execute::build.update_everything
+        Athenry::Execute::build.update_configs
+        Athenry::Execute::build.rebuild
+      end
     end
   
   end

@@ -4,6 +4,7 @@ module Athenry
     def initialize
       must_be_root
       check_for_setup(:run)
+      update_chroot
     end
 
     def build(args)
@@ -12,12 +13,13 @@ module Athenry
 
     # Steps required to build a stage3
     def stage3
-      set_nopaludis(:true)
-      Athenry::Execute::build.sync
-      Athenry::Execute::build.update_everything
-      Athenry::Execute::build.update_configs
-      Athenry::Execute::build.rebuild
-      set_nopaludis(:false)
+      set_temp_options(:nopaludis => true) do
+        Athenry::Execute::build.install_pkgmgr
+        Athenry::Execute::build.sync
+        Athenry::Execute::build.update_everything
+        Athenry::Execute::build.update_configs
+        Athenry::Execute::build.rebuild
+      end
     end
 
     # Steps required to build a custom stage
@@ -27,6 +29,7 @@ module Athenry
       Athenry::Execute::build.update_everything
       Athenry::Execute::build.update_configs
       Athenry::Execute::build.install_overlays
+      Athenry::Execute::build.install_sets
       Athenry::Execute::build.rebuild
     end
 
