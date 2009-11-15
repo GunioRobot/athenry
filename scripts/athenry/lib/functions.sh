@@ -59,8 +59,8 @@ function set_pkgmanager {
 }
 
 function setup_chroot {
-    if [ -e /usr/share/zoneinfo/${TIMEZONE} ]; then 
-        cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
+    if [ -e /usr/share/zoneinfo/"${TIMEZONE}" ]; then 
+        cp /usr/share/zoneinfo/"${TIMEZONE}" /etc/localtime
     fi
     env-update
     source /etc/profile
