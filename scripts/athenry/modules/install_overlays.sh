@@ -6,23 +6,23 @@ if [ ${OVERLAYKEY} ]; then
         paludis)
             # execute first command
             if [ -z ${OVERLAYVAL[$x]} ]; then
-                echo playman -a ${OVERLAYKEY[$x]}
+                playman -a ${OVERLAYKEY[$x]}
             else
-                echo playman --layman-url ${OVERLAYVAL[$x]} -a ${OVERLAYKEY[$x]}
+                playman --layman-url ${OVERLAYVAL[$x]} -a ${OVERLAYKEY[$x]}
             fi 
             # execute second command
             mkdir -p /var/paludis/repositories/${OVERLAYKEY[$x]}/.cache/names/
-            echo paludis -s x-${OVERLAYKEY[$x]}
+            paludis -s x-${OVERLAYKEY[$x]}
       ;; 
         emerge)
             # execute first command
             if [ -z ${OVERLAYVAL[$x]} ]; then
-                echo layman -a ${OVERLAYKEY[$x]}
+                layman -a ${OVERLAYKEY[$x]}
             else
-                echo layman -f -o ${OVERLAYVAL[$x]} -k -a ${OVERLAYKEY[$x]}
+                layman -f -o ${OVERLAYVAL[$x]} -k -a ${OVERLAYKEY[$x]}
             fi 
             # execute second command
-            echo layman -s ${OVERLAYKEY}
+            layman -s ${OVERLAYKEY}
         ;; 
     esac
   done
