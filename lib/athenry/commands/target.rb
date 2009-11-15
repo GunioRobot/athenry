@@ -27,6 +27,7 @@ module Athenry
       Athenry::Execute::build.install_pkgmgr
       Athenry::Execute::build.sync
       Athenry::Execute::build.update_everything
+      Athenry::Execute::build.rebuild
       Athenry::Execute::build.update_configs
       Athenry::Execute::build.install_overlays
       Athenry::Execute::build.install_sets
