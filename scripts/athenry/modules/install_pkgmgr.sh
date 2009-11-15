@@ -1,9 +1,10 @@
 case ${PKG_MANAGER} in
 paludis)
-    emerge sys-apps/paludis
+    emerge --noreplace --newuse sys-apps/paludis || die "Failed installing paludis"
+    bootstrap_pkgmgr || die "Failed to bootstrap package manager!"
     ;;
 emerge)
-    emerge sys-apps/portage app-portage/gentoolkit
+    emerge --noreplace --newuse sys-apps/portage app-portage/gentoolkit || die "Failed installing portage"
     # Do nothing
     ;;
 *)
@@ -11,9 +12,8 @@ emerge)
     ;;
 esac
 
-if [ ${OVERLAYKEY} ]; then
+if [[ ${OVERLAYKEY} && ${FRESHEN} == "false" ]]; then
     ${PKG_INSTALL} dev-util/git dev-util/subversion
 fi
 
-bootstrap_pkgmanager || die "Failed to boostrap package manager"
 #vim:set ft=sh ts=4 sw=4 noet:
