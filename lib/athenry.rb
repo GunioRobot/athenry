@@ -1,9 +1,8 @@
 ATHENRY_ROOT = "#{File.dirname(__FILE__)}/.." unless defined?(ATHENRY_ROOT)
-$shell_is_running = false
 
 require 'athenry/depends'
-require 'athenry/config'
 require 'athenry/version'
+require 'athenry/config'
 require 'athenry/helper'
 require 'athenry/state'
 require 'athenry/resumetree'
@@ -22,11 +21,10 @@ require 'athenry/shell'
 # * {Athenry::Clean} is the class that will unmount and clean up temp files.
 # * {Athenry::Shell} is the class that gives you an irb like shell.
 # * {Athenry::Run} is a class that wraps all the steps need for each step.
-
 module Athenry
   # See {Athenry} for more information. 
   module Execute
-
+    
     # Initiates Setup [Class]
     # @see Athenry::Setup
     def self.setup
