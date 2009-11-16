@@ -5,7 +5,7 @@ module Athenry
       setup_environment
     end
    
-    # If stage file is not found it fetches one from #{CONFIG.stageurl}, then extracts the file.
+    # If stage file is not found it fetches one from CONFIG.stageurl, then extracts the file.
     # @return [String]
     def stage
       announcing 'Fetching stage tarball' do
@@ -22,7 +22,7 @@ module Athenry
       send_to_state('setup', 'stage')
     end
 
-    # Fetches a portage snapshot and extracts it to #{CONFIG.chrootdir}/usr/
+    # Fetches a portage snapshot and extracts it to CONFIG.chrootdir/usr/
     # @return [String]
     def snapshot
       announcing 'Fetching portage snapshot' do
@@ -38,7 +38,7 @@ module Athenry
       send_to_state('setup', 'snapshot')
     end
 
-    # Generates dynamic bash configs based on data from config.yml
+    # Generates dynamic bash configs based on data from config.rb
     # @return [String]
     def generate_bashscripts
       announcing 'Generate bash configuration file' do
@@ -47,7 +47,7 @@ module Athenry
       send_to_state('setup', 'generate_bashscripts')
     end
 
-    # Copies build scripts into #{CONFIG.chrootdir}/root
+    # Copies build scripts into CONFIG.chrootdir/root
     # @return [String]
     def copy_scripts
       announcing 'Copying scripts into chroot' do
@@ -57,7 +57,7 @@ module Athenry
       send_to_state('setup', 'copy_scripts')
     end
 
-    # Copies user config files into #{CONFIG.chrootdir}/etc
+    # Copies user config files into CONFIG.chrootdir/etc
     # @return [String]
     def copy_configs
       announcing 'Copying configs into chroot' do
@@ -69,10 +69,10 @@ module Athenry
     private
 
     # Checks the md5sum of a file from a url. If the md5sum doesn't passes it exits immediately.
-    # @param url [String]
-    # @param digest [String]
+    # @param [String] url URL to extract filename from.
+    # @param [String] digest Extension for the digest file. We assume the digest file is filename.digest.
     # @example
-    #   md5sum('http://www.foobar.com/path/file.tar.bz2', 'md5sum') => md5sum -c file.tar.bz2.md5sum --status
+    #   md5sum('http://www.foobar.com/path/file.tar.bz2', 'md5sum') #=> md5sum -c file.tar.bz2.md5sum --status
     # @return [String]
     def md5sum(url, digest)
       announcing "Checking md5sum of #{filename(url)}" do
@@ -83,8 +83,8 @@ module Athenry
     end
 
     # Extracts the filename from a url, and extracts it to the specified path.
-    # @param url [String]
-    # @param path [String]
+    # @param [String] url URL to extract filename from.
+    # @param [String] path Path to extract file to.
     # @example
     #   extract('http://www.example.com/path/file.tar.bz2', '/var/tmp/athenry/stage5')
     # @return [String]

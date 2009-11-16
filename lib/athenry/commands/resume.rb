@@ -23,7 +23,7 @@ module Athenry
     private
     # Loads the current state into an instance variable
     # Example:
-    #   load_state => Setup:2
+    #   load_state #=> Setup:2
     # @return [String]
     def load_state
       begin

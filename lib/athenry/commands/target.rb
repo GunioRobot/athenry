@@ -12,6 +12,8 @@ module Athenry
     end
 
     # Steps required to build a stage3
+    # @see Athenry::Execute::build
+    # @return [String]
     def stage3
       set_temp_options(:nopaludis => true) do
         Athenry::Execute::build.install_pkgmgr
@@ -23,6 +25,8 @@ module Athenry
     end
 
     # Steps required to build a custom stage
+    # @see Athenry::Execute::build
+    # @return [String]
     def custom
       Athenry::Execute::build.install_pkgmgr
       Athenry::Execute::build.sync
