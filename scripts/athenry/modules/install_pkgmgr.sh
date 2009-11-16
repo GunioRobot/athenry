@@ -5,7 +5,6 @@ paludis)
     ;;
 emerge)
     emerge --noreplace --newuse sys-apps/portage app-portage/gentoolkit || die "Failed installing portage"
-    # Do nothing
     ;;
 *)
     die "Invalid package manager check your settings and try again!"
@@ -13,7 +12,7 @@ emerge)
 esac
 
 if [[ ${OVERLAYKEY} && ${FRESHEN} == "false" ]]; then
-    ${PKG_INSTALL} dev-util/git dev-util/subversion
+    ${PKG_INSTALL} dev-util/git dev-util/subversion || die "Failed installing required git and subversion for overlays"
 fi
 
 #vim:set ft=sh ts=4 sw=4 noet:
