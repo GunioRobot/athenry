@@ -13,11 +13,11 @@ require 'fileutils'
 # Options 
 #
 @options = {
-  "destdir"    => "/usr/local",
-  "prefix"     => "athenry",
-  "bindir"     => "/usr/bin",
-  "sysconfdir" => "/etc/athenry",
-  "confdirs"   => ["etc", "etc/x86", "etc/amd64"],
+  :destdir    => "/usr/local",
+  :prefix     => "athenry",
+  :bindir     => "/usr/bin",
+  :sysconfdir => "/etc/athenry",
+  :confdirs   => ["etc", "etc/x86", "etc/amd64"],
 }
 
 unless Process.uid == 0
@@ -49,36 +49,36 @@ command :uninstall do |c|
 end
 
 def uninstall
-  if File.exists?("#{@options['bindir']}/athenry")
-    FileUtils.rm("#{@options['bindir']}/athenry", :verbose => true)
+  if File.exists?("#{@options[:bindir]}/athenry")
+    FileUtils.rm("#{@options[:bindir]}/athenry", :verbose => true)
   end
-  if File.directory?("#{@options['destdir']}/#{@options['prefix']}")
-    FileUtils.rm_rf("#{@options['destdir']}/#{@options['prefix']}", :verbose => true)
+  if File.directory?("#{@options[:destdir]}/#{@options[:prefix]}")
+    FileUtils.rm_rf("#{@options[:destdir]}/#{@options[:prefix]}", :verbose => true)
   end
-  puts "Files in #{@options['sysconfdir']} are saved, remove them if you wish"
+  puts "Files in #{@options[:sysconfdir]} are saved, remove them if you wish"
 end
 
 def install
-  unless File.directory?("#{@options['destdir']}")
-    FileUtils.mkdir_p("#{@options['destdir']}")
+  unless File.directory?("#{@options[:destdir]}")
+    FileUtils.mkdir_p("#{@options[:destdir]}")
   end
 
-  FileUtils.cp_r( "#{ENV['PWD']}", "#{@options['destdir']}", :verbose => true )
+  FileUtils.cp_r( "#{ENV['PWD']}", "#{@options[:destdir]}", :verbose => true )
 
-  unless File.exists?("#{@options['bindir']}/athenry")
-    FileUtils.ln_s( "#{@options['destdir']}/#{@options['prefix']}/bin/athenry", "#{@options['bindir']}/athenry" )
+  unless File.exists?("#{@options[:bindir]}/athenry")
+    FileUtils.ln_s( "#{@options[:destdir]}/#{@options[:prefix]}/bin/athenry", "#{@options[:bindir]}/athenry" )
   end
 
-  unless File.directory?("#{@options['sysconfdir']}")
-    @options['confdirs'].each do |dir|
-      FileUtils.mkdir_p("#{@options['sysconfdir']}/#{dir}")
+  unless File.directory?("#{@options[:sysconfdir]}")
+    @options[:confdirs].each do |dir|
+      FileUtils.mkdir_p("#{@options[:sysconfdir]}/#{dir}")
     end
   end
 
-  FileUtils.install( "#{ENV['PWD']}/examples/config.rb", "#{@options['sysconfdir']}/config.rb.example", :mode => 0644, :verbose => true )
+  FileUtils.install( "#{ENV['PWD']}/examples/config.rb", "#{@options[:sysconfdir]}/config.rb.example", :mode => 0644, :verbose => true )
 
-  FileUtils.chown_R('root', 'root', "#{@options['sysconfdir']}", :verbose => true)
-  FileUtils.chown_R('root', 'root', "#{@options['destdir']}/#{@options['prefix']}", :verbose => true)
-  FileUtils.chown('root', 'root', "#{@options['bindir']}/athenry", :verbose=> true)
+  FileUtils.chown_R('root', 'root', "#{@options[:sysconfdir]}", :verbose => true)
+  FileUtils.chown_R('root', 'root', "#{@options[:destdir]}/#{@options[:prefix]}", :verbose => true)
+  FileUtils.chown('root', 'root', "#{@options[:bindir]}/athenry", :verbose=> true)
 
 end
