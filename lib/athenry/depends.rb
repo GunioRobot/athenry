@@ -8,5 +8,7 @@ begin
   
   gem "commander", ">= 4.0"
   require "commander/import"
+  CONFIG = configatron
 rescue Gem::LoadError
 end
+
