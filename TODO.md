@@ -3,13 +3,13 @@ TODO
 
 Release 0.2
 -----------
+* Updating configs in chroot should not display every time
 * Fix etc-update code.
 * Be sure code lives up to guidelines in hacking.markdown
 * Documentation should mention sets support for emerge
     - Required >=2.2 which is masked
     - Link to documentation on setting up sets with portage
     - Explain they will need to unmask for sets to be installed
-* Need a ton of commenting both ruby and shell.
 * Direct Users to bugtracker in documentation/wiki
 * Direct Users to mailinglist
 * Use Jekyll for github pages, move wiki pages there.
@@ -23,6 +23,7 @@ Release 0.3
     - name.state for state files
 * Use readline for shell
 * Check config for errors and die quickly 
+* Specialized PKG_INSTALL commands
 * Make sync friendly to the gentoo mirrors cache a updated copy locally to be used.
 * Rake task to install gems
 * New workdir structure
@@ -36,13 +37,13 @@ Next
 ----
 * default to pbzip2 if installed, else use tar
 * build should create a tarball (pull mkstage5 into project)
-* Split helper into seperate files so we can include less/more as needed
+* Split helper into separate files so we can include less/more as needed
 * Ability to build a chroot based on the current machines world file, parse /var/lib/portage/world
     - Make this a target command possibly clone with the optional path to a world file
 * Ability for users to add bash code to be executed before and after our main scripts
 * Ability to detect archive type and use correct tar options
 * Ability to build Exherbo stages (2.x)
-    - Split modules into 3 catagories
+    - Split modules into 3 categories
         - Gentoo
         - Exherbo
         - Shared
