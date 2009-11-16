@@ -59,6 +59,10 @@ begin
                    '--files', 'TODO.md', 
                    '--files', 'MIT-LICENSE']
     end
+    desc "Generate Yard Diagram"
+    task :diagram do
+      system("yard-graph --dependencies --full | dot -T png -o diagram.png")
+    end
   end
   
 rescue LoadError
