@@ -4,7 +4,7 @@ paludis)
     bootstrap_pkgmgr || die "Failed to bootstrap package manager!"
     ;;
 emerge)
-    emerge --noreplace --newuse sys-apps/portage app-portage/gentoolkit || die "Failed installing portage"
+    emerge --noreplace --newuse sys-apps/portage app-portage/gentoolkit app-portage/layman || die "Failed installing portage"
     ;;
 *)
     die "Invalid package manager check your settings and try again!"
