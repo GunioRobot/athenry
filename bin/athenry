@@ -31,7 +31,7 @@ command :build do |c|
   c.syntax = 'athenry build [options] <step>'
   c.description = 'Executes a single command on the giving chroot'
   c.when_called do |args, options|
-    Athenry::Execute::run.build(*args)
+    Athenry::Execute::run.build(args)
   end
 end
 
@@ -39,7 +39,7 @@ command :target do |c|
   c.syntax = 'athenry target [options] <target>'
   c.description = 'Starts building a target stage'
   c.when_called do |args, options|
-    Athenry::Execute::run.target(*args)
+    Athenry::Execute::run.target(args)
   end
 end
 
@@ -47,7 +47,7 @@ command :freshen do |c|
   c.syntax = 'athenry freshen'
   c.description = 'Updates an existing chroot'
   c.when_called do |args, options|
-    Athenry::Execute::run.freshen(*args)
+    Athenry::Execute::run.freshen(args)
   end
 end
 
@@ -79,6 +79,6 @@ command :rescue do |c|
   c.syntax = 'athenry rescue [options]'
   c.description = 'Chroot into your stage to perform commands manually'
   c.when_called do |args, options|
-    Athenry::Execute::run.rescue(*args)
+    Athenry::Execute::run.rescue
   end
 end
