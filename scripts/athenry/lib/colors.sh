@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Sets a bunch of perty colors for us to use.
 export black='\e[0m'
 export boldblack='\e[1;0m'
 export red='\e[31m'

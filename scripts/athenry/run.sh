@@ -1,22 +1,22 @@
 #!/bin/bash
 
+# Set some constants
 ATHENRY_ROOT="/root/athenry"
 LIB="${ATHENRY_ROOT}/lib"
 MODULES="${ATHENRY_ROOT}/modules"
+ACTION="${1}"
 
+# @see {file:functions.sh}
 source "${LIB}/functions.sh"
 setup_chroot
 set_pkgmanager
 
-case $1 in
+case "${ACTION}" in
     sync)
         source "${MODULES}/sync.sh"
     ;;
     update_pkgmgr)
         source "${MODULES}/update_pkgmgr.sh"
-    ;;
-    repair)
-        source "${MODULES}/repair.sh"
     ;;
     rebuild)
         source "${MODULES}/rebuild.sh"
