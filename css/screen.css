@@ -48,13 +48,13 @@
 	  }
 		
 	a {
-	  color: #767FD7;
+	  color: #a1a1a1;
           text-decoration: none;
 	  font-weight: bold;
 	  }
 
 	a:hover {
-      color: #555551;
+      color: #767FD7;
 	  font-weight: bold;
 	  text-decoration: underline;
 	  }
