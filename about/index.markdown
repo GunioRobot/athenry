@@ -3,9 +3,6 @@ layout: default
 title: About 
 ---
 
-About
-======
-
 Why Athenry? (Áth na Rí)
 ------------------------
 
