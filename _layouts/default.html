@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    {% include head.html %}
+  </head>
+  <body>
+    {% include forkme.html %}
+    <div id="container">
+      <div id="header">
+        {% include toplinks.html %}
+      </div>
+      <div>
+        {% include navbar.html %}
+      </div>
+    <div id="container2">
+      <div id="content">
+        {{ content }} 
+      </div>
+        <div id="footer">
+          {% include footer.html %}
+        </div>
+        {% include analytics.html %}
+      </div>
+    </div>
+  </body>
+</html>
