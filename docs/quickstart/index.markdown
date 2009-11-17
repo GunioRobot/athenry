@@ -34,31 +34,33 @@ Configuration
 -------------
 
 Athenry stores all configuration data in a plain text yaml file. During
-Athenry's first installation, config.yml.example is copied to
-/etc/athenry/config.yml.example.  Athenry will not run until this file is
-reviewed and then renamed to config.yml. The default configuration options
-provided in /etc/athenry/config.yml are sane defaults that the developers
+Athenry's first installation, config.rb.example is copied to
+/etc/athenry/config.rb.example. Athenry will not run until this file is
+reviewed and then renamed to config.rb. The default configuration options
+provided in /etc/athenry/config.rb.example are sane defaults that the developers
 chose. These settings should work for most anyone that would like to give
-Athenry a try. With that said, it is a good idea to review the config file to
-see if there are configuration options that may work better for you such as the
-working directory, your timezone, and even what mirrors to use. As the
-config.yml in etc are settings the developers consider sane defaults, it is
-highly recommend that config.yml be copied to $HOME/.config/athenry/config.yml.
-Athenry actually checks for $HOME/.config/athenry/config.yml for it's
-configuration settings before looking in /etc/athenry/config.yml. All changes
-to Athenry's configuration and settings should be made to t his local
-configuration file. That way /etc/athenry/config.yml will always be there for
-reference in case you make a change and Athenry no longer does what is
-expected. Another detail to keep in mind is every time Athenry is updated,
-/etc/athenry/config.yml is overwritten with any new configuration options,
-deprecated options are removed, any changes that the devs may think are better
-defaults now will be updated. To put it simply, any personal changes made to
-the config in etc will be overwritten with Athenry's updated  config. The
-developers recommend that you update Athenry regularly, then diff the local
+Athenry a try.
+
+With that said, it is a good idea to review the config file to see if there are
+configuration options that may work better for you such as the working directory,
+your timezone, and even what mirrors to use. As the config.rb in etc are settings
+the developers consider sane defaults, it is highly recommend that config.rb
+be copied to $HOME/.config/athenry/config.rb. Athenry actually checks for
+$HOME/.config/athenry/config.rb for it's configuration settings before looking
+in /etc/athenry/config.rb. All changes to Athenry's configuration and settings
+should be made to this local configuration file. That way /etc/athenry/config.rb
+will always be there for reference in case you make a change and Athenry no
+longer does what is expected. Another detail to keep in mind is every time
+Athenry is updated, /etc/athenry/config.rb is overwritten with any new
+configuration options, deprecated options are removed, any changes that the devs
+may think are better defaults now will be updated. To put it simply, any personal
+changes made to the config in etc will be overwritten with Athenry's updated config.
+
+The developers recommend that you update Athenry regularly, then diff the local
 Athenry config file in $HOME to the Athenry config in etc. Think of this as a
 "manual" etc-update. This is an easy way to see what new features Athenry has,
 any changes in how Athenry works, and any options or functions that have been
-deprecated and/or removed.
+deprecated and/or removed
 
 The following is the list of Athenry's currently sane defaults and available
 settings.
