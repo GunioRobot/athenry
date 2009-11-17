@@ -12,3 +12,4 @@ You can also clone the project with Git by running:
 
     $ git clone git://github.com/gregf/athenry
 
+After Downloading it is _highly_ recommended that you read the [Quickstart](http://gregf.github.com/athenry/docs/quickstart/) guide.
