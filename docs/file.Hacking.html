@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>File: Hacking</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: Hacking</span>
+  
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1 id='hacking'>Hacking</h1>
+
+<h2 id='notes_for_working_on_athenry'>Notes for working on Athenry</h2>
+
+<p>Just some general notes before hacking away, if you make changes to functionality make sure code comments and documentation reflect this before you push.</p>
+
+<h2 id='git'>Git</h2>
+
+<p>Never work in the master branch this is for stable releases. Checkout next for current changes. If your patch is going to be a major deviation you may want to create another branch to merge from. Next is a moving target.</p>
+
+<h2 id='releases'>Releases</h2>
+
+<p>See <a href="file.release.html" title="release">release</a>.</p>
+
+<h2 id='restraints_for_working_with_ruby'>Restraints for working with ruby</h2>
+
+<p>These restraints are mostly in place to keep code clean and consistent:</p>
+
+<ul>
+<li>Set vim to use ts=2 sw=2 noet, or equivalents in your editor</li>
+
+<li>variables should be singled quoted &#8221; unless double quotes &#8221;&#8221; are need for evaluation</li>
+
+<li>Methods using more than two or more options, or long strings should be surrounded in ()</li>
+
+<li>Stick to use cmd method rather than FileUtils for consistency</li>
+
+<li>Code for ruby 1.9 in mind when possible</li>
+</ul>
+
+<h2 id='restraints_for_working_with_bash'>Restraints for working with bash</h2>
+
+<p>In order to stay posix compliant the following constraints should be enforced:</p>
+
+<ul>
+<li>Set vim to use ts=4 sw=4 noet, or equivalents in your editor</li>
+
+<li>variables should be quoted and bracketed &#8220;${SOMEVAR}&#8221;</li>
+
+<li>inline execution should be done with $() instead of backticks</li>
+
+<li>use -z &#8220;${var}&#8221; to test for nulls/empty strings</li>
+
+<li>incase of embedded spaces, quote all path names and string comarpisons</li>
+</ul>
+
+<p>On top of these we assume all systems are currently using Bash 3x. Do not use Bash 4x features.</p></div></div>
+    
+    <div id="footer">
+  Generated on Tue Nov 17 02:03:18 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

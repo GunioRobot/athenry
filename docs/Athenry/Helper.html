@@ -1,0 +1,2569 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Module: Athenry::Helper</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (H)</a> &raquo; 
+    <a href="../Athenry.html" title="Athenry">Athenry</a>
+     &raquo; 
+    <span class="title">Helper</span>
+  
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: Athenry::Helper 
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/athenry/helper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+  <h2>Method Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#announcing-instance_method" title="#announcing (instance method)">- (String) <strong>announcing</strong>(msg) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Wraps verbose out put in a message block for nicer verbose output.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#check_for_setup-instance_method" title="#check_for_setup (instance method)">- (String) <strong>check_for_setup</strong>(run = nil) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Checks to make sure setup was run before any build command is ran.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#chroot-instance_method" title="#chroot (instance method)">- (String) <strong>chroot</strong>(action, chrootdir = CONFIG.chrootdir) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Accepts a action to pass to the chroot.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#cmd-instance_method" title="#cmd (instance method)">- (String) <strong>cmd</strong>(command) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Takes a shell command to run, decides verbose level, optionally logs
+output, and dies if the exit status was not 0.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#die-instance_method" title="#die (instance method)">- (string) <strong>die</strong>(msg) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+If the last exit status was not true then dispaly an error and exit, unless
+SHELL_IS_RUNNING is true, then just display the error and return.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#error-instance_method" title="#error (instance method)">- (String) <strong>error</strong>(msg) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Displays an error message.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#execute-instance_method" title="#execute (instance method)">- (Object) <strong>execute</strong>(*args) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Loops through *args and uses method.send to evaluate the ruby methods.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#filename-instance_method" title="#filename (instance method)">- (String) <strong>filename</strong>(filename) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Takes a URI and parses it ruturning just the filename and extension.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#generate_bash-instance_method" title="#generate_bash (instance method)">- (String) <strong>generate_bash</strong>(template, outfile) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Takes a erb template file and output file, to generate bash from ruby.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#is_mounted%3F-instance_method" title="#is_mounted? (instance method)">- (Boolean) <strong>is_mounted?</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Looks at /etc/mtab on the host system and checks to see if dev,proc,sys are
+mounted.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#logger-instance_method" title="#logger (instance method)">- (String) <strong>logger</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Writes verbose output to #{CONFIG.logfile} unless #{CONFIG.logfile} is nil.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#mount-instance_method" title="#mount (instance method)">- (String) <strong>mount</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+First checks if dev,proc,sys are mounted if not, mount them.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#must_be_root-instance_method" title="#must_be_root (instance method)">- (String) <strong>must_be_root</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Checks if the Process.uid is run by root.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#overlays_basharray-instance_method" title="#overlays_basharray (instance method)">- (Array) <strong>overlays_basharray</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Takes CONFIG.overlays and builds an array usable by our erb template, this
+is then used to generate a configuration file for bash.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#reset_temp_options-instance_method" title="#reset_temp_options (instance method)">- (Object) <strong>reset_temp_options</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Resets the options set from set_temp_options to the default setting, false.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#send_to_log-instance_method" title="#send_to_log (instance method)">- (String) <strong>send_to_log</strong>(msg, level = &quot;error&quot;) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Writes messages to #{CONFIG.logfile}.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#send_to_state-instance_method" title="#send_to_state (instance method)">- (String) <strong>send_to_state</strong>(stage, step) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+if the last command was sucessfull write the current state to file.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#set_temp_options-instance_method" title="#set_temp_options (instance method)">- (String) <strong>set_temp_options</strong>(opts = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Takes a block with options.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#setup_environment-instance_method" title="#setup_environment (instance method)">- (Object) <strong>setup_environment</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Creates necessary dirs to setup our chroot.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#success-instance_method" title="#success (instance method)">- (String) <strong>success</strong>(msg) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Displays a success message.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#update_chroot-instance_method" title="#update_chroot (instance method)">- (String) <strong>update_chroot</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Copies config files and scripts into the chroot that have changed.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#update_configs-instance_method" title="#update_configs (instance method)">- (String) <strong>update_configs</strong>(chrootdir = CONFIG.chrootdir) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Copies user config files into #{CONFIG.chrootdir}/etc.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#update_scripts-instance_method" title="#update_scripts (instance method)">- (String) <strong>update_scripts</strong>(chrootdir = CONFIG.chrootdir) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Copies build scripts into #{CONFIG.chrootdir}/root.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a href="#warning-instance_method" title="#warning (instance method)">- (String) <strong>warning</strong>(msg) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Displays a warning message.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  <div id="method_details">
+    <h2>Method Details</h2>
+    
+      <div class="method_details first">
+  <p class="signature first" id="announcing-instance_method">
+  
+    - (<tt>String</tt>) <strong>announcing</strong>(msg) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Wraps verbose out put in a message block for nicer verbose output
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>msg</span>
+      
+      
+      
+        &mdash;
+        
+The message displayed to the user
+
+
+      
+    </li>
+  
+</ul>
+<h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>Method</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        
+Commands to be run
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+210
+211
+212
+213
+214
+215
+216</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 210</span>
+
+<span class='def def kw'>def</span> <span class='announcing identifier id'>announcing</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='rparen token'>)</span>
+  <span class='logger identifier id'>logger</span> <span class='do do kw'>do</span>
+    <span class='if if kw'>if</span> <span class='@logfile ivar id'>@logfile</span> <span class='then then kw'>then</span> <span class='@logfile ivar id'>@logfile</span><span class='dot token'>.</span><span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;* #{msg} [#{Time.now}]\n&quot;</span> <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='success identifier id'>success</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{msg} \n&quot;</span><span class='rparen token'>)</span>
+  <span class='yield yield kw'>yield</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="check_for_setup-instance_method">
+  
+    - (<tt>String</tt>) <strong>check_for_setup</strong>(run = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Checks to make sure setup was run before any build command is ran. Looks
+for #{CONFIG.workdir} and #{CONFIG.chrootdir} to verify.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='check_for_setup identifier id'>check_for_setup</span><span class='lparen token'>(</span><span class='symbol val'>:run</span><span class='rparen token'>)</span>
+<span class='or or kw'>or</span>
+</pre>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='check_for_setup identifier id'>check_for_setup</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional</tt>, <tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>run</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        
+If set we run the setup for the user.
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        
+&quot;Must run setup before build&quot;
+
+
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+123
+124
+125
+126
+127
+128
+129
+130</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 123</span>
+
+<span class='def def kw'>def</span> <span class='check_for_setup identifier id'>check_for_setup</span><span class='lparen token'>(</span><span class='run identifier id'>run</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='dirs identifier id'>dirs</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span> <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='chrootdir identifier id'>chrootdir</span><span class='comma token'>,</span> <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='logdir identifier id'>logdir</span> <span class='rbrack token'>]</span>
+  <span class='dirs identifier id'>dirs</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='dir identifier id'>dir</span><span class='bitor op'>|</span>
+    <span class='unless unless kw'>unless</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='directory? fid id'>directory?</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{CONFIG.workdir}/#{dir}&quot;</span><span class='rparen token'>)</span>
+      <span class='run identifier id'>run</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span> <span class='integer val'>? </span><span class='raise identifier id'>raise</span><span class='lparen token'>(</span><span class='string val'>&quot;Must run setup before build&quot;</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='run identifier id'>run</span><span class='dot token'>.</span><span class='setup identifier id'>setup</span> 
+    <span class='end end kw'>end</span>
+  <span class='rbrace token'>}</span> 
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="chroot-instance_method">
+  
+    - (<tt>String</tt>) <strong>chroot</strong>(action, chrootdir = CONFIG.chrootdir) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Accepts a action to pass to the chroot
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='chroot identifier id'>chroot</span> <span class='string val'>'install_pkgmgr'</span>
+  <span class='chroot identifier id'>chroot</span><span class='lparen token'>(</span><span class='string val'>'freshen'</span><span class='comma token'>,</span> <span class='string val'>'stage5'</span><span class='rparen token'>)</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>action</span>
+      
+      
+      
+        &mdash;
+        
+The command to be run
+
+
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional</tt>, <tt>String</tt>)</span>
+      
+      
+        <span class='name'>chroot</span>
+      
+      
+      
+        &mdash;
+        
+The chrootdir to run the commands on
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+201
+202
+203
+204</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 201</span>
+
+<span class='def def kw'>def</span> <span class='chroot identifier id'>chroot</span><span class='lparen token'>(</span><span class='action identifier id'>action</span><span class='comma token'>,</span> <span class='chrootdir identifier id'>chrootdir</span> <span class='assign token'>=</span> <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='chrootdir identifier id'>chrootdir</span><span class='rparen token'>)</span>
+  <span class='update_scripts identifier id'>update_scripts</span>
+  <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;chroot #{CONFIG.workdir}/#{chrootdir} /root/athenry/run.sh #{action}&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="cmd-instance_method">
+  
+    - (<tt>String</tt>) <strong>cmd</strong>(command) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Takes a shell command to run, decides verbose level, optionally logs
+output, and dies if the exit status was not 0
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='cmd identifier id'>cmd</span><span class='lparen token'>(</span><span class='string val'>&quot;uname -s&quot;</span><span class='rparen token'>)</span> <span class='comment val'>#=&gt; &quot;Linux&quot;</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>command</span>
+      
+      
+      
+        &mdash;
+        
+Shell command to be run.
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 284</span>
+
+<span class='def def kw'>def</span> <span class='cmd identifier id'>cmd</span><span class='lparen token'>(</span><span class='command identifier id'>command</span><span class='rparen token'>)</span>
+  <span class='logger identifier id'>logger</span> <span class='do do kw'>do</span>
+    <span class='begin begin kw'>begin</span>
+      <span class='pipe identifier id'>pipe</span> <span class='assign token'>=</span> <span class='IO constant id'>IO</span><span class='dot token'>.</span><span class='popen identifier id'>popen</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{command}&quot;</span><span class='rparen token'>)</span>
+      <span class='pipe identifier id'>pipe</span><span class='dot token'>.</span><span class='each_line identifier id'>each_line</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='line identifier id'>line</span><span class='bitor op'>|</span>
+        <span class='if if kw'>if</span> <span class='@logfile ivar id'>@logfile</span> <span class='then then kw'>then</span> <span class='@logfile ivar id'>@logfile</span><span class='dot token'>.</span><span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;#{line}&quot;</span> <span class='end end kw'>end</span>
+        <span class='if if kw'>if</span> <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='verbose identifier id'>verbose</span> <span class='then then kw'>then</span> <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;#{line}&quot;</span> <span class='end end kw'>end</span>
+      <span class='rbrace token'>}</span>
+    <span class='ensure ensure kw'>ensure</span>
+      <span class='pipe identifier id'>pipe</span><span class='dot token'>.</span><span class='close identifier id'>close</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='die identifier id'>die</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{command} Failed to complete successfully&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="die-instance_method">
+  
+    - (<tt>string</tt>) <strong>die</strong>(msg) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+If the last exit status was not true then dispaly an error and exit, unless
+SHELL_IS_RUNNING is true, then just display the error and return
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='die identifier id'>die</span> <span class='string val'>&quot;Foo bar&quot;</span> <span class='comment val'>#=&gt; &quot;* Foo bar&quot;</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>msg</span>
+      
+      
+      
+        &mdash;
+        
+Message to display before we exit
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>string</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+224
+225
+226
+227
+228
+229
+230
+231</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 224</span>
+
+<span class='def def kw'>def</span> <span class='die identifier id'>die</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='rparen token'>)</span>
+  <span class='unless unless kw'>unless</span> <span class='$? gvar id'>$?</span> <span class='eq op'>==</span> <span class='integer val'>0</span>
+    <span class='error identifier id'>error</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{msg} \n&quot;</span><span class='rparen token'>)</span>
+    <span class='unless unless kw'>unless</span> <span class='$shell_is_running gvar id'>$shell_is_running</span>
+      <span class='exit identifier id'>exit</span> <span class='integer val'>1</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="error-instance_method">
+  
+    - (<tt>String</tt>) <strong>error</strong>(msg) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Displays an error message
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='error identifier id'>error</span><span class='lparen token'>(</span><span class='string val'>&quot;Error Will Robinson&quot;</span><span class='rparen token'>)</span> <span class='comment val'>#=&gt; &quot;* Error Will Robinson&quot;</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>msg</span>
+      
+      
+      
+        &mdash;
+        
+Error message to be displayed.
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+9
+10
+11</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 9</span>
+
+<span class='def def kw'>def</span> <span class='error identifier id'>error</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='rparen token'>)</span>
+  <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;\e[31m*\e[0m #{msg} \n&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="execute-instance_method">
+  
+    - (<tt>Object</tt>) <strong>execute</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Loops through *args and uses method.send to evaluate the ruby methods.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <span class='name'>commands</span>
+      
+      
+      
+        &mdash;
+        
+List of commands to run
+
+
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+274
+275
+276</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 274</span>
+
+<span class='def def kw'>def</span> <span class='execute identifier id'>execute</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='method identifier id'>method</span><span class='bitor op'>|</span> <span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="filename-instance_method">
+  
+    - (<tt>String</tt>) <strong>filename</strong>(filename) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Takes a URI and parses it ruturning just the filename and extension
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='filename identifier id'>filename</span><span class='lparen token'>(</span><span class='string val'>'http://www.example.com/path/to/file.tar.bz2'</span><span class='rparen token'>)</span> <span class='comment val'>#=&gt; file.tar.bz2</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>filename</span>
+      
+      
+      
+        &mdash;
+        
+This is the url we use to grab the filename from.
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+154
+155
+156</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 154</span>
+
+<span class='def def kw'>def</span> <span class='filename identifier id'>filename</span><span class='lparen token'>(</span><span class='filename identifier id'>filename</span><span class='rparen token'>)</span>
+  <span class='filename identifier id'>filename</span> <span class='assign token'>=</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='filename identifier id'>filename</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='lbrack token'>[</span><span class='regexp val'>%r{[^/]+\z}</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="generate_bash-instance_method">
+  
+    - (<tt>String</tt>) <strong>generate_bash</strong>(template, outfile) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Takes a erb template file and output file, to generate bash from ruby.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>File</tt>, <tt>#open</tt>)</span>
+      
+      
+        <span class='name'>template</span>
+      
+      
+      
+        &mdash;
+        
+Template file to open.
+
+
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>File</tt>, <tt>#read</tt>)</span>
+      
+      
+        <span class='name'>outfile</span>
+      
+      
+      
+        &mdash;
+        
+Filename to write to.
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 102</span>
+
+<span class='def def kw'>def</span> <span class='generate_bash identifier id'>generate_bash</span><span class='lparen token'>(</span><span class='template identifier id'>template</span><span class='comma token'>,</span> <span class='outfile identifier id'>outfile</span><span class='rparen token'>)</span>
+  <span class='erbfile identifier id'>erbfile</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='open identifier id'>open</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{ATHENRY_ROOT}/lib/athenry/templates/#{template}.erb&quot;</span><span class='comma token'>,</span> <span class='string val'>'r'</span><span class='rparen token'>)</span>
+  <span class='outfile identifier id'>outfile</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{ATHENRY_ROOT}/scripts/athenry/lib/#{outfile}&quot;</span><span class='comma token'>,</span> <span class='string val'>'w'</span><span class='rparen token'>)</span>
+  <span class='begin begin kw'>begin</span>
+    <span class='parse identifier id'>parse</span> <span class='assign token'>=</span> <span class='ERB constant id'>ERB</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='erbfile identifier id'>erbfile</span><span class='comma token'>,</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='string val'>&quot;%&lt;&gt;&quot;</span><span class='rparen token'>)</span>
+    <span class='outfile identifier id'>outfile</span><span class='dot token'>.</span><span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;#{parse.result}&quot;</span>
+  <span class='ensure ensure kw'>ensure</span>
+    <span class='outfile identifier id'>outfile</span><span class='dot token'>.</span><span class='close identifier id'>close</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="is_mounted?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>is_mounted?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Looks at /etc/mtab on the host system and checks to see if dev,proc,sys are
+mounted.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        
+true/false
+
+
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62
+63
+64
+65
+66
+67
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 60</span>
+
+<span class='def def kw'>def</span> <span class='is_mounted? fid id'>is_mounted?</span>
+  <span class='mtab identifier id'>mtab</span> <span class='opasgn op'>||=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='string val'>&quot;/etc/mtab&quot;</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='mtab identifier id'>mtab</span> <span class='match op'>=~</span> <span class='dregexp node'>/#{CONFIG.chrootdir}\/(dev|proc|sys)/</span>
+    <span class='return return kw'>return</span> <span class='true true kw'>true</span>
+  <span class='else else kw'>else</span>
+    <span class='return return kw'>return</span> <span class='false false kw'>false</span>
+  <span class='end end kw'>end</span>
+  <span class='mtab identifier id'>mtab</span><span class='dot token'>.</span><span class='close identifier id'>close</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="logger-instance_method">
+  
+    - (<tt>String</tt>) <strong>logger</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Writes verbose output to #{CONFIG.logfile} unless #{CONFIG.logfile} is nil
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        
+All contents of yield are logged to the logfile.
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 34</span>
+
+<span class='def def kw'>def</span> <span class='logger identifier id'>logger</span>
+  <span class='begin begin kw'>begin</span>
+    <span class='unless unless kw'>unless</span> <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='logfile identifier id'>logfile</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span> <span class='or or kw'>or</span> <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='logfile identifier id'>logfile</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+      <span class='@logfile ivar id'>@logfile</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{CONFIG.workdir}/#{CONFIG.logdir}/#{CONFIG.logfile}&quot;</span><span class='comma token'>,</span> <span class='string val'>'a'</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+    <span class='yield yield kw'>yield</span>
+  <span class='ensure ensure kw'>ensure</span>
+    <span class='@logfile ivar id'>@logfile</span><span class='dot token'>.</span><span class='close identifier id'>close</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="mount-instance_method">
+  
+    - (<tt>String</tt>) <strong>mount</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+First checks if dev,proc,sys are mounted if not, mount them.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 260</span>
+
+<span class='def def kw'>def</span> <span class='mount identifier id'>mount</span>
+  <span class='if if kw'>if</span> <span class='is_mounted? fid id'>is_mounted?</span>
+    <span class='warning identifier id'>warning</span><span class='lparen token'>(</span><span class='string val'>'dev, sys, proc are already mounted'</span><span class='rparen token'>)</span>
+  <span class='else else kw'>else</span>
+    <span class='announcing identifier id'>announcing</span> <span class='string val'>'Mounting dev, sys, and proc'</span> <span class='do do kw'>do</span>
+      <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;mount -o rbind /dev #{CONFIG.workdir}/#{CONFIG.chrootdir}/dev&quot;</span>
+      <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;mount -o bind /sys #{CONFIG.workdir}/#{CONFIG.chrootdir}/sys&quot;</span>
+      <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;mount -t proc none #{CONFIG.workdir}/#{CONFIG.chrootdir}/proc&quot;</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="must_be_root-instance_method">
+  
+    - (<tt>String</tt>) <strong>must_be_root</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Checks if the Process.uid is run by root. If not raise an error and die.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        
+&quot;Must run as root&quot;
+
+
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 145</span>
+
+<span class='def def kw'>def</span> <span class='must_be_root identifier id'>must_be_root</span>
+  <span class='raise identifier id'>raise</span> <span class='string val'>'Must run as root'</span> <span class='unless unless_mod kw'>unless</span> <span class='Process constant id'>Process</span><span class='dot token'>.</span><span class='uid identifier id'>uid</span> <span class='eq op'>==</span> <span class='integer val'>0</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="overlays_basharray-instance_method">
+  
+    - (<tt>Array</tt>) <strong>overlays_basharray</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Takes CONFIG.overlays and builds an array usable by our erb template, this
+is then used to generate a configuration file for bash.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90
+91
+92
+93
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 90</span>
+
+<span class='def def kw'>def</span> <span class='overlays_basharray identifier id'>overlays_basharray</span>
+  <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='overlay_array identifier id'>overlay_array</span><span class='assign token'>=</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='overlays identifier id'>overlays</span><span class='dot token'>.</span><span class='each_with_index identifier id'>each_with_index</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='lparen token'>(</span><span class='k identifier id'>k</span><span class='comma token'>,</span><span class='v identifier id'>v</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='i identifier id'>i</span><span class='bitor op'>|</span>
+    <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='overlay_array identifier id'>overlay_array</span><span class='dot token'>.</span><span class='push identifier id'>push</span><span class='lparen token'>(</span><span class='dstring node'>&quot;OVERLAYKEY[#{i.to_i}]=#{k.to_s.inspect}\n&quot;</span><span class='rparen token'>)</span>
+    <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='overlay_array identifier id'>overlay_array</span><span class='dot token'>.</span><span class='push identifier id'>push</span><span class='lparen token'>(</span><span class='dstring node'>&quot;OVERLAYVAL[#{i.to_i}]=#{v.to_s.inspect}\n&quot;</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="reset_temp_options-instance_method">
+  
+    - (<tt>Object</tt>) <strong>reset_temp_options</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Resets the options set from set_temp_options to the default setting, false.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="#set_temp_options-instance_method" title="Athenry::Helper#set_temp_options">Athenry::Helper#set_temp_options</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+189
+190
+191
+192</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 189</span>
+
+<span class='def def kw'>def</span> <span class='reset_temp_options identifier id'>reset_temp_options</span>
+  <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='nopaludis identifier id'>nopaludis</span><span class='assign token'>=</span><span class='false false kw'>false</span>
+  <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='freshen identifier id'>freshen</span><span class='assign token'>=</span><span class='false false kw'>false</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="send_to_log-instance_method">
+  
+    - (<tt>String</tt>) <strong>send_to_log</strong>(msg, level = &quot;error&quot;) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Writes messages to #{CONFIG.logfile}
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='send_to_log identifier id'>send_to_log</span><span class='lparen token'>(</span><span class='string val'>&quot;Epic Fail&quot;</span><span class='comma token'>,</span> <span class='level identifier id'>level</span><span class='assign token'>=</span><span class='string val'>&quot;error&quot;</span><span class='rparen token'>)</span> <span class='comment val'>#=&gt; &quot;ERROR: Epic Fail [Fri Sep 13 21:21:16 -0400 2009]&quot;</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>msg</span>
+      
+      
+      
+        &mdash;
+        
+Message to send to the logfile
+
+
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional</tt>, <tt>String</tt>)</span>
+      
+      
+        <span class='name'>level</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;error&quot;</tt>)</em>
+      
+      
+        &mdash;
+        
+Optional error level to be displayed, defaults to error.
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 51</span>
+
+<span class='def def kw'>def</span> <span class='send_to_log identifier id'>send_to_log</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='comma token'>,</span> <span class='level identifier id'>level</span><span class='assign token'>=</span><span class='string val'>&quot;error&quot;</span><span class='rparen token'>)</span>
+  <span class='logger identifier id'>logger</span> <span class='do do kw'>do</span>
+      <span class='if if kw'>if</span> <span class='@logfile ivar id'>@logfile</span> <span class='then then kw'>then</span> <span class='@logfile ivar id'>@logfile</span><span class='dot token'>.</span><span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;#{level.upcase}: #{msg} [#{Time.now}]\n&quot;</span> <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="send_to_state-instance_method">
+  
+    - (<tt>String</tt>) <strong>send_to_state</strong>(stage, step) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+if the last command was sucessfull write the current state to file
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='send_to_state identifier id'>send_to_state</span><span class='lparen token'>(</span><span class='string val'>&quot;Setup&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;copy_scripts&quot;</span><span class='rparen token'>)</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>stage</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>step</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 76</span>
+
+<span class='def def kw'>def</span> <span class='send_to_state identifier id'>send_to_state</span><span class='lparen token'>(</span><span class='stage identifier id'>stage</span><span class='comma token'>,</span> <span class='step identifier id'>step</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='$? gvar id'>$?</span> <span class='eq op'>==</span> <span class='integer val'>0</span>
+    <span class='begin begin kw'>begin</span>
+      <span class='statefile identifier id'>statefile</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{CONFIG.workdir}/#{CONFIG.statedir}/#{CONFIG.statefile}&quot;</span><span class='comma token'>,</span> <span class='string val'>'w'</span><span class='rparen token'>)</span>
+      <span class='statefile identifier id'>statefile</span><span class='dot token'>.</span><span class='puts identifier id'>puts</span><span class='lparen token'>(</span><span class='dstring node'>%Q{#{stage}:#{state[&quot;#{stage}&quot;][&quot;#{step}&quot;]}}</span><span class='rparen token'>)</span>
+    <span class='ensure ensure kw'>ensure</span>
+      <span class='statefile identifier id'>statefile</span><span class='dot token'>.</span><span class='close identifier id'>close</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="set_temp_options-instance_method">
+  
+    - (<tt>String</tt>) <strong>set_temp_options</strong>(opts = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Takes a block with options. Runs any commands inside the block with the
+options changed, then resets them after all the commands are run.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='set_temp_options identifier id'>set_temp_options</span><span class='lparen token'>(</span><span class='symbol val'>:nopaludis</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='rparen token'>)</span> <span class='do do kw'>do</span>
+    <span class='chroot identifier id'>chroot</span><span class='lparen token'>(</span><span class='string val'>&quot;foo&quot;</span><span class='rparen token'>)</span>
+    <span class='chroot identifier id'>chroot</span><span class='lparen token'>(</span><span class='string val'>&quot;bar&quot;</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+
+  <span class='or or kw'>or</span>
+
+  <span class='set_temp_options identifier id'>set_temp_options</span><span class='lparen token'>(</span><span class='symbol val'>:nopaludis</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='symbol val'>:freshen</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='rparen token'>)</span> <span class='do do kw'>do</span>
+    <span class='chroot identifier id'>chroot</span><span class='lparen token'>(</span><span class='string val'>&quot;foo&quot;</span><span class='rparen token'>)</span>
+    <span class='chroot identifier id'>chroot</span><span class='lparen token'>(</span><span class='string val'>&quot;bar&quot;</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>opts</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        
+Makes options hash out of params
+
+
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <h3>Options Hash (<tt>opts</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>true</tt>, <tt>false</tt>)</span>
+          <span class="name">:nopaluids</span>
+          <span class="default">
+            
+              <span class="na">N/A</span>
+            
+          </span>
+          &mdash;
+Never use paludis
+
+
+        </tr>
+      
+        <li>
+          <span class="type">(<tt>true</tt>, <tt>false</tt>)</span>
+          <span class="name">:freshen</span>
+          <span class="default">
+            
+              <span class="na">N/A</span>
+            
+          </span>
+          &mdash;
+Detect if paludis is installed if not fall back to emerge
+
+
+        </tr>
+      
+    </ul>
+  
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+177
+178
+179
+180
+181
+182
+183
+184
+185</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 177</span>
+
+<span class='def def kw'>def</span> <span class='set_temp_options identifier id'>set_temp_options</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='set_nopaludis identifier id'>set_nopaludis</span> <span class='assign token'>=</span> <span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:nopaludis</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='false false kw'>false</span>
+  <span class='set_freshen identifier id'>set_freshen</span> <span class='assign token'>=</span> <span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:freshen</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='false false kw'>false</span>
+
+  <span class='if if kw'>if</span> <span class='set_nopaludis identifier id'>set_nopaludis</span> <span class='then then kw'>then</span> <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='nopaludis identifier id'>nopaludis</span><span class='assign token'>=</span><span class='dstring node'>&quot;#{set_nopaludis}&quot;</span> <span class='end end kw'>end</span>
+  <span class='if if kw'>if</span> <span class='set_freshen identifier id'>set_freshen</span> <span class='then then kw'>then</span> <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='freshen identifier id'>freshen</span><span class='assign token'>=</span><span class='dstring node'>&quot;#{set_nopaluids}&quot;</span> <span class='end end kw'>end</span>
+  <span class='yield yield kw'>yield</span>
+  <span class='reset_temp_options identifier id'>reset_temp_options</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="setup_environment-instance_method">
+  
+    - (<tt>Object</tt>) <strong>setup_environment</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Creates necessary dirs to setup our chroot.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+133
+134
+135
+136
+137
+138
+139
+140</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 133</span>
+
+<span class='def def kw'>def</span> <span class='setup_environment identifier id'>setup_environment</span>
+  <span class='dirs identifier id'>dirs</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span> <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='chrootdir identifier id'>chrootdir</span><span class='comma token'>,</span> <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='logdir identifier id'>logdir</span><span class='comma token'>,</span> <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='statedir identifier id'>statedir</span> <span class='rbrack token'>]</span>
+  <span class='dirs identifier id'>dirs</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='dir identifier id'>dir</span><span class='bitor op'>|</span>
+    <span class='unless unless kw'>unless</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='directory? fid id'>directory?</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{CONFIG.workdir}/#{dir}&quot;</span><span class='rparen token'>)</span>
+      <span class='FileUtils constant id'>FileUtils</span><span class='dot token'>.</span><span class='mkdir_p identifier id'>mkdir_p</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{CONFIG.workdir}/#{dir}&quot;</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="success-instance_method">
+  
+    - (<tt>String</tt>) <strong>success</strong>(msg) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Displays a success message
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='error identifier id'>error</span><span class='lparen token'>(</span><span class='string val'>&quot;FTW!&quot;</span><span class='rparen token'>)</span> <span class='comment val'>#=&gt; &quot;* FTW!&quot;</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>msg</span>
+      
+      
+      
+        &mdash;
+        
+The success message to be displayed.
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18
+19
+20</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 18</span>
+
+<span class='def def kw'>def</span> <span class='success identifier id'>success</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='rparen token'>)</span>
+  <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;\e[32m*\e[0m #{msg} \n&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="update_chroot-instance_method">
+  
+    - (<tt>String</tt>) <strong>update_chroot</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Copies config files and scripts into the chroot that have changed
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+253
+254
+255
+256</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 253</span>
+
+<span class='def def kw'>def</span> <span class='update_chroot identifier id'>update_chroot</span>
+  <span class='update_scripts identifier id'>update_scripts</span>
+  <span class='update_configs identifier id'>update_configs</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="update_configs-instance_method">
+  
+    - (<tt>String</tt>) <strong>update_configs</strong>(chrootdir = CONFIG.chrootdir) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Copies user config files into #{CONFIG.chrootdir}/etc
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional</tt>, <tt>String</tt>)</span>
+      
+      
+        <span class='name'>chrootdir</span>
+      
+      
+        <em class="default">(defaults to: <tt>CONFIG.chrootdir</tt>)</em>
+      
+      
+        &mdash;
+        
+Directory the updated configs will be copied too.
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+245
+246
+247
+248
+249</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 245</span>
+
+<span class='def def kw'>def</span> <span class='update_configs identifier id'>update_configs</span><span class='lparen token'>(</span><span class='chrootdir identifier id'>chrootdir</span> <span class='assign token'>=</span> <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='chrootdir identifier id'>chrootdir</span><span class='rparen token'>)</span>
+  <span class='announcing identifier id'>announcing</span> <span class='string val'>'Updating configs in chroot'</span> <span class='do do kw'>do</span>
+    <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;cp -Ruv #{CONFIG.configs}/* #{CONFIG.workdir}/#{chrootdir}/etc/&quot;</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="update_scripts-instance_method">
+  
+    - (<tt>String</tt>) <strong>update_scripts</strong>(chrootdir = CONFIG.chrootdir) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Copies build scripts into #{CONFIG.chrootdir}/root
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional</tt>, <tt>String</tt>)</span>
+      
+      
+        <span class='name'>chrootdir</span>
+      
+      
+        <em class="default">(defaults to: <tt>CONFIG.chrootdir</tt>)</em>
+      
+      
+        &mdash;
+        
+Directory the updated scripts will be copied too.
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+236
+237
+238
+239
+240</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 236</span>
+
+<span class='def def kw'>def</span> <span class='update_scripts identifier id'>update_scripts</span><span class='lparen token'>(</span><span class='chrootdir identifier id'>chrootdir</span> <span class='assign token'>=</span> <span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='chrootdir identifier id'>chrootdir</span><span class='rparen token'>)</span>
+  <span class='generate_bash identifier id'>generate_bash</span><span class='lparen token'>(</span><span class='string val'>'bashconfig'</span><span class='comma token'>,</span> <span class='string val'>'config.sh'</span><span class='rparen token'>)</span>
+  <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;cp -Ru #{CONFIG.scripts}/athenry/ #{CONFIG.workdir}/#{chrootdir}/root/&quot;</span>
+  <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;chmod +x #{CONFIG.workdir}/#{chrootdir}/root/athenry/run.sh&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="warning-instance_method">
+  
+    - (<tt>String</tt>) <strong>warning</strong>(msg) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Displays a warning message
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='warning identifier id'>warning</span><span class='lparen token'>(</span><span class='string val'>&quot;FTL!&quot;</span><span class='rparen token'>)</span> <span class='comment val'>#=&gt; &quot;* FTL!&quot;</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>msg</span>
+      
+      
+      
+        &mdash;
+        
+The warning message to be displayed.
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/helper.rb', line 27</span>
+
+<span class='def def kw'>def</span> <span class='warning identifier id'>warning</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='rparen token'>)</span>
+  <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;\e[33m*\e[0m #{msg} \n&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Tue Nov 17 02:03:20 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

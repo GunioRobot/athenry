@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Module: Athenry</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo; 
+    
+    
+    <span class="title">Athenry</span>
+  
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: Athenry 
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/athenry.rb<span class="defines">,<br />
+  lib/athenry/run.rb,<br /> lib/athenry/state.rb,<br /> lib/athenry/config.rb,<br /> lib/athenry/helper.rb,<br /> lib/athenry/version.rb,<br /> lib/athenry/resumetree.rb,<br /> lib/athenry/shell/shell.rb,<br /> lib/athenry/shell/aliases.rb,<br /> lib/athenry/commands/setup.rb,<br /> lib/athenry/commands/clean.rb,<br /> lib/athenry/commands/build.rb,<br /> lib/athenry/commands/target.rb,<br /> lib/athenry/commands/rescue.rb,<br /> lib/athenry/commands/resume.rb,<br /> lib/athenry/commands/freshen.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+This module contains everything Athenry related
+</p>
+<ul>
+<li><tt><a href="Athenry/Setup.html" title="Athenry::Setup">Athenry::Setup</a></tt> is the class used to create directories, and fetch files.
+
+</li>
+<li><tt><a href="Athenry/Build.html" title="Athenry::Build">Athenry::Build</a></tt> is the class used to mount and chroot into your stage for
+building one command at a time.
+
+</li>
+<li><tt><a href="Athenry/Resume.html" title="Athenry::Resume">Athenry::Resume</a></tt> is the class that allows you to resume from your previous
+state.
+
+</li>
+<li><tt><a href="Athenry/Target.html" title="Athenry::Target">Athenry::Target</a></tt> is the class that allows you to build a full target
+stage, stage3 or custom.
+
+</li>
+<li><tt><a href="Athenry/Freshen.html" title="Athenry::Freshen">Athenry::Freshen</a></tt> is the class that will update an existing chroot
+
+</li>
+<li><tt><a href="Athenry/Rescue.html" title="Athenry::Rescue">Athenry::Rescue</a></tt> is the class that will chroot you into an existing
+chrootdir to preform manual repairs/commands
+
+</li>
+<li><tt><a href="Athenry/Clean.html" title="Athenry::Clean">Athenry::Clean</a></tt> is the class that will unmount and clean up temp files.
+
+</li>
+<li><tt><a href="Athenry/Shell.html" title="Athenry::Shell">Athenry::Shell</a></tt> is the class that gives you an irb like shell.
+
+</li>
+<li><tt><a href="Athenry/Run.html" title="Athenry::Run">Athenry::Run</a></tt> is a class that wraps all the steps need for each step.
+
+</li>
+</ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+      <strong class="modules">Modules:</strong> <a href="Athenry/Config.html" title="Config">Config</a>, <a href="Athenry/Execute.html" title="Execute">Execute</a>, <a href="Athenry/Helper.html" title="Helper">Helper</a>, <a href="Athenry/ResumeTree.html" title="ResumeTree">ResumeTree</a>, <a href="Athenry/ShellAliases.html" title="ShellAliases">ShellAliases</a>, <a href="Athenry/State.html" title="State">State</a>, <a href="Athenry/Version.html" title="Version">Version</a>
+    
+   
+    
+      <strong class="classes">Classes:</strong> <a href="Athenry/Build.html" title="Build">Build</a>, <a href="Athenry/Clean.html" title="Clean">Clean</a>, <a href="Athenry/Freshen.html" title="Freshen">Freshen</a>, <a href="Athenry/Rescue.html" title="Rescue">Rescue</a>, <a href="Athenry/Resume.html" title="Resume">Resume</a>, <a href="Athenry/Run.html" title="Run">Run</a>, <a href="Athenry/Setup.html" title="Setup">Setup</a>, <a href="Athenry/Shell.html" title="Shell">Shell</a>, <a href="Athenry/Target.html" title="Target">Target</a>
+    
+  
+</p>
+
+
+
+
+
+</div>
+    
+    <div id="footer">
+  Generated on Tue Nov 17 02:03:22 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>
