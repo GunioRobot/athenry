@@ -3,6 +3,16 @@ layout: default
 title: Main Page
 ---
 
+Index
+-----
+
+* [About](#about)
+* [Dependencies](#dependencies)
+* [Download](#download)
+* [Install](#install)
+* [Authors](#authors)
+* [License](#license)
+
 About
 ----
 >Athenry will use system configuration files you provide to build Gentoo Stage tarballs for installation on computers at home using freshly rolled x86 or amd64 installs.
@@ -11,29 +21,8 @@ For me info please refer to About
 
 Dependencies
 ------------
-* [configatron](#)
-* [commander](#)
-
-Install
--------
-
-    $ gem install configatron
-    $ gem install commander
-    $ git clone git://github.com/gregf/athenry
-    $ cd athenry
-    $ ./setup.rb install
-
-License
--------
-
-MIT License
-
-Authors
--------
-
-* Greg Fitzgerald <netzdamon@gmail.com>
-* Mike Reynolds <mike@marskreations.com>
-* Manuel Mantilla <mannynix@megared.net.mx>
+* [configatron](http://github.com/markbates/configatron)
+* [commander](http://github.com/visionmedia/commander)
 
 Download
 --------
@@ -44,5 +33,48 @@ You can also clone the project with Git by running:
 
     $ git clone git://github.com/gregf/athenry
 
+Install
+-------
+
+    $ gem install configatron
+    $ gem install commander
+    $ git clone git://github.com/gregf/athenry
+    $ cd athenry
+    $ ./setup.rb install
+
+Authors
+-------
+
+* Greg Fitzgerald <netzdamon@gmail.com>
+* Mike Reynolds <mike@marskreations.com>
+* Manuel Mantilla <mannynix@megared.net.mx>
+
+License
+-------
+
+Athenry is licensed under the MIT license
+
+    Copyright (c) 2009 Greg Fitzgerald
+
+    Permission is hereby granted, free of charge, to any person
+    obtaining a copy of this software and associated documentation
+    files (the "Software"), to deal in the Software without
+    restriction, including without limitation the rights to use,
+    copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following
+    conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+    OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+    OTHER DEALINGS IN THE SOFTWARE.
 
 <!-- vim: set sw=2 sts=2 et : -->
