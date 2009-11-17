@@ -34,7 +34,7 @@ number of [Paludis](http://paludis.pioto.org/) users grow, the need for a
 system to easily build chroots and stage tarballs using their package manager
 of choice also increases. Athenry has been written with the idea of staying
 package manager agnostic in mind.  Currently, there is support for emerge and
-paludis out of the box. None of Athenry's devs uses
+paludis out of the box. None of Athenry's devs use
 [pkgcore](http://www.pkgcore.org/trac/pkgcore), or support for pkgcore would be
 included as well.  Adding pkgcore support should be a trivial task if someone
 was interested enough to do the testing.
@@ -54,7 +54,7 @@ Athenry is currently at a very early stage of development, and It is not
 recommend that most people play with it just yet. If you are curious, or find
 it useful feel free to try. Large chunks of code are ugly and are going to be
 refactored. There is also a great deal of missing functionality that is coming
-with the next release.  The point of releasing Athenry now is to get some
+with each release.  The point of releasing Athenry now is to get some
 people using it that can hopefully handle any potential bugs and to receive
 feedback.
 
