@@ -19,6 +19,7 @@ Install
 
     $ gem install configatron
     $ gem install commander
+    $ git clone git://github.com/gregf/athenry
     $ cd athenry
     $ ./setup.rb install
 
