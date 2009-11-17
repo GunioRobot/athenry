@@ -2,7 +2,7 @@ Authors of Athenry
 ==================
 
 * Greg Fitzgerald <netzdamon@gmail.com>
-    Main Code
+    Developer 
 
 * Mike Reynolds <mike@marskreations.com>
     Contributor

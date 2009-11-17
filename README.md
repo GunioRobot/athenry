@@ -1,11 +1,11 @@
 Athenry
 ========
 
-**Homepage**:   [http://github.com/gregf/athenry] (http://github.com/gregf/athenry)  
-**Git**:        [git://github.com/gregf/athenry.git] (git://github.com/gregf/athenry.git)  
+**Homepage**:   [http://gregf.github.com/athenry] (http://gregf.github.com/athenry)  
+**Git**:        [http://github.com/gregf/athenry] (http://github.com/gregf/athenry)  
 **Author**:     Greg Fitzgerald  
 **Copyright**:  2009  
-**License**:    {file:MIT-LICENSE}  
+**License**:    MIT License
 
 DESCRIPTION
 ------------
@@ -16,7 +16,7 @@ your own freshly rolled x86, amd64 for those computers at home and the friends
 that have been bugging you, or even if you need something for work like, sparc,
 PPC, ia64, all inside the safety of a single chroot, and using only Athenry.
 
-For more information please refer to {file:about.markdown}.
+For more information please refer to {file:about}.
 
 REQUIREMENTS
 -------------
@@ -32,7 +32,7 @@ Install the following gems:
 INSTALLATION
 ------------
 
-See {file:quickstart.markdown}.
+See the {file:QuickStart} guide.
 
 DOCUMENTATION
 -------------
@@ -45,21 +45,21 @@ Files generated will be stored inside meta/documentation
 CREDITS
 --------
 
-See {file:AUTHORS.markdown}.
+See {file:AUTHORS}.
 
 ROADMAP
 --------
 
-See {file:TODO.markdown}.
+See {file:TODO}.
 
 HACKING
 -------
 
-See {file:hacking.markdown}.
+See {file:Hacking}.
 
-CHANGELOG
+HISTORY
 ---------
-- **Nov.10.06** v0.1a release. Initial alpha release for testing, can build stage4 and stage5's from a stage3. Basic resume support. 
+See {file:History}.
 
 COPYRIGHT
 ---------

@@ -36,6 +36,7 @@ Release 0.3
 Next
 ----
 * default to pbzip2 if installed, else use tar
+* Make use of EMERGE_DEFAULT_OPTS
 * build should create a tarball (pull mkstage5 into project)
 * Split helper into separate files so we can include less/more as needed
 * Ability to build a chroot based on the current machines world file, parse /var/lib/portage/world

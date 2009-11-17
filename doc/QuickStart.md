@@ -192,6 +192,6 @@ copying newer configs or debugging an issue painless.
 Note
 ----
 
-Please refer to {file:about.markdown} for more information on Athenry. It is still in
+Please refer to {file:about} for more information on Athenry. It is still in
 the very early stages of development and should not be relied upon for
 production use.

@@ -18,7 +18,7 @@ create another branch to merge from. Next is a moving target.
 Releases
 --------
 
-See {file:release.markdown}.
+See {file:release}.
 
 Restraints for working with ruby
 --------------------------------
