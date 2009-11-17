@@ -15,7 +15,7 @@ Index
 
 About
 ----
->Athenry will use system configuration files you provide to build Gentoo Stage tarballs for installation on computers at home using freshly rolled x86 or amd64 installs.
+>Athenry will use system configuration files you provide to build Gentoo Stage tarballs for installation or chroots using freshly rolled x86 or amd64 installs.
 
 For me info please refer to the [About](http://gregf.github.com/athenry/about/) page.
 
