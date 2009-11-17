@@ -251,3 +251,25 @@
 	  color: #dddddd;
 	  text-decoration: none;
 	  }
+
+/**************** code styles ****************/
+    pre {
+        font-size: 12px;
+        padding: 0;
+        margin-top 5px;
+        margin-bottom 5px;
+        background: #f0f0f0;
+        border-left: 1px solid #a0a0a0;
+        border-bottom: 1px solid #a0a0a0;
+        line-height: 20px; /*--Height of each line of code--*/
+        background: url(http://gregf.github.com/athenry/images/codebg.gif) repeat-y left top; /*--Background of lined paper--*/
+        width: 600px;
+        overflow: auto; /*--If the Code exceeds the width, a scrolling is available--*/
+        overflow-Y: hidden;  /*--Hides vertical scroll created by IE--*/
+    }
+        
+        pre code {
+            margin: 0 0 0 40px;  /*--Left Margin--*/
+            padding: 18px 0;
+            display: block;
+        }
