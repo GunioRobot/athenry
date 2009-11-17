@@ -4,12 +4,12 @@
 	  margin-bottom: 30px;
           background-color: #333333;
 	  }
+    h1, h2, h3, #container, #container2, #footer, #content, #footer { font-family: 'Trebuchet MS', Calibri, Verdana, "Bitstream Vera Sans", sans-serif; }
 
 	#container {
 	  width: 900px;
 	  margin: 2px auto;
-	  font-family: Verdana, Arial, Helvetica, sans-serif;
-	  font-size: 12px;
+	  font-size: 14px;
 	  line-height: 1.6em;
 	  color: #666666;
 	  background-color: #666666;
@@ -19,8 +19,7 @@
 	#container2 {
 	  width: 900px;
 	  margin: 0 auto;
-	  font-family: Verdana, Arial, Helvetica, sans-serif;
-	  font-size: 12px;
+	  font-size: 14px;
 	  line-height: 1.6em;
 	  color: #efefef;
 	  background-color: #666666;
@@ -49,7 +48,7 @@
 	  }
 		
 	a {
-	  color: #eeeeee;
+	  color: #767FD7;
           text-decoration: none;
 	  font-weight: bold;
 	  }
@@ -197,6 +196,7 @@
 		
 	#content p {
 	  padding-bottom: 10px;
+      font-size: 9pt;
 	  }
     
     #content blockquote { 
