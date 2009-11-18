@@ -186,19 +186,19 @@ All commands run from build are performed inside the chroot. Here is a list of c
 **sync**
 : Syncs the portage tree.
 
-**install_pkgmgr**
+**install\_pkgmgr**
 : Installs the package manager you have set.
 
-**update_everything**
+**update\_everything**
 : Updates all packages in your chroot.
 
-**etc_update**
+**etc\_update**
 : Updates out of date configuration files in your chroot.
 
-**install_overlays**
+**install\_overlays**
 : Installs overlays you have specified in config.rb
 
-**install_sets**
+**install\_sets**
 : Installs the sets you have specified in config.rb
 
 **rebuild**
