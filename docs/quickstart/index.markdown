@@ -42,7 +42,7 @@ install.rb.
 Configuration
 -------------
 
-Athenry stores all configuration data in a plain text yaml file. During
+Athenry stores all configuration data in a plain text config file. During
 Athenry's first installation, config.rb.example is copied to
 /etc/athenry/config.rb.example. Athenry will not run until this file is
 reviewed and then renamed to config.rb. The default configuration options
@@ -52,21 +52,22 @@ Athenry a try.
 
 With that said, it is a good idea to review the config file to see if there are
 configuration options that may work better for you such as the working directory,
-your timezone, and even what mirrors to use. As the config.rb in etc are settings
+your timezone, and even what mirrors to use. As the config.rb in /etc are settings
 the developers consider sane defaults, it is highly recommend that config.rb
-be copied to $HOME/.config/athenry/config.rb. Athenry actually checks for
-$HOME/.config/athenry/config.rb for it's configuration settings before looking
+be copied to ~/.config/athenry/config.rb. Athenry actually checks for
+~/.config/athenry/config.rb for it's configuration settings before looking
 in /etc/athenry/config.rb. All changes to Athenry's configuration and settings
 should be made to this local configuration file. That way /etc/athenry/config.rb
 will always be there for reference in case you make a change and Athenry no
 longer does what is expected. Another detail to keep in mind is every time
 Athenry is updated, /etc/athenry/config.rb is overwritten with any new
-configuration options, deprecated options are removed, any changes that the devs
-may think are better defaults now will be updated. To put it simply, any personal
-changes made to the config in etc will be overwritten with Athenry's updated config.
+configuration options, deprecated options are removed, any changes that the
+developers may think are better defaults now will be updated. To put it simply,
+any personal changes made to the config in /etc will be overwritten with
+Athenry's updated config.
 
 The developers recommend that you update Athenry regularly, then diff the local
-Athenry config file in $HOME to the Athenry config in etc. Think of this as a
+Athenry config file in ~/ to the Athenry config in /etc. Think of this as a
 "manual" etc-update. This is an easy way to see what new features Athenry has,
 any changes in how Athenry works, and any options or functions that have been
 deprecated and/or removed
@@ -103,22 +104,22 @@ settings.
 
 **verbose**
 : Does just what it implies, toggles verbosity. Even with this set to
-false you can tail the log file to see the progress.
+false you can tailf the log file to see Athenry's progress.
 
 **overlays**
 : This takes a hash of overlays you would like to use. You can optionally
-specify an additional overlay url to be pulled in. This data is then passed onto either 
-layman or playman.
+specify an additional overlay url to be pulled in. This hash is then passed
+onto either layman or playman.
 
 **pkgmanager**
-: This can be set to either paludis or emerge. 
+: This can be set to either paludis or emerge.
 
 **sets**
-: An array listing set files to install. This is how packages to be
-installed into the chroot is handled.
+: An array listing set files to install. This is how packages to be installed
+into the chroot is handled.
 
 **timezone**
-: Timezone to be set for the chroot. 
+: Timezone to be set for the chroot.
 
 Usage
 -----
@@ -133,20 +134,20 @@ Usage
 
   COMMANDS:
 
-    build                Executes a single command on the giving chroot [command]
-    clean                Cleans up our mess [options]
+    build                Executes a single command on the given chroot [command]
+    clean                Cleans up any mess made [options]
     freshen              Updates an existing chroot
     help                 Display global or [command] help documentation.
-    rescue               Chroot into your stage to perform commands manually
-    resume               Resume from last state
+    rescue               Chroot into the current stage to perform commands manually
+    resume               Resume from last saved state
     setup                Fetches files and creates necessary directories
-    shell                Run athenry commands directly through irb like shell
-    target               Starts building a target stage
+    shell                Run Athenry commands directly through an irb like shell
+    target               Starts building the target stage specified
 
   GLOBAL OPTIONS:
 
     -c, --config FILE
-        Load config data for your commands to use
+        Load the specified configuration file for Athenry to use
 
     -h, --help
         Display help documentation
@@ -168,91 +169,96 @@ Commands
 ###setup:
 ________
 
-The setup command does a number of things for you. It fetches your stage file
-and a portage snapshot. It checks the md5sums those files. It also creates the
-necessary directory structure for Athenry to properly operate.
+The setup command does a number of things automatically. It fetches the stage
+file and a portage snapshot. It checks the md5sums of those files. The setup
+command also creates the necessary directory structure for Athenry to properly
+operate.
 
     $ athenry setup
 
 ###build:
 _________
 
-The build command is used for issuing single commands to the build process. For example:
+The build command is used for issuing single commands to the build process. For
+example:
 
     $ athenry build install_pkgmgr
 
-All commands run from build are performed inside the chroot. Here is a list of commands you can run.
+All commands run from build are performed inside the specified chroot. Here is
+a list of commands that can be run.
 
 **sync**
 : Syncs the portage tree.
 
 **install\_pkgmgr**
-: Installs the package manager you have set.
+: Installs the package manager that has been set.
 
 **update\_everything**
-: Updates all packages in your chroot.
+: Updates all packages in the specified chroot.
 
 **etc\_update**
-: Updates out of date configuration files in your chroot.
+: Updates any out of date configuration files in the specified chroot.
 
 **install\_overlays**
-: Installs overlays you have specified in config.rb
+: Installs overlays that have been specified in config.rb
 
 **install\_sets**
-: Installs the sets you have specified in config.rb
+: Installs sets that have been specified in config.rb
 
 **rebuild**
 : Rebuilds packages with broken linkage, also runs python-updater.
 
 ###target:
 
-The target command is used to build an entire stage file in one swoop. It runs setup if it has not already been run. It will then go through all the necessary build steps in the correct order to build your stage.
+The target command is used to build an entire stage tarball in one swoop.
+It runs setup if it has not already been run. It will then go through all the
+necessary build steps in the correct order to build the specified stage.
 
     $ athenry target stage3
 
 **stage3**
-: Builds a stage3 
+: Builds a stage3
 
 **custom**
 : Builds a custom stage using sets and overlays.
 
-Currently stage3 and custom are the only stages supported. If you plan to
-install sets you will want to use the custom target.
+Currently stage3 and custom are the only stages supported. For now, the custom
+target must be used if any sets or custom overlays are to be installed.
 
 ###rescue:
 __________
 
 Rescue is for when something goes wrong, and it will. Athenry tries to build
-your stage in a way that won't cause you headaches. That being said there is
-always problems that can a cure. Since we do not support building for a stage1
-yet, nor will we require you to, we offer the rescue command. This simply
-chroots into your working chroot and allows you to fix any blockages or other
-issues that may have happened. You can thing resume from where you left off.
+the specified stage in a way that won't cause headaches. With that said, there
+are always problems that can occur. Since building a stage1 is currently not
+supported, the rescue command is offered. This command simply chroots into the
+specified chroot dir and allows any blockages or other issues that may have
+happened to be fixed. Athenry can then resume from where the problem occured.
 
-    $ athenry rescue 
+    $ athenry rescue
 
 ###resume:
 __________
 
-This should pick up where Athenry left off. Currently there is a small
-limitation on resume support. If Athenry is stopped at the last step of setup
-Athenry will not know to start running build. This will be resolved in a future
-release.
+The resume command should pick up where Athenry left off. Currently there is a
+small limitation on resume support. If Athenry is stopped at the last step of
+setup Athenry will not know to start running build. This will be resolved in a
+future release.
 
     $ athenry resume
 
 ###freshen:
 ___________
 
-Freshen will take your existing chroots and update them.
+Freshen will update the specified chroot.
 
     $ athenry freshen <chroot>
 
 ###clean:
 _________
 
-Currently only performs an unmount of /dev, /proc, and /sys. It is fairly
-useless in it's current state.
+The clean command currently only performs an unmount of /dev, /proc, and /sys.
+It is fairly useless in it's current state.
 
     $ athenry clean
 
@@ -261,19 +267,19 @@ _________
 
     $ athenry shell
 
-Is one of Athenry's most powerful features. This will allow you to run each
-step of building a stage from an irb like shell. This makes going back and
-copying newer configs or debugging an issue painless.
+The shell command is one of Athenry's most powerful features. This will allow
+you to run each step of building a stage from an irb like shell. This makes
+going back and copying newer configs or debugging an issue painless.
 
     $ athenry shell
-    
+
     Type help for a list of commands:
     >>
     help
     Athenry Shell Help:
     ===================
-    * help 
-    * quit 
+    * help
+    * quit
 
     Setup:
     ---------------
@@ -312,6 +318,6 @@ copying newer configs or debugging an issue painless.
 Notes
 -----
 
-Please refer to [about](http://gregf.github.com/athenry/about/) for more information on Athenry. It is still in
-the very early stages of development and should not be relied upon for
-production use.
+Please refer to [about](http://gregf.github.com/athenry/about/) for more
+information on Athenry. Athenry is still in the very early stages of
+development and should not be relied upon for production use.
