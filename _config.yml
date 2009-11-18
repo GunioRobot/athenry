@@ -1,5 +1,5 @@
 title: "Athenry"
-url: "http://gregf.github.com/athenry/"
+url: "http://gregf.github.com/athenry"
 
 destination: ./_site
 permalink:   "/:year/:month/:day/:title"
