@@ -5,14 +5,10 @@ Release 0.2
 -----------
 * Updating configs in chroot should not display every time
 * Fix etc-update code.
-* Be sure code lives up to guidelines in hacking.markdown
 * Documentation should mention sets support for emerge
     - Required >=2.2 which is masked
     - Link to documentation on setting up sets with portage
     - Explain they will need to unmask for sets to be installed
-* Direct Users to bugtracker in documentation/wiki
-* Direct Users to mailinglist
-* Use Jekyll for github pages, move wiki pages there.
 * Release
 
 Release 0.3
@@ -23,12 +19,12 @@ Release 0.3
     - name.state for state files
 * Use readline for shell
 * Check config for errors and die quickly 
-* Specialized PKG_INSTALL commands
+* Specialized PKG\_INSTALL commands
 * Make sync friendly to the gentoo mirrors cache a updated copy locally to be used.
 * Rake task to install gems
 * New workdir structure
     - workdir
-    - workdir/chroot_name
+    - workdir/chroot\_name
     - workdir/portage/{portage-latest, cache}
     - workdir/stages/{stage3.tar.bz2, built}
     - workdir/var/{log, state}
@@ -36,7 +32,7 @@ Release 0.3
 Next
 ----
 * default to pbzip2 if installed, else use tar
-* Make use of EMERGE_DEFAULT_OPTS
+* Make use of EMERGE\_DEFAULT\_OPTS
 * build should create a tarball (pull mkstage5 into project)
 * Split helper into separate files so we can include less/more as needed
 * Ability to build a chroot based on the current machines world file, parse /var/lib/portage/world

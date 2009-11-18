@@ -7,62 +7,84 @@ Athenry
 **Copyright**:  2009  
 **License**:    MIT License
 
-DESCRIPTION
+Index
+-----
+
+* [About](#about)
+* [Dependencies](#dependencies)
+* [Download](#download)
+* [Install](#install)
+* [Support](#support)
+* [Authors](#authors)
+* [License](#license)
+
+About
+----
+>Athenry will use system configuration files you provide to build Gentoo Stage tarballs for installation or chroots using freshly rolled x86 or amd64 installs.
+
+* For me information please refer to the [about](http://gregf.github.com/athenry/about/) page.
+
+Dependencies
 ------------
+* [configatron](http://github.com/markbates/configatron)
+* [commander](http://github.com/visionmedia/commander)
 
-Athenry will use the system configuration files you provide, to build what ever
-Gentoo Stage tarballs (currently stage3 - stage5) you want to make installing
-your own freshly rolled x86, amd64 for those computers at home and the friends
-that have been bugging you, or even if you need something for work like, sparc,
-PPC, ia64, all inside the safety of a single chroot, and using only Athenry.
-
-For more information please refer to {file:about}.
-
-REQUIREMENTS
--------------
-Install the following gems:  
-
-    gem sources -a http://gemcutter.org
-    sudo gem install configatron
-    sudo gem install commander 
-
-* [configatron](http://github.com/markbates/configatron/tree/master)  
-* [commander](http://github.com/visionmedia/commander/tree/master)  
-
-INSTALLATION
-------------
-
-See the {file:QuickStart} guide.
-
-DOCUMENTATION
--------------
-You can build the documentation by running  
-
-    rake documentation:generate
-
-Files generated will be stored inside meta/documentation
-
-CREDITS
+Download
 --------
 
-See {file:AUTHORS}.
+You can download this project in either [zip](http://github.com/gregf/athenry/zipball/master) or [tar](http://github.com/gregf/athenry/tarball/master) formats.
 
-ROADMAP
---------
+You can also clone the project with Git by running: 
 
-See {file:TODO}.
+    $ git clone git://github.com/gregf/athenry
 
-HACKING
+Install
 -------
 
-See {file:Hacking}.
+    $ gem install configatron
+    $ gem install commander
+    $ git clone git://github.com/gregf/athenry
+    $ cd athenry
+    $ ./setup.rb install
 
-HISTORY
----------
-See {file:History}.
+Support
+-------
 
-COPYRIGHT
----------
+If you think you have found a bug please report bugs to the [bugtracker](http://github.com/gregf/athenry/issues)
 
-Athenry &copy; 2009 by [Greg Fitzgerald](mailto:netzdamon@gmail.com). Licensed under the MIT 
-license. Please see the {file:MIT-LICENSE} for more information.
+Questions can be emailed directly to [me](mailto:netzdamon@gmail.com?subject=Athenry) or asked on the [mailinglist](http://groups.google.com/group/athenry)
+
+Authors
+-------
+
+* Greg Fitzgerald <netzdamon@gmail.com>
+* Mike Reynolds <mike@marskreations.com>
+* Manuel Mantilla <mannynix@megared.net.mx>
+
+License
+-------
+
+Athenry is licensed under the MIT license
+
+    Copyright (c) 2009 Greg Fitzgerald
+
+    Permission is hereby granted, free of charge, to any person
+    obtaining a copy of this software and associated documentation
+    files (the "Software"), to deal in the Software without
+    restriction, including without limitation the rights to use,
+    copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following
+    conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+    OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+    OTHER DEALINGS IN THE SOFTWARE.
