@@ -10,13 +10,13 @@ Athenry
 Index
 -----
 
-* [About](#about)
-* [Dependencies](#dependencies)
-* [Download](#download)
-* [Install](#install)
-* [Support](#support)
-* [Authors](#authors)
-* [License](#license)
+* [About](http://gregf.github.com/athenry/#about)
+* [Dependencies](http://gregf.github.com/athenry/#dependencies)
+* [Download](http://gregf.github.com/athenry/#download)
+* [Install](http://gregf.github.com/athenry/#install)
+* [Support](http://gregf.github.com/athenry/#support)
+* [Authors](http://gregf.github.com/athenry/#authors)
+* [License](http://gregf.github.com/athenry/#license)
 
 About
 ----
