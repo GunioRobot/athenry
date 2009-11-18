@@ -131,13 +131,13 @@ This is a trival task. All that needs to be done is to add the following line to
 package.unmask in the chroot that Athenry is using.
 
 ###package.unmask
->=sys-apps/portage-2.2_rc33
+    >=sys-apps/portage-2.2_rc33
 
 The following documentation describes how to use sets in emerge;
 
-[Portage Manual](http://dev.gentoo.org/~zmedico/portage/doc/ch02s03.html)
-[Gentoo-User Discussion](http://www.linux-archive.org/gentoo-user/250682-portage-sets.html)
-[Example Set File](http://github.com/gregf/athenryconfigs/blob/master/etc/amd64/portage/sets/stage4)
+* [Portage Manual](http://dev.gentoo.org/~zmedico/portage/doc/ch02s03.html)
+* [Gentoo-User Discussion](http://www.linux-archive.org/gentoo-user/250682-portage-sets.html)
+* [Example Set File](http://github.com/gregf/athenryconfigs/blob/master/etc/amd64/portage/sets/stage4)
 
 
 Usage
