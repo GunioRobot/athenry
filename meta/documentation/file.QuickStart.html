@@ -37,159 +37,298 @@
     
     <div id="content"><div id='filecontents'><h1 id='quickstart_guide'>Quickstart Guide</h1>
 
+<h2 id='quickstart_index'>Quickstart Index</h2>
+
+<ul>
+<li><a href='#where_to_download'>Where to download?</a></li>
+
+<li><a href='#installation'>Installation</a></li>
+
+<li><a href='#configuration'>Configuration</a></li>
+
+<li><a href='#usage'>Usage</a></li>
+
+<li><a href='#commands'>Commands</a><br /> * <a href='#setup'>setup</a><br /> * <a href='#build'>build</a><br /> * <a href='#target'>target</a><br /> * <a href='#rescue'>rescue</a><br /> * <a href='#resume'>resume</a><br /> * <a href='#freshen'>freshen</a><br /> * <a href='#clean'>clean</a><br /> * <a href='#shell'>shell</a></li>
+
+<li><a href='#notes'>Notes</a></li>
+</ul>
+
 <h2 id='where_to_download'>Where to download?</h2>
 
 <p>The best way to get Athenry is to check out the latest release branch from github.</p>
 
-<pre class="code"><span class='git identifier id'>git</span> <span class='clone identifier id'>clone</span> <span class='git identifier id'>git</span><span class='symbol val'>:/</span><span class='regexp val'>/github.com/</span><span class='gregf identifier id'>gregf</span><span class='div op'>/</span><span class='athenry identifier id'>athenry</span><span class='dot token'>.</span><span class='git identifier id'>git</span> <span class='athenry identifier id'>athenry</span>
+<pre class="code">$ <span class='git identifier id'>git</span> <span class='clone identifier id'>clone</span> <span class='git identifier id'>git</span><span class='symbol val'>:/</span><span class='regexp val'>/github.com/</span><span class='gregf identifier id'>gregf</span><span class='div op'>/</span><span class='athenry identifier id'>athenry</span><span class='dot token'>.</span><span class='git identifier id'>git</span> <span class='athenry identifier id'>athenry</span>
 </pre>
 
 <h2 id='installation'>Installation</h2>
 
 <p>After checking out a fresh copy of Athenry from git or extracting a previously downloaded tarball, Athenry needs to be installed. To install Athenry run install.rb.</p>
 
-<pre class="code"><span class='cd identifier id'>cd</span> <span class='athenry identifier id'>athenry</span>
-<span class='dot token'>.</span><span class='div op'>/</span><span class='install identifier id'>install</span><span class='dot token'>.</span><span class='rb identifier id'>rb</span>
+<pre class="code">$ <span class='cd identifier id'>cd</span> <span class='athenry identifier id'>athenry</span>
+$ <span class='dot token'>.</span><span class='div op'>/</span><span class='install identifier id'>install</span><span class='dot token'>.</span><span class='rb identifier id'>rb</span>
 </pre>
 
 <h2 id='configuration'>Configuration</h2>
 
-<p>Athenry stores all configuration data in a plain text yaml file. During Athenry&#8217;s first installation, config.yml.example is copied to /etc/athenry/config.yml.example. Athenry will not run until this file is reviewed and then renamed to config.yml. The default configuration options provided in /etc/athenry/config.yml are sane defaults that the developers chose. These settings should work for most anyone that would like to give Athenry a try. With that said, it is a good idea to review the config file to see if there are configuration options that may work better for you such as the working directory, your timezone, and even what mirrors to use. As the config.yml in etc are settings the developers consider sane defaults, it is highly recommend that config.yml be copied to $HOME/.config/athenry/config.yml. Athenry actually checks for $HOME/.config/athenry/config.yml for it&#8217;s configuration settings before looking in /etc/athenry/config.yml. All changes to Athenry&#8217;s configuration and settings should be made to t his local configuration file. That way /etc/athenry/config.yml will always be there for reference in case you make a change and Athenry no longer does what is expected. Another detail to keep in mind is every time Athenry is updated, /etc/athenry/config.yml is overwritten with any new configuration options, deprecated options are removed, any changes that the devs may think are better defaults now will be updated. To put it simply, any personal changes made to the config in etc will be overwritten with Athenry&#8217;s updated config. The developers recommend that you update Athenry regularly, then diff the local Athenry config file in $HOME to the Athenry config in etc. Think of this as a &#8220;manual&#8221; etc-update. This is an easy way to see what new features Athenry has, any changes in how Athenry works, and any options or functions that have been deprecated and/or removed.</p>
+<p>Athenry stores all configuration data in a plain text config file. During Athenry&#8217;s first installation, config.rb.example is copied to /etc/athenry/config.rb.example. Athenry will not run until this file is reviewed and then renamed to config.rb. The default configuration options provided in /etc/athenry/config.rb.example are sane defaults that the developers chose. These settings should work for most anyone that would like to give Athenry a try.</p>
+
+<p>With that said, it is a good idea to review the config file to see if there are configuration options that may work better for you such as the working directory, your timezone, and even what mirrors to use. As the config.rb in /etc are settings the developers consider sane defaults, it is highly recommend that config.rb be copied to ~/.config/athenry/config.rb. Athenry actually checks for ~/.config/athenry/config.rb for it&#8217;s configuration settings before looking in /etc/athenry/config.rb. All changes to Athenry&#8217;s configuration and settings should be made to this local configuration file. That way /etc/athenry/config.rb will always be there for reference in case you make a change and Athenry no longer does what is expected. Another detail to keep in mind is every time Athenry is updated, /etc/athenry/config.rb is overwritten with any new configuration options, deprecated options are removed, any changes that the developers may think are better defaults now will be updated. To put it simply, any personal changes made to the config in /etc will be overwritten with Athenry&#8217;s updated config.</p>
+
+<p>The developers recommend that you update Athenry regularly, then diff the local Athenry config file in ~/ to the Athenry config in /etc. Think of this as a &#8220;manual&#8221; etc-update. This is an easy way to see what new features Athenry has, any changes in how Athenry works, and any options or functions that have been deprecated and/or removed</p>
 
 <p>The following is the list of Athenry&#8217;s currently sane defaults and available settings.</p>
 
-<p><code>config.yml</code></p>
+<h3 id='configrb'>config.rb:</h3>
 
-<pre class="code"><span class='workdir identifier id'>workdir</span><span class='colon op'>:</span> <span class='string val'>&quot;/var/tmp/athenry&quot;</span>
-<span class='chrootdir identifier id'>chrootdir</span><span class='colon op'>:</span> <span class='string val'>&quot;stage5&quot;</span>
-<span class='configs identifier id'>configs</span><span class='colon op'>:</span> <span class='dstring node'>&quot;#{ENV['home']}/.config/athenry&quot;</span>
-<span class='stageurl identifier id'>stageurl</span><span class='colon op'>:</span> <span class='string val'>&quot;http://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3/stage3-amd64-20091029.tar.bz2&quot;</span>
-<span class='snapshoturl identifier id'>snapshoturl</span><span class='colon op'>:</span> <span class='string val'>&quot;http://gentoo.osuosl.org/snapshots/portage-latest.tar.bz2&quot;</span>
-<span class='verbose identifier id'>verbose</span><span class='colon op'>:</span> <span class='string val'>&quot;true&quot;</span>
-<span class='logfile identifier id'>logfile</span><span class='colon op'>:</span> <span class='string val'>&quot;/var/log/athenry.log&quot;</span>
-<span class='overlays identifier id'>overlays</span><span class='colon op'>:</span> <span class='lbrack token'>[</span><span class='sunrise identifier id'>sunrise</span> <span class='mpd identifier id'>mpd</span><span class='rbrack token'>]</span>
-<span class='pkgmanager identifier id'>pkgmanager</span><span class='colon op'>:</span> <span class='string val'>&quot;paludis&quot;</span> <span class='comment val'>#or emerge</span>
-<span class='sets identifier id'>sets</span><span class='colon op'>:</span> <span class='lbrack token'>[</span><span class='stage4 identifier id'>stage4</span><span class='rbrack token'>]</span>
-<span class='timezone identifier id'>timezone</span><span class='colon op'>:</span> <span class='string val'>&quot;EST5EDT&quot;</span>
+<pre class="code"><span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='workdir identifier id'>workdir</span> <span class='assign token'>=</span> <span class='string val'>&quot;/var/tmp/athenry/&quot;</span>
+<span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='stageurl identifier id'>stageurl</span> <span class='assign token'>=</span> <span class='string val'>&quot;http://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3/stage3-amd64-20091112.tar.bz2&quot;</span>
+<span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='snapshoturl identifier id'>snapshoturl</span> <span class='assign token'>=</span> <span class='string val'>&quot;http://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.bz2&quot;</span>
+<span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='arch identifier id'>arch</span> <span class='assign token'>=</span> <span class='string val'>&quot;amd64&quot;</span>
+<span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='verbose identifier id'>verbose</span> <span class='assign token'>=</span> <span class='string val'>&quot;true&quot;</span>
+<span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='pkgmanager identifier id'>pkgmanager</span> <span class='assign token'>=</span> <span class='string val'>&quot;paludis&quot;</span>
+<span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='sets identifier id'>sets</span> <span class='assign token'>=</span> <span class='dstring node'>%w[stage4 games]</span>
+<span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='timezone identifier id'>timezone</span> <span class='assign token'>=</span> <span class='string val'>&quot;EST5EDT&quot;</span>
+<span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='overlays identifier id'>overlays</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
+    <span class='symbol val'>:mpd</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;http://github.com/gregf/mpd/raw/master/mpd.xml&quot;</span><span class='comma token'>,</span>
+    <span class='symbol val'>:sunrise</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span>
+    <span class='rbrace token'>}</span>
 </pre>
 
-<p><strong>workdir</strong>: This is the root directory where created stages, logs, the state file, and downloaded files will be stored.</p>
+<dl>
+<dt><strong>workdir</strong></dt>
 
-<p><strong>chrootdir</strong>: Relative path to the work dir, where the chroot will be built.</p>
+<dd>This is the root directory where created stages, logs, the state file, and downloaded files will be stored.</dd>
 
-<p><strong>configs</strong>: This should point to the directory where config.yml is kept. These files are used for building the chroot. Athenry will blindly copy files to chrootdir/etc recursivley.</p>
+<dt><strong>stageurl</strong></dt>
 
-<p><strong>stageurl</strong>: This is the url where Athenry will grab the stage seed from.</p>
+<dd>This is the url where Athenry will grab the stage seed from.</dd>
 
-<p><strong>snapshoturl</strong>: This is the url where Athenry will grab the portage snapshot from.</p>
+<dt><strong>snapshoturl</strong></dt>
 
-<p><strong>verbose</strong>: Does just what it implies, toggles verbosity. Even with this set to false you can tail the log file to see the progress.</p>
+<dd>This is the url where Athenry will grab the portage snapshot from.</dd>
 
-<p><strong>logfile</strong>: If a filename is set it logs to logdir/logfile, if blank logging is disabled.</p>
+<dt><strong>arch</strong></dt>
 
-<p><strong>overlays</strong>: This takes an array of overlays you would like to use. Currently does not build the overlay configuration for you, You are expected to have required configurations copied in with the configs setting. This will use playman/layman in the future.</p>
+<dd>This is the architecture you plan on building for.</dd>
 
-<p><strong>pkgmanager</strong>: This can be set to either paludis or emerge. pkgcore could be added with relative ease if requested and someone was interested enough to do testing. The only reason pkgcore is not supported by default is no Athenry devs currently use it.</p>
+<dt><strong>verbose</strong></dt>
 
-<p><strong>sets</strong>: An array listing set files to install. This is how packages to be installed into the chroot is handled.</p>
+<dd>Does just what it implies, toggles verbosity. Even with this set to false you can tailf the log file to see Athenry&#8217;s progress.</dd>
 
-<p><strong>timezone</strong>: Timezone to be set for the chroot. Usage</p>
+<dt><strong>overlays</strong></dt>
+
+<dd>This takes a hash of overlays you would like to use. You can optionally specify an additional overlay url to be pulled in. This hash is then passed onto either layman or playman.</dd>
+
+<dt><strong>pkgmanager</strong></dt>
+
+<dd>This can be set to either paludis or emerge.</dd>
+
+<dt><strong>sets</strong></dt>
+
+<dd>An array listing set files to install. This is how packages to be installed into the chroot is handled.</dd>
+
+<dt><strong>timezone</strong></dt>
+
+<dd>Timezone to be set for the chroot.</dd>
+</dl>
 
 <h2 id='usage'>Usage</h2>
 
-<pre class="code"><span class='athenry identifier id'>athenry</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='help identifier id'>help</span>
-<span class='NAME constant id'>NAME</span><span class='colon op'>:</span>
+<p>NAME:</p>
 
-<span class='Athenry constant id'>Athenry</span>
+<pre class="code"><span class='Athenry constant id'>Athenry</span>
+</pre>
 
-<span class='DESCRIPTION constant id'>DESCRIPTION</span><span class='colon op'>:</span>
+<p>DESCRIPTION:</p>
 
-<span class='Creates constant id'>Creates</span> <span class='a identifier id'>a</span> <span class='Gentoo constant id'>Gentoo</span> <span class='chroot identifier id'>chroot</span> <span class='and and kw'>and</span> <span class='automates identifier id'>automates</span> <span class='stage identifier id'>stage</span> <span class='building identifier id'>building</span>
+<pre class="code"><span class='Creates constant id'>Creates</span> <span class='a identifier id'>a</span> <span class='Gentoo constant id'>Gentoo</span> <span class='chroot identifier id'>chroot</span> <span class='and and kw'>and</span> <span class='automates identifier id'>automates</span> <span class='stage identifier id'>stage</span> <span class='building identifier id'>building</span>
+</pre>
 
-<span class='SUB constant id'>SUB</span><span class='minus op'>-</span><span class='COMMANDS constant id'>COMMANDS</span><span class='colon op'>:</span>
+<p>COMMANDS:</p>
 
-<span class='help identifier id'>help</span>                 <span class='Display constant id'>Display</span> <span class='help identifier id'>help</span> <span class='documentation identifier id'>documentation</span> <span class='for for kw'>for</span> <span class='lt op'>&lt;</span><span class='sub_command identifier id'>sub_command</span><span class='gt op'>&gt;</span>
-<span class='build identifier id'>build</span>                <span class='Starts constant id'>Starts</span> <span class='the identifier id'>the</span> <span class='build identifier id'>build</span> <span class='process identifier id'>process</span>
-<span class='resume identifier id'>resume</span>               <span class='Resume constant id'>Resume</span> <span class='from identifier id'>from</span> <span class='last identifier id'>last</span> <span class='successful identifier id'>successful</span> <span class='state identifier id'>state</span>
-<span class='shell identifier id'>shell</span>                <span class='Run constant id'>Run</span> <span class='Athenry constant id'>Athenry</span> <span class='commands identifier id'>commands</span> <span class='directly identifier id'>directly</span> <span class='through identifier id'>through</span> <span class='an identifier id'>an</span> <span class='irb identifier id'>irb</span> <span class='like identifier id'>like</span> <span class='shell identifier id'>shell</span>
+<pre class="code"><span class='build identifier id'>build</span>                <span class='Executes constant id'>Executes</span> <span class='a identifier id'>a</span> <span class='single identifier id'>single</span> <span class='command identifier id'>command</span> <span class='on identifier id'>on</span> <span class='the identifier id'>the</span> <span class='given identifier id'>given</span> <span class='chroot identifier id'>chroot</span> <span class='lbrack token'>[</span><span class='command identifier id'>command</span><span class='rbrack token'>]</span>
+<span class='clean identifier id'>clean</span>                <span class='Cleans constant id'>Cleans</span> <span class='up identifier id'>up</span> <span class='any identifier id'>any</span> <span class='mess identifier id'>mess</span> <span class='made identifier id'>made</span> <span class='lbrack token'>[</span><span class='options identifier id'>options</span><span class='rbrack token'>]</span>
+<span class='freshen identifier id'>freshen</span>              <span class='Updates constant id'>Updates</span> <span class='an identifier id'>an</span> <span class='existing identifier id'>existing</span> <span class='chroot identifier id'>chroot</span>
+<span class='help identifier id'>help</span>                 <span class='Display constant id'>Display</span> <span class='global identifier id'>global</span> <span class='or or kw'>or</span> <span class='lbrack token'>[</span><span class='command identifier id'>command</span><span class='rbrack token'>]</span> <span class='help identifier id'>help</span> <span class='documentation identifier id'>documentation</span><span class='dot token'>.</span>
+<span class='rescue identifier id'>rescue</span>               <span class='Chroot constant id'>Chroot</span> <span class='into identifier id'>into</span> <span class='the identifier id'>the</span> <span class='current identifier id'>current</span> <span class='stage identifier id'>stage</span> <span class='to identifier id'>to</span> <span class='perform identifier id'>perform</span> <span class='commands identifier id'>commands</span> <span class='manually identifier id'>manually</span>
+<span class='resume identifier id'>resume</span>               <span class='Resume constant id'>Resume</span> <span class='from identifier id'>from</span> <span class='last identifier id'>last</span> <span class='saved identifier id'>saved</span> <span class='state identifier id'>state</span>
 <span class='setup identifier id'>setup</span>                <span class='Fetches constant id'>Fetches</span> <span class='files identifier id'>files</span> <span class='and and kw'>and</span> <span class='creates identifier id'>creates</span> <span class='necessary identifier id'>necessary</span> <span class='directories identifier id'>directories</span>
-<span class='clean identifier id'>clean</span>                <span class='Cleans constant id'>Cleans</span> <span class='up identifier id'>up</span> <span class='Athenry constant id'>Athenry</span><span class='string val'>'s mess
-
-GLOBAL OPTIONS:
-
--h, --help
-    Display help documentation
-
--v, --version
-    Display version information
-
--t, --trace
-    Display a backtrace when an error occurs
-</span></pre>
-
-<p>Currently the workflow would be to run commands in the following order.</p>
-
-<pre class="code"><span class='athenry identifier id'>athenry</span> <span class='setup identifier id'>setup</span>
-<span class='athenry identifier id'>athenry</span> <span class='build identifier id'>build</span>
+<span class='shell identifier id'>shell</span>                <span class='Run constant id'>Run</span> <span class='Athenry constant id'>Athenry</span> <span class='commands identifier id'>commands</span> <span class='directly identifier id'>directly</span> <span class='through identifier id'>through</span> <span class='an identifier id'>an</span> <span class='irb identifier id'>irb</span> <span class='like identifier id'>like</span> <span class='shell identifier id'>shell</span>
+<span class='target identifier id'>target</span>               <span class='Starts constant id'>Starts</span> <span class='building identifier id'>building</span> <span class='the identifier id'>the</span> <span class='target identifier id'>target</span> <span class='stage identifier id'>stage</span> <span class='specified identifier id'>specified</span>
 </pre>
 
-<p>If there is a failure or have the need to stop and come back later run</p>
+<p>GLOBAL OPTIONS:</p>
 
-<pre class="code"><span class='athenry identifier id'>athenry</span> <span class='resume identifier id'>resume</span>
+<pre class="code"><span class='minus op'>-</span><span class='c identifier id'>c</span><span class='comma token'>,</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='config identifier id'>config</span> <span class='FILE constant id'>FILE</span>
+    <span class='Load constant id'>Load</span> <span class='the identifier id'>the</span> <span class='specified identifier id'>specified</span> <span class='configuration identifier id'>configuration</span> <span class='file identifier id'>file</span> <span class='for for kw'>for</span> <span class='Athenry constant id'>Athenry</span> <span class='to identifier id'>to</span> <span class='use identifier id'>use</span>
+
+<span class='minus op'>-</span><span class='h identifier id'>h</span><span class='comma token'>,</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='help identifier id'>help</span>
+    <span class='Display constant id'>Display</span> <span class='help identifier id'>help</span> <span class='documentation identifier id'>documentation</span>
+
+<span class='minus op'>-</span><span class='v identifier id'>v</span><span class='comma token'>,</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='version identifier id'>version</span>
+    <span class='Display constant id'>Display</span> <span class='version identifier id'>version</span> <span class='information identifier id'>information</span>
+
+<span class='minus op'>-</span><span class='t identifier id'>t</span><span class='comma token'>,</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='trace identifier id'>trace</span>
+    <span class='Display constant id'>Display</span> <span class='backtrace identifier id'>backtrace</span> <span class='when when kw'>when</span> <span class='an identifier id'>an</span> <span class='error identifier id'>error</span> <span class='occurs identifier id'>occurs</span>
 </pre>
 
-<p>This should pick up where Athenry left off. Currently there is a small limitation on resume support. If Athenry is stopped at the last step of setup Athenry will not know to start running build. This will be resolved in a future release.</p>
+<p>AUTHOR:</p>
 
-<pre class="code"><span class='athenry identifier id'>athenry</span> <span class='clean identifier id'>clean</span>
+<pre class="code"><span class='Greg constant id'>Greg</span> <span class='Fitzgerald constant id'>Fitzgerald</span> <span class='lt op'>&lt;</span><span class='netzdamon identifier id'>netzdamon</span><span class='@gmail ivar id'>@gmail</span><span class='dot token'>.</span><span class='com identifier id'>com</span><span class='gt op'>&gt;</span>
 </pre>
 
-<p>Currently only performs an unmount of /dev, /proc, and /sys. It is fairly useless in it&#8217;s current state.</p>
+<h2 id='commands'>Commands</h2>
 
-<pre class="code"><span class='athenry identifier id'>athenry</span> <span class='shell identifier id'>shell</span>
+<h3 id='setup'>setup:</h3>
+<hr />
+<p>The setup command does a number of things automatically. It fetches the stage file and a portage snapshot. It checks the md5sums of those files. The setup command also creates the necessary directory structure for Athenry to properly operate.</p>
+
+<pre class="code">$ <span class='athenry identifier id'>athenry</span> <span class='setup identifier id'>setup</span>
 </pre>
 
-<p>Is one of athenry&#8217;s most powerful features. This will allow you to run each step of building a stage from an irb like shell. This makes going back and copying newer configs or debugging an issue painless.</p>
+<h3 id='build'>build:</h3>
+<hr />
+<p>The build command is used for issuing single commands to the build process. For example:</p>
 
-<pre class="code"><span class='athenry identifier id'>athenry</span> <span class='shell identifier id'>shell</span>
+<pre class="code">$ <span class='athenry identifier id'>athenry</span> <span class='build identifier id'>build</span> <span class='install_pkgmgr identifier id'>install_pkgmgr</span>
+</pre>
+
+<p>All commands run from build are performed inside the specified chroot. Here is a list of commands that can be run.</p>
+
+<dl>
+<dt><strong>sync</strong></dt>
+
+<dd>Syncs the portage tree.</dd>
+
+<dt><strong>install_pkgmgr</strong></dt>
+
+<dd>Installs the package manager that has been set.</dd>
+
+<dt><strong>update_everything</strong></dt>
+
+<dd>Updates all packages in the specified chroot.</dd>
+
+<dt><strong>etc_update</strong></dt>
+
+<dd>Updates any out of date configuration files in the specified chroot.</dd>
+
+<dt><strong>install_overlays</strong></dt>
+
+<dd>Installs overlays that have been specified in config.rb</dd>
+
+<dt><strong>install_sets</strong></dt>
+
+<dd>Installs sets that have been specified in config.rb</dd>
+
+<dt><strong>rebuild</strong></dt>
+
+<dd>Rebuilds packages with broken linkage, also runs python-updater.</dd>
+</dl>
+
+<h3 id='target'>target:</h3>
+
+<p>The target command is used to build an entire stage tarball in one swoop. It runs setup if it has not already been run. It will then go through all the necessary build steps in the correct order to build the specified stage.</p>
+
+<pre class="code">$ <span class='athenry identifier id'>athenry</span> <span class='target identifier id'>target</span> <span class='stage3 identifier id'>stage3</span>
+</pre>
+
+<dl>
+<dt><strong>stage3</strong></dt>
+
+<dd>Builds a stage3</dd>
+
+<dt><strong>custom</strong></dt>
+
+<dd>Builds a custom stage using sets and overlays.</dd>
+</dl>
+
+<p>Currently stage3 and custom are the only stages supported. For now, the custom target must be used if any sets or custom overlays are to be installed.</p>
+
+<h3 id='rescue'>rescue:</h3>
+<hr />
+<p>Rescue is for when something goes wrong, and it will. Athenry tries to build the specified stage in a way that won&#8217;t cause headaches. With that said, there are always problems that can occur. Since building a stage1 is currently not supported, the rescue command is offered. This command simply chroots into the specified chroot dir and allows any blockages or other issues that may have happened to be fixed. Athenry can then resume from where the problem occured.</p>
+
+<pre class="code">$ <span class='athenry identifier id'>athenry</span> <span class='rescue rescue kw'>rescue</span>
+</pre>
+
+<h3 id='resume'>resume:</h3>
+<hr />
+<p>The resume command should pick up where Athenry left off. Currently there is a small limitation on resume support. If Athenry is stopped at the last step of setup Athenry will not know to start running build. This will be resolved in a future release.</p>
+
+<pre class="code">$ <span class='athenry identifier id'>athenry</span> <span class='resume identifier id'>resume</span>
+</pre>
+
+<h3 id='freshen'>freshen:</h3>
+<hr />
+<p>Freshen will update the specified chroot.</p>
+
+<pre class="code">$ <span class='athenry identifier id'>athenry</span> <span class='freshen identifier id'>freshen</span> <span class='lt op'>&lt;</span><span class='chroot identifier id'>chroot</span><span class='gt op'>&gt;</span>
+</pre>
+
+<h3 id='clean'>clean:</h3>
+<hr />
+<p>The clean command currently only performs an unmount of /dev, /proc, and /sys. It is fairly useless in it&#8217;s current state.</p>
+
+<pre class="code">$ <span class='athenry identifier id'>athenry</span> <span class='clean identifier id'>clean</span>
+</pre>
+
+<h3 id='shell'>shell:</h3>
+<hr />
+<pre class="code">$ <span class='athenry identifier id'>athenry</span> <span class='shell identifier id'>shell</span>
+</pre>
+
+<p>The shell command is one of Athenry&#8217;s most powerful features. This will allow you to run each step of building a stage from an irb like shell. This makes going back and copying newer configs or debugging an issue painless.</p>
+
+<pre class="code">$ <span class='athenry identifier id'>athenry</span> <span class='shell identifier id'>shell</span>
 
 <span class='Type constant id'>Type</span> <span class='help identifier id'>help</span> <span class='for for kw'>for</span> <span class='a identifier id'>a</span> <span class='list identifier id'>list</span> <span class='of identifier id'>of</span> <span class='commands identifier id'>commands</span><span class='colon op'>:</span>
 <span class='rshft op'>&gt;&gt;</span>
 <span class='help identifier id'>help</span>
 <span class='Athenry constant id'>Athenry</span> <span class='Shell constant id'>Shell</span> <span class='Help constant id'>Help</span><span class='colon op'>:</span>
 <span class='eqq op'>===</span><span class='eqq op'>===</span><span class='eqq op'>===</span><span class='eqq op'>===</span><span class='eqq op'>===</span><span class='eqq op'>===</span><span class='assign token'>=</span>
-<span class='help identifier id'>help</span> <span class='minus op'>-</span> <span class='displays identifier id'>displays</span> <span class='this identifier id'>this</span>
-<span class='quit identifier id'>quit</span> <span class='minus op'>-</span> <span class='quits identifier id'>quits</span>
+<span class='mult op'>*</span> <span class='help identifier id'>help</span>
+<span class='mult op'>*</span> <span class='quit identifier id'>quit</span>
 
 <span class='Setup constant id'>Setup</span><span class='colon op'>:</span>
 <span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span>
-<span class='fetch identifier id'>fetch</span>
-<span class='extract identifier id'>extract</span>
-<span class='snapshot identifier id'>snapshot</span>
-<span class='generate_bashscripts identifier id'>generate_bashscripts</span>
-<span class='copy_scripts identifier id'>copy_scripts</span>
-<span class='copy_configs identifier id'>copy_configs</span>
+<span class='mult op'>*</span> <span class='generate_bashscripts identifier id'>generate_bashscripts</span>
+<span class='mult op'>*</span> <span class='stage identifier id'>stage</span>
+<span class='mult op'>*</span> <span class='snapshot identifier id'>snapshot</span>
+<span class='mult op'>*</span> <span class='copy_configs identifier id'>copy_configs</span>
+<span class='mult op'>*</span> <span class='copy_scripts identifier id'>copy_scripts</span>
+
 
 <span class='Build constant id'>Build</span><span class='colon op'>:</span>
 <span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span>
-<span class='mount identifier id'>mount</span>
-<span class='chroot identifier id'>chroot</span>
+<span class='mult op'>*</span> <span class='install_overlays identifier id'>install_overlays</span>
+<span class='mult op'>*</span> <span class='etc_update identifier id'>etc_update</span>
+<span class='mult op'>*</span> <span class='rebuild identifier id'>rebuild</span>
+<span class='mult op'>*</span> <span class='update_everything identifier id'>update_everything</span>
+<span class='mult op'>*</span> <span class='sync identifier id'>sync</span>
+<span class='mult op'>*</span> <span class='install_sets identifier id'>install_sets</span>
+<span class='mult op'>*</span> <span class='install_pkgmgr identifier id'>install_pkgmgr</span>
 
-<span class='Resume constant id'>Resume</span><span class='colon op'>:</span>
+<span class='Target constant id'>Target</span><span class='colon op'>:</span>
 <span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span>
-<span class='continue identifier id'>continue</span>
+<span class='mult op'>*</span> <span class='stage3 identifier id'>stage3</span>
+<span class='mult op'>*</span> <span class='custom identifier id'>custom</span>
+
+<span class='Freshen constant id'>Freshen</span><span class='colon op'>:</span>
+<span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span>
+<span class='mult op'>*</span> <span class='update identifier id'>update</span>
 
 <span class='Clean constant id'>Clean</span><span class='colon op'>:</span>
 <span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span>
-<span class='umount identifier id'>umount</span>
+<span class='mult op'>*</span> <span class='unmount identifier id'>unmount</span>
 <span class='rshft op'>&gt;&gt;</span>
 </pre>
 
-<h2 id='note'>Note</h2>
+<h2 id='notes'>Notes</h2>
 
-<p>Please refer to <a href="file.about.html" title="about">about</a> for more information on Athenry. It is still in the very early stages of development and should not be relied upon for production use.</p></div></div>
+<p>Please refer to <a href='http://gregf.github.com/athenry/about/'>about</a> for more information on Athenry. Athenry is still in the very early stages of development and should not be relied upon for production use.</p></div></div>
     
     <div id="footer">
-  Generated on Tue Nov 17 13:42:12 2009 by 
+  Generated on Tue Nov 17 22:02:39 2009 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.4.0 (ruby-1.8.7).
 </div>

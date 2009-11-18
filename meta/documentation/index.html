@@ -39,62 +39,106 @@
 
 <p><strong>Homepage</strong>: <a href='http://gregf.github.com/athenry'>http://gregf.github.com/athenry</a><br /><strong>Git</strong>: <a href='http://github.com/gregf/athenry'>http://github.com/gregf/athenry</a><br /><strong>Author</strong>: Greg Fitzgerald<br /><strong>Copyright</strong>: 2009<br /><strong>License</strong>: MIT License</p>
 
-<h2 id='description'>DESCRIPTION</h2>
-
-<p>Athenry will use the system configuration files you provide, to build what ever Gentoo Stage tarballs (currently stage3 - stage5) you want to make installing your own freshly rolled x86, amd64 for those computers at home and the friends that have been bugging you, or even if you need something for work like, sparc, PPC, ia64, all inside the safety of a single chroot, and using only Athenry.</p>
-
-<p>For more information please refer to <a href="file.about.html" title="about">about</a>.</p>
-
-<h2 id='requirements'>REQUIREMENTS</h2>
-
-<p>Install the following gems:</p>
-
-<pre class="code"><span class='gem identifier id'>gem</span> <span class='sources identifier id'>sources</span> <span class='minus op'>-</span><span class='a identifier id'>a</span> <span class='http identifier id'>http</span><span class='symbol val'>:/</span><span class='regexp val'>/gemcutter.org
-sudo gem install configatron
-sudo gem install commander 
-</span></pre>
+<h2 id='index'>Index</h2>
 
 <ul>
-<li><a href='http://github.com/markbates/configatron/tree/master'>configatron</a></li>
+<li><a href='http://gregf.github.com/athenry/#about'>About</a></li>
 
-<li><a href='http://github.com/visionmedia/commander/tree/master'>commander</a></li>
+<li><a href='http://gregf.github.com/athenry/#dependencies'>Dependencies</a></li>
+
+<li><a href='http://gregf.github.com/athenry/#download'>Download</a></li>
+
+<li><a href='http://gregf.github.com/athenry/#install'>Install</a></li>
+
+<li><a href='http://gregf.github.com/athenry/#support'>Support</a></li>
+
+<li><a href='http://gregf.github.com/athenry/#authors'>Authors</a></li>
+
+<li><a href='http://gregf.github.com/athenry/#license'>License</a></li>
 </ul>
 
-<h2 id='installation'>INSTALLATION</h2>
+<h2 id='about'>About</h2>
 
-<p>See the <a href="file.QuickStart.html" title="QuickStart">QuickStart</a> guide.</p>
+<blockquote>
+<p>Athenry will use system configuration files you provide to build Gentoo Stage tarballs for installation or chroots using freshly rolled x86 or amd64 installs.</p>
+</blockquote>
 
-<h2 id='documentation'>DOCUMENTATION</h2>
+<ul>
+<li>For me information please refer to the <a href='http://gregf.github.com/athenry/about/'>about</a> page.</li>
+</ul>
 
-<p>You can build the documentation by running</p>
+<h2 id='dependencies'>Dependencies</h2>
 
-<pre class="code"><span class='rake identifier id'>rake</span> <span class='documentation identifier id'>documentation</span><span class='symbol val'>:generate</span>
+<ul>
+<li><a href='http://github.com/markbates/configatron'>configatron</a></li>
+
+<li><a href='http://github.com/visionmedia/commander'>commander</a></li>
+</ul>
+
+<h2 id='download'>Download</h2>
+
+<p>You can download this project in either <a href='http://github.com/gregf/athenry/zipball/master'>zip</a> or <a href='http://github.com/gregf/athenry/tarball/master'>tar</a> formats.</p>
+
+<p>You can also clone the project with Git by running:</p>
+
+<pre class="code">$ <span class='git identifier id'>git</span> <span class='clone identifier id'>clone</span> <span class='git identifier id'>git</span><span class='symbol val'>:/</span><span class='regexp val'>/github.com/</span><span class='gregf identifier id'>gregf</span><span class='div op'>/</span><span class='athenry identifier id'>athenry</span>
 </pre>
 
-<p>Files generated will be stored inside meta/documentation</p>
+<h2 id='install'>Install</h2>
 
-<h2 id='credits'>CREDITS</h2>
+<pre class="code">$ <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='configatron identifier id'>configatron</span>
+$ <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='commander identifier id'>commander</span>
+$ <span class='git identifier id'>git</span> <span class='clone identifier id'>clone</span> <span class='git identifier id'>git</span><span class='symbol val'>:/</span><span class='regexp val'>/github.com/</span><span class='gregf identifier id'>gregf</span><span class='div op'>/</span><span class='athenry identifier id'>athenry</span>
+$ <span class='cd identifier id'>cd</span> <span class='athenry identifier id'>athenry</span>
+$ <span class='dot token'>.</span><span class='div op'>/</span><span class='setup identifier id'>setup</span><span class='dot token'>.</span><span class='rb identifier id'>rb</span> <span class='install identifier id'>install</span>
+</pre>
 
-<p>See <a href="file.AUTHORS.html" title="AUTHORS">AUTHORS</a>.</p>
+<h2 id='support'>Support</h2>
 
-<h2 id='roadmap'>ROADMAP</h2>
+<p>If you think you have found a bug please report bugs to the <a href='http://github.com/gregf/athenry/issues'>bugtracker</a></p>
 
-<p>See <a href="file.TODO.html" title="TODO">TODO</a>.</p>
+<p>Questions can be emailed directly to <a href='mailto:netzdamon@gmail.com?subject=Athenry'>me</a> or asked on the <a href='http://groups.google.com/group/athenry'>mailinglist</a></p>
 
-<h2 id='hacking'>HACKING</h2>
+<h2 id='authors'>Authors</h2>
 
-<p>See <a href="file.Hacking.html" title="Hacking">Hacking</a>.</p>
+<ul>
+<li>Greg Fitzgerald <a href='mailto:netzdamon@gmail.com'>&#110;&#101;&#116;&#122;&#100;&#097;&#109;&#111;&#110;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;</a></li>
 
-<h2 id='history'>HISTORY</h2>
+<li>Mike Reynolds <a href='mailto:mike@marskreations.com'>&#109;&#105;&#107;&#101;&#064;&#109;&#097;&#114;&#115;&#107;&#114;&#101;&#097;&#116;&#105;&#111;&#110;&#115;&#046;&#099;&#111;&#109;</a></li>
 
-<p>See <a href="file.History.html" title="History">History</a>.</p>
+<li>Manuel Mantilla <a href='mailto:mannynix@megared.net.mx'>&#109;&#097;&#110;&#110;&#121;&#110;&#105;&#120;&#064;&#109;&#101;&#103;&#097;&#114;&#101;&#100;&#046;&#110;&#101;&#116;&#046;&#109;&#120;</a></li>
+</ul>
 
-<h2 id='copyright'>COPYRIGHT</h2>
+<h2 id='license'>License</h2>
 
-<p>Athenry &#169; 2009 by <a href='mailto:netzdamon@gmail.com'>Greg Fitzgerald</a>. Licensed under the MIT license. Please see the <a href="file.MIT-LICENSE.html" title="MIT-LICENSE">MIT-LICENSE</a> for more information.</p></div></div>
+<p>Athenry is licensed under the MIT license</p>
+
+<pre class="code"><span class='Copyright constant id'>Copyright</span> <span class='lparen token'>(</span><span class='c identifier id'>c</span><span class='rparen token'>)</span> <span class='integer val'>2009</span> <span class='Greg constant id'>Greg</span> <span class='Fitzgerald constant id'>Fitzgerald</span>
+
+<span class='Permission constant id'>Permission</span> <span class='is identifier id'>is</span> <span class='hereby identifier id'>hereby</span> <span class='granted identifier id'>granted</span><span class='comma token'>,</span> <span class='free identifier id'>free</span> <span class='of identifier id'>of</span> <span class='charge identifier id'>charge</span><span class='comma token'>,</span> <span class='to identifier id'>to</span> <span class='any identifier id'>any</span> <span class='person identifier id'>person</span>
+<span class='obtaining identifier id'>obtaining</span> <span class='a identifier id'>a</span> <span class='copy identifier id'>copy</span> <span class='of identifier id'>of</span> <span class='this identifier id'>this</span> <span class='software identifier id'>software</span> <span class='and and kw'>and</span> <span class='associated identifier id'>associated</span> <span class='documentation identifier id'>documentation</span>
+<span class='files identifier id'>files</span> <span class='lparen token'>(</span><span class='the identifier id'>the</span> <span class='string val'>&quot;Software&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='to identifier id'>to</span> <span class='deal identifier id'>deal</span> <span class='in in kw'>in</span> <span class='the identifier id'>the</span> <span class='Software constant id'>Software</span> <span class='without identifier id'>without</span>
+<span class='restriction identifier id'>restriction</span><span class='comma token'>,</span> <span class='including identifier id'>including</span> <span class='without identifier id'>without</span> <span class='limitation identifier id'>limitation</span> <span class='the identifier id'>the</span> <span class='rights identifier id'>rights</span> <span class='to identifier id'>to</span> <span class='use identifier id'>use</span><span class='comma token'>,</span>
+<span class='copy identifier id'>copy</span><span class='comma token'>,</span> <span class='modify identifier id'>modify</span><span class='comma token'>,</span> <span class='merge identifier id'>merge</span><span class='comma token'>,</span> <span class='publish identifier id'>publish</span><span class='comma token'>,</span> <span class='distribute identifier id'>distribute</span><span class='comma token'>,</span> <span class='sublicense identifier id'>sublicense</span><span class='comma token'>,</span> <span class='and and kw'>and</span><span class='regexp val'>/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+</span></pre></div></div>
     
     <div id="footer">
-  Generated on Tue Nov 17 13:42:12 2009 by 
+  Generated on Tue Nov 17 22:02:38 2009 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.4.0 (ruby-1.8.7).
 </div>
