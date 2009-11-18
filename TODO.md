@@ -1,14 +1,6 @@
 TODO
 =====
 
-Release 0.2
------------
-* Documentation should mention sets support for emerge
-    - Required >=2.2 which is masked
-    - Link to documentation on setting up sets with portage
-    - Explain they will need to unmask for sets to be installed
-* Release
-
 Release 0.3
 -----------
 * Global option for passing a chrootdir, all methods should accept this.
