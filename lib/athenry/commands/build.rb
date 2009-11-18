@@ -43,7 +43,7 @@ module Athenry
     # @return [String]
     def etc_update 
       announcing 'Running etc-update' do
-        chroot 'update_configs'
+        system("chroot #{CONFIG.workdir}/#{chrootdir} /root/athenry/run.sh update_configs")
       end
       send_to_state('build', 'etc_update')
     end

@@ -3,8 +3,6 @@ TODO
 
 Release 0.2
 -----------
-* Updating configs in chroot should not display every time
-* Fix etc-update code.
 * Documentation should mention sets support for emerge
     - Required >=2.2 which is masked
     - Link to documentation on setting up sets with portage
