@@ -10,6 +10,7 @@ Index
 * [Dependencies](#dependencies)
 * [Download](#download)
 * [Install](#install)
+* [Support](#support)
 * [Authors](#authors)
 * [License](#license)
 
@@ -17,7 +18,7 @@ About
 ----
 >Athenry will use system configuration files you provide to build Gentoo Stage tarballs for installation or chroots using freshly rolled x86 or amd64 installs.
 
-For me info please refer to the [about](http://gregf.github.com/athenry/about/) page.
+* For me information please refer to the [about](http://gregf.github.com/athenry/about/) page.
 
 Dependencies
 ------------
@@ -41,6 +42,13 @@ Install
     $ git clone git://github.com/gregf/athenry
     $ cd athenry
     $ ./setup.rb install
+
+Support
+-------
+
+If you think you have found a bug please report bugs to the [bugtracker](http://github.com/gregf/athenry/issues)
+
+Questions can be emailed directly to [me](mailto:netzdamon@gmail.com?subject=Athenry) or asked on the [mailinglist](http://groups.google.com/group/athenry)
 
 Authors
 -------
@@ -76,5 +84,3 @@ Athenry is licensed under the MIT license
     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
     OTHER DEALINGS IN THE SOFTWARE.
-
-<!-- vim: set sw=2 sts=2 et : -->
