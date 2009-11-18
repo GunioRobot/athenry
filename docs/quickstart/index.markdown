@@ -10,6 +10,15 @@ Quickstart Index
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [Usage](#usage)
+* [Commands](#commands)  
+    * [setup](#setup)  
+    * [build](#build)  
+    * [target](#target)  
+    * [rescue](#rescue)  
+    * [resume](#resume)  
+    * [freshen](#freshen)  
+    * [clean](#clean)  
+    * [shell](#shell)  
 * [Notes](#notes)
 
 Where to download?
@@ -65,75 +74,79 @@ deprecated and/or removed
 The following is the list of Athenry's currently sane defaults and available
 settings.
 
-`config.yml`
+###config.rb:
 
-    workdir: "/var/tmp/athenry"
-    chrootdir: "stage5"
-    configs: "#{ENV['home']}/.config/athenry"
-    stageurl: "http://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3/stage3-amd64-20091029.tar.bz2"
-    snapshoturl: "http://gentoo.osuosl.org/snapshots/portage-latest.tar.bz2"
-    verbose: "true"
-    logfile: "/var/log/athenry.log"
-    overlays: [sunrise mpd]
-    pkgmanager: "paludis" #or emerge
-    sets: [stage4]
-    timezone: "EST5EDT"
+    CONFIG.workdir = "/var/tmp/athenry/"
+    CONFIG.stageurl = "http://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3/stage3-amd64-20091112.tar.bz2"
+    CONFIG.snapshoturl = "http://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.bz2"
+    CONFIG.arch = "amd64"
+    CONFIG.verbose = "true"
+    CONFIG.pkgmanager = "paludis"
+    CONFIG.sets = %w[stage4 games]
+    CONFIG.timezone = "EST5EDT"
+    CONFIG.overlays = {
+        :mpd => "http://github.com/gregf/mpd/raw/master/mpd.xml",
+        :sunrise => nil,
+        }
 
-**workdir**: This is the root directory where created stages, logs, the state file, and downloaded files will be stored.
+**workdir**
+: This is the root directory where created stages, logs, the state file, and downloaded files will be stored.
 
-**chrootdir**: Relative path to the work dir, where the chroot will be built.
+**stageurl**
+: This is the url where Athenry will grab the stage seed from.
 
-**configs**: This should point to the directory where config.yml is kept. These
-files are used for building the chroot. Athenry will blindly copy files to
-chrootdir/etc recursivley.
+**snapshoturl**
+: This is the url where Athenry will grab the portage snapshot from.
 
-**stageurl**: This is the url where Athenry will grab the stage seed from.
+**arch**
+: This is the architecture you plan on building for.
 
-**snapshoturl**: This is the url where Athenry will grab the portage snapshot from.
-
-**verbose**: Does just what it implies, toggles verbosity. Even with this set to
+**verbose**
+: Does just what it implies, toggles verbosity. Even with this set to
 false you can tail the log file to see the progress.
 
-**logfile**: If a filename is set it logs to logdir/logfile, if blank logging is
-disabled.
+**overlays**
+: This takes a hash of overlays you would like to use. You can optionally
+specify an additional overlay url to be pulled in. This data is then passed onto either 
+layman or playman.
 
-**overlays**: This takes an array of overlays you would like to use. Currently
-does not build the overlay configuration for you, You are expected to have
-required configurations copied in with the configs setting. This will use
-playman/layman in the future.
+**pkgmanager**
+: This can be set to either paludis or emerge. 
 
-**pkgmanager**: This can be set to either paludis or emerge. pkgcore could be
-added with relative ease if requested and someone was interested enough to do
-testing. The only reason pkgcore is not supported by default is no Athenry devs
-currently use it.
-
-**sets**: An array listing set files to install. This is how packages to be
+**sets**
+: An array listing set files to install. This is how packages to be
 installed into the chroot is handled.
 
-**timezone**: Timezone to be set for the chroot.  Usage
+**timezone**
+: Timezone to be set for the chroot. 
 
 Usage
 -----
 
-    athenry --help
-    NAME:
+  NAME:
 
     Athenry
 
-    DESCRIPTION:
+  DESCRIPTION:
 
     Creates a Gentoo chroot and automates stage building
 
-    SUB-COMMANDS:
+  COMMANDS:
 
-    help                 Display help documentation for <sub_command>
-    build                Starts the build process
-    resume               Resume from last successful state
-    shell                Run Athenry commands directly through an irb like shell
+    build                Executes a single command on the giving chroot [command]
+    clean                Cleans up our mess [options]
+    freshen              Updates an existing chroot
+    help                 Display global or [command] help documentation.
+    rescue               Chroot into your stage to perform commands manually
+    resume               Resume from last state
     setup                Fetches files and creates necessary directories
-    clean                Cleans up Athenry's mess
+    shell                Run athenry commands directly through irb like shell
+    target               Starts building a target stage
 
-    GLOBAL OPTIONS:
+  GLOBAL OPTIONS:
+
+    -c, --config FILE
+        Load config data for your commands to use
 
     -h, --help
         Display help documentation
@@ -142,69 +155,163 @@ Usage
         Display version information
 
     -t, --trace
-        Display a backtrace when an error occurs
+        Display backtrace when an error occurs
 
-Currently the workflow would be to run commands in the following order.
+  AUTHOR:
+
+    Greg Fitzgerald <netzdamon@gmail.com>
+
+
+Commands
+--------
+
+###setup:
+________
+
+The setup command does a number of things for you. It fetches your stage file
+and a portage snapshot. It checks the md5sums those files. It also creates the
+necessary directory structure for Athenry to properly operate.
 
     $ athenry setup
-    $ athenry build
 
-If there is a failure or have the need to stop and come back later run
+###build:
+_________
 
-    $ athenry resume
+The build command is used for issuing single commands to the build process. For example:
+
+    $ athenry build install_pkgmgr
+
+All commands run from build are performed inside the chroot. Here is a list of commands you can run.
+
+**sync**
+: Syncs the portage tree.
+
+**install_pkgmgr**
+: Installs the package manager you have set.
+
+**update_everything**
+: Updates all packages in your chroot.
+
+**etc_update**
+: Updates out of date configuration files in your chroot.
+
+**install_overlays**
+: Installs overlays you have specified in config.rb
+
+**install_sets**
+: Installs the sets you have specified in config.rb
+
+**rebuild**
+: Rebuilds packages with broken linkage, also runs python-updater.
+
+###target:
+
+The target command is used to build an entire stage file in one swoop. It runs setup if it has not already been run. It will then go through all the necessary build steps in the correct order to build your stage.
+
+    $ athenry target stage3
+
+**stage3**
+: Builds a stage3 
+
+**custom**
+: Builds a custom stage using sets and overlays.
+
+Currently stage3 and custom are the only stages supported. If you plan to
+install sets you will want to use the custom target.
+
+###rescue:
+__________
+
+Rescue is for when something goes wrong, and it will. Athenry tries to build
+your stage in a way that won't cause you headaches. That being said there is
+always problems that can a cure. Since we do not support building for a stage1
+yet, nor will we require you to, we offer the rescue command. This simply
+chroots into your working chroot and allows you to fix any blockages or other
+issues that may have happened. You can thing resume from where you left off.
+
+    $ athenry rescue 
+
+###resume:
+__________
 
 This should pick up where Athenry left off. Currently there is a small
 limitation on resume support. If Athenry is stopped at the last step of setup
 Athenry will not know to start running build. This will be resolved in a future
 release.
 
-    $ athenry clean
+    $ athenry resume
+
+###freshen:
+___________
+
+Freshen will take your existing chroots and update them.
+
+    $ athenry freshen <chroot>
+
+###clean:
+_________
 
 Currently only performs an unmount of /dev, /proc, and /sys. It is fairly
 useless in it's current state.
 
+    $ athenry clean
+
+###shell:
+_________
+
     $ athenry shell
 
-Is one of athenry's most powerful features. This will allow you to run each
+Is one of Athenry's most powerful features. This will allow you to run each
 step of building a stage from an irb like shell. This makes going back and
 copying newer configs or debugging an issue painless.
 
     $ athenry shell
-
+    
     Type help for a list of commands:
     >>
     help
     Athenry Shell Help:
     ===================
-    help - displays this
-    quit - quits
+    * help 
+    * quit 
 
     Setup:
     ---------------
-    fetch
-    extract
-    snapshot
-    generate_bashscripts
-    copy_scripts
-    copy_configs
+    * generate_bashscripts
+    * stage
+    * snapshot
+    * copy_configs
+    * copy_scripts
+
 
     Build:
     ---------------
-    mount
-    chroot
+    * install_overlays
+    * etc_update
+    * target
+    * rebuild
+    * update_everything
+    * sync
+    * install_sets
+    * install_pkgmgr
 
-    Resume:
+    Target:
     ---------------
-    continue
+    * stage3
+    * custom
+
+    Freshen:
+    ---------------
+    * update
 
     Clean:
     ---------------
-    umount
+    * unmount
     >>
 
 Notes
 -----
 
-Please refer to {file:about} for more information on Athenry. It is still in
+Please refer to [about](http://gregf.github.com/athenry/about/) for more information on Athenry. It is still in
 the very early stages of development and should not be relied upon for
 production use.
