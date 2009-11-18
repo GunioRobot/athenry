@@ -17,7 +17,7 @@ program :version, Athenry::Version::STRING
 program :description, 'Creates a Gentoo chroot and automates stage building'
 program :help, 'Author', 'Greg Fitzgerald <netzdamon@gmail.com>'
 
-global_option('-c', '--config FILE', 'Load config data for your commands to use') { |file| load "#{file}" }
+global_option('-c', '--config FILE', 'Load the specified configuration file for Athenry to use') { |file| load "#{file}" }
 
 command :setup do |c|
   c.syntax = 'athenry setup [options]'
@@ -29,7 +29,7 @@ end
 
 command :build do |c|
   c.syntax = 'athenry build [options] <step>'
-  c.description = 'Executes a single command on the giving chroot'
+  c.description = 'Executes a single command on the given chroot <step>'
   c.when_called do |args, options|
     Athenry::Execute::run.build(args)
   end
@@ -37,14 +37,14 @@ end
 
 command :target do |c|
   c.syntax = 'athenry target [options] <target>'
-  c.description = 'Starts building a target stage'
+  c.description = 'Starts building the target stage specified'
   c.when_called do |args, options|
     Athenry::Execute::run.target(args)
   end
 end
 
 command :freshen do |c|
-  c.syntax = 'athenry freshen'
+  c.syntax = 'athenry freshen [options]'
   c.description = 'Updates an existing chroot'
   c.when_called do |args, options|
     Athenry::Execute::run.freshen(args)
@@ -53,23 +53,23 @@ end
 
 command :resume do |c|
   c.syntax = 'athenry resume [options]'
-  c.description = 'Resume from last state'
+  c.description = 'Resume from last saved state'
   c.when_called do |args, options|
     Athenry::Execute::run.resume
   end
 end
 
 command :clean do |c|
-  c.syntax = 'athenry clean'
-  c.description = 'Cleans up our mess [options]'
+  c.syntax = 'athenry clean [options]'
+  c.description = 'Cleans up any mess made'
   c.when_called do |args, options|
     Athenry::Execute::run.clean
   end
 end
 
 command :shell do |c|
-  c.syntax = 'athenry shell'
-  c.description = 'Run athenry commands directly through irb like shell'
+  c.syntax = 'athenry shell [options]'
+  c.description = 'Run Athenry commands directly through an irb like shell'
   c.when_called do |args, options|
     Athenry::Execute::run.shell
   end
@@ -77,7 +77,7 @@ end
 
 command :rescue do |c|
   c.syntax = 'athenry rescue [options]'
-  c.description = 'Chroot into your stage to perform commands manually'
+  c.description = 'Chroot into the current stage to perform commands manually'
   c.when_called do |args, options|
     Athenry::Execute::run.rescue
   end
