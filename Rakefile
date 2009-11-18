@@ -6,7 +6,11 @@ require 'rake'
 
 desc "install athenry"
 task :install do
-  system("./install.rb")
+  system("setup.rb install")
+end
+desc "uninstall athenry"
+task :uninstall do
+  system("setup.rb uninstall")
 end
 
 # =======================
@@ -32,11 +36,14 @@ begin
       t.files   = ['lib/**/*.rb']
       t.options = ['--output-dir', File.join('meta', 'documentation'),
                    '--title', 'Athenry YARD documentation',
-                   '--readme', 'README.markdown',
-                   '--files', 'doc/about.markdown',
-                   '--files', 'doc/quickstart.markdown',
-                   '--files', 'AUTHORS.markdown', 
-                   '--files', 'TODO.markdown',
+                   '--readme', 'README.md',
+                   '--files', 'doc/About.md',
+                   '--files', 'doc/QuickStart.md',
+                   '--files', 'doc/Release.md',
+                   '--files', 'doc/Hacking.md',
+                   '--files', 'doc/History.md',
+                   '--files', 'AUTHORS.md', 
+                   '--files', 'TODO.md',
                    '--files', 'MIT-LICENSE']
     end
    
@@ -44,12 +51,19 @@ begin
       t.files   = ['lib/**/*.rb']
       t.options = ['--no-output',
                    '--title', 'Athenry YARD documentation',
-                   '--readme', 'README.markdown',
-                   '--files', 'doc/about.markdown',
-                   '--files', 'doc/quickstart.markdown',
-                   '--files', 'AUTHORS.markdown', 
-                   '--files', 'TODO.markdown', 
+                   '--readme', 'README.md',
+                   '--files', 'doc/About.md',
+                   '--files', 'doc/QuickStart.md',
+                   '--files', 'doc/Release.md',
+                   '--files', 'doc/Hacking.md',
+                   '--files', 'doc/History.md',
+                   '--files', 'AUTHORS.md', 
+                   '--files', 'TODO.md', 
                    '--files', 'MIT-LICENSE']
+    end
+    desc "Generate Yard Diagram"
+    task :diagram do
+      system("yard-graph --dependencies --full | dot -T png -o diagram.png")
     end
   end
   

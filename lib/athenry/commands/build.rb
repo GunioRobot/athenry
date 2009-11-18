@@ -4,32 +4,83 @@ module Athenry
     def initialize
       must_be_root
       check_for_setup
+      update_chroot
+      mount
     end
-   
-    # First checks if dev,proc,sys are mounted if not we mount them and save
-    # state
+    
+    def target(args)
+      args.each { |cmd| send(cmd) }
+    end
+    
+    # Syncs the portage tree within your chroot
     # @return [String]
-    def mount
-      if is_mounted?
-        warning("dev, sys, proc are already mounted")
-      else
-        announcing "Mounting dev, sys, and proc" do
-          cmd "mount -o rbind /dev #{CONFIG.workdir}/#{CONFIG.chrootdir}/dev"
-          cmd "mount -o bind /sys #{CONFIG.workdir}/#{CONFIG.chrootdir}/sys"
-          cmd "mount -t proc none #{CONFIG.workdir}/#{CONFIG.chrootdir}/proc"
-        end
+    def sync
+      announcing 'Syncing Portage Tree' do
+        chroot 'sync'
       end
-      send_to_state("build", "mount")
+      send_to_state('build', 'sync')
+    end
+    
+    # Installs the package manager set via CONFIG.pkgmgr
+    # @return [String]
+    def install_pkgmgr
+      announcing 'Installing Package Manager' do
+        chroot 'install_pkgmgr'
+      end
+      send_to_state('build', 'install_pkgmgr')
     end
 
-    # Changes root and executes the scripts.
+    # Updates world and system
     # @return [String]
-    def chroot
-      announcing "Entering Chroot" do
-        cmd "chmod +x #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/compile.sh"
-        cmd "chroot #{CONFIG.workdir}/#{CONFIG.chrootdir} /root/compile.sh"
+    def update_everything
+      announcing 'Updating All Packages' do
+        chroot 'update_everything'
       end
-      send_to_state("build", "chroot")
+      send_to_state('build', 'update_everything')
     end
+
+    # Runs etc-update to update your config files
+    # @return [String]
+    def etc_update 
+      announcing 'Running etc-update' do
+        system("chroot #{CONFIG.workdir}/#{chrootdir} /root/athenry/run.sh update_configs")
+      end
+      send_to_state('build', 'etc_update')
+    end
+
+    # Installs any overlays you have specified via CONFIG.overlays 
+    # using either playman or layman.
+    # @return [String]
+    def install_overlays
+      announcing 'Installing Overlays' do
+        chroot 'install_overlays'
+      end
+      send_to_state('build', 'install_overlays')
+    end
+
+    # Installs sets you have specified via CONFIG.sets
+    # @return [String]
+    def install_sets
+      announcing 'Installing Sets' do
+        chroot 'install_sets'
+      end
+      send_to_state('build', 'install_sets')
+    end
+
+    # This attempts to fix any problems in your chroot by running
+    # some common commands.
+    # * Emerge:
+    #   - revdep-rebuild
+    #   - python-updater
+    # * Paludis:
+    #   - reconcilio
+    #   - python-updater -P paludis
+    def rebuild
+      announcing 'Rebuilding' do
+        chroot 'rebuild'
+      end
+      send_to_state('build', 'rebuild')
+    end
+
   end
 end

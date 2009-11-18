@@ -4,17 +4,21 @@ module Athenry
     # @return [Hash]
     def state 
       @states ||= {
-        "setup" => {
-          "fetch" => 1,
-          "extract" => 2,
-          "snapshot" => 3,
-          "generate_bashscripts" => 4,
-          "copy_scripts" => 5,
-          "copy_configs" => 6,
+        'setup' => {
+          'stage' => 1,
+          'snapshot' => 2,
+          'generate_bashscripts' => 3,
+          'copy_scripts' => 4,
+          'copy_configs' => 5,
         },
-        "build" => {
-          "mount" => 1,
-          "chroot" => 2,
+        'build' => {
+          'sync' => 1,
+          'install_pkgmgr' => 2,
+          'update_everything' => 3,
+          'etc_update' => 4,
+          'install_overlays' => 5,
+          'install_sets' => 6,
+          'rebuild' => 7,
         },
       }
     end

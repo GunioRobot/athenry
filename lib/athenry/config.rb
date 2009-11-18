@@ -1,24 +1,28 @@
-begin
-  gem "configatron", ">= 2.5"
-  require "configatron"
-rescue Gem::LoadError
-end
+module Athenry
+  module Config
+      $shell_is_running = false
+      
+      # These are dynamic and are changed by Athenry::Helper#set_temp_options
+      CONFIG.nopaludis=false
+      CONFIG.freshen=false
+      # Options we didn't really want to leave up the user as of right now. 
+      CONFIG.logdir = 'log'
+      CONFIG.chrootdir = "chroot"
+      CONFIG.logfile = "#{CONFIG.chrootdir}.log"
+      CONFIG.statedir = '.athenry'
+      CONFIG.statefile = 'state'
+      CONFIG.scripts = "#{ATHENRY_ROOT}/scripts/"
+      CONFIG.homeconfig = "#{ENV['HOME']}/.config/athenry"
+      CONFIG.etcconfig = '/etc/athenry'
 
-CONFIG = configatron # global alias, shorter than typing configatron
-
-# These I feel should be configurable, but not really left up to the user till
-# the configuration system is reworked.
-CONFIG.logdir = "log"
-CONFIG.statedir = ".athenry"
-CONFIG.statefile = "state"
-CONFIG.scripts = "#{ATHENRY_ROOT}/scripts/"
-CONFIG.homeconfig = "#{ENV['HOME']}/.config/athenry/config.yml"
-CONFIG.etcconfig = "/etc/athenry/config.yml"
-
-if File.readable?("#{CONFIG.homeconfig}")
-  CONFIG.configure_from_yaml("#{CONFIG.homeconfig}") # Load configuration from yaml
-elsif File.readable?("#{CONFIG.etcconfig}")
-  CONFIG.configure_from_yaml("#{CONFIG.etcconfig}") 
-else
-  raise "No configuration file present, please refer to doc/quickstart.markdown"
+      if File.readable?("#{CONFIG.homeconfig}/config.rb")
+        require "#{CONFIG.homeconfig}/config.rb"
+        CONFIG.configs = "#{CONFIG.homeconfig}/etc/#{CONFIG.arch}"
+      elsif File.readable?("#{CONFIG.etconfig}/config.rb")
+        require "#{CONFIG.etcconfig}/config.rb"
+        CONFIG.configs = "#{CONFIG.etcconfig}/etc/#{CONFIG.arch}"
+      else
+        raise 'No configuration file present, please refer to doc/quickstart.markdown'
+      end
+  end
 end

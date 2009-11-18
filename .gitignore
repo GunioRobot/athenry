@@ -4,3 +4,5 @@
 *.old
 meta/**
 .yardoc
+config.sh
+_site
