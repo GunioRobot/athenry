@@ -6,21 +6,21 @@ title: Quickstart Guide
 Quickstart Index
 ----------------
 
-* [Where to download?](#where_to_download)
-* [Installation](#installation)
-* [Configuration](#configuration)  
-    * [Emerge](#emerge)  
-* [Usage](#usage)
-* [Commands](#commands)  
-    * [setup](#setup)  
-    * [build](#build)  
-    * [target](#target)  
-    * [rescue](#rescue)  
-    * [resume](#resume)  
-    * [freshen](#freshen)  
-    * [clean](#clean)  
-    * [shell](#shell)  
-* [Notes](#notes)
+- [Where to download?](#where_to_download)  
+- [Installation](#installation)  
+- [Configuration](#configuration)  
+    - [Emerge](#emerge)  
+- [Usage](#usage)  
+- [Commands](#commands)  
+    - [setup](#setup)  
+    - [build](#build)  
+    - [target](#target)  
+    - [rescue](#rescue)  
+    - [resume](#resume)   
+    - [freshen](#freshen)  
+    - [clean](#clean)  
+- [shell](#shell)  
+- [Notes](#notes)  
 
 Where to download?
 ------------------
@@ -135,9 +135,11 @@ package.unmask in the chroot that Athenry is using.
 
 The following documentation describes how to use sets in emerge;
 
-* [Portage Manual](http://dev.gentoo.org/~zmedico/portage/doc/ch02s03.html)
-* [Gentoo-User Discussion](http://www.linux-archive.org/gentoo-user/250682-portage-sets.html)
-* [Example Set File](http://github.com/gregf/athenryconfigs/blob/master/etc/amd64/portage/sets/stage4)
+1. [Portage Manual](http://dev.gentoo.org/~zmedico/portage/doc/ch02s03.html)
+2. [Help writing /etc/portage/sets.conf](http://forums.gentoo.org/viewtopic-t-706642.html)
+3. [Portage 2.2, the new features](http://forums.gentoo.org/viewtopic-p-5127806.html)
+5. [Gentoo-User Discussion](http://www.linux-archive.org/gentoo-user/250682-portage-sets.html)
+6. [Example Set File](http://github.com/gregf/athenryconfigs/blob/master/etc/amd64/portage/sets/stage4)
 
 
 Usage
@@ -336,6 +338,6 @@ going back and copying newer configs or debugging an issue painless.
 Notes
 -----
 
-Please refer to [about](http://gregf.github.com/athenry/about/) for more
+Please refer to [about]({{ site.url }}/about/) for more
 information on Athenry. Athenry is still in the very early stages of
 development and should not be relied upon for production use.
