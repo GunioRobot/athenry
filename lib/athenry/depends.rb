@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'uri'
 require 'erb'
+require 'readline'
 
 begin
   gem 'configatron', '>= 2.5'

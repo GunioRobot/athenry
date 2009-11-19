@@ -3,9 +3,14 @@ module Athenry
     include ShellAliases
 
     def initialize
+      $shell_is_running = true
+      @debug = false
+      
       must_be_root
       aliases
-      $shell_is_running = true
+      help_data
+      generate_list
+      greeting
     end
 
     # Exits the shell
@@ -18,35 +23,49 @@ module Athenry
     # Loads the help template and prints to stdout
     # @return [String]
     def help
-      setup ||= Athenry::Setup.instance_methods(false)
-      build ||= Athenry::Build.instance_methods(false)
-      target ||= Athenry::Target.instance_methods(false)
-      freshen ||= Athenry::Freshen.instance_methods(false)
-      clean ||= Athenry::Clean.instance_methods(false)
-      
       template = ERB.new(File.open("#{ATHENRY_ROOT}/lib/athenry/templates/help.erb").read, 0, "%<>")
       puts "#{template.result(binding)}"
     end
 
-    # Takes user input and executes the ruby command
-    # @return [String]
+    def debug
+      @debug ? @debug=false : @debug=true
+    end
+
     def shellinput
-      puts 'Type help for a list of commands:'
+      Readline.completion_append_character = " "
+      Readline.completion_proc = @comp
+
       begin
-        while command = prompt 
-          execute(command)
+        while cmd = Readline.readline('>> ', true)
+          execute(cmd.rstrip) 
         end
-      rescue => e
-        puts "Error: #{e}"
+      rescue NoMethodError, ArgumentError => e
+        if cmd.length > 0 then puts "#{cmd} is a invalid command" end
+        if @debug then puts "#{e}" end
         shellinput
       end
     end
-
+    
     private
- 
-    def prompt
-      ask('>>')
-    end   
+
+    def greeting
+      puts "Welcome to the Athenry shell"
+      puts %Q{Type "help" for more information or "quit" to exit the shell}
+    end
+
+    def generate_list
+      list ||= [].concat([@setup, @build, @target, @freshen, @clean, @help]).flatten.sort
+      @comp ||= proc { |s| list.grep( /^#{Regexp.escape(s)}/ ) }
+    end
+
+    def help_data
+      @setup ||= Athenry::Setup.instance_methods(false)
+      @build ||= Athenry::Build.instance_methods(false)
+      @target ||= Athenry::Target.instance_methods(false)
+      @freshen ||= Athenry::Freshen.instance_methods(false)
+      @clean ||= Athenry::Clean.instance_methods(false)
+      @help ||= ["debug", "help", "quit"]
+    end
 
   end
 end
