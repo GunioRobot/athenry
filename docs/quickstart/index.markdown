@@ -230,6 +230,7 @@ a list of commands that can be run.
 : Rebuilds packages with broken linkage, also runs python-updater.
 
 ###target:
+__________
 
 The target command is used to build an entire stage tarball in one swoop.
 It runs setup if it has not already been run. It will then go through all the
