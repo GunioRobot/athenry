@@ -33,10 +33,10 @@ module Athenry
 
     def shellinput
       Readline.completion_append_character = " "
-      Readline.completion_proc = @comp
+      Readline.completion_proc = generate_list
 
       begin
-        while cmd = Readline.readline('>> ', true)
+        while cmd = history_management 
           execute(cmd.rstrip) 
         end
       rescue NoMethodError, ArgumentError => e
@@ -48,6 +48,15 @@ module Athenry
     
     private
 
+    def history_management
+      cmdline = Readline.readline('>> ', true)
+      return nil if cmdline.nil?
+      if cmdline =~ /^\s*$/ or Readline::HISTORY.to_a[-2] == cmdline
+        Readline::HISTORY.pop
+      end
+      cmdline
+    end
+
     def greeting
       puts "Welcome to the Athenry shell"
       puts %Q{Type "help" for more information or "quit" to exit the shell}
@@ -55,16 +64,16 @@ module Athenry
 
     def generate_list
       list ||= [].concat([@setup, @build, @target, @freshen, @clean, @help]).flatten.sort
-      @comp ||= proc { |s| list.grep( /^#{Regexp.escape(s)}/ ) }
+      comp ||= proc { |s| list.grep( /^#{Regexp.escape(s)}/ ) }
     end
 
     def help_data
-      @setup ||= Athenry::Setup.instance_methods(false)
-      @build ||= Athenry::Build.instance_methods(false)
-      @target ||= Athenry::Target.instance_methods(false)
-      @freshen ||= Athenry::Freshen.instance_methods(false)
-      @clean ||= Athenry::Clean.instance_methods(false)
-      @help ||= ["debug", "help", "quit"]
+      @setup    ||= Athenry::Setup.instance_methods(false)
+      @build    ||= Athenry::Build.instance_methods(false)
+      @target   ||= Athenry::Target.instance_methods(false)
+      @freshen  ||= Athenry::Freshen.instance_methods(false)
+      @clean    ||= Athenry::Clean.instance_methods(false)
+      @help     ||= ["debug", "help", "quit"]
     end
 
   end
