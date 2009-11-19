@@ -6,10 +6,11 @@ title: Download
 Download
 --------
 
-You can download this project in either [zip](http://github.com/gregf/athenry/zipball/master) or [tar](http://github.com/gregf/athenry/tarball/master) formats.
+- [tar](http://github.com/gregf/athenry/tarball/master)  
+- [zip](http://github.com/gregf/athenry/zipball/master)  
 
 You can also clone the project with Git by running: 
 
     $ git clone git://github.com/gregf/athenry
 
-After Downloading it is **highly** recommended that you read the [Quickstart](http://gregf.github.com/athenry/docs/quickstart/) guide.
+After Downloading it is **highly** recommended that you read the [Quickstart]({{ site.url }}/docs/quickstart/) guide.
