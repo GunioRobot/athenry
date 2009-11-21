@@ -1,5 +1,16 @@
 require 'rake'
 
+@gems=%w[commander configatron]
+
+# =======================
+# = Install gems =
+# =======================
+
+desc "install gems"
+task 'install:gems' do
+  @gems.each {|gem| system("sudo gem install #{gem}") }
+end
+
 # =======================
 # = Installation tasks =
 # =======================
