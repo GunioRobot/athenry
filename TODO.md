@@ -3,21 +3,15 @@ TODO
 
 Release 0.3
 -----------
-* Global option for passing a chrootdir, all methods should accept this.
-* Ability to have more than one stage (custom names)
-    - This means name.log for log files
-    - name.state for state files
-* Use readline for shell
 * Check config for errors and die quickly 
 * Specialized PKG\_INSTALL commands
 * Make sync friendly to the gentoo mirrors cache a updated copy locally to be used.
-* Rake task to install gems
+    - Fetch snapshot to portage/cache
+    - rsync portage/cache into chroot
+    - use rsync to update portage cache
 * New workdir structure
-    - workdir
-    - workdir/chroot\_name
     - workdir/portage/{portage-latest, cache}
     - workdir/stages/{stage3.tar.bz2, built}
-    - workdir/var/{log, state}
 
 Next
 ----
