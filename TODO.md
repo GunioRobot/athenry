@@ -3,18 +3,16 @@ TODO
 
 Release 0.3
 -----------
-* Check config for errors and die quickly 
+* Use new fetcher class
+* Use new Extract class
 * Specialized PKG\_INSTALL commands
-* Make sync friendly to the gentoo mirrors cache a updated copy locally to be used.
-    - Fetch snapshot to portage/cache
-    - rsync portage/cache into chroot
-    - use rsync to update portage cache
-* New workdir structure
-    - workdir/portage/{portage-latest, cache}
-    - workdir/stages/{stage3.tar.bz2, built}
+* Update Docs
+* Manpages
 
 Next
 ----
+* Check config for errors and die quickly 
+    "fooexample.com" =~ /@(.*)/ and $1 or raise "bad email" 
 * default to pbzip2 if installed, else use tar
 * Make use of EMERGE\_DEFAULT\_OPTS
 * build should create a tarball (pull mkstage5 into project)
