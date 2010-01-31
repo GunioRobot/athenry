@@ -86,6 +86,7 @@ function setup_chroot {
     if [ -e /usr/share/zoneinfo/"${TIMEZONE}" ]; then 
         cp /usr/share/zoneinfo/"${TIMEZONE}" /etc/localtime
     fi
+    eselect profile set "${PROFILE}"
     env-update
     source /etc/profile
     export PS1="(chroot) $PS1"
