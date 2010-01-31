@@ -1,15 +1,9 @@
-require 'rubygems'
 require 'uri'
-require 'erb'
+require 'erubis'
 require 'readline'
 
 begin
-  gem 'configatron', '>= 2.5'
-  require 'configatron'
-  
-  gem "commander", ">= 4.0"
-  require "commander/import"
-  CONFIG = configatron
+  gem 'rconfig', '>= 0.3.2'
+  require 'rconfig'
 rescue Gem::LoadError
 end
-

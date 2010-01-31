@@ -1,5 +1,6 @@
 module Athenry
   module Helper
+    include Athenry::Config
 
     # Displays an error message
     # @param [String] msg Error message to be displayed.
@@ -28,13 +29,13 @@ module Athenry
       puts "\e[33m*\e[0m #{msg} \n"
     end
    
-    # Writes verbose output to #{CONFIG.logfile} unless #{CONFIG.logfile} is nil
+    # Writes verbose output to #{LOGFILE} unless #{LOGFILE} is nil
     # @yield [String] All contents of yield are logged to the logfile.
     # @return [String]
     def logger
       begin
-        unless CONFIG.logfile.empty? or CONFIG.logfile.nil?
-          @logfile = File.new("#{CONFIG.workdir}/#{CONFIG.logdir}/#{CONFIG.logfile}", 'a')
+        unless LOGFILE.empty? or LOGFILE.nil?
+          @logfile = File.new("#{LOGFILE}", 'a')
         end
         yield
       ensure
@@ -42,7 +43,7 @@ module Athenry
       end
     end
 
-    # Writes messages to #{CONFIG.logfile}
+    # Writes messages to #{LOGFILE}
     # @param [String] msg Message to send to the logfile
     # @param [Optional, String] level Optional error level to be displayed, defaults to error.
     # @example
@@ -59,7 +60,7 @@ module Athenry
     # @return [Boolean] true/false
     def is_mounted?
       mtab ||= File.read("/etc/mtab")
-      if mtab =~ /#{CONFIG.chrootdir}\/(dev|proc|sys)/
+      if mtab =~ /#{$chrootdir}\/(dev|proc|sys)/
         return true
       else
         return false
@@ -76,7 +77,7 @@ module Athenry
     def send_to_state(stage, step)
       if $? == 0
         begin
-          statefile = File.new("#{CONFIG.workdir}/#{CONFIG.statedir}/#{CONFIG.statefile}", 'w')
+          statefile = File.new("#{STATEFILE}", 'w')
           statefile.puts(%Q{#{stage}:#{state["#{stage}"]["#{step}"]}})
         ensure
           statefile.close
@@ -84,14 +85,14 @@ module Athenry
       end
     end
    
-    # Takes CONFIG.overlays and builds an array usable by our erb template, 
+    # Takes RConfig.athenry.overlays and builds an array usable by our erb template, 
     # this is then used to generate a configuration file for bash.
     # @return [Array]
     def overlays_basharray
-      CONFIG.overlay_array=[]
-      CONFIG.overlays.each_with_index do |(k,v), i|
-        CONFIG.overlay_array.push("OVERLAYKEY[#{i.to_i}]=#{k.to_s.inspect}\n")
-        CONFIG.overlay_array.push("OVERLAYVAL[#{i.to_i}]=#{v.to_s.inspect}\n")
+      @overlays=[]
+      RConfig.athenry.overlays.each_with_index do |(k,v), i|
+        @overlays.push("OVERLAYKEY[#{i.to_i}]=#{k.to_s.inspect}")
+        @overlays.push("OVERLAYVAL[#{i.to_i}]=#{v.to_s.inspect}")
       end
     end
     
@@ -100,18 +101,21 @@ module Athenry
     # @param [File, #read] outfile Filename to write to.
     # @return [String]
     def generate_bash(template, outfile)
-      erbfile = File.open("#{ATHENRY_ROOT}/lib/athenry/templates/#{template}.erb", 'r')
+      erbfile = File.read("#{ATHENRY_ROOT}/lib/athenry/templates/#{template}.erb")
       outfile = File.new("#{ATHENRY_ROOT}/scripts/athenry/lib/#{outfile}", 'w')
       begin
-        parse = ERB.new(erbfile, 0, "%<>")
-        outfile.puts "#{parse.result}"
+        overlays_basharray
+        parse = Erubis::Eruby.new(erbfile)
+        outfile.puts "#{parse.result(binding())}"
+        #parse = ERB.new(erbfile, 0, "%<>")
+        #outfile.puts "#{parse.result}"
       ensure
         outfile.close
       end
     end
     
     # Checks to make sure setup was run before any build command is ran.
-    # Looks for #{CONFIG.workdir} and #{CONFIG.chrootdir} to verify.
+    # Looks for #{WORKDIR} and #{$chrootdir} to verify.
     # @raise "Must run setup before build"
     # @param [Optional, Symbol] run If set we run the setup for the user.
     # @example
@@ -121,22 +125,22 @@ module Athenry
     #   check_for_setup
     # @return [String]
     def check_for_setup(run = nil)
-      dirs = [ CONFIG.chrootdir, CONFIG.logdir ]
-      dirs.each { |dir|
-        unless File.directory?("#{CONFIG.workdir}/#{dir}")
-          run.nil? ? raise("Must run setup before build") : Athenry::Execute::run.setup 
+      dirs = [ $chrootdir, LOGDIR, STAGEDIR, SNAPSHOTDIR, "#{$chrootdir}/root/athenry/run.sh", "#{$chrootdir}/bin/bash", "#{$chrootdir}/dev/null", "#{$chrootdir}/usr/portage/skel.ebuild" ]
+      
+      dirs.each do |dir|
+        if File.exists?("#{dir}")
+          next
+        else
+          if run.nil? then raise("Must run setup first!") end
+          Athenry::target.setup
         end
-      } 
+      end
     end
 
     # Creates necessary dirs to setup our chroot.
     def setup_environment
-      dirs = [ CONFIG.chrootdir, CONFIG.logdir, CONFIG.statedir ]
-      dirs.each { |dir|
-        unless File.directory?("#{CONFIG.workdir}/#{dir}")
-          FileUtils.mkdir_p("#{CONFIG.workdir}/#{dir}")
-        end
-      }
+      dirs = [ $chrootdir, LOGDIR, STATEDIR, SNAPSHOTDIR, STAGEDIR, SNAPSHOTCACHE ]
+      dirs.each { |dir| FileUtils.mkdir_p("#{dir}") }
     end
 
     # Checks if the Process.uid is run by root. If not raise an error and die. 
@@ -178,8 +182,8 @@ module Athenry
       set_nopaludis = opts[:nopaludis] || false
       set_freshen = opts[:freshen] || false
 
-      if set_nopaludis then CONFIG.nopaludis="#{set_nopaludis}" end
-      if set_freshen then CONFIG.freshen="#{set_nopaluids}" end
+      if set_nopaludis then $nopaludis="#{set_nopaludis}" end
+      if set_freshen then $freshen="#{set_nopaluids}" end
       yield
       reset_temp_options
     end
@@ -187,20 +191,17 @@ module Athenry
     # Resets the options set from set_temp_options to the default setting, false.
     # @see Athenry::Helper#set_temp_options 
     def reset_temp_options
-      CONFIG.nopaludis=false
-      CONFIG.freshen=false
+      $nopaludis=false
+      $freshen=false
     end
 
     # Accepts a action to pass to the chroot
     # @param [String] action The command to be run
-    # @param [Optional, String] chroot The chrootdir to run the commands on
     # @example 
     #   chroot 'install_pkgmgr'
-    #   chroot('freshen', 'stage5')
     # @return [String]
-    def chroot(action, chrootdir = CONFIG.chrootdir)
-      update_scripts
-      cmd "chroot #{CONFIG.workdir}/#{chrootdir} /root/athenry/run.sh #{action}"
+    def chroot(action)
+      cmd "chroot #{$chrootdir} /root/athenry/run.sh #{action}"
     end
 
     # Wraps verbose out put in a message block for nicer verbose output
@@ -230,22 +231,18 @@ module Athenry
       end
     end
     
-    # Copies build scripts into #{CONFIG.chrootdir}/root
-    # @param [Optional, String] chrootdir Directory the updated scripts will be copied too.
+    # Copies build scripts into #{$chrootdir}/root
     # @return [String]
-    def update_scripts(chrootdir = CONFIG.chrootdir)
+    def update_scripts
       generate_bash('bashconfig', 'config.sh')
-      cmd "cp -Ru #{CONFIG.scripts}/athenry/ #{CONFIG.workdir}/#{chrootdir}/root/"
-      cmd "chmod +x #{CONFIG.workdir}/#{chrootdir}/root/athenry/run.sh"
+      cmd "cp -Ru #{SCRIPTS}/athenry/ #{$chrootdir}/root/"
+      cmd "chmod +x #{$chrootdir}/root/athenry/run.sh"
     end
 
-    # Copies user config files into #{CONFIG.chrootdir}/etc
-    # @param [Optional, String] chrootdir Directory the updated configs will be copied too.
+    # Copies user config files into #{$chrootdir}/etc
     # @return [String]
-    def update_configs(chrootdir = CONFIG.chrootdir)
-      announcing 'Updating configs in chroot' do
-        cmd "cp -Ruv #{CONFIG.configs}/* #{CONFIG.workdir}/#{chrootdir}/etc/"
-      end
+    def update_configs
+      cmd "cp -Ruv #{CONFIGS}/* #{$chrootdir}/etc/"
     end
 
     # Copies config files and scripts into the chroot that have changed
@@ -262,9 +259,9 @@ module Athenry
         warning('dev, sys, proc are already mounted')
       else
         announcing 'Mounting dev, sys, and proc' do
-          cmd "mount -o rbind /dev #{CONFIG.workdir}/#{CONFIG.chrootdir}/dev"
-          cmd "mount -o bind /sys #{CONFIG.workdir}/#{CONFIG.chrootdir}/sys"
-          cmd "mount -t proc none #{CONFIG.workdir}/#{CONFIG.chrootdir}/proc"
+          cmd "mount -o rbind /dev #{$chrootdir}/dev"
+          cmd "mount -o bind /sys #{$chrootdir}/sys"
+          cmd "mount -t proc none #{$chrootdir}/proc"
         end
       end
     end
@@ -287,7 +284,7 @@ module Athenry
           pipe = IO.popen("#{command}")
           pipe.each_line { |line|
             if @logfile then @logfile.puts "#{line}" end
-            if CONFIG.verbose then puts "#{line}" end
+            if $verbose then puts "#{line}" end
           }
         ensure
           pipe.close
