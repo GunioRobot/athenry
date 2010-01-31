@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Set some constants
 ATHENRY_ROOT="/root/athenry"
 LIB="${ATHENRY_ROOT}/lib"
