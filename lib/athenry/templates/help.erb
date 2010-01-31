@@ -1,35 +1,12 @@
-Athenry Shell Help:
-===================
-* help 
-* quit 
+Welcome to Athenry  <%= "#{Athenry::Version::STRING}" %>!  This is the help utility.
 
-Setup:
----------------
-<% @setup.each do |cmd| %>
-* <%= cmd %>
-<% end %>
+If this is your first time using the Athenry shell you should check out
+the Quickstart guide at http://gregf.github.com/docs/quickstart/
 
+Enter the name of the command you want to run and the shell will run it.
 
-Build:
----------------
-<% @build.each do |cmd| %>
-* <%= cmd %>
-<% end %>
+Typing debug will show some additional output if you are having issues, 
+typing it again will disable it.
 
-Target:
----------------
-<% @target.each do |cmd| %>
-* <%= cmd %>
-<% end %>
-
-Freshen:
----------------
-<% @freshen.each do |cmd| %>
-* <%= cmd %>
-<% end %>
-
-Clean:
----------------
-<% @clean.each do |cmd| %>
-* <%= cmd %>
-<% end %>
+Hitting [tab] twice will show you a list of commands available, this shell
+is fully readline compatible. All typical shell key commands should work.
