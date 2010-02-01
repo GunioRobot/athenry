@@ -10,5 +10,4 @@ require 'athenry/commands/rescue'
 include Athenry::State
 include Athenry::ResumeTree
 include Athenry::Helper
-
-overlays_basharray
+include Athenry::Config
