@@ -222,14 +222,14 @@ module Athenry
     # @return [String]
     def update_scripts
       generate_bash('bashconfig', 'config.sh')
-      cmd "cp -Ru #{SCRIPTS}/athenry/ #{$chrootdir}/root/"
-      cmd "chmod +x #{$chrootdir}/root/athenry/run.sh"
+      FileUtils.cp_r("#{SCRIPTS}/athenry/ #{$chrootdir}/root/", :verbose => $verbose)
+      FileUtils.chmod(0755, "#{$chrootdir}/root/athenry/run.sh", :verbose => $verbose)
     end
 
     # Copies user config files into #{$chrootdir}/etc
     # @return [String]
     def update_configs
-      cmd "cp -Ruv #{CONFIGS}/* #{$chrootdir}/etc/"
+      FileUtils.cp_r("#{CONFIGS}/*" "#{$chrootdir}/etc/", :verbose => true)
     end
 
     # Copies config files and scripts into the chroot that have changed

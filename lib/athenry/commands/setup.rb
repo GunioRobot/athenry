@@ -53,8 +53,8 @@ module Athenry
     end
 
     def updatesnapshot
-      Dir.chdir("#{SNAPSHOTCACHE}/portage") do 
-        cmd "rsync -apv --delete rsync://rsync.gentoo.org/gentoo-portage ."
+      announcing "Updating snapshot cache" do
+        cmd "rsync -apv --delete rsync://rsync.gentoo.org/gentoo-portage #{SNAPSHOTCACHE}/portage/"
       end
       send_to_state('setup', 'updatesnapshot')
     end
@@ -79,8 +79,8 @@ module Athenry
     # @return [String]
     def copy_scripts
       announcing 'Copying scripts into chroot' do
-        cmd "cp -Rv #{SCRIPTS}/athenry/ #{$chrootdir}/root/"
-        cmd "chmod +x #{$chrootdir}/root/athenry/run.sh"
+        FileUtils.cp_r("#{SCRIPTS}/athenry/ #{$chrootdir}/root/", :verbose => $verbose)
+        FileUtils.chmod(0755, "#{$chrootdir}/root/athenry/run.sh", :verbose => $verbose)
       end
       send_to_state('setup', 'copy_scripts')
     end
@@ -89,7 +89,7 @@ module Athenry
     # @return [String]
     def copy_configs
       announcing 'Copying configs into chroot' do
-        cmd "cp -vR #{CONFIGS}/* #{$chrootdir}/etc/"
+        FileUtils_cp_r("#{CONFIGS}/* #{$chrootdir}/etc/", :verbose => true)
       end
       send_to_state('setup', 'copy_configs')
     end
