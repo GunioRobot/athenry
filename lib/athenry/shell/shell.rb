@@ -2,9 +2,11 @@ module Athenry
   class Shell
     include ShellAliases
 
+    attr_accessor :debug
+
     def initialize
       $shell_is_running = true
-      @debug = false
+      debug = false
       
       must_be_root
       aliases
@@ -23,12 +25,12 @@ module Athenry
     # Loads the help template and prints to stdout
     # @return [String]
     def help
-      template = ERB.new(File.open("#{ATHENRY_ROOT}/lib/athenry/templates/help.erb").read, 0, "%<>")
-      puts "#{template.result(binding)}"
+      template = Erubis::Eruby.new(File.read("#{ATHENRY_ROOT}/lib/athenry/templates/help.erb"))
+      puts template.result(binding())
     end
 
     def debug
-      @debug ? @debug=false : @debug=true
+      debug ? debug=false : debug=true
     end
 
     def shellinput
@@ -41,7 +43,7 @@ module Athenry
         end
       rescue NoMethodError, ArgumentError => e
         if cmd.length > 0 then puts "#{cmd} is a invalid command" end
-        if @debug then puts "#{e}" end
+        if debug then puts "#{e}" end
         shellinput
       end
     end
@@ -58,8 +60,8 @@ module Athenry
     end
 
     def greeting
-      puts "Welcome to the Athenry shell"
-      puts %Q{Type "help" for more information or "quit" to exit the shell}
+      puts 'Welcome to the Athenry shell'
+      puts 'Type "help" for more information or "quit" to exit the shell'
     end
 
     def generate_list
