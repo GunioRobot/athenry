@@ -29,13 +29,13 @@ module Athenry
       puts "\e[33m*\e[0m #{msg} \n"
     end
    
-    # Writes verbose output to #{LOGFILE} unless #{LOGFILE} is nil
+    # Writes verbose output to #{$logfile} unless #{$logfile} is nil
     # @yield [String] All contents of yield are logged to the logfile.
     # @return [String]
     def logger
       begin
-        unless LOGFILE.empty? or LOGFILE.nil?
-          @logfile = File.new("#{LOGFILE}", 'a')
+        unless $logfile.empty? or $logfile.nil?
+          @logfile = File.new("#{$logfile}", 'a')
         end
         yield
       ensure
@@ -43,7 +43,7 @@ module Athenry
       end
     end
 
-    # Writes messages to #{LOGFILE}
+    # Writes messages to #{$logfile}
     # @param [String] msg Message to send to the logfile
     # @param [Optional, String] level Optional error level to be displayed, defaults to error.
     # @example
@@ -77,7 +77,7 @@ module Athenry
     def send_to_state(stage, step)
       if $? == 0
         begin
-          statefile = File.new("#{STATEFILE}", 'w')
+          statefile = File.new("#{$statefile}", 'w')
           statefile.puts(%Q{#{stage}:#{state["#{stage}"]["#{step}"]}})
         ensure
           statefile.close
@@ -107,8 +107,6 @@ module Athenry
         overlays_basharray
         parse = Erubis::Eruby.new(erbfile)
         outfile.puts "#{parse.result(binding())}"
-        #parse = ERB.new(erbfile, 0, "%<>")
-        #outfile.puts "#{parse.result}"
       ensure
         outfile.close
       end
@@ -148,15 +146,6 @@ module Athenry
     # @return [String]
     def must_be_root
       raise 'Must run as root' unless Process.uid == 0
-    end
-
-    # Takes a URI and parses it ruturning just the filename and extension
-    # @param [String] filename This is the url we use to grab the filename from.
-    # @example 
-    #   filename('http://www.example.com/path/to/file.tar.bz2') #=> file.tar.bz2
-    # @return [String]
-    def filename(filename)
-      filename = URI.parse(filename).path[%r{[^/]+\z}]
     end
 
     # Takes a block with options. Runs any commands inside the block with the
@@ -225,9 +214,7 @@ module Athenry
     def die(msg)
       unless $? == 0
         error("#{msg} \n")
-        unless $shell_is_running
-          exit 1
-        end
+        exit 1 unless $shell_is_running
       end
     end
     

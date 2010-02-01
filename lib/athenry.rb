@@ -3,6 +3,8 @@ ATHENRY_ROOT = "#{File.dirname(__FILE__)}/.." unless defined?(ATHENRY_ROOT)
 require 'athenry/depends'
 require 'athenry/version'
 require 'athenry/config'
+require 'athenry/extract'
+require 'athenry/fetch'
 require 'athenry/helper'
 require 'athenry/state'
 require 'athenry/resumetree'
@@ -22,15 +24,12 @@ require 'athenry/shell'
 # * {Athenry::Shell} is the class that gives you an irb like shell.
 # * {Athenry::Run} is a class that wraps all the steps need for each step.
 module Athenry
-  # See {Athenry} for more information. 
-  module Execute
-    
     # Initiates Setup [Class]
     # @see Athenry::Setup
     def self.setup
       Setup.new
     end
-   
+
     # Initiates Build [Class]
     # @see Athenry::Build
     def self.build
@@ -78,5 +77,12 @@ module Athenry
     def self.run
       Run.new
     end
-  end
+
+    def self.extract(*args)
+      Extract.new(*args)
+    end
+
+    def self.fetch(*args)
+      Fetch.new(*args)
+    end
 end

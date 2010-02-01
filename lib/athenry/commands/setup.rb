@@ -4,38 +4,66 @@ module Athenry
     def initialize
       setup_environment
     end
-   
-    # If stage file is not found it fetches one from CONFIG.stageurl, then extracts the file.
-    # @return [String]
-    def stage
-      announcing 'Fetching stage tarball' do
-        if File.exists?("#{CONFIG.workdir}/#{CONFIG.stageurl}")
-          send_to_log('Stage file already exists skipping fetch', 'info')
-        else
-          cmd "wget -c #{CONFIG.stageurl} -P #{CONFIG.workdir}"
-          cmd "wget -c #{CONFIG.stageurl}.DIGESTS -P #{CONFIG.workdir}"
-          cmd "wget -c #{CONFIG.stageurl}.CONTENTS -P #{CONFIG.workdir}"
-        end
-        md5sum(CONFIG.stageurl, 'DIGESTS')
-        extract(CONFIG.stageurl, "#{CONFIG.workdir}/#{CONFIG.chrootdir}")
-      end
-      send_to_state('setup', 'stage')
+    
+    def target(*args)
+      args.each { |cmd| send(cmd) }
     end
 
-    # Fetches a portage snapshot and extracts it to CONFIG.chrootdir/usr/
+    # If stage file is not found it fetches one from $stageurl, then extracts the file.
     # @return [String]
-    def snapshot
+    def fetchstage
+      announcing 'Fetching stage tarball' do
+        if File.exists?("#{STAGEDIR}/#{$stageurl}")
+          send_to_log('Stage file already exists skipping fetch', 'info')
+        else
+          Athenry::fetch(:uri => $stageurl, :location => STAGEDIR).fetch_file
+          Athenry::fetch(:uri => "#{$stageurl}.DIGESTS", :location => STAGEDIR).fetch_file
+          Athenry::fetch(:uri => "#{$stageurl}.CONTENTS", :location => STAGEDIR).fetch_file
+        end
+      end
+      send_to_state('setup', 'fetchstage')
+    end
+
+    def extractstage
+      announcing 'Extracting stage tarball' do
+        unless File.exists?("#{$chrootdir}/root/")
+          Athenry::extract(:uri => $stageurl, :path => STAGEDIR).md5sum
+          Athenry::extract(:uri => $stageurl, :path => STAGEDIR, :location => $chrootdir).deflate
+        end
+      end
+      send_to_state('setup', 'extractstage')
+    end
+
+    # Fetches a portage snapshot and extracts it to $chrootdir/usr/
+    # @return [String]
+    def fetchsnapshot
       announcing 'Fetching portage snapshot' do
-        if File.exists?("#{CONFIG.workdir}/#{CONFIG.snapshoturl}")
+        if File.exists?("#{WORKDIR}/#{$snapshoturl}")
           send_to_log('Portage snapshot already exists skipping fetch', 'info')
         else
-          cmd "wget -c #{CONFIG.snapshoturl} -P #{CONFIG.workdir}"
-          cmd "wget -c #{CONFIG.snapshoturl}.md5sum -P #{CONFIG.workdir}"
+          Athenry::fetch(:uri => $snapshoturl, :location => SNAPSHOTDIR).fetch_file
+          Athenry::fetch(:uri => "#{$snapshoturl}.md5sum", :location => SNAPSHOTDIR).fetch_file
         end
-        md5sum(CONFIG.snapshoturl, 'md5sum')
-        extract(CONFIG.snapshoturl, "#{CONFIG.workdir}/#{CONFIG.chrootdir}/usr")
+        unless File.exists?("#{SNAPSHOTCACHE}/portage/")
+          Athenry::extract(:uri => $snapshoturl, :path => SNAPSHOTDIR).md5sum
+          Athenry::extract(:uri => $snapshoturl, :path => SNAPSHOTDIR, :location => SNAPSHOTCACHE).deflate
+        end
       end
       send_to_state('setup', 'snapshot')
+    end
+
+    def updatesnapshot
+      Dir.chdir("#{SNAPSHOTCACHE}/portage") do 
+        cmd "rsync -apv --delete rsync://rsync.gentoo.org/gentoo-portage ."
+      end
+      send_to_state('setup', 'updatesnapshot')
+    end
+    
+    def copysnapshot
+      announcing 'Copying snapshot to chroot' do
+        cmd "rsync -rPIh --delete #{SNAPSHOTCACHE}/portage/ #{$chrootdir}/usr/portage/"
+      end
+      send_to_state('setup', 'copysnapshot')
     end
 
     # Generates dynamic bash configs based on data from config.rb
@@ -47,52 +75,24 @@ module Athenry
       send_to_state('setup', 'generate_bashscripts')
     end
 
-    # Copies build scripts into CONFIG.chrootdir/root
+    # Copies build scripts into $chrootdir/root
     # @return [String]
     def copy_scripts
       announcing 'Copying scripts into chroot' do
-        cmd "cp -Rv #{CONFIG.scripts}/athenry/ #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/"
-        cmd "chmod +x #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/athenry/run.sh"
+        cmd "cp -Rv #{SCRIPTS}/athenry/ #{$chrootdir}/root/"
+        cmd "chmod +x #{$chrootdir}/root/athenry/run.sh"
       end
       send_to_state('setup', 'copy_scripts')
     end
 
-    # Copies user config files into CONFIG.chrootdir/etc
+    # Copies user config files into $chrootdir/etc
     # @return [String]
     def copy_configs
       announcing 'Copying configs into chroot' do
-        cmd "cp -vR #{CONFIG.configs}/* #{CONFIG.workdir}/#{CONFIG.chrootdir}/etc/"
+        cmd "cp -vR #{CONFIGS}/* #{$chrootdir}/etc/"
       end
       send_to_state('setup', 'copy_configs')
     end
     
-    private
-
-    # Checks the md5sum of a file from a url. If the md5sum doesn't passes it exits immediately.
-    # @param [String] url URL to extract filename from.
-    # @param [String] digest Extension for the digest file. We assume the digest file is filename.digest.
-    # @example
-    #   md5sum('http://www.foobar.com/path/file.tar.bz2', 'md5sum') #=> md5sum -c file.tar.bz2.md5sum --status
-    # @return [String]
-    def md5sum(url, digest)
-      announcing "Checking md5sum of #{filename(url)}" do
-        Dir.chdir("#{CONFIG.workdir}") do
-          cmd "md5sum -c #{CONFIG.workdir}/#{filename(url)}.#{digest} --status"
-        end
-      end
-    end
-
-    # Extracts the filename from a url, and extracts it to the specified path.
-    # @param [String] url URL to extract filename from.
-    # @param [String] path Path to extract file to.
-    # @example
-    #   extract('http://www.example.com/path/file.tar.bz2', '/var/tmp/athenry/stage5')
-    # @return [String]
-    def extract(url, path)
-      announcing "Extracting #{filename(url)}" do
-        cmd "tar xvjpf #{CONFIG.workdir}/#{filename(url)} -C #{path}"
-      end
-    end
-
   end
 end
