@@ -10,9 +10,13 @@ module Athenry
       else
         announcing 'Unmounting dev, sys, and proc' do
           dirs = %w[ dev sys proc ]
-          dirs.each{|dir| cmd "umount -l #{CONFIG.workdir}/#{CONFIG.chrootdir}/#{dir}" }
+          dirs.each{|dir| cmd "umount -l #{$chrootdir}/#{dir}" }
         end
       end
+    end
+
+    def test
+      puts "#{SNAPSHOTCACHE}"
     end
 
   end

@@ -3,7 +3,6 @@ module Athenry
     include ShellAliases
     
     def initialize
-      must_be_root
       check_for_setup
       aliases
       load_state
@@ -27,9 +26,8 @@ module Athenry
     # @return [String]
     def load_state
       begin
-        statefile = "#{CONFIG.workdir}/#{CONFIG.statedir}/#{CONFIG.statefile}"
-        if File.file?("#{statefile}") && File.readable?("#{statefile}") 
-          @current_state = File.read(statefile).strip.split(':')
+        if File.file?("#{STATEFILE}") && File.readable?("#{STATEFILE}") 
+          @current_state = File.read("#{STATEFILE}").strip.split(':')
         end
       rescue
         error('Invalid no No Resume point')

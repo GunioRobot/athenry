@@ -2,13 +2,12 @@ module Athenry
   class Build
 
     def initialize
-      must_be_root
-      check_for_setup
+      check_for_setup(:run)
       update_chroot
       mount
     end
     
-    def target(args)
+    def target(*args)
       args.each { |cmd| send(cmd) }
     end
     
@@ -43,7 +42,7 @@ module Athenry
     # @return [String]
     def etc_update 
       announcing 'Running etc-update' do
-        system("chroot #{CONFIG.workdir}/#{chrootdir} /root/athenry/run.sh update_configs")
+        system("chroot #{$chrootdir} /root/athenry/run.sh update_configs")
       end
       send_to_state('build', 'etc_update')
     end

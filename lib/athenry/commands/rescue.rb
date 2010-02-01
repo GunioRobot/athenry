@@ -2,7 +2,6 @@ module Athenry
   class Rescue 
 
     def initialize
-      must_be_root
       check_for_setup
       mount
     end
@@ -14,7 +13,7 @@ module Athenry
     # have a interactive session.
     # @see Athenry::Helper#cmd
     def target
-      system("chroot #{CONFIG.workdir}/#{CONFIG.chrootdir} /root/athenry/run.sh rescue")
+      system("chroot #{$chrootdir} /root/athenry/run.sh rescue")
     end
 
   end
