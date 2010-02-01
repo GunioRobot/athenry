@@ -101,7 +101,7 @@ module Athenry
     # @param [File, #read] outfile Filename to write to.
     # @return [String]
     def generate_bash(template, outfile)
-      erbfile = File.read("#{ATHENRY_ROOT}/lib/athenry/templates/#{template}.erb")
+      erbfile ||= File.read("#{ATHENRY_ROOT}/lib/athenry/templates/#{template}.erb")
       outfile = File.new("#{ATHENRY_ROOT}/scripts/athenry/lib/#{outfile}", 'w')
       begin
         overlays_basharray
@@ -222,14 +222,14 @@ module Athenry
     # @return [String]
     def update_scripts
       generate_bash('bashconfig', 'config.sh')
-      FileUtils.cp_r("#{SCRIPTS}/athenry/ #{$chrootdir}/root/", :verbose => $verbose)
+      FileUtils.cp_r("#{SCRIPTS}/athenry/", "#{$chrootdir}/root/", :verbose => $verbose)
       FileUtils.chmod(0755, "#{$chrootdir}/root/athenry/run.sh", :verbose => $verbose)
     end
 
     # Copies user config files into #{$chrootdir}/etc
     # @return [String]
     def update_configs
-      FileUtils.cp_r("#{CONFIGS}/*" "#{$chrootdir}/etc/", :verbose => true)
+      FileUtils.cp_r(Dir.glob("#{CONFIGS}/*"), "#{$chrootdir}/etc/", :verbose => true)
     end
 
     # Copies config files and scripts into the chroot that have changed
