@@ -21,15 +21,14 @@ module Athenry
 
     $nopaludis = RConfig.internal.bools.nopaludis
     $freshen = RConfig.internal.bools.freshen
-
+    
     WORKDIR = "#{RConfig.athenry.general.workdir}"
     SCRIPTS = "#{ATHENRY_ROOT}/scripts"
     LOGDIR = "#{WORKDIR}/#{RConfig.internal.paths.logdir}"
-    LOGFILE = "#{LOGDIR}/$chrootname.log"
     STATEDIR = "#{WORKDIR}/#{RConfig.internal.paths.statedir}"
-    STATEFILE = "#{STATEDIR}/$chrootname.state" 
     STAGEDIR = "#{WORKDIR}/#{RConfig.internal.paths.stagedir}"
     SNAPSHOTDIR = "#{WORKDIR}/#{RConfig.internal.paths.snapshotdir}"
     SNAPSHOTCACHE = "#{WORKDIR}/#{RConfig.internal.paths.snapshotdir}/#{RConfig.internal.paths.snapshotcache}"
+
   end
 end
