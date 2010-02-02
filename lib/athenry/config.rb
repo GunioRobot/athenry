@@ -1,11 +1,11 @@
 module Athenry
   module Config
 
-#    begin
+    begin
       RConfig.config_paths = ["#{ENV['HOME']}/.config/athenry/", "/etc/athenry/"]
-#    rescue ConfigError 
-#      $stderr.puts "No configuration file found"
-#    end
+    rescue ConfigError 
+      $stderr.puts "No configuration file found"
+    end
 
     if File.exists?("#{ENV['HOME']}/.config/athenry/athenry.conf")
       CONFIGS = "#{ENV['HOME']}/.config/athenry/etc/#{RConfig.athenry.general.arch}"
