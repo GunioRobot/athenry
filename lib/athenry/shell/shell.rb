@@ -25,8 +25,7 @@ module Athenry
     # Loads the help template and prints to stdout
     # @return [String]
     def help
-      template = Erubis::Eruby.new(File.read("#{ATHENRY_ROOT}/lib/athenry/templates/help.erb"))
-      puts template.result(binding())
+      display_erb("help.erb")
     end
 
     def debug
