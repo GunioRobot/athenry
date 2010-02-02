@@ -2,7 +2,7 @@ require 'rake'
 require 'rake/clean'
 require 'rake/testtask'
 
-@gems=%w[commander configatron yard]
+@gems=%w[commander rconfig progressbar yard]
 
 CLEAN << "athenry-latest.tar.bz2" << "yarddocs" << "coverage" << "tmp"
 
