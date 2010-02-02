@@ -4,6 +4,7 @@ require 'readline'
 require 'fileutils'
 require 'digest/md5' 
 require 'net/http'
+require 'time'
 
 begin
   gem 'rconfig', '>= 0.3.2'
