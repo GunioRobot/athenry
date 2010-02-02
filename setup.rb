@@ -8,14 +8,15 @@ begin
 rescue Gem::LoadError
 end
 require 'fileutils'
+require 'rbconfig'
 
 # 
 # Options 
 #
 @options = {
-  :destdir    => '/usr/local',
+  :destdir    => "#{Config::CONFIG["sitedir"]}/#{Config::CONFIG["ruby_version"]}",
   :prefix     => 'athenry',
-  :bindir     => '/usr/bin',
+  :bindir     => '/usr/sbin',
   :sysconfdir => '/etc/athenry',
   :confdirs   => ['etc', 'etc/x86', 'etc/amd64'],
   :conffiles  => ['athenry.conf', 'internal.conf'],
