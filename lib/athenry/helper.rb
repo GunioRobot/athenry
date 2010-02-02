@@ -251,7 +251,7 @@ module Athenry
     # Copies user config files into #{$chrootdir}/etc
     # @return [String]
     def update_configs
-      FileUtils.cp_r(Dir.glob("#{CONFIGS}/*"), "#{$chrootdir}/etc/", :verbose => true)
+      FileUtils.cp_r(Dir.glob("#{CONFIGS}/*"), "#{$chrootdir}/etc/", :verbose => $verbose)
     end
 
     # Copies config files and scripts into the chroot that have changed
