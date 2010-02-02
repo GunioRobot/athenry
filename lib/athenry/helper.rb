@@ -127,7 +127,7 @@ module Athenry
     #   check_for_setup
     # @return [String]
     def check_for_setup(run = nil)
-      dirs = [ $chrootdir, LOGDIR, STAGEDIR, SNAPSHOTDIR, "#{$chrootdir}/root/athenry/run.sh", "#{$chrootdir}/bin/bash", "#{$chrootdir}/dev/null", "#{$chrootdir}/usr/portage/skel.ebuild" ]
+      dirs = [ $chrootdir, LOGDIR, STAGEDIR, SNAPSHOTDIR, "#{$chrootdir}/scripts/athenry/run.sh", "#{$chrootdir}/bin/bash", "#{$chrootdir}/dev/null", "#{$chrootdir}/usr/portage/skel.ebuild" ]
       
       dirs.each do |dir|
         if File.exists?("#{dir}")
@@ -194,7 +194,7 @@ module Athenry
     #   chroot 'install_pkgmgr'
     # @return [String]
     def chroot(action)
-      cmd "chroot #{$chrootdir} /root/athenry/run.sh #{action}"
+      cmd "chroot #{$chrootdir} /scripts/athenry/run.sh #{action}"
     end
 
     # Wraps verbose out put in a message block for nicer verbose output
@@ -244,8 +244,9 @@ module Athenry
     # @return [String]
     def update_scripts
       generate_bash('bashconfig', 'config.sh')
-      FileUtils.cp_r("#{SCRIPTS}/athenry/", "#{$chrootdir}/root/", :verbose => $verbose)
-      FileUtils.chmod(0755, "#{$chrootdir}/root/athenry/run.sh", :verbose => $verbose)
+      FileUtils.mkdir_p("#{$chrootdir}/scripts/", :verbose => $verbose)
+      FileUtils.cp_r("#{SCRIPTS}/athenry/", "#{$chrootdir}/scripts/", :verbose => $verbose)
+      FileUtils.chmod(0755, "#{$chrootdir}/scripts/athenry/run.sh", :verbose => $verbose)
     end
 
     # Copies user config files into #{$chrootdir}/etc

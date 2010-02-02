@@ -13,7 +13,7 @@ module Athenry
     # have a interactive session.
     # @see Athenry::Helper#cmd
     def target
-      system("chroot #{$chrootdir} /root/athenry/run.sh rescue")
+      system("chroot #{$chrootdir} /scripts/athenry/run.sh rescue")
     end
 
   end
