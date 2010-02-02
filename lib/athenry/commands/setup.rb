@@ -39,7 +39,7 @@ module Athenry
           Athenry::fetch(:uri => "#{$snapshoturl}.md5sum", :location => SNAPSHOTDIR)
         end
         unless File.exists?("#{SNAPSHOTCACHE}/portage/")
-          Athenry::md5sum(:uri => $snapshoturl, :path => SNAPSHOTDIR)
+          Athenry::md5sum(:uri => $snapshoturl, :path => SNAPSHOTDIR, :digest => 'md5sum')
           Athenry::extract(:uri => $snapshoturl, :path => SNAPSHOTDIR, :location => SNAPSHOTCACHE)
         end
       end
