@@ -11,6 +11,7 @@ require 'athenry/run'
 require 'athenry/commands'
 require 'athenry/shell'
 require 'athenry/sync'
+require 'athenry/checksum'
 require 'athenry/extract'
 require 'athenry/fetch'
 
@@ -85,7 +86,7 @@ module Athenry
     end
 
     def self.md5sum(*args)
-      Extract.new(*args).md5sum
+      Checksum.new(*args).md5
     end
 
     def self.fetch(*args)
