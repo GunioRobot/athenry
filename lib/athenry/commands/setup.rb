@@ -13,13 +13,9 @@ module Athenry
     # @return [String]
     def fetchstage
       announcing 'Fetching stage tarball' do
-        if File.exists?("#{STAGEDIR}/#{$stageurl}")
-          send_to_log('Stage file already exists skipping fetch', 'info')
-        else
-          Athenry::fetch(:uri => $stageurl, :location => STAGEDIR).fetch_file
-          Athenry::fetch(:uri => "#{$stageurl}.DIGESTS", :location => STAGEDIR).fetch_file
-          Athenry::fetch(:uri => "#{$stageurl}.CONTENTS", :location => STAGEDIR).fetch_file
-        end
+          Athenry::fetch(:uri => $stageurl, :location => STAGEDIR)
+          Athenry::fetch(:uri => "#{$stageurl}.DIGESTS", :location => STAGEDIR)
+          Athenry::fetch(:uri => "#{$stageurl}.CONTENTS", :location => STAGEDIR)
       end
       send_to_state('setup', 'fetchstage')
     end
@@ -27,8 +23,8 @@ module Athenry
     def extractstage
       announcing 'Extracting stage tarball' do
         unless File.exists?("#{$chrootdir}/root/")
-          Athenry::extract(:uri => $stageurl, :path => STAGEDIR).md5sum
-          Athenry::extract(:uri => $stageurl, :path => STAGEDIR, :location => $chrootdir).deflate
+          Athenry::md5sum(:uri => $stageurl, :path => STAGEDIR)
+          Athenry::extract(:uri => $stageurl, :path => STAGEDIR, :location => $chrootdir)
         end
       end
       send_to_state('setup', 'extractstage')
@@ -38,15 +34,13 @@ module Athenry
     # @return [String]
     def fetchsnapshot
       announcing 'Fetching portage snapshot' do
-        if File.exists?("#{WORKDIR}/#{$snapshoturl}")
-          send_to_log('Portage snapshot already exists skipping fetch', 'info')
-        else
-          Athenry::fetch(:uri => $snapshoturl, :location => SNAPSHOTDIR).fetch_file
-          Athenry::fetch(:uri => "#{$snapshoturl}.md5sum", :location => SNAPSHOTDIR).fetch_file
+        unless File.exists?("#{SNAPSHOTDIR}/#{filename($snapshoturl)}")
+          Athenry::fetch(:uri => $snapshoturl, :location => SNAPSHOTDIR)
+          Athenry::fetch(:uri => "#{$snapshoturl}.md5sum", :location => SNAPSHOTDIR)
         end
         unless File.exists?("#{SNAPSHOTCACHE}/portage/")
-          Athenry::extract(:uri => $snapshoturl, :path => SNAPSHOTDIR).md5sum
-          Athenry::extract(:uri => $snapshoturl, :path => SNAPSHOTDIR, :location => SNAPSHOTCACHE).deflate
+          Athenry::md5sum(:uri => $snapshoturl, :path => SNAPSHOTDIR)
+          Athenry::extract(:uri => $snapshoturl, :path => SNAPSHOTDIR, :location => SNAPSHOTCACHE)
         end
       end
       send_to_state('setup', 'snapshot')
@@ -54,33 +48,25 @@ module Athenry
 
     def updatesnapshot
       announcing "Updating snapshot cache" do
-        #cmd "rsync -apv --delete rsync://rsync.gentoo.org/gentoo-portage #{SNAPSHOTCACHE}/portage/"
+        if safe_sync 
+          Athenry::sync(:uri => "rsync://rsync.gentoo.org/gentoo-portage", :output => "#{SANPSHOTCACHE}/portage/")
+        end
       end
       send_to_state('setup', 'updatesnapshot')
     end
     
     def copysnapshot
       announcing 'Copying snapshot to chroot' do
-        cmd "rsync -rPIh --delete #{SNAPSHOTCACHE}/portage/ #{$chrootdir}/usr/portage/"
+        Athenry::sync(:options => "-rPIh --delete", :uri => "#{SNAPSHOTCACHE}/portage/", :output => "#{$chrootdir}/usr/portage/")
       end
       send_to_state('setup', 'copysnapshot')
-    end
-
-    # Generates dynamic bash configs based on data from config.rb
-    # @return [String]
-    def generate_bashscripts
-      announcing 'Generate bash configuration file' do
-        generate_bash('bashconfig', 'config.sh')
-      end
-      send_to_state('setup', 'generate_bashscripts')
     end
 
     # Copies build scripts into $chrootdir/root
     # @return [String]
     def copy_scripts
       announcing 'Copying scripts into chroot' do
-        FileUtils.cp_r("#{SCRIPTS}/athenry/", "#{$chrootdir}/root/", :verbose => $verbose)
-        FileUtils.chmod(0755, "#{$chrootdir}/root/athenry/run.sh", :verbose => $verbose)
+        update_scripts
       end
       send_to_state('setup', 'copy_scripts')
     end
@@ -89,7 +75,7 @@ module Athenry
     # @return [String]
     def copy_configs
       announcing 'Copying configs into chroot' do
-        FileUtils.cp_r(Dir.glob("#{CONFIGS}/*"),  "#{$chrootdir}/etc/", :verbose => $verbose)
+        update_configs
       end
       send_to_state('setup', 'copy_configs')
     end

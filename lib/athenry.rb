@@ -1,16 +1,18 @@
 ATHENRY_ROOT = "#{File.dirname(__FILE__)}/.." unless defined?(ATHENRY_ROOT)
 
+require 'athenry/core_ext/object'
 require 'athenry/depends'
 require 'athenry/version'
 require 'athenry/config'
-require 'athenry/extract'
-require 'athenry/fetch'
 require 'athenry/helper'
 require 'athenry/state'
 require 'athenry/resumetree'
 require 'athenry/run'
 require 'athenry/commands'
 require 'athenry/shell'
+require 'athenry/sync'
+require 'athenry/extract'
+require 'athenry/fetch'
 
 # This module contains everything Athenry related
 #
@@ -79,10 +81,18 @@ module Athenry
     end
 
     def self.extract(*args)
-      Extract.new(*args)
+      Extract.new(*args).deflate
+    end
+
+    def self.md5sum(*args)
+      Extract.new(*args).md5sum
     end
 
     def self.fetch(*args)
-      Fetch.new(*args)
+      Fetch.new(*args).fetch_file
+    end
+
+    def self.sync(*args)
+      Sync.new(*args).files
     end
 end
