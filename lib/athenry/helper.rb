@@ -39,7 +39,7 @@ module Athenry
         end
         yield
       ensure
-        @logfile.close
+        @logfile.try(:close)
       end
     end
 
@@ -65,7 +65,7 @@ module Athenry
       else
         return false
       end
-      mtab.close
+      mtab.try(:close)
     end
 
     # if the last command was sucessfull write the current state to file
@@ -80,7 +80,7 @@ module Athenry
           statefile = File.new("#{$statefile}", 'w')
           statefile.puts(%Q{#{stage}:#{state["#{stage}"]["#{step}"]}})
         ensure
-          statefile.close
+          statefile.try(:close)
         end
       end
     end
@@ -94,6 +94,10 @@ module Athenry
         @overlays.push("OVERLAYKEY[#{i.to_i}]=#{k.to_s.inspect}")
         @overlays.push("OVERLAYVAL[#{i.to_i}]=#{v.to_s.inspect}")
       end
+    end
+
+    def filename(uri)
+      URI.parse(uri).path[%r{[^/]+\z}]
     end
     
     # Takes a erb template file and output file, to generate bash from ruby.
@@ -205,6 +209,24 @@ module Athenry
       yield
     end 
 
+    def display_erb(template)
+      template = Erubis::Eruby.new(File.read("#{ATHENRY_ROOT}/lib/athenry/templates/#{template}"))
+      puts template.result(binding())
+    end
+
+    def safe_sync
+      lastsync = Time.parse(File.read("#{SNAPSHOTCACHE}/portage/metadata/timestamp")) 
+      nextsync = lastsync + (60 * 60 * 24) #24 hours
+      if lastsync >= nextsync && (ENV['FORCESYNC'] == "true" || ENV['forcesync'] == "true")
+        return true
+      else
+        warning "Gentoo Etiquette says we should not sync more than once every 24 hours. However,"
+        warning "You may export FORCESYNC=yes to force a sync each time the script is run."
+        warning "This is not recommended and may get you BANNED from Gentoo mirrors!"
+        return false
+      end
+    end
+
     # If the last exit status was not true then dispaly an error and exit,
     # unless SHELL_IS_RUNNING is true, then just display the error and return
     # @param [String] msg Message to display before we exit
@@ -265,7 +287,7 @@ module Athenry
     # @example
     #   cmd("uname -s") #=> "Linux"
     # @return [String]
-    def cmd(command)
+    def cmd(command, exit=true)
       logger do
         begin
           pipe = IO.popen("#{command}")
@@ -277,7 +299,7 @@ module Athenry
           pipe.close
         end
       end
-      die("#{command} Failed to complete successfully")
+      exit && die("#{command} Failed to complete successfully") 
     end
   end
 end
