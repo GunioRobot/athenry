@@ -1,13 +1,14 @@
 module Athenry
   class Fetch
 
-    attr_accessor :uri, :location, :output, :filename
+    attr_accessor :uri, :location, :output, :filename, :force
 
     def initialize(opts={})
       self.uri = URI.parse(opts[:uri])
       self.filename = URI.parse(opts[:uri]).path[%r{[^/]+\z}]
       self.location = opts[:location]
       self.output = opts[:output]
+      self.force = opts[:force]
 
       unless self.output
         self.output = self.filename
@@ -15,7 +16,8 @@ module Athenry
     end
 
     def fetch_file
-      if check_file
+      if check_file || !force
+        success "#{filename} already exists, skipping"
         return true
       else
         download
@@ -35,7 +37,7 @@ module Athenry
           end
         end
       ensure
-        fetch.close
+        fetch.try(:close)
         progress_bar && progress_bar.finish
         return fetch
       end
