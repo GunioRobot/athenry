@@ -4,7 +4,7 @@ Athenry
 **Homepage**:   [http://gregf.github.com/athenry] (http://gregf.github.com/athenry)  
 **Git**:        [http://github.com/gregf/athenry] (http://github.com/gregf/athenry)  
 **Author**:     Greg Fitzgerald  
-**Copyright**:  2009  
+**Copyright**:  2009-2010 
 **License**:    MIT License
 
 Index
@@ -26,8 +26,9 @@ About
 
 Dependencies
 ------------
-* [configatron](http://github.com/markbates/configatron)
+* [rconfig](http://github.com/rahmal/rconfig/)
 * [commander](http://github.com/visionmedia/commander)
+* [progressbar](http://github.com/nex3/ruby-progressbar/)
 
 Download
 --------
@@ -66,7 +67,7 @@ License
 
 Athenry is licensed under the MIT license
 
-    Copyright (c) 2009 Greg Fitzgerald
+    Copyright (c) 2009-2010 Greg Fitzgerald
 
     Permission is hereby granted, free of charge, to any person
     obtaining a copy of this software and associated documentation
