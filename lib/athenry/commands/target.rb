@@ -25,7 +25,7 @@ module Athenry
     end
 
     def setup
-      Athenry::setup.target("fetchstage", "extractstage", "fetchsnapshot", "updatesnapshot", "copysnapshot", "generate_bashscripts", "copy_scripts", "copy_configs")
+      Athenry::setup.target("fetchstage", "extractstage", "fetchsnapshot", "updatesnapshot", "copysnapshot", "copy_scripts", "copy_configs")
     end
 
   end
