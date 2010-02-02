@@ -78,7 +78,7 @@ module Athenry
       if $? == 0
         begin
           statefile = File.new("#{$statefile}", 'w')
-          statefile.puts(%Q{#{stage}:#{state["#{stage}"]["#{step}"]}})
+          statefile.puts(%Q{#{stage}:#{STATE["#{stage}"]["#{step}"]}})
         ensure
           statefile.try(:close)
         end

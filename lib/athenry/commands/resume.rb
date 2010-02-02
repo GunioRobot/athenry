@@ -12,10 +12,10 @@ module Athenry
     # @return [String]
     def from
       begin
-        send(resume["#{@current_state.first}"]["#{@current_state.last}"])
+        send(RESUMETREE["#{@current_state.first}"]["#{@current_state.last}"])
       rescue
-        error('Invalid resume point')
-        exit 1
+       error('Invalid resume point')
+       exit 1
       end
     end
 
@@ -26,11 +26,11 @@ module Athenry
     # @return [String]
     def load_state
       begin
-        if File.file?("#{STATEFILE}") && File.readable?("#{STATEFILE}") 
-          @current_state = File.read("#{STATEFILE}").strip.split(':')
+        if File.file?("#{$statefile}") && File.readable?("#{$statefile}") 
+          @current_state = File.read("#{$statefile}").strip.split(':')
         end
       rescue
-        error('Invalid no No Resume point')
+        error('Invalid Resume Point')
         exit 1
       end
     end

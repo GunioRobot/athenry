@@ -7,7 +7,7 @@ module Athenry
       must_be_root
       
       $chrootname = "chroot" unless $chrootname
-      $chrootdir = "#{WORKDIR}/#{$chrootname}"
+      $chrootdir = "#{WORKDIR}/builds/#{$chrootname}"
       $statefile = "#{STATEDIR}/#{$chrootname}.state" 
       $logfile = "#{LOGDIR}/#{$chrootname}.log"
     end
@@ -56,8 +56,8 @@ module Athenry
 
     # Resumes from last saved state
     # @see Athenry::Resume
-    def resume(args)
-      Athenry::resume.from(*args)
+    def resume
+      Athenry::resume.from
     end
   end
 end
