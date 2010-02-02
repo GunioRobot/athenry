@@ -70,7 +70,7 @@ command :clean do |c|
   c.syntax = 'athenry clean [options]'
   c.description = 'Cleans up any mess made'
   c.action do |args, options|
-    Athenry::run.clean
+    Athenry::run.clean(args)
   end
 end
 

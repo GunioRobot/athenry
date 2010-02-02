@@ -38,8 +38,8 @@ module Athenry
 
     # Executes steps to cleanup
     # @see Athenry::Clean
-    def clean
-      Athenry::clean.unmount
+    def clean(args)
+      Athenry::clean.target(*args)
     end
   
     # Executes steps to chroot into shell
