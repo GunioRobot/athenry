@@ -8,12 +8,12 @@ Release 0.2.5
 * Manpages
 * Release
 
+
 Next
 ----
 * Check config for errors and die quickly 
     "fooexample.com" =~ /@(.*)/ and $1 or raise "bad email" 
 * default to pbzip2 if installed, else use tar
-* Fetch class should have a option to force redownloading.
 * Make use of EMERGE\_DEFAULT\_OPTS
 * build should create a tarball (pull mkstage5 into project)
 * Split helper into separate files so we can include less/more as needed
