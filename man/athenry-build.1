@@ -1,0 +1,51 @@
+.TH athenry-build 1 "Jan 30 2010" "" "Athenry"
+
+.SH NAME:
+athenry build [OPTIONS] [COMMAND]
+.SH DESCRIPTION:
+Runs commands inside the chroot
+.SH GLOBAL OPTIONS:
+.TP
+.BI -c, --chroot 
+Use the specified chroot directory.
+.TP
+.BI -p, --snapshoturl
+ Use the specified snapshot url.
+.TP
+.BI  -s, --stageurl
+Use the specified stage url.
+.TP
+.BI -v, --version
+Display version information
+.TP
+.BI h, --help
+Show an overview of the commandline options.
+.TP
+.BI -t, --trace
+Display backtrace when an error occurs
+.SH COMMANDS:
+.TP
+.BI sync
+Runs your specified package managers sync command to update the portage tree
+.TP
+.BI install_pkgmgr 
+Installs the package manager specified in athenry.conf
+.TP
+.BI update_everything 
+Updates all installed packages in your chroot
+.TP
+.BI etc_update 
+Updates all configuration files in your chroot
+.TP
+.BI install_overlays 
+Installs the overlays specified in athenry.conf using either playman or layman
+.TP
+.BI install_sets 
+Installs the specified sets in athenry.conf
+.TP
+.BI rebuild 
+Rebuild tries to make sure your system has no linkage problems. This runs revdep-rebuld or reconcilla as well as other tools like python-updater and perl-cleaner
+.SH SEE ALSO
+Website: http://gregf.github.com/athenry/
+.SH AUTHOR
+Athenry was written by Greg Fitzgerald <netzdamon@gmail.com>

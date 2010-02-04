@@ -1,0 +1,39 @@
+.TH athenry-clean "Jan 30 2010" "" "Athenry"
+
+.SH NAME:
+athenry clean [OPTIONS] [COMMAND]
+.SH DESCRIPTION:
+Unlike build and setup which only run a single command at a time target runs a group of commands to build an entire stage.
+.SH GLOBAL OPTIONS:
+.TP
+.BI -c, --chroot 
+Use the specified chroot directory.
+.TP
+.BI -p, --snapshoturl
+ Use the specified snapshot url.
+.TP
+.BI  -s, --stageurl
+Use the specified stage url.
+.TP
+.BI -v, --version
+Display version information
+.TP
+.BI h, --help
+Show an overview of the commandline options.
+.TP
+.BI -t, --trace
+Display backtrace when an error occurs
+.SH COMMANDS:
+.TP
+.BI unmount 
+Athenry automatically mounts dev, sys, proc when it chroots, It however does not unmounts automatically, this will unmount them for you.
+.TP
+.BI tmp  
+Cleans up temporary files and scripts copied into your chroot by athenry.
+.TP
+.BI destroy 
+Permanently removes a chroot from your system
+.SH SEE ALSO
+Website: http://gregf.github.com/athenry/
+.SH AUTHOR
+Athenry was written by Greg Fitzgerald <netzdamon@gmail.com>
