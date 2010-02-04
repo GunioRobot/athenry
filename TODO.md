@@ -9,13 +9,7 @@ Release 0.2.5
 * Release
 * :force is broking for fetch
 * Resume support is broke, rewrite RESUMETREE
-* test custom stage with paludis and emerge
-* test freshen
 * test resume
-* Don't grab portage-latest
-* Look in common locations for make.conf for overlay list, 
-  then source it in /etc/make.conf
-* Clean up || die instances. Only die from the functions not from the calls.
 
 Release 0.3.0
 --------------
