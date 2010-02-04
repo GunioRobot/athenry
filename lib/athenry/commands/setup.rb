@@ -38,18 +38,28 @@ module Athenry
           Athenry::fetch(:uri => $snapshoturl, :location => SNAPSHOTDIR)
           Athenry::fetch(:uri => "#{$snapshoturl}.md5sum", :location => SNAPSHOTDIR)
         end
+      end
+      send_to_state('setup', 'fetchsnapshot')
+    end
+
+    def extractsnapshot
+      announcing 'Extracting portage snapshot' do
         unless File.exists?("#{SNAPSHOTCACHE}/portage/")
           Athenry::md5sum(:uri => $snapshoturl, :path => SNAPSHOTDIR, :digest => 'md5sum')
           Athenry::extract(:uri => $snapshoturl, :path => SNAPSHOTDIR, :location => SNAPSHOTCACHE)
         end
       end
-      send_to_state('setup', 'snapshot')
+      send_to_state('setup', 'extractsnapshot')
     end
 
     def updatesnapshot
       announcing "Updating snapshot cache" do
         if safe_sync 
-          Athenry::sync(:uri => "rsync://rsync.gentoo.org/gentoo-portage", :output => "#{SANPSHOTCACHE}/portage/")
+          Athenry::sync(:options => "--recursive --links --safe-links --perms --times --compress --force\
+                        --whole-file --delete --stats --timeout=180 --exclude=/distfiles --exclude=/local\
+                        --exclude=/packages", 
+                        :uri => "#{SYNC}", 
+                        :output => "#{SANPSHOTCACHE}/portage/")
         end
       end
       send_to_state('setup', 'updatesnapshot')
@@ -57,7 +67,10 @@ module Athenry
     
     def copysnapshot
       announcing 'Copying snapshot to chroot' do
-        Athenry::sync(:options => "-rPIh --delete", :uri => "#{SNAPSHOTCACHE}/portage/", :output => "#{$chrootdir}/usr/portage/")
+        Athenry::sync(:options => "--verbose --progress --recursive --links --safe-links --perms\
+                      --times --force --whole-file --delete --stats",
+                      :uri => "#{SNAPSHOTCACHE}/portage/", 
+                      :output => "#{$chrootdir}/usr/portage/")
       end
       send_to_state('setup', 'copysnapshot')
     end

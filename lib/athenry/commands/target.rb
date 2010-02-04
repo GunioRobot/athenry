@@ -13,7 +13,7 @@ module Athenry
     # @return [String]
     def stage3
       set_temp_options(:nopaludis => true) do
-        Athenry::build.target("install_pkgmgr", "sync", "update_everything", "update_configs", "rebuild")
+        Athenry::build.target("install_pkgmgr", "update_everything", "update_configs", "rebuild")
       end
     end
 
@@ -21,7 +21,7 @@ module Athenry
     # @see Athenry::build
     # @return [String]
     def custom
-      Athenry::build.target("install_pkmgr", "sync", "update_everything", "rebuild", "update_configs", "install_overlays", "install_sets", "rebuild")
+      Athenry::build.target("install_pkgmgr", "update_everything", "rebuild", "update_configs", "install_overlays", "install_sets", "rebuild")
     end
 
     def setup
