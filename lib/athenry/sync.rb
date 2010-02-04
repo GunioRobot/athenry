@@ -6,7 +6,7 @@ module Athenry
     def initialize(opts={})
       self.uri = opts[:uri]
       self.output = opts[:output]
-      self.options = opts[:options] || "-apv --delete"
+      self.options = opts[:options]
     end
     
     def files
