@@ -21,7 +21,7 @@ require 'rbconfig'
   :confdirs   => ['etc', 'etc/x86', 'etc/amd64'],
   :conffiles  => ['athenry.conf', 'internal.conf'],
   :mandir     => '/usr/local/man/man1',
-  :manpages   => ['athenry.1']
+  :manpages   => ['athenry.1', 'athenry-build.1', 'athenry-clean.1', 'athenry-rescue.1', 'athenry-resume.1', 'athenry-setup.1', 'athenry-target.1']
 }
 
 unless Process.uid == 0
@@ -92,7 +92,7 @@ def install
   end
 
   @options[:manpages].each do |page|
-    FileUtils.install("#{ENV['PWD']}/man/#{@options[:manpages]}", "#{@options[:mandir]}", :mode => 0644, :verbose => true)
+    FileUtils.install("#{ENV['PWD']}/man/#{page}", "#{@options[:mandir]}", :mode => 0644, :verbose => true)
   end
 
   FileUtils.chown_R('root', 'root', "#{@options[:sysconfdir]}", :verbose => true)
