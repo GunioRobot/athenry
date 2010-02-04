@@ -13,7 +13,7 @@ module Athenry
       set_temp_options(:freshen => true) do
         Athenry::build.sync
         Athenry::build.update_everything
-        Athenry::build.update_configs
+        Athenry::build.etc_update
         Athenry::build.rebuild
       end
     end
