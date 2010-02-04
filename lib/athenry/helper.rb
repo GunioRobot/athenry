@@ -245,7 +245,7 @@ module Athenry
     def update_scripts
       generate_bash('bashconfig', 'config.sh')
       FileUtils.mkdir_p("#{$chrootdir}/scripts/", :verbose => $verbose)
-      FileUtils.cp_r("#{SCRIPTS}/", "#{$chrootdir}/scripts/", :verbose => $verbose)
+      FileUtils.cp_r(Dir.glob("#{SCRIPTS}/*"), "#{$chrootdir}/scripts/", :verbose => $verbose)
       FileUtils.chmod(0755, "#{$chrootdir}/scripts/run.sh", :verbose => $verbose)
     end
 
