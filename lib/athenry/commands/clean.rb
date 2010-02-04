@@ -25,7 +25,7 @@ module Athenry
           FileUtils.rm_rf(Dir.glob("#{$chrootdir}/tmp/*"), :verbose => $verbose)
           FileUtils.rm_rf(Dir.glob("#{$chrootdir}/var/tmp/*"), :verbose => $verbose)
           FileUtils.rm_rf(Dir.glob("#{$chrootdir}/usr/portage/distfiles/*"), :verbose => $verbose)
-          FileUtils.rm_rf("#{$chrootdir}/root/athenry/", :verbose => $verbose)
+          FileUtils.rm_rf("#{$chrootdir}/scripts/", :verbose => $verbose)
         end
       end
     end
