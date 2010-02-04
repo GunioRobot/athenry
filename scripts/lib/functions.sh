@@ -124,7 +124,7 @@ function add_to_make_conf {
         elif [ -f /usr/portage/local/layman/make.conf ]; then
             echo 'source "/usr/portage/local/layman/make.conf"' >> /etc/make.conf
         elif [ -f /usr/local/portage/layman/make.conf ]; then
-            echo 'source "/usr/local/portage/layman/make.conf"' >> /etc/make.con
+            echo 'source "/usr/local/portage/layman/make.conf"' >> /etc/make.conf
         else
             die "Failed adding layman source to make.conf"
         fi
