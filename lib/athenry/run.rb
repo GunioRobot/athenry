@@ -44,8 +44,8 @@ module Athenry
   
     # Executes steps to chroot into shell
     # @see Athenry::Rescue
-    def rescue(args)
-      Athenry::rescue.target(*args)
+    def rescue
+      Athenry::rescue.chroot
     end
     
     # Executes the shell
