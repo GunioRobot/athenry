@@ -106,7 +106,7 @@ module Athenry
     # @return [String]
     def generate_bash(template, outfile)
       erbfile ||= File.read("#{ATHENRY_ROOT}/lib/athenry/templates/#{template}.erb")
-      outfile = File.new("#{ATHENRY_ROOT}/scripts/athenry/lib/#{outfile}", 'w')
+      outfile = File.new("#{ATHENRY_ROOT}/scripts/lib/#{outfile}", 'w')
       begin
         overlays_basharray
         parse = Erubis::Eruby.new(erbfile)
@@ -127,7 +127,7 @@ module Athenry
     #   check_for_setup
     # @return [String]
     def check_for_setup(run = nil)
-      dirs = [ $chrootdir, LOGDIR, STAGEDIR, SNAPSHOTDIR, "#{$chrootdir}/scripts/athenry/run.sh", "#{$chrootdir}/bin/bash", "#{$chrootdir}/dev/null", "#{$chrootdir}/usr/portage/skel.ebuild" ]
+      dirs = [ $chrootdir, LOGDIR, STAGEDIR, SNAPSHOTDIR, "#{$chrootdir}/scripts/run.sh", "#{$chrootdir}/bin/bash", "#{$chrootdir}/dev/null", "#{$chrootdir}/usr/portage/skel.ebuild" ]
       
       dirs.each do |dir|
         if File.exists?("#{dir}")
@@ -176,7 +176,7 @@ module Athenry
       set_freshen = opts[:freshen] || false
 
       if set_nopaludis then $nopaludis="#{set_nopaludis}" end
-      if set_freshen then $freshen="#{set_nopaluids}" end
+      if set_freshen then $freshen="#{set_freshen}" end
       yield
       reset_temp_options
     end
@@ -194,7 +194,7 @@ module Athenry
     #   chroot 'install_pkgmgr'
     # @return [String]
     def chroot(action)
-      cmd "chroot #{$chrootdir} /scripts/athenry/run.sh #{action}"
+      cmd "chroot #{$chrootdir} /scripts/run.sh #{action}"
     end
 
     # Wraps verbose out put in a message block for nicer verbose output
@@ -245,8 +245,8 @@ module Athenry
     def update_scripts
       generate_bash('bashconfig', 'config.sh')
       FileUtils.mkdir_p("#{$chrootdir}/scripts/", :verbose => $verbose)
-      FileUtils.cp_r("#{SCRIPTS}/athenry/", "#{$chrootdir}/scripts/", :verbose => $verbose)
-      FileUtils.chmod(0755, "#{$chrootdir}/scripts/athenry/run.sh", :verbose => $verbose)
+      FileUtils.cp_r("#{SCRIPTS}/", "#{$chrootdir}/scripts/", :verbose => $verbose)
+      FileUtils.chmod(0755, "#{$chrootdir}/scripts/run.sh", :verbose => $verbose)
     end
 
     # Copies user config files into #{$chrootdir}/etc

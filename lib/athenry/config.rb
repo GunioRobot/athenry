@@ -29,6 +29,7 @@ module Athenry
     STAGEDIR = "#{WORKDIR}/#{RConfig.internal.paths.stagedir}"
     SNAPSHOTDIR = "#{WORKDIR}/#{RConfig.internal.paths.snapshotdir}"
     SNAPSHOTCACHE = "#{WORKDIR}/#{RConfig.internal.paths.snapshotdir}/#{RConfig.internal.paths.snapshotcache}"
+    SYNC = "#{RConfig.athenry.gentoo.sync}"
 
   end
 end

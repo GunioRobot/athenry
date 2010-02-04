@@ -12,8 +12,8 @@ module Athenry
     # We use system here instead of our normal Athenry::Helper#cmd so we can
     # have a interactive session.
     # @see Athenry::Helper#cmd
-    def target
-      system("chroot #{$chrootdir} /scripts/athenry/run.sh rescue")
+    def chroot
+      system("chroot #{$chrootdir} /scripts/run.sh rescue")
     end
 
   end

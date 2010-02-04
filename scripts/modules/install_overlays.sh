@@ -23,13 +23,13 @@ if [ "${OVERLAYKEY}" ]; then
             fi 
             # execute second command
             layman -s "${OVERLAYKEY}" || die "Failed to sync ${OVERLAYKEY} overlay"
-            echo 'source "/usr/local/portage/layman/make.conf"' >> /etc/make.conf || die "Failed adding layman source to make.conf" 
         ;; 
     esac
   done
         
 fi
 
-rebuild_cache || die "Failed to rebuild paluids cache after adding overlays"
+add_to_make_conf
+rebuild_cache
 
 #vim:set ft=sh ts=4 sw=4 noet:

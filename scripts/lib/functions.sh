@@ -39,7 +39,7 @@ function die() {
         msg = "Some asshole ran die without setting a message, something broke is all I can tell you. Sorry dude!"
     fi
     error "${msg}"
-    exit 1
+    exit 1 
 }
 
 # Sets the package manager based on some constants
@@ -117,17 +117,33 @@ function rebuild_cache {
     fi
 }
 
+function add_to_make_conf {
+    if [ ${PKG_MANAGER} == "emerge" ]; then
+        if [ -f /var/lib/layman/make.conf ]; then
+            echo 'source "/var/lib/layman/make.conf"' >> /etc/make.conf
+        elif [ -f /usr/portage/local/layman/make.conf ]; then
+            echo 'source "/usr/portage/local/layman/make.conf"' >> /etc/make.conf
+        elif [ -f /usr/local/portage/layman/make.conf ]; then
+            echo 'source "/usr/local/portage/layman/make.conf"' >> /etc/make.con
+        else
+            die "Failed adding layman source to make.conf"
+        fi
+    fi
+}
+
 # Creates temporary directories and and fixes permissions.
 # @param [Optional, String] PKG_MANAGER Package manager we are using
 function bootstrap_pkgmgr {
     if [ ${PKG_MANAGER} == "paludis" ]; then
         mkdir -p /var/tmp/paludis
+        mkdir -p /var/cache/paludis
         mkdir -p /var/paludis
+        mkdir -p /var/log/paludis
         mkdir -p /usr/portage/.cache/names
-        chown -R paludisbuild:paludisbuild /etc/paludis /usr/portage /var/tmp/paludis /var/paludis
+        chown -R paludisbuild:paludisbuild /etc/paludis /usr/portage /var/tmp/paludis /var/paludis /var/cache/paludis /var/log/paludis
         find /usr/portage -type d -exec chmod g+wrx {} \;
         find /var/tmp/paludis -type d -exec chmod g+wrx {} \;
-        rebuild_cache "gentoo"
+        rebuild_cache
     fi
 }
 
