@@ -26,9 +26,10 @@ About
 
 Dependencies
 ------------
-* [rconfig](http://github.com/rahmal/rconfig/)
+* [RConifg](http://github.com/rahmal/rconfig)
 * [commander](http://github.com/visionmedia/commander)
-* [progressbar](http://github.com/nex3/ruby-progressbar/)
+* [ruby-progressbar](http://github.com/nex3/ruby-progressbar/)
+* [Erubis](http://www.kuwata-lab.com/erubis/)
 
 Download
 --------
@@ -42,8 +43,9 @@ You can also clone the project with Git by running:
 Install
 -------
 
-    $ gem install configatron
+    $ gem install rconfig 
     $ gem install commander
+    $ gem install progressbar
     $ git clone git://github.com/gregf/athenry
     $ cd athenry
     $ ./setup.rb install
