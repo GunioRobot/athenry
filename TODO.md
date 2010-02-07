@@ -1,15 +1,6 @@
 TODO
 =====
 
-Release 0.2.5
------------
-* Specialized PKG\_INSTALL commands
-* Update Docs
-* Release
-* Resume support is broke, rewrite RESUMETREE
-* test resume
-* gzip manpages
-
 Release 0.3.0
 --------------
 * proxy support
