@@ -5,11 +5,10 @@ Release 0.2.5
 -----------
 * Specialized PKG\_INSTALL commands
 * Update Docs
-* Manpages
 * Release
-* :force is broking for fetch
 * Resume support is broke, rewrite RESUMETREE
 * test resume
+* gzip manpages
 
 Release 0.3.0
 --------------
@@ -27,6 +26,7 @@ Release 0.3.0
 
 Next
 ----
+* zsh and bash completion
 * Stage 1 support
 * Defined verbosity levels
 * Check config for errors and die quickly 
@@ -43,6 +43,16 @@ Next
         - Exherbo
         - Shared
     - Split functions and run as needed
+* Fix known bug:
+   1. We update user configs each time we chroot to be sure we have the latest and greatest.
+   2. During install_overlays we append a source line to make.conf when using emerge
+   3. This gets overwritten the very next time the user runs chroot
+      Possible solutions:
+      1. Rerun the bash function that adds this line each time we chroot in.
+      2. Let users know this happens let them handle it
+      3. Don't always copy user configs each time and make sure users know if they update 
+         there configs this could happen.
+      4. Ideas? Profit??
 
 Testing
 -------
