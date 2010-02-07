@@ -22,8 +22,9 @@ About
 
 Dependencies
 ------------
-* [configatron](http://github.com/markbates/configatron)
+* [RConifg](http://github.com/rahmal/rconfig)
 * [commander](http://github.com/visionmedia/commander)
+* [ruby-progressbar](http://github.com/nex3/ruby-progressbar/)
 
 Download
 --------
@@ -37,8 +38,9 @@ You can also clone the project with Git by running:
 Install
 -------
 
-    $ gem install configatron
+    $ gem install rconfig 
     $ gem install commander
+    $ gem install progressbar
     $ git clone git://github.com/gregf/athenry
     $ cd athenry
     $ ./setup.rb install
@@ -62,7 +64,7 @@ License
 
 Athenry is licensed under the MIT license
 
-    Copyright (c) 2009 Greg Fitzgerald
+    Copyright (c) 2009-2010 Greg Fitzgerald
 
     Permission is hereby granted, free of charge, to any person
     obtaining a copy of this software and associated documentation
