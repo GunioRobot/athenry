@@ -1,14 +1,19 @@
-require 'rubygems'
 require 'uri'
-require 'erb'
+require 'erubis'
+require 'readline'
+require 'fileutils'
+require 'digest/md5' 
+require 'net/http'
+require 'time'
 
 begin
-  gem 'configatron', '>= 2.5'
-  require 'configatron'
-  
-  gem "commander", ">= 4.0"
-  require "commander/import"
-  CONFIG = configatron
+  gem 'rconfig', '>= 0.3.2'
+  require 'rconfig'
 rescue Gem::LoadError
 end
 
+begin
+  gem 'progressbar', '>= 0.9.0'
+  require 'progressbar'
+rescue Gem::LoadError
+end

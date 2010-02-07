@@ -2,7 +2,6 @@ module Athenry
   class Freshen 
 
     def initialize
-      must_be_root
       check_for_setup(:run)
       update_chroot
       mount
@@ -10,12 +9,12 @@ module Athenry
 
     # Performs the steps required to freshen an existing chroot.
     # @see Athenry::Execute::build
-    def update(args)
+    def update
       set_temp_options(:freshen => true) do
-        Athenry::Execute::build.sync
-        Athenry::Execute::build.update_everything
-        Athenry::Execute::build.update_configs
-        Athenry::Execute::build.rebuild
+        Athenry::build.sync
+        Athenry::build.update_everything
+        Athenry::build.etc_update
+        Athenry::build.rebuild
       end
     end
   

@@ -1,40 +1,49 @@
 TODO
 =====
 
-Release 0.3
------------
-* Global option for passing a chrootdir, all methods should accept this.
-* Ability to have more than one stage (custom names)
-    - This means name.log for log files
-    - name.state for state files
-* Use readline for shell
-* Check config for errors and die quickly 
-* Specialized PKG\_INSTALL commands
-* Make sync friendly to the gentoo mirrors cache a updated copy locally to be used.
-* Rake task to install gems
-* New workdir structure
-    - workdir
-    - workdir/chroot\_name
-    - workdir/portage/{portage-latest, cache}
-    - workdir/stages/{stage3.tar.bz2, built}
-    - workdir/var/{log, state}
+Release 0.3.0
+--------------
+* proxy support
+    export http_proxy="http://proxy.server.com:port"
+    export ftp_proxy="http://proxy.server.com:port"
+    [network]
+    http_proxy
+    ftp_proxy
+* sha1 support in Checksum class
+* build should create a tarball (pull mkstage5 into project)
+    - Look into doing this from outside the chroot using ruby
+* Stage 2 support
+* Rename arch to be less confusing, think of this more as a configuration profile
 
 Next
 ----
+* zsh and bash completion
+* Stage 1 support
+* Defined verbosity levels
+* Check config for errors and die quickly 
+    "fooexample.com" =~ /@(.*)/ and $1 or raise "bad email" 
 * default to pbzip2 if installed, else use tar
 * Make use of EMERGE\_DEFAULT\_OPTS
-* build should create a tarball (pull mkstage5 into project)
 * Split helper into separate files so we can include less/more as needed
 * Ability to build a chroot based on the current machines world file, parse /var/lib/portage/world
     - Make this a target command possibly clone with the optional path to a world file
 * Ability for users to add bash code to be executed before and after our main scripts
-* Ability to detect archive type and use correct tar options
 * Ability to build Exherbo stages (2.x)
     - Split modules into 3 categories
         - Gentoo
         - Exherbo
         - Shared
     - Split functions and run as needed
+* Fix known bug:
+   1. We update user configs each time we chroot to be sure we have the latest and greatest.
+   2. During install_overlays we append a source line to make.conf when using emerge
+   3. This gets overwritten the very next time the user runs chroot
+      Possible solutions:
+      1. Rerun the bash function that adds this line each time we chroot in.
+      2. Let users know this happens let them handle it
+      3. Don't always copy user configs each time and make sure users know if they update 
+         there configs this could happen.
+      4. Ideas? Profit??
 
 Testing
 -------

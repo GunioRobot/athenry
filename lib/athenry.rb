@@ -1,5 +1,6 @@
 ATHENRY_ROOT = "#{File.dirname(__FILE__)}/.." unless defined?(ATHENRY_ROOT)
 
+require 'athenry/core_ext/object'
 require 'athenry/depends'
 require 'athenry/version'
 require 'athenry/config'
@@ -9,6 +10,10 @@ require 'athenry/resumetree'
 require 'athenry/run'
 require 'athenry/commands'
 require 'athenry/shell'
+require 'athenry/sync'
+require 'athenry/checksum'
+require 'athenry/extract'
+require 'athenry/fetch'
 
 # This module contains everything Athenry related
 #
@@ -22,15 +27,12 @@ require 'athenry/shell'
 # * {Athenry::Shell} is the class that gives you an irb like shell.
 # * {Athenry::Run} is a class that wraps all the steps need for each step.
 module Athenry
-  # See {Athenry} for more information. 
-  module Execute
-    
     # Initiates Setup [Class]
     # @see Athenry::Setup
     def self.setup
       Setup.new
     end
-   
+
     # Initiates Build [Class]
     # @see Athenry::Build
     def self.build
@@ -78,5 +80,28 @@ module Athenry
     def self.run
       Run.new
     end
-  end
+
+    # Initiates Extract [Class]
+    # @see Athenry::Extract
+    def self.extract(*args)
+      Extract.new(*args).deflate
+    end
+  
+    # Initiates Checksum [Class]
+    # @see Athenry::Checksum
+    def self.md5sum(*args)
+      Checksum.new(*args).md5
+    end
+
+    # Initiates Fetch [Class]
+    # @see Athenry::Fetch
+    def self.fetch(*args)
+      Fetch.new(*args).fetch_file
+    end
+
+    # Initiates Sync [Class]
+    # @see Athenry::Sync
+    def self.sync(*args)
+      Sync.new(*args).files
+    end
 end

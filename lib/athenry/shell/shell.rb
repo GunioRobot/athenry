@@ -2,10 +2,17 @@ module Athenry
   class Shell
     include ShellAliases
 
+    attr_accessor :debug
+
     def initialize
+      $shell_is_running = true
+      debug = false
+      
       must_be_root
       aliases
-      $shell_is_running = true
+      help_data
+      generate_list
+      greeting
     end
 
     # Exits the shell
@@ -18,35 +25,57 @@ module Athenry
     # Loads the help template and prints to stdout
     # @return [String]
     def help
-      setup ||= Athenry::Setup.instance_methods(false)
-      build ||= Athenry::Build.instance_methods(false)
-      target ||= Athenry::Target.instance_methods(false)
-      freshen ||= Athenry::Freshen.instance_methods(false)
-      clean ||= Athenry::Clean.instance_methods(false)
-      
-      template = ERB.new(File.open("#{ATHENRY_ROOT}/lib/athenry/templates/help.erb").read, 0, "%<>")
-      puts "#{template.result(binding)}"
+      display_erb("help.erb")
     end
 
-    # Takes user input and executes the ruby command
-    # @return [String]
+    def debug
+      debug ? debug=false : debug=true
+    end
+
     def shellinput
-      puts 'Type help for a list of commands:'
+      Readline.completion_append_character = " "
+      Readline.completion_proc = generate_list
+
       begin
-        while command = prompt 
-          execute(command)
+        while cmd = history_management 
+          execute(cmd.rstrip) 
         end
-      rescue => e
-        puts "Error: #{e}"
+      rescue NoMethodError, ArgumentError => e
+        if cmd.length > 0 then puts "#{cmd} is a invalid command" end
+        if debug then puts "#{e}" end
         shellinput
       end
     end
-
+    
     private
- 
-    def prompt
-      ask('>>')
-    end   
+
+    def history_management
+      cmdline = Readline.readline('>> ', true)
+      return nil if cmdline.nil?
+      if cmdline =~ /^\s*$/ or Readline::HISTORY.to_a[-2] == cmdline
+        Readline::HISTORY.pop
+      end
+      cmdline
+    end
+
+    def greeting
+      puts 'Welcome to the Athenry shell'
+      puts 'Type "help" for more information or "quit" to exit the shell'
+    end
+
+    def generate_list
+      list ||= [].concat([@setup, @build, @target, @freshen, @clean, @help]).flatten.sort
+      comp ||= proc { |s| list.grep( /^#{Regexp.escape(s)}/ ) }
+    end
+
+    def help_data
+      @setup    ||= Athenry::Setup.instance_methods(false)
+      @build    ||= Athenry::Build.instance_methods(false)
+      @target   ||= Athenry::Target.instance_methods(false)
+      @freshen  ||= Athenry::Freshen.instance_methods(false)
+      @clean    ||= Athenry::Clean.instance_methods(false)
+      @help     ||= ["debug", "help", "quit"]
+    end
 
   end
 end

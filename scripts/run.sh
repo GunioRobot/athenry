@@ -1,7 +1,9 @@
 #!/bin/bash
 
+set -e
+
 # Set some constants
-ATHENRY_ROOT="/root/athenry"
+ATHENRY_ROOT="/scripts"
 LIB="${ATHENRY_ROOT}/lib"
 MODULES="${ATHENRY_ROOT}/modules"
 ACTION="${1}"

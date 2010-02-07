@@ -3,7 +3,6 @@ module Athenry
     include ShellAliases
     
     def initialize
-      must_be_root
       check_for_setup
       aliases
       load_state
@@ -13,10 +12,10 @@ module Athenry
     # @return [String]
     def from
       begin
-        send(resume["#{@current_state.first}"]["#{@current_state.last}"])
+        send(RESUMETREE["#{@current_state.first}"]["#{@current_state.last}"])
       rescue
-        error('Invalid resume point')
-        exit 1
+       error('Invalid resume point')
+       exit 1
       end
     end
 
@@ -27,12 +26,11 @@ module Athenry
     # @return [String]
     def load_state
       begin
-        statefile = "#{CONFIG.workdir}/#{CONFIG.statedir}/#{CONFIG.statefile}"
-        if File.file?("#{statefile}") && File.readable?("#{statefile}") 
-          @current_state = File.read(statefile).strip.split(':')
+        if File.file?("#{$statefile}") && File.readable?("#{$statefile}") 
+          @current_state = File.read("#{$statefile}").strip.split(':')
         end
       rescue
-        error('Invalid no No Resume point')
+        error('Invalid Resume Point')
         exit 1
       end
     end

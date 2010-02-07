@@ -1,0 +1,12 @@
+--protected
+--no-private
+--readme README.md
+-
+MIT-LICENSE
+AUTHORS.md
+TODO.md
+doc/About.md
+doc/Hacking.md
+doc/WhatsNew.md
+doc/QuickStart.md
+doc/Release.md

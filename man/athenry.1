@@ -1,0 +1,57 @@
+.TH athenry 1 "Jan 30 2010" "" "Athenry"
+
+.SH NAME:
+athenry [OPTIONS] [COMMAND]
+.SH DESCRIPTION:
+Athenry will use system configuration files you provide to build Gentoo Stage tarballs for installation or chroots using freshly rolled x86 or amd64 installs.
+.SH GLOBAL OPTIONS:
+.TP
+.BI -c, --chroot 
+Use the specified chroot directory.
+.TP
+.BI -p, --snapshoturl
+ Use the specified snapshot url.
+.TP
+.BI  -s, --stageurl
+Use the specified stage url.
+.TP
+.BI -v, --version
+Display version information
+.TP
+.BI h, --help
+Show an overview of the commandline options.
+.TP
+.BI -t, --trace
+Display backtrace when an error occurs
+.SH COMMANDS:
+.TP
+.BI build
+Executes a single command on the given chroot <step>
+.TP
+.BI clean
+Cleans up any mess made
+.TP
+.BI freshen
+Updates an existing chroot
+.TP
+.BI help
+Display global or [command] help documentation.
+.TP
+.BI rescue
+Chroot into the current stage to perform commands manually
+.TP
+.BI resume
+Resume from last saved state
+.TP
+.BI setup
+Fetches files and creates necessary directories
+.TP
+.BI shell
+ Run Athenry commands directly through an irb like shell
+.TP
+.BI target
+Starts building the target stage specified
+.SH SEE ALSO
+Website: http://gregf.github.com/athenry/
+.SH AUTHOR
+Athenry was written by Greg Fitzgerald <netzdamon@gmail.com>

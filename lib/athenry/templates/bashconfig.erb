@@ -2,17 +2,18 @@
 # Make changes to config.rb
 #
 
-TIMEZONE="<%= CONFIG.timezone %>"
-SETS=( <%= CONFIG.sets %> )
-PKG_MANAGER="<%= CONFIG.pkgmanager %>"
-ARCH="<%= CONFIG.arch %>"
+TIMEZONE="<%= RConfig.athenry.general.timezone %>"
+SETS=( <%= RConfig.athenry.gentoo.sets %> )
+PKG_MANAGER="<%= RConfig.athenry.gentoo.package_manager %>"
+ARCH="<%= RConfig.athenry.general.arch %>"
+PROFILE="<%= RConfig.athenry.gentoo.profile %>"
 
 # Overlays Hash
-<% CONFIG.overlay_array.each do |name| %>
+<% @overlays.each do |name| %>
 <%= "#{name}" %>
 <% end %>
 
 # Temporary options
 # These change depending on what your building do not edit!
-FRESHEN="<%= CONFIG.freshen %>"
-NOPALUDIS="<%= CONFIG.nopaludis %>"
+FRESHEN="<%= $freshen %>"
+NOPALUDIS="<%= $nopaludis %>"

@@ -2,13 +2,12 @@ module Athenry
   class Build
 
     def initialize
-      must_be_root
-      check_for_setup
+      check_for_setup(:run)
       update_chroot
       mount
     end
     
-    def target(args)
+    def target(*args)
       args.each { |cmd| send(cmd) }
     end
     
@@ -21,7 +20,7 @@ module Athenry
       send_to_state('build', 'sync')
     end
     
-    # Installs the package manager set via CONFIG.pkgmgr
+    # Installs the package manager set via RCONFIG.athenry.package_manager
     # @return [String]
     def install_pkgmgr
       announcing 'Installing Package Manager' do
@@ -43,7 +42,7 @@ module Athenry
     # @return [String]
     def etc_update 
       announcing 'Running etc-update' do
-        system("chroot #{CONFIG.workdir}/#{chrootdir} /root/athenry/run.sh update_configs")
+        system("chroot #{$chrootdir} /scripts/run.sh update_configs")
       end
       send_to_state('build', 'etc_update')
     end
