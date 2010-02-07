@@ -1,5 +1,6 @@
 title: "Athenry"
 url: "http://gregf.github.com/athenry"
+#url: "http://localhost:4000"
 
 destination: ./_site
 permalink:   "/:year/:month/:day/:title"
