@@ -25,6 +25,7 @@ Dependencies
 * [RConifg](http://github.com/rahmal/rconfig)
 * [commander](http://github.com/visionmedia/commander)
 * [ruby-progressbar](http://github.com/nex3/ruby-progressbar/)
+* [Erubis](http://www.kuwata-lab.com/erubis/)
 
 Download
 --------
