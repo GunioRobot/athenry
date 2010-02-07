@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (R)</a> &raquo; 
-    <a href="../Athenry.html" title="Athenry">Athenry</a>
+    <span class='title'><a href="../Athenry.html" title="Athenry (module)">Athenry</a></span>
      &raquo; 
     <span class="title">Rescue</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,7 +52,15 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName">Object</span>
+      <span class="inheritName"><a href="../Object.html" title="Object (class)">Object</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next">Athenry::Rescue</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
       
       </dd>
     
@@ -66,31 +80,19 @@
 
 
 
-  <h2>Method Summary</h2>
+  <h2>Instance Method Summary</h2>
+
   <ul class="summary">
     
       <li class="public ">
-  <span class="summary_signature"><a href="#initialize-instance_method" title="#initialize (instance method)">- (Rescue) <strong>initialize</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-A new instance of <tt>Rescue</tt>.
-
-</span>
-  
-</li>
+  <span class="summary_signature">
+    
+      <a href="#chroot-instance_method" title="#chroot (instance method)">- (Object) <strong>chroot</strong> </a>
+    
 
     
-      <li class="public ">
-  <span class="summary_signature"><a href="#target-instance_method" title="#target (instance method)">- (Object) <strong>target</strong> </a>
-  
   </span>
+  
   
   
   
@@ -105,48 +107,53 @@ Executes the rescue shell on an existing chroot.
 </li>
 
     
-  </ul>
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Rescue) <strong>initialize</strong> </a>
+    
 
-<div id="constructor_details">
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+A new instance of Rescue.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+<div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><a href="" title="Rescue">Rescue</a></tt>) <strong>initialize</strong> 
+    - (<tt><a href="" title="Athenry::Rescue (class)">Rescue</a></tt>) <strong>initialize</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of <tt>Rescue</tt>
+A new instance of Rescue
 </p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
   
-    <li>
-      
-        <span class='type'>(<tt><a href="" title="Rescue">Rescue</a></tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        
-a new instance of <tt>Rescue</tt>
-
-
-      
-    </li>
-  
-</ul>
-
 </div><table class="source_code">
   <tr>
     <td>
@@ -156,14 +163,12 @@ a new instance of <tt>Rescue</tt>
 4
 5
 6
-7
-8</pre>
+7</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/athenry/commands/rescue.rb', line 4</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span>
-  <span class='must_be_root identifier id'>must_be_root</span>
   <span class='check_for_setup identifier id'>check_for_setup</span>
   <span class='mount identifier id'>mount</span>
 <span class='end end kw'>end</span>
@@ -176,13 +181,14 @@ a new instance of <tt>Rescue</tt>
 </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
     
       <div class="method_details first">
-  <p class="signature first" id="target-instance_method">
+  <p class="signature first" id="chroot-instance_method">
   
-    - (<tt>Object</tt>) <strong>target</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>chroot</strong> 
   
 
   
@@ -205,7 +211,7 @@ a interactive session.
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li><a href="Helper.html#cmd-instance_method" title="Athenry::Helper#cmd">Athenry::Helper#cmd</a></li>
+      <li><a href="Helper.html#cmd-instance_method" title="Athenry::Helper#cmd (method)">Athenry::Helper#cmd</a></li>
     
   </ul>
 
@@ -215,15 +221,15 @@ a interactive session.
       <pre class="lines">
 
 
+15
 16
-17
-18</pre>
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/commands/rescue.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/rescue.rb', line 15</span>
 
-<span class='def def kw'>def</span> <span class='target identifier id'>target</span>
-  <span class='system identifier id'>system</span><span class='lparen token'>(</span><span class='dstring node'>&quot;chroot #{CONFIG.workdir}/#{CONFIG.chrootdir} /root/athenry/run.sh rescue&quot;</span><span class='rparen token'>)</span>
+<span class='def def kw'>def</span> <span class='chroot identifier id'>chroot</span>
+  <span class='system identifier id'>system</span><span class='lparen token'>(</span><span class='dstring node'>&quot;chroot #{$chrootdir} /scripts/run.sh rescue&quot;</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -236,9 +242,9 @@ a interactive session.
 </div>
     
     <div id="footer">
-  Generated on Tue Nov 17 22:02:44 2009 by 
+  Generated on Sat Feb  6 22:29:08 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.3 (ruby-1.8.7).
 </div>
 
   </body>

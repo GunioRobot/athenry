@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (F)</a> &raquo; 
-    <a href="../Athenry.html" title="Athenry">Athenry</a>
+    <span class='title'><a href="../Athenry.html" title="Athenry (module)">Athenry</a></span>
      &raquo; 
     <span class="title">Freshen</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,7 +52,15 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName">Object</span>
+      <span class="inheritName"><a href="../Object.html" title="Object (class)">Object</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next">Athenry::Freshen</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
       
       </dd>
     
@@ -66,13 +80,21 @@
 
 
 
-  <h2>Method Summary</h2>
+  <h2>Instance Method Summary</h2>
+
   <ul class="summary">
     
       <li class="public ">
-  <span class="summary_signature"><a href="#initialize-instance_method" title="#initialize (instance method)">- (Freshen) <strong>initialize</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Freshen) <strong>initialize</strong> </a>
+    
+
+    
   </span>
+  
+    <span class="note title constructor">constructor</span>
+  
   
   
   
@@ -80,7 +102,7 @@
 
   
     <span class="summary_desc">
-A new instance of <tt>Freshen</tt>.
+A new instance of Freshen.
 
 </span>
   
@@ -88,9 +110,14 @@ A new instance of <tt>Freshen</tt>.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong>(args) </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -106,47 +133,27 @@ Performs the steps required to freshen an existing chroot.
 
     
   </ul>
-
-<div id="constructor_details">
+<div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><a href="" title="Freshen">Freshen</a></tt>) <strong>initialize</strong> 
+    - (<tt><a href="" title="Athenry::Freshen (class)">Freshen</a></tt>) <strong>initialize</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of <tt>Freshen</tt>
+A new instance of Freshen
 </p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
   
-    <li>
-      
-        <span class='type'>(<tt><a href="" title="Freshen">Freshen</a></tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        
-a new instance of <tt>Freshen</tt>
-
-
-      
-    </li>
-  
-</ul>
-
 </div><table class="source_code">
   <tr>
     <td>
@@ -157,14 +164,12 @@ a new instance of <tt>Freshen</tt>
 5
 6
 7
-8
-9</pre>
+8</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/athenry/commands/freshen.rb', line 4</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span>
-  <span class='must_be_root identifier id'>must_be_root</span>
   <span class='check_for_setup identifier id'>check_for_setup</span><span class='lparen token'>(</span><span class='symbol val'>:run</span><span class='rparen token'>)</span>
   <span class='update_chroot identifier id'>update_chroot</span>
   <span class='mount identifier id'>mount</span>
@@ -178,13 +183,14 @@ a new instance of <tt>Freshen</tt>
 </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="update-instance_method">
   
-    - (<tt>Object</tt>) <strong>update</strong>(args) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>update</strong> 
   
 
   
@@ -202,7 +208,7 @@ Performs the steps required to freshen an existing chroot.
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li><a href="Execute.html#build-class_method" title="Athenry::Execute::build">Athenry::Execute::build</a></li>
+      <li>Athenry::Execute::build</li>
     
   </ul>
 
@@ -212,24 +218,24 @@ Performs the steps required to freshen an existing chroot.
       <pre class="lines">
 
 
+12
 13
 14
 15
 16
 17
 18
-19
-20</pre>
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/commands/freshen.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/freshen.rb', line 12</span>
 
-<span class='def def kw'>def</span> <span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+<span class='def def kw'>def</span> <span class='update identifier id'>update</span>
   <span class='set_temp_options identifier id'>set_temp_options</span><span class='lparen token'>(</span><span class='symbol val'>:freshen</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='rparen token'>)</span> <span class='do do kw'>do</span>
-    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='sync identifier id'>sync</span>
-    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='update_everything identifier id'>update_everything</span>
-    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='update_configs identifier id'>update_configs</span>
-    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='rebuild identifier id'>rebuild</span>
+    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='sync identifier id'>sync</span>
+    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='update_everything identifier id'>update_everything</span>
+    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='etc_update identifier id'>etc_update</span>
+    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='rebuild identifier id'>rebuild</span>
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -243,9 +249,9 @@ Performs the steps required to freshen an existing chroot.
 </div>
     
     <div id="footer">
-  Generated on Tue Nov 17 22:02:43 2009 by 
+  Generated on Sat Feb  6 22:29:07 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.3 (ruby-1.8.7).
 </div>
 
   </body>

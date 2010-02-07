@@ -16,16 +16,22 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="_index.html" title="Index">Index</a> &raquo; 
     <span class="title">File: README</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -37,7 +43,7 @@
     
     <div id="content"><div id='filecontents'><h1 id='athenry'>Athenry</h1>
 
-<p><strong>Homepage</strong>: <a href='http://gregf.github.com/athenry'>http://gregf.github.com/athenry</a><br /><strong>Git</strong>: <a href='http://github.com/gregf/athenry'>http://github.com/gregf/athenry</a><br /><strong>Author</strong>: Greg Fitzgerald<br /><strong>Copyright</strong>: 2009<br /><strong>License</strong>: MIT License</p>
+<p><strong>Homepage</strong>: <a href='http://gregf.github.com/athenry'>http://gregf.github.com/athenry</a><br /><strong>Git</strong>: <a href='http://github.com/gregf/athenry'>http://github.com/gregf/athenry</a><br /><strong>Author</strong>: Greg Fitzgerald<br /><strong>Copyright</strong>: 2009-2010 <strong>License</strong>: MIT License</p>
 
 <h2 id='index'>Index</h2>
 
@@ -70,9 +76,13 @@
 <h2 id='dependencies'>Dependencies</h2>
 
 <ul>
-<li><a href='http://github.com/markbates/configatron'>configatron</a></li>
+<li><a href='http://github.com/rahmal/rconfig'>RConifg</a></li>
 
 <li><a href='http://github.com/visionmedia/commander'>commander</a></li>
+
+<li><a href='http://github.com/nex3/ruby-progressbar/'>ruby-progressbar</a></li>
+
+<li><a href='http://www.kuwata-lab.com/erubis/'>Erubis</a></li>
 </ul>
 
 <h2 id='download'>Download</h2>
@@ -86,8 +96,9 @@
 
 <h2 id='install'>Install</h2>
 
-<pre class="code">$ <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='configatron identifier id'>configatron</span>
+<pre class="code">$ <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='rconfig identifier id'>rconfig</span> 
 $ <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='commander identifier id'>commander</span>
+$ <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='progressbar identifier id'>progressbar</span>
 $ <span class='git identifier id'>git</span> <span class='clone identifier id'>clone</span> <span class='git identifier id'>git</span><span class='symbol val'>:/</span><span class='regexp val'>/github.com/</span><span class='gregf identifier id'>gregf</span><span class='div op'>/</span><span class='athenry identifier id'>athenry</span>
 $ <span class='cd identifier id'>cd</span> <span class='athenry identifier id'>athenry</span>
 $ <span class='dot token'>.</span><span class='div op'>/</span><span class='setup identifier id'>setup</span><span class='dot token'>.</span><span class='rb identifier id'>rb</span> <span class='install identifier id'>install</span>
@@ -113,7 +124,7 @@ $ <span class='dot token'>.</span><span class='div op'>/</span><span class='setu
 
 <p>Athenry is licensed under the MIT license</p>
 
-<pre class="code"><span class='Copyright constant id'>Copyright</span> <span class='lparen token'>(</span><span class='c identifier id'>c</span><span class='rparen token'>)</span> <span class='integer val'>2009</span> <span class='Greg constant id'>Greg</span> <span class='Fitzgerald constant id'>Fitzgerald</span>
+<pre class="code"><span class='Copyright constant id'>Copyright</span> <span class='lparen token'>(</span><span class='c identifier id'>c</span><span class='rparen token'>)</span> <span class='integer val'>2009</span><span class='minus op'>-</span><span class='integer val'>2010</span> <span class='Greg constant id'>Greg</span> <span class='Fitzgerald constant id'>Fitzgerald</span>
 
 <span class='Permission constant id'>Permission</span> <span class='is identifier id'>is</span> <span class='hereby identifier id'>hereby</span> <span class='granted identifier id'>granted</span><span class='comma token'>,</span> <span class='free identifier id'>free</span> <span class='of identifier id'>of</span> <span class='charge identifier id'>charge</span><span class='comma token'>,</span> <span class='to identifier id'>to</span> <span class='any identifier id'>any</span> <span class='person identifier id'>person</span>
 <span class='obtaining identifier id'>obtaining</span> <span class='a identifier id'>a</span> <span class='copy identifier id'>copy</span> <span class='of identifier id'>of</span> <span class='this identifier id'>this</span> <span class='software identifier id'>software</span> <span class='and and kw'>and</span> <span class='associated identifier id'>associated</span> <span class='documentation identifier id'>documentation</span>
@@ -138,9 +149,9 @@ OTHER DEALINGS IN THE SOFTWARE.
 </span></pre></div></div>
     
     <div id="footer">
-  Generated on Tue Nov 17 22:02:38 2009 by 
+  Generated on Sat Feb  6 22:29:02 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.3 (ruby-1.8.7).
 </div>
 
   </body>

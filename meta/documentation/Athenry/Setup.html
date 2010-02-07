@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (S)</a> &raquo; 
-    <a href="../Athenry.html" title="Athenry">Athenry</a>
+    <span class='title'><a href="../Athenry.html" title="Athenry (module)">Athenry</a></span>
      &raquo; 
     <span class="title">Setup</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,7 +52,15 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName">Object</span>
+      <span class="inheritName"><a href="../Object.html" title="Object (class)">Object</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next">Athenry::Setup</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
       
       </dd>
     
@@ -66,13 +80,19 @@
 
 
 
-  <h2>Method Summary</h2>
+  <h2>Instance Method Summary</h2>
+
   <ul class="summary">
     
       <li class="public ">
-  <span class="summary_signature"><a href="#copy_configs-instance_method" title="#copy_configs (instance method)">- (String) <strong>copy_configs</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#copy_configs-instance_method" title="#copy_configs (instance method)">- (String) <strong>copy_configs</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -80,7 +100,7 @@
 
   
     <span class="summary_desc">
-Copies user config files into CONFIG.chrootdir/etc.
+Copies user config files into $chrootdir/etc.
 
 </span>
   
@@ -88,9 +108,14 @@ Copies user config files into CONFIG.chrootdir/etc.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#copy_scripts-instance_method" title="#copy_scripts (instance method)">- (String) <strong>copy_scripts</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#copy_scripts-instance_method" title="#copy_scripts (instance method)">- (String) <strong>copy_scripts</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -98,7 +123,7 @@ Copies user config files into CONFIG.chrootdir/etc.
 
   
     <span class="summary_desc">
-Copies build scripts into CONFIG.chrootdir/root.
+Copies build scripts into $chrootdir/root.
 
 </span>
   
@@ -106,9 +131,14 @@ Copies build scripts into CONFIG.chrootdir/root.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#generate_bashscripts-instance_method" title="#generate_bashscripts (instance method)">- (String) <strong>generate_bashscripts</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#copysnapshot-instance_method" title="#copysnapshot (instance method)">- (String) <strong>copysnapshot</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -116,7 +146,7 @@ Copies build scripts into CONFIG.chrootdir/root.
 
   
     <span class="summary_desc">
-Generates dynamic bash configs based on data from config.rb.
+Copies the snapshot cache into your chroot directory.
 
 </span>
   
@@ -124,9 +154,14 @@ Generates dynamic bash configs based on data from config.rb.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#initialize-instance_method" title="#initialize (instance method)">- (Setup) <strong>initialize</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#extractsnapshot-instance_method" title="#extractsnapshot (instance method)">- (String) <strong>extractsnapshot</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -134,7 +169,7 @@ Generates dynamic bash configs based on data from config.rb.
 
   
     <span class="summary_desc">
-A new instance of <tt>Setup</tt>.
+Extracts the snapshot tarball.
 
 </span>
   
@@ -142,9 +177,14 @@ A new instance of <tt>Setup</tt>.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#snapshot-instance_method" title="#snapshot (instance method)">- (String) <strong>snapshot</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#extractstage-instance_method" title="#extractstage (instance method)">- (String) <strong>extractstage</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -152,7 +192,7 @@ A new instance of <tt>Setup</tt>.
 
   
     <span class="summary_desc">
-Fetches a portage snapshot and extracts it to CONFIG.chrootdir/usr/.
+Extracts the stage file we downloaded.
 
 </span>
   
@@ -160,9 +200,14 @@ Fetches a portage snapshot and extracts it to CONFIG.chrootdir/usr/.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#stage-instance_method" title="#stage (instance method)">- (String) <strong>stage</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#fetchsnapshot-instance_method" title="#fetchsnapshot (instance method)">- (String) <strong>fetchsnapshot</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -170,8 +215,98 @@ Fetches a portage snapshot and extracts it to CONFIG.chrootdir/usr/.
 
   
     <span class="summary_desc">
-If stage file is not found it fetches one from CONFIG.stageurl, then
-extracts the file.
+Fetches a portage snapshot and extracts it to $chrootdir/usr/.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fetchstage-instance_method" title="#fetchstage (instance method)">- (String) <strong>fetchstage</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+If stage file is not found it fetches one from $stageurl.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Setup) <strong>initialize</strong> </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+A new instance of Setup.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#target-instance_method" title="#target (instance method)">- (Object) <strong>target</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#updatesnapshot-instance_method" title="#updatesnapshot (instance method)">- (String) <strong>updatesnapshot</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Uses rsync and RConfig.gentoo.sync to update the snapshot cache.
 
 </span>
   
@@ -179,47 +314,27 @@ extracts the file.
 
     
   </ul>
-
-<div id="constructor_details">
+<div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><a href="" title="Setup">Setup</a></tt>) <strong>initialize</strong> 
+    - (<tt><a href="" title="Athenry::Setup (class)">Setup</a></tt>) <strong>initialize</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of <tt>Setup</tt>
+A new instance of Setup
 </p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
   
-    <li>
-      
-        <span class='type'>(<tt><a href="" title="Setup">Setup</a></tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        
-a new instance of <tt>Setup</tt>
-
-
-      
-    </li>
-  
-</ul>
-
 </div><table class="source_code">
   <tr>
     <td>
@@ -245,8 +360,9 @@ a new instance of <tt>Setup</tt>
 </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="copy_configs-instance_method">
@@ -258,7 +374,7 @@ a new instance of <tt>Setup</tt>
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Copies user config files into CONFIG.chrootdir/etc
+Copies user config files into $chrootdir/etc
 </p>
 
 
@@ -285,19 +401,19 @@ Copies user config files into CONFIG.chrootdir/etc
       <pre class="lines">
 
 
-62
-63
-64
-65
-66
-67</pre>
+97
+98
+99
+100
+101
+102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 97</span>
 
 <span class='def def kw'>def</span> <span class='copy_configs identifier id'>copy_configs</span>
   <span class='announcing identifier id'>announcing</span> <span class='string val'>'Copying configs into chroot'</span> <span class='do do kw'>do</span>
-    <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;cp -vR #{CONFIG.configs}/* #{CONFIG.workdir}/#{CONFIG.chrootdir}/etc/&quot;</span>
+    <span class='update_configs identifier id'>update_configs</span>
   <span class='end end kw'>end</span>
   <span class='send_to_state identifier id'>send_to_state</span><span class='lparen token'>(</span><span class='string val'>'setup'</span><span class='comma token'>,</span> <span class='string val'>'copy_configs'</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
@@ -317,7 +433,7 @@ Copies user config files into CONFIG.chrootdir/etc
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Copies build scripts into CONFIG.chrootdir/root
+Copies build scripts into $chrootdir/root
 </p>
 
 
@@ -344,21 +460,19 @@ Copies build scripts into CONFIG.chrootdir/root
       <pre class="lines">
 
 
-52
-53
-54
-55
-56
-57
-58</pre>
+88
+89
+90
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 88</span>
 
 <span class='def def kw'>def</span> <span class='copy_scripts identifier id'>copy_scripts</span>
   <span class='announcing identifier id'>announcing</span> <span class='string val'>'Copying scripts into chroot'</span> <span class='do do kw'>do</span>
-    <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;cp -Rv #{CONFIG.scripts}/athenry/ #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/&quot;</span>
-    <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;chmod +x #{CONFIG.workdir}/#{CONFIG.chrootdir}/root/athenry/run.sh&quot;</span>
+    <span class='update_scripts identifier id'>update_scripts</span>
   <span class='end end kw'>end</span>
   <span class='send_to_state identifier id'>send_to_state</span><span class='lparen token'>(</span><span class='string val'>'setup'</span><span class='comma token'>,</span> <span class='string val'>'copy_scripts'</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
@@ -369,16 +483,16 @@ Copies build scripts into CONFIG.chrootdir/root
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="generate_bashscripts-instance_method">
+  <p class="signature " id="copysnapshot-instance_method">
   
-    - (<tt>String</tt>) <strong>generate_bashscripts</strong> 
+    - (<tt>String</tt>) <strong>copysnapshot</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Generates dynamic bash configs based on data from config.rb
+Copies the snapshot cache into your chroot directory
 </p>
 
 
@@ -405,21 +519,27 @@ Generates dynamic bash configs based on data from config.rb
       <pre class="lines">
 
 
-43
-44
-45
-46
-47
-48</pre>
+76
+77
+78
+79
+80
+81
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 76</span>
 
-<span class='def def kw'>def</span> <span class='generate_bashscripts identifier id'>generate_bashscripts</span>
-  <span class='announcing identifier id'>announcing</span> <span class='string val'>'Generate bash configuration file'</span> <span class='do do kw'>do</span>
-    <span class='generate_bash identifier id'>generate_bash</span><span class='lparen token'>(</span><span class='string val'>'bashconfig'</span><span class='comma token'>,</span> <span class='string val'>'config.sh'</span><span class='rparen token'>)</span>
+<span class='def def kw'>def</span> <span class='copysnapshot identifier id'>copysnapshot</span>
+  <span class='announcing identifier id'>announcing</span> <span class='string val'>'Copying snapshot to chroot'</span> <span class='do do kw'>do</span>
+    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='sync identifier id'>sync</span><span class='lparen token'>(</span><span class='symbol val'>:options</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;--verbose --progress --recursive --links --safe-links --perms\
+                  --times --force --whole-file --delete --stats&quot;</span><span class='comma token'>,</span>
+                  <span class='symbol val'>:uri</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='dstring node'>&quot;#{SNAPSHOTCACHE}/portage/&quot;</span><span class='comma token'>,</span> 
+                  <span class='symbol val'>:output</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='dstring node'>&quot;#{$chrootdir}/usr/portage/&quot;</span><span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
-  <span class='send_to_state identifier id'>send_to_state</span><span class='lparen token'>(</span><span class='string val'>'setup'</span><span class='comma token'>,</span> <span class='string val'>'generate_bashscripts'</span><span class='rparen token'>)</span>
+  <span class='send_to_state identifier id'>send_to_state</span><span class='lparen token'>(</span><span class='string val'>'setup'</span><span class='comma token'>,</span> <span class='string val'>'copysnapshot'</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -428,16 +548,16 @@ Generates dynamic bash configs based on data from config.rb
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="snapshot-instance_method">
+  <p class="signature " id="extractsnapshot-instance_method">
   
-    - (<tt>String</tt>) <strong>snapshot</strong> 
+    - (<tt>String</tt>) <strong>extractsnapshot</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Fetches a portage snapshot and extracts it to CONFIG.chrootdir/usr/
+Extracts the snapshot tarball
 </p>
 
 
@@ -464,35 +584,92 @@ Fetches a portage snapshot and extracts it to CONFIG.chrootdir/usr/
       <pre class="lines">
 
 
+49
+50
+51
+52
+53
+54
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 49</span>
+
+<span class='def def kw'>def</span> <span class='extractsnapshot identifier id'>extractsnapshot</span>
+  <span class='announcing identifier id'>announcing</span> <span class='string val'>'Extracting portage snapshot'</span> <span class='do do kw'>do</span>
+    <span class='unless unless kw'>unless</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{SNAPSHOTCACHE}/portage/&quot;</span><span class='rparen token'>)</span>
+      <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='md5sum identifier id'>md5sum</span><span class='lparen token'>(</span><span class='symbol val'>:uri</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$snapshoturl gvar id'>$snapshoturl</span><span class='comma token'>,</span> <span class='symbol val'>:path</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='SNAPSHOTDIR constant id'>SNAPSHOTDIR</span><span class='comma token'>,</span> <span class='symbol val'>:digest</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'md5sum'</span><span class='rparen token'>)</span>
+      <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='extract identifier id'>extract</span><span class='lparen token'>(</span><span class='symbol val'>:uri</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$snapshoturl gvar id'>$snapshoturl</span><span class='comma token'>,</span> <span class='symbol val'>:path</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='SNAPSHOTDIR constant id'>SNAPSHOTDIR</span><span class='comma token'>,</span> <span class='symbol val'>:location</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='SNAPSHOTCACHE constant id'>SNAPSHOTCACHE</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='send_to_state identifier id'>send_to_state</span><span class='lparen token'>(</span><span class='string val'>'setup'</span><span class='comma token'>,</span> <span class='string val'>'extractsnapshot'</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="extractstage-instance_method">
+  
+    - (<tt>String</tt>) <strong>extractstage</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Extracts the stage file we downloaded.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
 27
 28
 29
 30
 31
 32
-33
-34
-35
-36
-37
-38
-39</pre>
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 25</span>
 
-<span class='def def kw'>def</span> <span class='snapshot identifier id'>snapshot</span>
-  <span class='announcing identifier id'>announcing</span> <span class='string val'>'Fetching portage snapshot'</span> <span class='do do kw'>do</span>
-    <span class='if if kw'>if</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{CONFIG.workdir}/#{CONFIG.snapshoturl}&quot;</span><span class='rparen token'>)</span>
-      <span class='send_to_log identifier id'>send_to_log</span><span class='lparen token'>(</span><span class='string val'>'Portage snapshot already exists skipping fetch'</span><span class='comma token'>,</span> <span class='string val'>'info'</span><span class='rparen token'>)</span>
-    <span class='else else kw'>else</span>
-      <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;wget -c #{CONFIG.snapshoturl} -P #{CONFIG.workdir}&quot;</span>
-      <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;wget -c #{CONFIG.snapshoturl}.md5sum -P #{CONFIG.workdir}&quot;</span>
+<span class='def def kw'>def</span> <span class='extractstage identifier id'>extractstage</span>
+  <span class='announcing identifier id'>announcing</span> <span class='string val'>'Extracting stage tarball'</span> <span class='do do kw'>do</span>
+    <span class='unless unless kw'>unless</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{$chrootdir}/root/&quot;</span><span class='rparen token'>)</span>
+      <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='md5sum identifier id'>md5sum</span><span class='lparen token'>(</span><span class='symbol val'>:uri</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$stageurl gvar id'>$stageurl</span><span class='comma token'>,</span> <span class='symbol val'>:path</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='STAGEDIR constant id'>STAGEDIR</span><span class='rparen token'>)</span>
+      <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='extract identifier id'>extract</span><span class='lparen token'>(</span><span class='symbol val'>:uri</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$stageurl gvar id'>$stageurl</span><span class='comma token'>,</span> <span class='symbol val'>:path</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='STAGEDIR constant id'>STAGEDIR</span><span class='comma token'>,</span> <span class='symbol val'>:location</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$chrootdir gvar id'>$chrootdir</span><span class='rparen token'>)</span>
     <span class='end end kw'>end</span>
-    <span class='md5sum identifier id'>md5sum</span><span class='lparen token'>(</span><span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='snapshoturl identifier id'>snapshoturl</span><span class='comma token'>,</span> <span class='string val'>'md5sum'</span><span class='rparen token'>)</span>
-    <span class='extract identifier id'>extract</span><span class='lparen token'>(</span><span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='snapshoturl identifier id'>snapshoturl</span><span class='comma token'>,</span> <span class='dstring node'>&quot;#{CONFIG.workdir}/#{CONFIG.chrootdir}/usr&quot;</span><span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
-  <span class='send_to_state identifier id'>send_to_state</span><span class='lparen token'>(</span><span class='string val'>'setup'</span><span class='comma token'>,</span> <span class='string val'>'snapshot'</span><span class='rparen token'>)</span>
+  <span class='send_to_state identifier id'>send_to_state</span><span class='lparen token'>(</span><span class='string val'>'setup'</span><span class='comma token'>,</span> <span class='string val'>'extractstage'</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -501,17 +678,16 @@ Fetches a portage snapshot and extracts it to CONFIG.chrootdir/usr/
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="stage-instance_method">
+  <p class="signature " id="fetchsnapshot-instance_method">
   
-    - (<tt>String</tt>) <strong>stage</strong> 
+    - (<tt>String</tt>) <strong>fetchsnapshot</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-If stage file is not found it fetches one from CONFIG.stageurl, then
-extracts the file.
+Fetches a portage snapshot and extracts it to $chrootdir/usr/
 </p>
 
 
@@ -538,10 +714,71 @@ extracts the file.
       <pre class="lines">
 
 
-10
-11
-12
-13
+37
+38
+39
+40
+41
+42
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 37</span>
+
+<span class='def def kw'>def</span> <span class='fetchsnapshot identifier id'>fetchsnapshot</span>
+  <span class='announcing identifier id'>announcing</span> <span class='string val'>'Fetching portage snapshot'</span> <span class='do do kw'>do</span>
+    <span class='unless unless kw'>unless</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{SNAPSHOTDIR}/#{filename($snapshoturl)}&quot;</span><span class='rparen token'>)</span>
+      <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='fetch identifier id'>fetch</span><span class='lparen token'>(</span><span class='symbol val'>:uri</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$snapshoturl gvar id'>$snapshoturl</span><span class='comma token'>,</span> <span class='symbol val'>:location</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='SNAPSHOTDIR constant id'>SNAPSHOTDIR</span><span class='rparen token'>)</span>
+      <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='fetch identifier id'>fetch</span><span class='lparen token'>(</span><span class='symbol val'>:uri</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='dstring node'>&quot;#{$snapshoturl}.md5sum&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:location</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='SNAPSHOTDIR constant id'>SNAPSHOTDIR</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='send_to_state identifier id'>send_to_state</span><span class='lparen token'>(</span><span class='string val'>'setup'</span><span class='comma token'>,</span> <span class='string val'>'fetchsnapshot'</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="fetchstage-instance_method">
+  
+    - (<tt>String</tt>) <strong>fetchstage</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+If stage file is not found it fetches one from $stageurl
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
 14
 15
 16
@@ -549,26 +786,118 @@ extracts the file.
 18
 19
 20
-21
-22
-23</pre>
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 14</span>
 
-<span class='def def kw'>def</span> <span class='stage identifier id'>stage</span>
+<span class='def def kw'>def</span> <span class='fetchstage identifier id'>fetchstage</span>
   <span class='announcing identifier id'>announcing</span> <span class='string val'>'Fetching stage tarball'</span> <span class='do do kw'>do</span>
-    <span class='if if kw'>if</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{CONFIG.workdir}/#{CONFIG.stageurl}&quot;</span><span class='rparen token'>)</span>
-      <span class='send_to_log identifier id'>send_to_log</span><span class='lparen token'>(</span><span class='string val'>'Stage file already exists skipping fetch'</span><span class='comma token'>,</span> <span class='string val'>'info'</span><span class='rparen token'>)</span>
-    <span class='else else kw'>else</span>
-      <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;wget -c #{CONFIG.stageurl} -P #{CONFIG.workdir}&quot;</span>
-      <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;wget -c #{CONFIG.stageurl}.DIGESTS -P #{CONFIG.workdir}&quot;</span>
-      <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;wget -c #{CONFIG.stageurl}.CONTENTS -P #{CONFIG.workdir}&quot;</span>
-    <span class='end end kw'>end</span>
-    <span class='md5sum identifier id'>md5sum</span><span class='lparen token'>(</span><span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='stageurl identifier id'>stageurl</span><span class='comma token'>,</span> <span class='string val'>'DIGESTS'</span><span class='rparen token'>)</span>
-    <span class='extract identifier id'>extract</span><span class='lparen token'>(</span><span class='CONFIG constant id'>CONFIG</span><span class='dot token'>.</span><span class='stageurl identifier id'>stageurl</span><span class='comma token'>,</span> <span class='dstring node'>&quot;#{CONFIG.workdir}/#{CONFIG.chrootdir}&quot;</span><span class='rparen token'>)</span>
+      <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='fetch identifier id'>fetch</span><span class='lparen token'>(</span><span class='symbol val'>:uri</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$stageurl gvar id'>$stageurl</span><span class='comma token'>,</span> <span class='symbol val'>:location</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='STAGEDIR constant id'>STAGEDIR</span><span class='rparen token'>)</span>
+      <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='fetch identifier id'>fetch</span><span class='lparen token'>(</span><span class='symbol val'>:uri</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='dstring node'>&quot;#{$stageurl}.DIGESTS&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:location</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='STAGEDIR constant id'>STAGEDIR</span><span class='rparen token'>)</span>
+      <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='fetch identifier id'>fetch</span><span class='lparen token'>(</span><span class='symbol val'>:uri</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='dstring node'>&quot;#{$stageurl}.CONTENTS&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:location</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='STAGEDIR constant id'>STAGEDIR</span><span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
-  <span class='send_to_state identifier id'>send_to_state</span><span class='lparen token'>(</span><span class='string val'>'setup'</span><span class='comma token'>,</span> <span class='string val'>'stage'</span><span class='rparen token'>)</span>
+  <span class='send_to_state identifier id'>send_to_state</span><span class='lparen token'>(</span><span class='string val'>'setup'</span><span class='comma token'>,</span> <span class='string val'>'fetchstage'</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="target-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>target</strong>(*args) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 8</span>
+
+<span class='def def kw'>def</span> <span class='target identifier id'>target</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='cmd identifier id'>cmd</span><span class='bitor op'>|</span> <span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='cmd identifier id'>cmd</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="updatesnapshot-instance_method">
+  
+    - (<tt>String</tt>) <strong>updatesnapshot</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Uses rsync and RConfig.gentoo.sync to update the snapshot cache
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/setup.rb', line 61</span>
+
+<span class='def def kw'>def</span> <span class='updatesnapshot identifier id'>updatesnapshot</span>
+  <span class='announcing identifier id'>announcing</span> <span class='string val'>&quot;Updating snapshot cache&quot;</span> <span class='do do kw'>do</span>
+    <span class='if if kw'>if</span> <span class='safe_sync identifier id'>safe_sync</span> 
+      <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='sync identifier id'>sync</span><span class='lparen token'>(</span><span class='symbol val'>:options</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;--recursive --links --safe-links --perms --times --compress --force\
+                    --whole-file --delete --stats --timeout=180 --exclude=/distfiles --exclude=/local\
+                    --exclude=/packages&quot;</span><span class='comma token'>,</span> 
+                    <span class='symbol val'>:uri</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='dstring node'>&quot;#{SYNC}&quot;</span><span class='comma token'>,</span> 
+                    <span class='symbol val'>:output</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='dstring node'>&quot;#{SANPSHOTCACHE}/portage/&quot;</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='send_to_state identifier id'>send_to_state</span><span class='lparen token'>(</span><span class='string val'>'setup'</span><span class='comma token'>,</span> <span class='string val'>'updatesnapshot'</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -581,9 +910,9 @@ extracts the file.
 </div>
     
     <div id="footer">
-  Generated on Tue Nov 17 22:02:43 2009 by 
+  Generated on Sat Feb  6 22:29:06 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.3 (ruby-1.8.7).
 </div>
 
   </body>

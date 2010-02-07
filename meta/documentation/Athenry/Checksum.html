@@ -1,0 +1,619 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Class: Athenry::Checksum</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (C)</a> &raquo; 
+    <span class='title'><a href="../Athenry.html" title="Athenry (module)">Athenry</a></span>
+     &raquo; 
+    <span class="title">Checksum</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Athenry::Checksum 
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><a href="../Object.html" title="Object (class)">Object</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next">Athenry::Checksum</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/athenry/checksum.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  <h2>Instance Attribute Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#digest-instance_method" title="#digest (instance method)">- (Object) <strong>digest</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute digest.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#filename-instance_method" title="#filename (instance method)">- (Object) <strong>filename</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute filename.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#path-instance_method" title="#path (instance method)">- (Object) <strong>path</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute path.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#uri-instance_method" title="#uri (instance method)">- (Object) <strong>uri</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute uri.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+
+  <h2>Instance Method Summary</h2>
+
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Checksum) <strong>initialize</strong>(opts = {}) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+A new instance of Checksum.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#md5-instance_method" title="#md5 (instance method)">- (String) <strong>md5</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Checks the md5sum of a file, if the checksum does not pass it exists 1.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a href="" title="Athenry::Checksum (class)">Checksum</a></tt>) <strong>initialize</strong>(opts = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of Checksum
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>uri</span>
+      
+      
+      
+        &mdash;
+        
+Url of the file you want to check
+
+
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>path</span>
+      
+      
+      
+        &mdash;
+        
+Local file system path to where the file was saved
+
+
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>digest</span>
+      
+      
+      
+        &mdash;
+        
+The file extension of the digest file, defaults to DIGESTS
+
+
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/checksum.rb', line 9</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='uri identifier id'>uri</span> <span class='assign token'>=</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:uri</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='filename identifier id'>filename</span> <span class='assign token'>=</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:uri</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='lbrack token'>[</span><span class='regexp val'>%r{[^/]+\z}</span><span class='rbrack token'>]</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='path identifier id'>path</span> <span class='assign token'>=</span> <span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:path</span><span class='rbrack token'>]</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='digest identifier id'>digest</span> <span class='assign token'>=</span> <span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:digest</span><span class='rbrack token'>]</span>
+
+  <span class='unless unless kw'>unless</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='digest identifier id'>digest</span>
+    <span class='self self kw'>self</span><span class='dot token'>.</span><span class='digest identifier id'>digest</span> <span class='assign token'>=</span> <span class='string val'>&quot;DIGESTS&quot;</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="digest=-instance_method"></span>
+      <span id="digest-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="digest-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>digest</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute digest
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/checksum.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='digest identifier id'>digest</span>
+  <span class='@digest ivar id'>@digest</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="filename=-instance_method"></span>
+      <span id="filename-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="filename-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>filename</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute filename
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/checksum.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='filename identifier id'>filename</span>
+  <span class='@filename ivar id'>@filename</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="path=-instance_method"></span>
+      <span id="path-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="path-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>path</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute path
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/checksum.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='path identifier id'>path</span>
+  <span class='@path ivar id'>@path</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="uri=-instance_method"></span>
+      <span id="uri-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="uri-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>uri</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute uri
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/checksum.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='uri identifier id'>uri</span>
+  <span class='@uri ivar id'>@uri</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="md5-instance_method">
+  
+    - (<tt>String</tt>) <strong>md5</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Checks the md5sum of a file, if the checksum does not pass it exists 1
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/checksum.rb', line 22</span>
+
+<span class='def def kw'>def</span> <span class='md5 identifier id'>md5</span> 
+  <span class='unverified_digest identifier id'>unverified_digest</span> <span class='assign token'>=</span> <span class='Digest constant id'>Digest</span><span class='colon2 op'>::</span><span class='MD5 constant id'>MD5</span><span class='dot token'>.</span><span class='hexdigest identifier id'>hexdigest</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{path}/#{filename}&quot;</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+  <span class='verified_digest identifier id'>verified_digest</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{path}/#{filename}.#{digest}&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='match identifier id'>match</span><span class='lparen token'>(</span><span class='string val'>'^([a-zA-z0-9]){32}'</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='dstring node'>&quot;#{unverified_digest}&quot;</span> <span class='eq op'>==</span> <span class='dstring node'>&quot;#{verified_digest}&quot;</span>
+    <span class='success identifier id'>success</span> <span class='dstring node'>&quot;md5sum of #{filename} passsed&quot;</span>
+  <span class='else else kw'>else</span>
+    <span class='raise identifier id'>raise</span> <span class='dstring node'>&quot;md5sum of #{filename} failed!&quot;</span>
+    <span class='exit identifier id'>exit</span> <span class='integer val'>1</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Feb  6 22:29:07 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.5.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

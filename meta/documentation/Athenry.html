@@ -16,6 +16,10 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
@@ -24,10 +28,12 @@
     
     <span class="title">Athenry</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -52,7 +58,7 @@
   
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/athenry.rb<span class="defines">,<br />
-  lib/athenry/run.rb,<br /> lib/athenry/state.rb,<br /> lib/athenry/config.rb,<br /> lib/athenry/helper.rb,<br /> lib/athenry/version.rb,<br /> lib/athenry/resumetree.rb,<br /> lib/athenry/shell/shell.rb,<br /> lib/athenry/shell/aliases.rb,<br /> lib/athenry/commands/setup.rb,<br /> lib/athenry/commands/clean.rb,<br /> lib/athenry/commands/build.rb,<br /> lib/athenry/commands/target.rb,<br /> lib/athenry/commands/rescue.rb,<br /> lib/athenry/commands/resume.rb,<br /> lib/athenry/commands/freshen.rb</span>
+  lib/athenry/run.rb,<br /> lib/athenry/sync.rb,<br /> lib/athenry/state.rb,<br /> lib/athenry/fetch.rb,<br /> lib/athenry/helper.rb,<br /> lib/athenry/config.rb,<br /> lib/athenry/version.rb,<br /> lib/athenry/extract.rb,<br /> lib/athenry/checksum.rb,<br /> lib/athenry/resumetree.rb,<br /> lib/athenry/shell/shell.rb,<br /> lib/athenry/shell/aliases.rb,<br /> lib/athenry/commands/build.rb,<br /> lib/athenry/commands/setup.rb,<br /> lib/athenry/commands/clean.rb,<br /> lib/athenry/commands/rescue.rb,<br /> lib/athenry/commands/target.rb,<br /> lib/athenry/commands/resume.rb,<br /> lib/athenry/commands/freshen.rb</span>
 </dd>
   
 </dl>
@@ -64,35 +70,35 @@
 This module contains everything Athenry related
 </p>
 <ul>
-<li><tt><a href="Athenry/Setup.html" title="Athenry::Setup">Athenry::Setup</a></tt> is the class used to create directories, and fetch files.
+<li><tt><a href="Athenry/Setup.html" title="Athenry::Setup (class)">Athenry::Setup</a></tt> is the class used to create directories, and fetch files.
 
 </li>
-<li><tt><a href="Athenry/Build.html" title="Athenry::Build">Athenry::Build</a></tt> is the class used to mount and chroot into your stage for
+<li><tt><a href="Athenry/Build.html" title="Athenry::Build (class)">Athenry::Build</a></tt> is the class used to mount and chroot into your stage for
 building one command at a time.
 
 </li>
-<li><tt><a href="Athenry/Resume.html" title="Athenry::Resume">Athenry::Resume</a></tt> is the class that allows you to resume from your previous
+<li><tt><a href="Athenry/Resume.html" title="Athenry::Resume (class)">Athenry::Resume</a></tt> is the class that allows you to resume from your previous
 state.
 
 </li>
-<li><tt><a href="Athenry/Target.html" title="Athenry::Target">Athenry::Target</a></tt> is the class that allows you to build a full target
+<li><tt><a href="Athenry/Target.html" title="Athenry::Target (class)">Athenry::Target</a></tt> is the class that allows you to build a full target
 stage, stage3 or custom.
 
 </li>
-<li><tt><a href="Athenry/Freshen.html" title="Athenry::Freshen">Athenry::Freshen</a></tt> is the class that will update an existing chroot
+<li><tt><a href="Athenry/Freshen.html" title="Athenry::Freshen (class)">Athenry::Freshen</a></tt> is the class that will update an existing chroot
 
 </li>
-<li><tt><a href="Athenry/Rescue.html" title="Athenry::Rescue">Athenry::Rescue</a></tt> is the class that will chroot you into an existing
+<li><tt><a href="Athenry/Rescue.html" title="Athenry::Rescue (class)">Athenry::Rescue</a></tt> is the class that will chroot you into an existing
 chrootdir to preform manual repairs/commands
 
 </li>
-<li><tt><a href="Athenry/Clean.html" title="Athenry::Clean">Athenry::Clean</a></tt> is the class that will unmount and clean up temp files.
+<li><tt><a href="Athenry/Clean.html" title="Athenry::Clean (class)">Athenry::Clean</a></tt> is the class that will unmount and clean up temp files.
 
 </li>
-<li><tt><a href="Athenry/Shell.html" title="Athenry::Shell">Athenry::Shell</a></tt> is the class that gives you an irb like shell.
+<li><tt><a href="Athenry/Shell.html" title="Athenry::Shell (class)">Athenry::Shell</a></tt> is the class that gives you an irb like shell.
 
 </li>
-<li><tt><a href="Athenry/Run.html" title="Athenry::Run">Athenry::Run</a></tt> is a class that wraps all the steps need for each step.
+<li><tt><a href="Athenry/Run.html" title="Athenry::Run (class)">Athenry::Run</a></tt> is a class that wraps all the steps need for each step.
 
 </li>
 </ul>
@@ -106,25 +112,997 @@ chrootdir to preform manual repairs/commands
 <p class="children">
    
     
-      <strong class="modules">Modules:</strong> <a href="Athenry/Config.html" title="Config">Config</a>, <a href="Athenry/Execute.html" title="Execute">Execute</a>, <a href="Athenry/Helper.html" title="Helper">Helper</a>, <a href="Athenry/ResumeTree.html" title="ResumeTree">ResumeTree</a>, <a href="Athenry/ShellAliases.html" title="ShellAliases">ShellAliases</a>, <a href="Athenry/State.html" title="State">State</a>, <a href="Athenry/Version.html" title="Version">Version</a>
+      <strong class="modules">Modules:</strong> <a href="Athenry/Config.html" title="Athenry::Config (module)">Config</a>, <a href="Athenry/Helper.html" title="Athenry::Helper (module)">Helper</a>, <a href="Athenry/ShellAliases.html" title="Athenry::ShellAliases (module)">ShellAliases</a>, <a href="Athenry/Version.html" title="Athenry::Version (module)">Version</a>
     
    
     
-      <strong class="classes">Classes:</strong> <a href="Athenry/Build.html" title="Build">Build</a>, <a href="Athenry/Clean.html" title="Clean">Clean</a>, <a href="Athenry/Freshen.html" title="Freshen">Freshen</a>, <a href="Athenry/Rescue.html" title="Rescue">Rescue</a>, <a href="Athenry/Resume.html" title="Resume">Resume</a>, <a href="Athenry/Run.html" title="Run">Run</a>, <a href="Athenry/Setup.html" title="Setup">Setup</a>, <a href="Athenry/Shell.html" title="Shell">Shell</a>, <a href="Athenry/Target.html" title="Target">Target</a>
+      <strong class="classes">Classes:</strong> <a href="Athenry/Build.html" title="Athenry::Build (class)">Build</a>, <a href="Athenry/Checksum.html" title="Athenry::Checksum (class)">Checksum</a>, <a href="Athenry/Clean.html" title="Athenry::Clean (class)">Clean</a>, <a href="Athenry/Extract.html" title="Athenry::Extract (class)">Extract</a>, <a href="Athenry/Fetch.html" title="Athenry::Fetch (class)">Fetch</a>, <a href="Athenry/Freshen.html" title="Athenry::Freshen (class)">Freshen</a>, <a href="Athenry/Rescue.html" title="Athenry::Rescue (class)">Rescue</a>, <a href="Athenry/Resume.html" title="Athenry::Resume (class)">Resume</a>, <a href="Athenry/Run.html" title="Athenry::Run (class)">Run</a>, <a href="Athenry/Setup.html" title="Athenry::Setup (class)">Setup</a>, <a href="Athenry/Shell.html" title="Athenry::Shell (class)">Shell</a>, <a href="Athenry/Sync.html" title="Athenry::Sync (class)">Sync</a>, <a href="Athenry/Target.html" title="Athenry::Target (class)">Target</a>
     
   
 </p>
 
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="STATE-constant" class="">STATE =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='lbrace token'>{</span>
+  <span class='string val'>'setup'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+    <span class='string val'>'stage'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>1</span><span class='comma token'>,</span>
+    <span class='string val'>'snapshot'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>2</span><span class='comma token'>,</span>
+    <span class='string val'>'generate_bashscripts'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>3</span><span class='comma token'>,</span>
+    <span class='string val'>'copy_scripts'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>4</span><span class='comma token'>,</span>
+    <span class='string val'>'copy_configs'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>5</span><span class='comma token'>,</span>
+  <span class='rbrace token'>}</span><span class='comma token'>,</span>
+  <span class='string val'>'build'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+    <span class='string val'>'sync'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>1</span><span class='comma token'>,</span>
+    <span class='string val'>'install_pkgmgr'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>2</span><span class='comma token'>,</span>
+    <span class='string val'>'update_everything'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>3</span><span class='comma token'>,</span>
+    <span class='string val'>'etc_update'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>4</span><span class='comma token'>,</span>
+    <span class='string val'>'install_overlays'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>5</span><span class='comma token'>,</span>
+    <span class='string val'>'install_sets'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>6</span><span class='comma token'>,</span>
+    <span class='string val'>'rebuild'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>7</span><span class='comma token'>,</span>
+  <span class='rbrace token'>}</span><span class='comma token'>,</span>
+<span class='rbrace token'>}</span>
+</pre></dd>
+      
+        <dt id="RESUMETREE-constant" class="">RESUMETREE =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='lbrace token'>{</span>
+  <span class='string val'>'setup'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+    <span class='string val'>'1'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>'snapshot'</span><span class='comma token'>,</span> <span class='string val'>'generate_bashscripts'</span><span class='comma token'>,</span> <span class='string val'>'copy_scripts'</span><span class='comma token'>,</span> <span class='string val'>'copy_configs'</span> <span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>'2'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>'generate_bashscripts'</span><span class='comma token'>,</span> <span class='string val'>'copy_scripts'</span><span class='comma token'>,</span> <span class='string val'>'copy_configs'</span> <span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>'3'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>'copy_scripts'</span><span class='comma token'>,</span> <span class='string val'>'copy_configs'</span> <span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>'4'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>'copy_configs'</span> <span class='rbrack token'>]</span><span class='comma token'>,</span>
+  <span class='rbrace token'>}</span><span class='comma token'>,</span>
+  <span class='string val'>'build'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+    <span class='string val'>'1'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>'install_pkgmgr'</span><span class='comma token'>,</span> <span class='string val'>'update_everything'</span><span class='comma token'>,</span> <span class='string val'>'etc_update'</span><span class='comma token'>,</span> <span class='string val'>'install_overlays'</span><span class='comma token'>,</span> <span class='string val'>'install_sets'</span><span class='comma token'>,</span> <span class='string val'>'rebuild'</span>  <span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>'2'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>'update_everything'</span><span class='comma token'>,</span> <span class='string val'>'etc_update'</span><span class='comma token'>,</span> <span class='string val'>'install_overlays'</span><span class='comma token'>,</span> <span class='string val'>'install_sets'</span><span class='comma token'>,</span> <span class='string val'>'rebuild'</span>  <span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>'3'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>'etc_update'</span><span class='comma token'>,</span> <span class='string val'>'install_overlays'</span><span class='comma token'>,</span> <span class='string val'>'install_sets'</span><span class='comma token'>,</span> <span class='string val'>'rebuild'</span>  <span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>'4'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>'install_overlays'</span><span class='comma token'>,</span> <span class='string val'>'install_sets'</span><span class='comma token'>,</span> <span class='string val'>'rebuild'</span>  <span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>'5'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>'install_sets'</span><span class='comma token'>,</span> <span class='string val'>'rebuild'</span>  <span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>'6'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='string val'>'rebuild'</span>  <span class='rbrack token'>]</span><span class='comma token'>,</span>
+  <span class='rbrace token'>}</span><span class='comma token'>,</span>
+<span class='rbrace token'>}</span>
+</pre></dd>
+      
+    </dl>
+  
 
 
 
+  <h2>Class Method Summary</h2>
+
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#build-class_method" title="build (class method)">+ (Object) <strong>build</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Initiates Build [Class].
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clean-class_method" title="clean (class method)">+ (Object) <strong>clean</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Initiates Clean [Class].
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#extract-class_method" title="extract (class method)">+ (Object) <strong>extract</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Initiates Extract [Class].
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fetch-class_method" title="fetch (class method)">+ (Object) <strong>fetch</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Initiates Fetch [Class].
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#freshen-class_method" title="freshen (class method)">+ (Object) <strong>freshen</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Initiates Freshen [Class].
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#md5sum-class_method" title="md5sum (class method)">+ (Object) <strong>md5sum</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Initiates Checksum [Class].
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rescue-class_method" title="rescue (class method)">+ (Object) <strong>rescue</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Initiates Rescue [Class].
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#resume-class_method" title="resume (class method)">+ (Object) <strong>resume</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Initiates Resume [Class].
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#run-class_method" title="run (class method)">+ (Object) <strong>run</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Initiates Run [Class].
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setup-class_method" title="setup (class method)">+ (Object) <strong>setup</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Initiates Setup [Class].
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shell-class_method" title="shell (class method)">+ (Object) <strong>shell</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Initiates Shell [Class].
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sync-class_method" title="sync (class method)">+ (Object) <strong>sync</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Initiates Sync [Class].
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#target-class_method" title="target (class method)">+ (Object) <strong>target</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Initiates Target [Class].
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="build-class_method">
+  
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>build</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Initiates Build [Class]
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="Athenry/Build.html" title="Athenry::Build (class)">Athenry::Build</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry.rb', line 38</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='build identifier id'>build</span>
+  <span class='Build constant id'>Build</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="clean-class_method">
+  
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>clean</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Initiates Clean [Class]
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="Athenry/Clean.html" title="Athenry::Clean (class)">Athenry::Clean</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry.rb', line 62</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='clean identifier id'>clean</span>
+  <span class='Clean constant id'>Clean</span><span class='dot token'>.</span><span class='new identifier id'>new</span> 
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="extract-class_method">
+  
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>extract</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Initiates Extract [Class]
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="Athenry/Extract.html" title="Athenry::Extract (class)">Athenry::Extract</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry.rb', line 86</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='extract identifier id'>extract</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='Extract constant id'>Extract</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='deflate identifier id'>deflate</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="fetch-class_method">
+  
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>fetch</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Initiates Fetch [Class]
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="Athenry/Fetch.html" title="Athenry::Fetch (class)">Athenry::Fetch</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry.rb', line 98</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='fetch identifier id'>fetch</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='Fetch constant id'>Fetch</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='fetch_file identifier id'>fetch_file</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="freshen-class_method">
+  
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>freshen</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Initiates Freshen [Class]
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="Athenry/Freshen.html" title="Athenry::Freshen (class)">Athenry::Freshen</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry.rb', line 50</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='freshen identifier id'>freshen</span>
+  <span class='Freshen constant id'>Freshen</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="md5sum-class_method">
+  
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>md5sum</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Initiates Checksum [Class]
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="Athenry/Checksum.html" title="Athenry::Checksum (class)">Athenry::Checksum</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry.rb', line 92</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='md5sum identifier id'>md5sum</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='Checksum constant id'>Checksum</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='md5 identifier id'>md5</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="rescue-class_method">
+  
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>rescue</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Initiates Rescue [Class]
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="Athenry/Rescue.html" title="Athenry::Rescue (class)">Athenry::Rescue</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry.rb', line 74</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='rescue identifier id'>rescue</span>
+  <span class='Rescue constant id'>Rescue</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="resume-class_method">
+  
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>resume</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Initiates Resume [Class]
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="Athenry/Resume.html" title="Athenry::Resume (class)">Athenry::Resume</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry.rb', line 56</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='resume identifier id'>resume</span>
+  <span class='Resume constant id'>Resume</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="run-class_method">
+  
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>run</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Initiates Run [Class]
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="Athenry/Run.html" title="Athenry::Run (class)">Athenry::Run</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry.rb', line 80</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='run identifier id'>run</span>
+  <span class='Run constant id'>Run</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="setup-class_method">
+  
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>setup</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Initiates Setup [Class]
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="Athenry/Setup.html" title="Athenry::Setup (class)">Athenry::Setup</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry.rb', line 32</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='setup identifier id'>setup</span>
+  <span class='Setup constant id'>Setup</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="shell-class_method">
+  
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>shell</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Initiates Shell [Class]
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="Athenry/Shell.html" title="Athenry::Shell (class)">Athenry::Shell</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry.rb', line 68</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='shell identifier id'>shell</span>
+  <span class='Shell constant id'>Shell</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="sync-class_method">
+  
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>sync</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Initiates Sync [Class]
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="Athenry/Sync.html" title="Athenry::Sync (class)">Athenry::Sync</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry.rb', line 104</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='sync identifier id'>sync</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='Sync constant id'>Sync</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='files identifier id'>files</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="target-class_method">
+  
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>target</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Initiates Target [Class]
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="Athenry/Target.html" title="Athenry::Target (class)">Athenry::Target</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry.rb', line 44</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='target identifier id'>target</span>
+  <span class='Target constant id'>Target</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
     
     <div id="footer">
-  Generated on Tue Nov 17 22:02:43 2009 by 
+  Generated on Sat Feb  6 22:29:10 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.3 (ruby-1.8.7).
 </div>
 
   </body>

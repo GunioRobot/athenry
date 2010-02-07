@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (C)</a> &raquo; 
-    <a href="../Athenry.html" title="Athenry">Athenry</a>
+    <span class='title'><a href="../Athenry.html" title="Athenry (module)">Athenry</a></span>
      &raquo; 
     <span class="title">Config</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -57,6 +63,60 @@
 <div class="clear"></div>
 
 
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="WORKDIR-constant" class="">WORKDIR =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='dstring node'>&quot;#{RConfig.athenry.general.workdir}&quot;</span>
+</pre></dd>
+      
+        <dt id="SCRIPTS-constant" class="">SCRIPTS =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='dstring node'>&quot;#{ATHENRY_ROOT}/scripts&quot;</span>
+</pre></dd>
+      
+        <dt id="LOGDIR-constant" class="">LOGDIR =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='dstring node'>&quot;#{WORKDIR}/#{RConfig.internal.paths.logdir}&quot;</span>
+</pre></dd>
+      
+        <dt id="STATEDIR-constant" class="">STATEDIR =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='dstring node'>&quot;#{WORKDIR}/#{RConfig.internal.paths.statedir}&quot;</span>
+</pre></dd>
+      
+        <dt id="STAGEDIR-constant" class="">STAGEDIR =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='dstring node'>&quot;#{WORKDIR}/#{RConfig.internal.paths.stagedir}&quot;</span>
+</pre></dd>
+      
+        <dt id="SNAPSHOTDIR-constant" class="">SNAPSHOTDIR =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='dstring node'>&quot;#{WORKDIR}/#{RConfig.internal.paths.snapshotdir}&quot;</span>
+</pre></dd>
+      
+        <dt id="SNAPSHOTCACHE-constant" class="">SNAPSHOTCACHE =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='dstring node'>&quot;#{WORKDIR}/#{RConfig.internal.paths.snapshotdir}/#{RConfig.internal.paths.snapshotcache}&quot;</span>
+</pre></dd>
+      
+        <dt id="SYNC-constant" class="">SYNC =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='dstring node'>&quot;#{RConfig.athenry.gentoo.sync}&quot;</span>
+</pre></dd>
+      
+    </dl>
+  
 
 
 
@@ -64,9 +124,9 @@
 </div>
     
     <div id="footer">
-  Generated on Tue Nov 17 22:02:43 2009 by 
+  Generated on Sat Feb  6 22:29:08 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.3 (ruby-1.8.7).
 </div>
 
   </body>

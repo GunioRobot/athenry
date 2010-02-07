@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (C)</a> &raquo; 
-    <a href="../Athenry.html" title="Athenry">Athenry</a>
+    <span class='title'><a href="../Athenry.html" title="Athenry (module)">Athenry</a></span>
      &raquo; 
     <span class="title">Clean</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,7 +52,15 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName">Object</span>
+      <span class="inheritName"><a href="../Object.html" title="Object (class)">Object</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next">Athenry::Clean</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
       
       </dd>
     
@@ -66,13 +80,85 @@
 
 
 
-  <h2>Method Summary</h2>
+  <h2>Instance Method Summary</h2>
+
   <ul class="summary">
     
       <li class="public ">
-  <span class="summary_signature"><a href="#unmount-instance_method" title="#unmount (instance method)">- (String) <strong>unmount</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#destroy-instance_method" title="#destroy (instance method)">- (Object) <strong>destroy</strong> </a>
+    
+
+    
   </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Destroys the chrootdir by running rm -rf after it&#8217;s unmounted.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#target-instance_method" title="#target (instance method)">- (Object) <strong>target</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tmp-instance_method" title="#tmp (instance method)">- (Object) <strong>tmp</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Remove temporary files within your chroot.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#unmount-instance_method" title="#unmount (instance method)">- (String) <strong>unmount</strong> </a>
+    
+
+    
+  </span>
+  
   
   
   
@@ -91,12 +177,161 @@ them.
   </ul>
 
 
-
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
     
       <div class="method_details first">
-  <p class="signature first" id="unmount-instance_method">
+  <p class="signature first" id="destroy-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>destroy</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Destroys the chrootdir by running rm -rf after it&#8217;s unmounted.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/clean.rb', line 37</span>
+
+<span class='def def kw'>def</span> <span class='destroy identifier id'>destroy</span>
+  <span class='announcing identifier id'>announcing</span> <span class='dstring node'>&quot;Removing #{$chrootname}&quot;</span> <span class='do do kw'>do</span>
+    <span class='print identifier id'>print</span> <span class='float val'>7</span><span class='dot token'>.</span><span class='chr identifier id'>chr</span>
+    <span class='warning identifier id'>warning</span> <span class='string val'>&quot;Sleeping for 10 seconds...&quot;</span>
+    <span class='warning identifier id'>warning</span> <span class='string val'>&quot;*******************************************************************&quot;</span>
+    <span class='warning identifier id'>warning</span> <span class='dstring node'>&quot;You are about to completley remove #{$chrootname} from your system&quot;</span>
+    <span class='warning identifier id'>warning</span> <span class='string val'>&quot;If you wish to cancel hit ctrl-c now!&quot;</span>
+    <span class='warning identifier id'>warning</span> <span class='string val'>&quot;*******************************************************************&quot;</span>
+    <span class='sleep identifier id'>sleep</span><span class='lparen token'>(</span><span class='integer val'>10</span><span class='rparen token'>)</span>
+    <span class='if if kw'>if</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{$chrootdir}&quot;</span><span class='rparen token'>)</span>
+      <span class='unmount identifier id'>unmount</span>
+      <span class='FileUtils constant id'>FileUtils</span><span class='dot token'>.</span><span class='rm_rf identifier id'>rm_rf</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{$chrootdir}&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:verbose</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$verbose gvar id'>$verbose</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="target-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>target</strong>(*args) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/clean.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='target identifier id'>target</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='cmd identifier id'>cmd</span><span class='bitor op'>|</span> <span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='cmd identifier id'>cmd</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="tmp-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>tmp</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Remove temporary files within your chroot. This means /tmp /var/tmp
+/usr/portage/distfiles as well as the /scripts we installed during the
+setup
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/clean.rb', line 25</span>
+
+<span class='def def kw'>def</span> <span class='tmp identifier id'>tmp</span>
+  <span class='announcing identifier id'>announcing</span> <span class='dstring node'>&quot;Removing temporary files from #{$chrootname}&quot;</span> <span class='do do kw'>do</span>
+    <span class='if if kw'>if</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{$chrootdir}&quot;</span><span class='rparen token'>)</span> <span class='then then kw'>then</span>
+      <span class='FileUtils constant id'>FileUtils</span><span class='dot token'>.</span><span class='rm_rf identifier id'>rm_rf</span><span class='lparen token'>(</span><span class='Dir constant id'>Dir</span><span class='dot token'>.</span><span class='glob identifier id'>glob</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{$chrootdir}/tmp/*&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='symbol val'>:verbose</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$verbose gvar id'>$verbose</span><span class='rparen token'>)</span>
+      <span class='FileUtils constant id'>FileUtils</span><span class='dot token'>.</span><span class='rm_rf identifier id'>rm_rf</span><span class='lparen token'>(</span><span class='Dir constant id'>Dir</span><span class='dot token'>.</span><span class='glob identifier id'>glob</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{$chrootdir}/var/tmp/*&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='symbol val'>:verbose</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$verbose gvar id'>$verbose</span><span class='rparen token'>)</span>
+      <span class='FileUtils constant id'>FileUtils</span><span class='dot token'>.</span><span class='rm_rf identifier id'>rm_rf</span><span class='lparen token'>(</span><span class='Dir constant id'>Dir</span><span class='dot token'>.</span><span class='glob identifier id'>glob</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{$chrootdir}/usr/portage/distfiles/*&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='symbol val'>:verbose</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$verbose gvar id'>$verbose</span><span class='rparen token'>)</span>
+      <span class='FileUtils constant id'>FileUtils</span><span class='dot token'>.</span><span class='rm_rf identifier id'>rm_rf</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{$chrootdir}/scripts/&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:verbose</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$verbose gvar id'>$verbose</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="unmount-instance_method">
   
     - (<tt>String</tt>) <strong>unmount</strong> 
   
@@ -133,19 +368,19 @@ them.
       <pre class="lines">
 
 
-7
-8
-9
-10
 11
 12
 13
 14
 15
-16</pre>
+16
+17
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/commands/clean.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/clean.rb', line 11</span>
 
 <span class='def def kw'>def</span> <span class='unmount identifier id'>unmount</span>
   <span class='if if kw'>if</span> <span class='notop op'>!</span><span class='is_mounted? fid id'>is_mounted?</span>
@@ -153,7 +388,7 @@ them.
   <span class='else else kw'>else</span>
     <span class='announcing identifier id'>announcing</span> <span class='string val'>'Unmounting dev, sys, and proc'</span> <span class='do do kw'>do</span>
       <span class='dirs identifier id'>dirs</span> <span class='assign token'>=</span> <span class='dstring node'>%w[ dev sys proc ]</span>
-      <span class='dirs identifier id'>dirs</span><span class='dot token'>.</span><span class='each identifier id'>each</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='dir identifier id'>dir</span><span class='bitor op'>|</span> <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;umount -l #{CONFIG.workdir}/#{CONFIG.chrootdir}/#{dir}&quot;</span> <span class='rbrace token'>}</span>
+      <span class='dirs identifier id'>dirs</span><span class='dot token'>.</span><span class='each identifier id'>each</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='dir identifier id'>dir</span><span class='bitor op'>|</span> <span class='cmd identifier id'>cmd</span><span class='lparen token'>(</span><span class='dstring node'>&quot;umount -l #{$chrootdir}/#{dir}&quot;</span><span class='comma token'>,</span> <span class='exit identifier id'>exit</span><span class='assign token'>=</span><span class='false false kw'>false</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
     <span class='end end kw'>end</span>
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
@@ -168,9 +403,9 @@ them.
 </div>
     
     <div id="footer">
-  Generated on Tue Nov 17 22:02:40 2009 by 
+  Generated on Sat Feb  6 22:29:06 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.3 (ruby-1.8.7).
 </div>
 
   </body>

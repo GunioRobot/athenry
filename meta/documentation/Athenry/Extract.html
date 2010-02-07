@@ -1,0 +1,682 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Class: Athenry::Extract</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (E)</a> &raquo; 
+    <span class='title'><a href="../Athenry.html" title="Athenry (module)">Athenry</a></span>
+     &raquo; 
+    <span class="title">Extract</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Athenry::Extract 
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><a href="../Object.html" title="Object (class)">Object</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next">Athenry::Extract</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/athenry/extract.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  <h2>Instance Attribute Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#filename-instance_method" title="#filename (instance method)">- (Object) <strong>filename</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute filename.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#filetype-instance_method" title="#filetype (instance method)">- (Object) <strong>filetype</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute filetype.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#location-instance_method" title="#location (instance method)">- (Object) <strong>location</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute location.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#path-instance_method" title="#path (instance method)">- (Object) <strong>path</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute path.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#uri-instance_method" title="#uri (instance method)">- (Object) <strong>uri</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute uri.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+
+  <h2>Instance Method Summary</h2>
+
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deflate-instance_method" title="#deflate (instance method)">- (String) <strong>deflate</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Extracts the filename from a url, and extracts it to the specified path.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Extract) <strong>initialize</strong>(opts = {}) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+A new instance of Extract.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a href="" title="Athenry::Extract (class)">Extract</a></tt>) <strong>initialize</strong>(opts = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of Extract
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8
+9
+10
+11
+12</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/extract.rb', line 6</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='uri identifier id'>uri</span> <span class='assign token'>=</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:uri</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='filename identifier id'>filename</span> <span class='assign token'>=</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:uri</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='lbrack token'>[</span><span class='regexp val'>%r{[^/]+\z}</span><span class='rbrack token'>]</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='path identifier id'>path</span> <span class='assign token'>=</span> <span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:path</span><span class='rbrack token'>]</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='location identifier id'>location</span> <span class='assign token'>=</span> <span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:location</span><span class='rbrack token'>]</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='filetype identifier id'>filetype</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='extname identifier id'>extname</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:uri</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="filename=-instance_method"></span>
+      <span id="filename-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="filename-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>filename</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute filename
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/extract.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='filename identifier id'>filename</span>
+  <span class='@filename ivar id'>@filename</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="filetype=-instance_method"></span>
+      <span id="filetype-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="filetype-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>filetype</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute filetype
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/extract.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='filetype identifier id'>filetype</span>
+  <span class='@filetype ivar id'>@filetype</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="location=-instance_method"></span>
+      <span id="location-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="location-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>location</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute location
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/extract.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='location identifier id'>location</span>
+  <span class='@location ivar id'>@location</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="path=-instance_method"></span>
+      <span id="path-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="path-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>path</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute path
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/extract.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='path identifier id'>path</span>
+  <span class='@path ivar id'>@path</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="uri=-instance_method"></span>
+      <span id="uri-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="uri-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>uri</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute uri
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/extract.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='uri identifier id'>uri</span>
+  <span class='@uri ivar id'>@uri</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="deflate-instance_method">
+  
+    - (<tt>String</tt>) <strong>deflate</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Extracts the filename from a url, and extracts it to the specified path.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='extract identifier id'>extract</span><span class='lparen token'>(</span><span class='string val'>'http://www.example.com/path/file.tar.bz2'</span><span class='comma token'>,</span> <span class='string val'>'/var/tmp/athenry/stage5'</span><span class='rparen token'>)</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>url</span>
+      
+      
+      
+        &mdash;
+        
+URL to extract filename from.
+
+
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>path</span>
+      
+      
+      
+        &mdash;
+        
+Path to extract file to.
+
+
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/extract.rb', line 20</span>
+
+<span class='def def kw'>def</span> <span class='deflate identifier id'>deflate</span>
+  <span class='FileUtils constant id'>FileUtils</span><span class='dot token'>.</span><span class='mkdir_p identifier id'>mkdir_p</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{location}&quot;</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='directory? fid id'>directory?</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{location}&quot;</span><span class='rparen token'>)</span>
+  <span class='case case kw'>case</span> <span class='filetype identifier id'>filetype</span>
+  <span class='when when kw'>when</span> <span class='regexp val'>/.bz2/</span>
+    <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;tar xvjpf #{path}/#{filename} -C #{location}&quot;</span>
+  <span class='when when kw'>when</span> <span class='regexp val'>/.gz/</span>
+    <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;tar xvpf #{path}/#{filename} -C #{location}&quot;</span>
+  <span class='when when kw'>when</span> <span class='regexp val'>/.tar/</span>
+    <span class='cmd identifier id'>cmd</span> <span class='dstring node'>&quot;tar xvpf #{path}/#{filename} -C #{location}&quot;</span>
+  <span class='else else kw'>else</span>
+    <span class='raise identifier id'>raise</span> <span class='string val'>&quot;Unknown filetype, unable to extract&quot;</span>
+    <span class='exit identifier id'>exit</span> <span class='integer val'>1</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Feb  6 22:29:09 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.5.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

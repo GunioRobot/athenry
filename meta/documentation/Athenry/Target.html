@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (T)</a> &raquo; 
-    <a href="../Athenry.html" title="Athenry">Athenry</a>
+    <span class='title'><a href="../Athenry.html" title="Athenry (module)">Athenry</a></span>
      &raquo; 
     <span class="title">Target</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,7 +52,15 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName">Object</span>
+      <span class="inheritName"><a href="../Object.html" title="Object (class)">Object</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next">Athenry::Target</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
       
       </dd>
     
@@ -66,13 +80,19 @@
 
 
 
-  <h2>Method Summary</h2>
+  <h2>Instance Method Summary</h2>
+
   <ul class="summary">
     
       <li class="public ">
-  <span class="summary_signature"><a href="#build-instance_method" title="#build (instance method)">- (Object) <strong>build</strong>(args) </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#build-instance_method" title="#build (instance method)">- (Object) <strong>build</strong>(*args) </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -85,9 +105,14 @@
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#custom-instance_method" title="#custom (instance method)">- (String) <strong>custom</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#custom-instance_method" title="#custom (instance method)">- (String) <strong>custom</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -103,9 +128,16 @@ Steps required to build a custom stage.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#initialize-instance_method" title="#initialize (instance method)">- (Target) <strong>initialize</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Target) <strong>initialize</strong> </a>
+    
+
+    
   </span>
+  
+    <span class="note title constructor">constructor</span>
+  
   
   
   
@@ -113,7 +145,7 @@ Steps required to build a custom stage.
 
   
     <span class="summary_desc">
-A new instance of <tt>Target</tt>.
+A new instance of Target.
 
 </span>
   
@@ -121,9 +153,37 @@ A new instance of <tt>Target</tt>.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#stage3-instance_method" title="#stage3 (instance method)">- (String) <strong>stage3</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#setup-instance_method" title="#setup (instance method)">- (String) <strong>setup</strong> </a>
+    
+
+    
   </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Steps required to setup a chroot.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#stage3-instance_method" title="#stage3 (instance method)">- (String) <strong>stage3</strong> </a>
+    
+
+    
+  </span>
+  
   
   
   
@@ -139,47 +199,27 @@ Steps required to build a stage3.
 
     
   </ul>
-
-<div id="constructor_details">
+<div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><a href="" title="Target">Target</a></tt>) <strong>initialize</strong> 
+    - (<tt><a href="" title="Athenry::Target (class)">Target</a></tt>) <strong>initialize</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of <tt>Target</tt>
+A new instance of Target
 </p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
   
-    <li>
-      
-        <span class='type'>(<tt><a href="" title="Target">Target</a></tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        
-a new instance of <tt>Target</tt>
-
-
-      
-    </li>
-  
-</ul>
-
 </div><table class="source_code">
   <tr>
     <td>
@@ -187,18 +227,12 @@ a new instance of <tt>Target</tt>
 
 
 4
-5
-6
-7
-8</pre>
+5</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/athenry/commands/target.rb', line 4</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span>
-  <span class='must_be_root identifier id'>must_be_root</span>
-  <span class='check_for_setup identifier id'>check_for_setup</span><span class='lparen token'>(</span><span class='symbol val'>:run</span><span class='rparen token'>)</span>
-  <span class='update_chroot identifier id'>update_chroot</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -209,13 +243,14 @@ a new instance of <tt>Target</tt>
 </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="build-instance_method">
   
-    - (<tt>Object</tt>) <strong>build</strong>(args) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>build</strong>(*args) 
   
 
   
@@ -225,14 +260,14 @@ a new instance of <tt>Target</tt>
       <pre class="lines">
 
 
-10
-11
-12</pre>
+7
+8
+9</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/commands/target.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/target.rb', line 7</span>
 
-<span class='def def kw'>def</span> <span class='build identifier id'>build</span><span class='lparen token'>(</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+<span class='def def kw'>def</span> <span class='build identifier id'>build</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
   <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='cmd identifier id'>cmd</span><span class='bitor op'>|</span> <span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='cmd identifier id'>cmd</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -275,7 +310,67 @@ Steps required to build a custom stage
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li><a href="Execute.html#build-class_method" title="Athenry::Execute::build">Athenry::Execute::build</a></li>
+      <li><a href="../Athenry.html#build-class_method" title="Athenry.build (method)">Athenry::build</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/target.rb', line 23</span>
+
+<span class='def def kw'>def</span> <span class='custom identifier id'>custom</span>
+  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='target identifier id'>target</span><span class='lparen token'>(</span><span class='string val'>&quot;install_pkgmgr&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;update_everything&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;rebuild&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;update_configs&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;install_overlays&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;install_sets&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;rebuild&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="setup-instance_method">
+  
+    - (<tt>String</tt>) <strong>setup</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Steps required to setup a chroot
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="../Athenry.html#setup-class_method" title="Athenry.setup (method)">Athenry::setup</a></li>
     
   </ul>
 
@@ -287,27 +382,13 @@ Steps required to build a custom stage
 
 30
 31
-32
-33
-34
-35
-36
-37
-38
-39</pre>
+32</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/athenry/commands/target.rb', line 30</span>
 
-<span class='def def kw'>def</span> <span class='custom identifier id'>custom</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='install_pkgmgr identifier id'>install_pkgmgr</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='sync identifier id'>sync</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='update_everything identifier id'>update_everything</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='rebuild identifier id'>rebuild</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='update_configs identifier id'>update_configs</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='install_overlays identifier id'>install_overlays</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='install_sets identifier id'>install_sets</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='rebuild identifier id'>rebuild</span>
+<span class='def def kw'>def</span> <span class='setup identifier id'>setup</span>
+  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='setup identifier id'>setup</span><span class='dot token'>.</span><span class='target identifier id'>target</span><span class='lparen token'>(</span><span class='string val'>&quot;fetchstage&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;extractstage&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;fetchsnapshot&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;updatesnapshot&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;copysnapshot&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;copy_scripts&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;copy_configs&quot;</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -349,7 +430,7 @@ Steps required to build a stage3
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li><a href="Execute.html#build-class_method" title="Athenry::Execute::build">Athenry::Execute::build</a></li>
+      <li><a href="../Athenry.html#build-class_method" title="Athenry.build (method)">Athenry::build</a></li>
     
   </ul>
 
@@ -359,26 +440,18 @@ Steps required to build a stage3
       <pre class="lines">
 
 
+14
+15
+16
 17
-18
-19
-20
-21
-22
-23
-24
-25</pre>
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/commands/target.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/commands/target.rb', line 14</span>
 
 <span class='def def kw'>def</span> <span class='stage3 identifier id'>stage3</span>
   <span class='set_temp_options identifier id'>set_temp_options</span><span class='lparen token'>(</span><span class='symbol val'>:nopaludis</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='rparen token'>)</span> <span class='do do kw'>do</span>
-    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='install_pkgmgr identifier id'>install_pkgmgr</span>
-    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='sync identifier id'>sync</span>
-    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='update_everything identifier id'>update_everything</span>
-    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='update_configs identifier id'>update_configs</span>
-    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='rebuild identifier id'>rebuild</span>
+    <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='target identifier id'>target</span><span class='lparen token'>(</span><span class='string val'>&quot;install_pkgmgr&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;update_everything&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;update_configs&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;rebuild&quot;</span><span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -392,9 +465,9 @@ Steps required to build a stage3
 </div>
     
     <div id="footer">
-  Generated on Tue Nov 17 22:02:43 2009 by 
+  Generated on Sat Feb  6 22:29:07 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.3 (ruby-1.8.7).
 </div>
 
   </body>

@@ -16,6 +16,10 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
@@ -24,10 +28,12 @@
     
     <span class="title">Top Level Namespace</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -49,7 +55,7 @@
   
     
       <dt class="r1">Includes:</dt>
-      <dd class="r1"><a href="Athenry/Helper.html" title="Athenry::Helper">Athenry::Helper</a>, <a href="Athenry/ResumeTree.html" title="Athenry::ResumeTree">Athenry::ResumeTree</a>, <a href="Athenry/State.html" title="Athenry::State">Athenry::State</a></dd>
+      <dd class="r1"><a href="Athenry/Config.html" title="Athenry::Config (module)">Athenry::Config</a>, <a href="Athenry/Helper.html" title="Athenry::Helper (module)">Athenry::Helper</a></dd>
       
     
   
@@ -61,9 +67,11 @@
 <p class="children">
    
     
-      <strong class="modules">Modules:</strong> <a href="Athenry.html" title="Athenry">Athenry</a>
+      <strong class="modules">Modules:</strong> <a href="Athenry.html" title="Athenry (module)">Athenry</a>
     
    
+    
+      <strong class="classes">Classes:</strong> <a href="Object.html" title="Object (class)">Object</a>
     
   
 </p>
@@ -72,7 +80,7 @@
   
     <dl class="constants">
       
-        <dt id="ATHENRY_ROOT-constant ">ATHENRY_ROOT =
+        <dt id="ATHENRY_ROOT-constant" class="">ATHENRY_ROOT =
             <span class="summary_desc"></span>
         </dt>
         <dd><pre class="code"><span class='dstring node'>&quot;#{File.dirname(__FILE__)}/..&quot;</span> <span class='unless unless_mod kw'>unless</span> <span class='defined? defined kw'>defined?</span><span class='lparen token'>(</span><span class='ATHENRY_ROOT constant id'>ATHENRY_ROOT</span><span class='rparen token'>)</span>
@@ -90,10 +98,15 @@
   
   
   
+  <h3 class="inherited">Constants included from <a href="Athenry/Config.html" title="Athenry::Config (module)">Athenry::Config</a></h3>
+  <p class="inherited"><a href="Athenry/Config.html#LOGDIR-constant" title="Athenry::Config::LOGDIR (constant)">LOGDIR</a>, <a href="Athenry/Config.html#SCRIPTS-constant" title="Athenry::Config::SCRIPTS (constant)">SCRIPTS</a>, <a href="Athenry/Config.html#SNAPSHOTCACHE-constant" title="Athenry::Config::SNAPSHOTCACHE (constant)">SNAPSHOTCACHE</a>, <a href="Athenry/Config.html#SNAPSHOTDIR-constant" title="Athenry::Config::SNAPSHOTDIR (constant)">SNAPSHOTDIR</a>, <a href="Athenry/Config.html#STAGEDIR-constant" title="Athenry::Config::STAGEDIR (constant)">STAGEDIR</a>, <a href="Athenry/Config.html#STATEDIR-constant" title="Athenry::Config::STATEDIR (constant)">STATEDIR</a>, <a href="Athenry/Config.html#SYNC-constant" title="Athenry::Config::SYNC (constant)">SYNC</a>, <a href="Athenry/Config.html#WORKDIR-constant" title="Athenry::Config::WORKDIR (constant)">WORKDIR</a></p>
+
   
   
   
   
+  <h3 class="inherited">Constants included from <a href="Athenry/Config.html" title="Athenry::Config (module)">Athenry::Config</a></h3>
+  <p class="inherited"><a href="Athenry/Config.html#LOGDIR-constant" title="Athenry::Config::LOGDIR (constant)">LOGDIR</a>, <a href="Athenry/Config.html#SCRIPTS-constant" title="Athenry::Config::SCRIPTS (constant)">SCRIPTS</a>, <a href="Athenry/Config.html#SNAPSHOTCACHE-constant" title="Athenry::Config::SNAPSHOTCACHE (constant)">SNAPSHOTCACHE</a>, <a href="Athenry/Config.html#SNAPSHOTDIR-constant" title="Athenry::Config::SNAPSHOTDIR (constant)">SNAPSHOTDIR</a>, <a href="Athenry/Config.html#STAGEDIR-constant" title="Athenry::Config::STAGEDIR (constant)">STAGEDIR</a>, <a href="Athenry/Config.html#STATEDIR-constant" title="Athenry::Config::STATEDIR (constant)">STATEDIR</a>, <a href="Athenry/Config.html#SYNC-constant" title="Athenry::Config::SYNC (constant)">SYNC</a>, <a href="Athenry/Config.html#WORKDIR-constant" title="Athenry::Config::WORKDIR (constant)">WORKDIR</a></p>
 
 
   
@@ -101,32 +114,26 @@
   
   
   
-  <h3 class="inherited">Methods included from <a href="Athenry/State.html" title="Athenry::State">Athenry::State</a></h3>
-  <p class="inherited"><a href="Athenry/State.html#state-instance_method" title="#state">#state</a></p>
+  <h3 class="inherited">Methods included from <a href="Athenry/Helper.html" title="Athenry::Helper (module)">Athenry::Helper</a></h3>
+  <p class="inherited"><a href="Athenry/Helper.html#announcing-instance_method" title="Athenry::Helper#announcing (method)">#announcing</a>, <a href="Athenry/Helper.html#check_for_setup-instance_method" title="Athenry::Helper#check_for_setup (method)">#check_for_setup</a>, <a href="Athenry/Helper.html#chroot-instance_method" title="Athenry::Helper#chroot (method)">#chroot</a>, <a href="Athenry/Helper.html#cmd-instance_method" title="Athenry::Helper#cmd (method)">#cmd</a>, <a href="Athenry/Helper.html#die-instance_method" title="Athenry::Helper#die (method)">#die</a>, <a href="Athenry/Helper.html#display_erb-instance_method" title="Athenry::Helper#display_erb (method)">#display_erb</a>, <a href="Athenry/Helper.html#error-instance_method" title="Athenry::Helper#error (method)">#error</a>, <a href="Athenry/Helper.html#execute-instance_method" title="Athenry::Helper#execute (method)">#execute</a>, <a href="Athenry/Helper.html#filename-instance_method" title="Athenry::Helper#filename (method)">#filename</a>, <a href="Athenry/Helper.html#generate_bash-instance_method" title="Athenry::Helper#generate_bash (method)">#generate_bash</a>, <a href="Athenry/Helper.html#is_mounted%3F-instance_method" title="Athenry::Helper#is_mounted? (method)">#is_mounted?</a>, <a href="Athenry/Helper.html#logger-instance_method" title="Athenry::Helper#logger (method)">#logger</a>, <a href="Athenry/Helper.html#mount-instance_method" title="Athenry::Helper#mount (method)">#mount</a>, <a href="Athenry/Helper.html#must_be_root-instance_method" title="Athenry::Helper#must_be_root (method)">#must_be_root</a>, <a href="Athenry/Helper.html#overlays_basharray-instance_method" title="Athenry::Helper#overlays_basharray (method)">#overlays_basharray</a>, <a href="Athenry/Helper.html#reset_temp_options-instance_method" title="Athenry::Helper#reset_temp_options (method)">#reset_temp_options</a>, <a href="Athenry/Helper.html#safe_sync-instance_method" title="Athenry::Helper#safe_sync (method)">#safe_sync</a>, <a href="Athenry/Helper.html#send_to_log-instance_method" title="Athenry::Helper#send_to_log (method)">#send_to_log</a>, <a href="Athenry/Helper.html#send_to_state-instance_method" title="Athenry::Helper#send_to_state (method)">#send_to_state</a>, <a href="Athenry/Helper.html#set_temp_options-instance_method" title="Athenry::Helper#set_temp_options (method)">#set_temp_options</a>, <a href="Athenry/Helper.html#setup_environment-instance_method" title="Athenry::Helper#setup_environment (method)">#setup_environment</a>, <a href="Athenry/Helper.html#success-instance_method" title="Athenry::Helper#success (method)">#success</a>, <a href="Athenry/Helper.html#update_chroot-instance_method" title="Athenry::Helper#update_chroot (method)">#update_chroot</a>, <a href="Athenry/Helper.html#update_configs-instance_method" title="Athenry::Helper#update_configs (method)">#update_configs</a>, <a href="Athenry/Helper.html#update_scripts-instance_method" title="Athenry::Helper#update_scripts (method)">#update_scripts</a>, <a href="Athenry/Helper.html#warning-instance_method" title="Athenry::Helper#warning (method)">#warning</a></p>
 
   
   
   
   
   
-  <h3 class="inherited">Methods included from <a href="Athenry/ResumeTree.html" title="Athenry::ResumeTree">Athenry::ResumeTree</a></h3>
-  <p class="inherited"><a href="Athenry/ResumeTree.html#resume-instance_method" title="#resume">#resume</a></p>
-
   
   
   
   
   
-  <h3 class="inherited">Methods included from <a href="Athenry/Helper.html" title="Athenry::Helper">Athenry::Helper</a></h3>
-  <p class="inherited"><a href="Athenry/Helper.html#announcing-instance_method" title="#announcing">#announcing</a>, <a href="Athenry/Helper.html#check_for_setup-instance_method" title="#check_for_setup">#check_for_setup</a>, <a href="Athenry/Helper.html#chroot-instance_method" title="#chroot">#chroot</a>, <a href="Athenry/Helper.html#cmd-instance_method" title="#cmd">#cmd</a>, <a href="Athenry/Helper.html#die-instance_method" title="#die">#die</a>, <a href="Athenry/Helper.html#error-instance_method" title="#error">#error</a>, <a href="Athenry/Helper.html#execute-instance_method" title="#execute">#execute</a>, <a href="Athenry/Helper.html#filename-instance_method" title="#filename">#filename</a>, <a href="Athenry/Helper.html#generate_bash-instance_method" title="#generate_bash">#generate_bash</a>, <a href="Athenry/Helper.html#is_mounted%3F-instance_method" title="#is_mounted?">#is_mounted?</a>, <a href="Athenry/Helper.html#logger-instance_method" title="#logger">#logger</a>, <a href="Athenry/Helper.html#mount-instance_method" title="#mount">#mount</a>, <a href="Athenry/Helper.html#must_be_root-instance_method" title="#must_be_root">#must_be_root</a>, <a href="Athenry/Helper.html#overlays_basharray-instance_method" title="#overlays_basharray">#overlays_basharray</a>, <a href="Athenry/Helper.html#reset_temp_options-instance_method" title="#reset_temp_options">#reset_temp_options</a>, <a href="Athenry/Helper.html#send_to_log-instance_method" title="#send_to_log">#send_to_log</a>, <a href="Athenry/Helper.html#send_to_state-instance_method" title="#send_to_state">#send_to_state</a>, <a href="Athenry/Helper.html#set_temp_options-instance_method" title="#set_temp_options">#set_temp_options</a>, <a href="Athenry/Helper.html#setup_environment-instance_method" title="#setup_environment">#setup_environment</a>, <a href="Athenry/Helper.html#success-instance_method" title="#success">#success</a>, <a href="Athenry/Helper.html#update_chroot-instance_method" title="#update_chroot">#update_chroot</a>, <a href="Athenry/Helper.html#update_configs-instance_method" title="#update_configs">#update_configs</a>, <a href="Athenry/Helper.html#update_scripts-instance_method" title="#update_scripts">#update_scripts</a>, <a href="Athenry/Helper.html#warning-instance_method" title="#warning">#warning</a></p>
-
 
 </div>
     
     <div id="footer">
-  Generated on Tue Nov 17 22:02:44 2009 by 
+  Generated on Sat Feb  6 22:29:10 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.3 (ruby-1.8.7).
 </div>
 
   </body>

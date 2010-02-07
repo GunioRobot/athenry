@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (R)</a> &raquo; 
-    <a href="../Athenry.html" title="Athenry">Athenry</a>
+    <span class='title'><a href="../Athenry.html" title="Athenry (module)">Athenry</a></span>
      &raquo; 
     <span class="title">Run</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,7 +52,15 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName">Object</span>
+      <span class="inheritName"><a href="../Object.html" title="Object (class)">Object</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next">Athenry::Run</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
       
       </dd>
     
@@ -65,14 +79,129 @@
 
 
 
-
-  <h2>Method Summary</h2>
+  <h2>Instance Attribute Summary</h2>
   <ul class="summary">
     
       <li class="public ">
-  <span class="summary_signature"><a href="#build-instance_method" title="#build (instance method)">- (Object) <strong>build</strong>(args) </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#chrootdir-instance_method" title="#chrootdir (instance method)">- (Object) <strong>chrootdir</strong> </a>
+    
+
+    
   </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute chrootdir.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#chrootname-instance_method" title="#chrootname (instance method)">- (Object) <strong>chrootname</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute chrootname.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#logfile-instance_method" title="#logfile (instance method)">- (Object) <strong>logfile</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute logfile.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#statefile-instance_method" title="#statefile (instance method)">- (Object) <strong>statefile</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute statefile.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+
+  <h2>Instance Method Summary</h2>
+
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#build-instance_method" title="#build (instance method)">- (Object) <strong>build</strong>(args) </a>
+    
+
+    
+  </span>
+  
   
   
   
@@ -88,9 +217,14 @@ Executes a single command on the chroot.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#clean-instance_method" title="#clean (instance method)">- (Object) <strong>clean</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#clean-instance_method" title="#clean (instance method)">- (Object) <strong>clean</strong>(args) </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -106,9 +240,14 @@ Executes steps to cleanup.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#freshen-instance_method" title="#freshen (instance method)">- (Object) <strong>freshen</strong>(args) </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#freshen-instance_method" title="#freshen (instance method)">- (Object) <strong>freshen</strong>(args) </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -124,9 +263,39 @@ Updates an existing chroot.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#rescue-instance_method" title="#rescue (instance method)">- (Object) <strong>rescue</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Run) <strong>initialize</strong> </a>
+    
+
+    
   </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+A new instance of Run.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rescue-instance_method" title="#rescue (instance method)">- (Object) <strong>rescue</strong> </a>
+    
+
+    
+  </span>
+  
   
   
   
@@ -142,9 +311,14 @@ Executes steps to chroot into shell.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#resume-instance_method" title="#resume (instance method)">- (Object) <strong>resume</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#resume-instance_method" title="#resume (instance method)">- (Object) <strong>resume</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -160,9 +334,14 @@ Resumes from last saved state.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#setup-instance_method" title="#setup (instance method)">- (Object) <strong>setup</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#setup-instance_method" title="#setup (instance method)">- (Object) <strong>setup</strong>(args) </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -178,9 +357,14 @@ Executes steps for setup.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#shell-instance_method" title="#shell (instance method)">- (Object) <strong>shell</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#shell-instance_method" title="#shell (instance method)">- (Object) <strong>shell</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -196,9 +380,14 @@ Executes the shell.
 
     
       <li class="public ">
-  <span class="summary_signature"><a href="#target-instance_method" title="#target (instance method)">- (Object) <strong>target</strong>(args) </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#target-instance_method" title="#target (instance method)">- (Object) <strong>target</strong>(args) </a>
+    
+
+    
   </span>
+  
   
   
   
@@ -214,16 +403,247 @@ Executes a group set of commands on the chroot.
 
     
   </ul>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a href="" title="Athenry::Run (class)">Run</a></tt>) <strong>initialize</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of Run
+</p>
 
 
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+
+6
+7
+8
+9
+10
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 6</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span>
+  <span class='must_be_root identifier id'>must_be_root</span>
+  
+  <span class='$chrootname gvar id'>$chrootname</span> <span class='assign token'>=</span> <span class='string val'>&quot;chroot&quot;</span> <span class='unless unless_mod kw'>unless</span> <span class='$chrootname gvar id'>$chrootname</span>
+  <span class='$chrootdir gvar id'>$chrootdir</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{WORKDIR}/builds/#{$chrootname}&quot;</span>
+  <span class='$statefile gvar id'>$statefile</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{STATEDIR}/#{$chrootname}.state&quot;</span> 
+  <span class='$logfile gvar id'>$logfile</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{LOGDIR}/#{$chrootname}.log&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="chrootdir=-instance_method"></span>
+      <span id="chrootdir-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="chrootdir-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>chrootdir</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute chrootdir
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='chrootdir identifier id'>chrootdir</span>
+  <span class='@chrootdir ivar id'>@chrootdir</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="chrootname=-instance_method"></span>
+      <span id="chrootname-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="chrootname-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>chrootname</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute chrootname
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='chrootname identifier id'>chrootname</span>
+  <span class='@chrootname ivar id'>@chrootname</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="logfile=-instance_method"></span>
+      <span id="logfile-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="logfile-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>logfile</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute logfile
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='logfile identifier id'>logfile</span>
+  <span class='@logfile ivar id'>@logfile</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="statefile=-instance_method"></span>
+      <span id="statefile-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="statefile-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>statefile</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute statefile
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='statefile identifier id'>statefile</span>
+  <span class='@statefile ivar id'>@statefile</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="build-instance_method">
   
-    - (<tt>Object</tt>) <strong>build</strong>(args) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>build</strong>(args) 
   
 
   
@@ -241,7 +661,7 @@ Executes a single command on the chroot
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li><a href="Build.html" title="Athenry::Build">Athenry::Build</a></li>
+      <li><a href="Build.html" title="Athenry::Build (class)">Athenry::Build</a></li>
     
   </ul>
 
@@ -251,15 +671,15 @@ Executes a single command on the chroot
       <pre class="lines">
 
 
-16
-17
-18</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 23</span>
 
 <span class='def def kw'>def</span> <span class='build identifier id'>build</span><span class='lparen token'>(</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='target identifier id'>target</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='build identifier id'>build</span><span class='dot token'>.</span><span class='target identifier id'>target</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -270,7 +690,7 @@ Executes a single command on the chroot
       <div class="method_details ">
   <p class="signature " id="clean-instance_method">
   
-    - (<tt>Object</tt>) <strong>clean</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>clean</strong>(args) 
   
 
   
@@ -288,7 +708,7 @@ Executes steps to cleanup
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li><a href="Clean.html" title="Athenry::Clean">Athenry::Clean</a></li>
+      <li><a href="Clean.html" title="Athenry::Clean (class)">Athenry::Clean</a></li>
     
   </ul>
 
@@ -298,15 +718,15 @@ Executes steps to cleanup
       <pre class="lines">
 
 
-34
-35
-36</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 41</span>
 
-<span class='def def kw'>def</span> <span class='clean identifier id'>clean</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='clean identifier id'>clean</span><span class='dot token'>.</span><span class='unmount identifier id'>unmount</span>
+<span class='def def kw'>def</span> <span class='clean identifier id'>clean</span><span class='lparen token'>(</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='clean identifier id'>clean</span><span class='dot token'>.</span><span class='target identifier id'>target</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -317,7 +737,7 @@ Executes steps to cleanup
       <div class="method_details ">
   <p class="signature " id="freshen-instance_method">
   
-    - (<tt>Object</tt>) <strong>freshen</strong>(args) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>freshen</strong>(args) 
   
 
   
@@ -335,7 +755,7 @@ Updates an existing chroot
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li><a href="Freshen.html" title="Athenry::Freshen">Athenry::Freshen</a></li>
+      <li><a href="Freshen.html" title="Athenry::Freshen (class)">Athenry::Freshen</a></li>
     
   </ul>
 
@@ -345,15 +765,15 @@ Updates an existing chroot
       <pre class="lines">
 
 
-28
-29
-30</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 35</span>
 
 <span class='def def kw'>def</span> <span class='freshen identifier id'>freshen</span><span class='lparen token'>(</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='freshen identifier id'>freshen</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='freshen identifier id'>freshen</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -364,7 +784,7 @@ Updates an existing chroot
       <div class="method_details ">
   <p class="signature " id="rescue-instance_method">
   
-    - (<tt>Object</tt>) <strong>rescue</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>rescue</strong> 
   
 
   
@@ -382,7 +802,7 @@ Executes steps to chroot into shell
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li><a href="Rescue.html" title="Athenry::Rescue">Athenry::Rescue</a></li>
+      <li><a href="Rescue.html" title="Athenry::Rescue (class)">Athenry::Rescue</a></li>
     
   </ul>
 
@@ -392,15 +812,15 @@ Executes steps to chroot into shell
       <pre class="lines">
 
 
-40
-41
-42</pre>
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 47</span>
 
-<span class='def def kw'>def</span> <span class='rescue rescue kw'>rescue</span> 
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='rescue identifier id'>rescue</span><span class='dot token'>.</span><span class='target identifier id'>target</span>
+<span class='def def kw'>def</span> <span class='rescue rescue kw'>rescue</span>
+  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='rescue identifier id'>rescue</span><span class='dot token'>.</span><span class='chroot identifier id'>chroot</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -411,7 +831,7 @@ Executes steps to chroot into shell
       <div class="method_details ">
   <p class="signature " id="resume-instance_method">
   
-    - (<tt>Object</tt>) <strong>resume</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>resume</strong> 
   
 
   
@@ -429,7 +849,7 @@ Resumes from last saved state
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li><a href="Resume.html" title="Athenry::Resume">Athenry::Resume</a></li>
+      <li><a href="Resume.html" title="Athenry::Resume (class)">Athenry::Resume</a></li>
     
   </ul>
 
@@ -439,15 +859,15 @@ Resumes from last saved state
       <pre class="lines">
 
 
-52
-53
-54</pre>
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 59</span>
 
 <span class='def def kw'>def</span> <span class='resume identifier id'>resume</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='resume identifier id'>resume</span><span class='dot token'>.</span><span class='from identifier id'>from</span>
+  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='resume identifier id'>resume</span><span class='dot token'>.</span><span class='from identifier id'>from</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -458,7 +878,7 @@ Resumes from last saved state
       <div class="method_details ">
   <p class="signature " id="setup-instance_method">
   
-    - (<tt>Object</tt>) <strong>setup</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>setup</strong>(args) 
   
 
   
@@ -476,7 +896,7 @@ Executes steps for setup
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li><a href="Setup.html" title="Athenry::Setup">Athenry::Setup</a></li>
+      <li><a href="Setup.html" title="Athenry::Setup (class)">Athenry::Setup</a></li>
     
   </ul>
 
@@ -486,23 +906,15 @@ Executes steps for setup
       <pre class="lines">
 
 
-6
-7
-8
-9
-10
-11
-12</pre>
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 17</span>
 
-<span class='def def kw'>def</span> <span class='setup identifier id'>setup</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='setup identifier id'>setup</span><span class='dot token'>.</span><span class='stage identifier id'>stage</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='setup identifier id'>setup</span><span class='dot token'>.</span><span class='snapshot identifier id'>snapshot</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='setup identifier id'>setup</span><span class='dot token'>.</span><span class='generate_bashscripts identifier id'>generate_bashscripts</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='setup identifier id'>setup</span><span class='dot token'>.</span><span class='copy_scripts identifier id'>copy_scripts</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='setup identifier id'>setup</span><span class='dot token'>.</span><span class='copy_configs identifier id'>copy_configs</span>
+<span class='def def kw'>def</span> <span class='setup identifier id'>setup</span><span class='lparen token'>(</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='setup identifier id'>setup</span><span class='dot token'>.</span><span class='target identifier id'>target</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -513,7 +925,7 @@ Executes steps for setup
       <div class="method_details ">
   <p class="signature " id="shell-instance_method">
   
-    - (<tt>Object</tt>) <strong>shell</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>shell</strong> 
   
 
   
@@ -531,7 +943,7 @@ Executes the shell
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li><a href="Shell.html" title="Athenry::Shell">Athenry::Shell</a></li>
+      <li><a href="Shell.html" title="Athenry::Shell (class)">Athenry::Shell</a></li>
     
   </ul>
 
@@ -541,15 +953,15 @@ Executes the shell
       <pre class="lines">
 
 
-46
-47
-48</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 53</span>
 
 <span class='def def kw'>def</span> <span class='shell identifier id'>shell</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='shell identifier id'>shell</span><span class='dot token'>.</span><span class='shellinput identifier id'>shellinput</span>
+  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='shell identifier id'>shell</span><span class='dot token'>.</span><span class='shellinput identifier id'>shellinput</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -560,7 +972,7 @@ Executes the shell
       <div class="method_details ">
   <p class="signature " id="target-instance_method">
   
-    - (<tt>Object</tt>) <strong>target</strong>(args) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>target</strong>(args) 
   
 
   
@@ -578,7 +990,7 @@ Executes a group set of commands on the chroot
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li><a href="Target.html" title="Athenry::Target">Athenry::Target</a></li>
+      <li><a href="Target.html" title="Athenry::Target (class)">Athenry::Target</a></li>
     
   </ul>
 
@@ -588,15 +1000,15 @@ Executes a group set of commands on the chroot
       <pre class="lines">
 
 
-22
-23
-24</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/athenry/run.rb', line 29</span>
 
 <span class='def def kw'>def</span> <span class='target identifier id'>target</span><span class='lparen token'>(</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
-  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='Execute constant id'>Execute</span><span class='colon2 op'>::</span><span class='target identifier id'>target</span><span class='dot token'>.</span><span class='build identifier id'>build</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='Athenry constant id'>Athenry</span><span class='colon2 op'>::</span><span class='target identifier id'>target</span><span class='dot token'>.</span><span class='build identifier id'>build</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -609,9 +1021,9 @@ Executes a group set of commands on the chroot
 </div>
     
     <div id="footer">
-  Generated on Tue Nov 17 22:02:42 2009 by 
+  Generated on Sat Feb  6 22:29:09 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.3 (ruby-1.8.7).
 </div>
 
   </body>
