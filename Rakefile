@@ -2,7 +2,7 @@ require 'rake'
 require 'rake/clean'
 require 'rake/testtask'
 
-@gems=%w[commander rconfig progressbar yard]
+@gems=%w[commander rconfig progressbar yard erubis]
 
 CLEAN << "athenry-latest.tar.bz2" << "yarddocs" << "coverage" << "tmp"
 
@@ -85,18 +85,9 @@ begin
   require 'yard'
   require 'yard/rake/yardoc_task'
   YARD::Rake::YardocTask.new(:yardoc) do |t|
-    t.files = ['lib/**/*.rb', 
-                 'doc/About.md',
-                 'doc/QuickStart.md',
-                 'doc/Release.md',
-                 'doc/Hacking.md',
-                 'doc/History.md',
-                 'AUTHORS.md', 
-                 'TODO.md',
-                 'MIT-LICENSE']
-      t.options = ['--output-dir=yarddocs',
-                   '--title', 'Athenry YARD documentation',
-                   '--readme', 'README.md']
+    t.files = ['lib/**/*.rb']
+    t.options = ['--output-dir=yarddocs',
+                 '--title', 'Athenry YARD documentation']
 
   end
 rescue LoadError

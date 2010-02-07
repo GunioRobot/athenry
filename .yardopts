@@ -1,13 +1,12 @@
 --protected
 --no-private
+--readme README.md
 -
-
 MIT-LICENSE
 AUTHORS.md
 TODO.md
-README.md
 doc/About.md
 doc/Hacking.md
-doc/History.md
+doc/WhatsNew.md
 doc/QuickStart.md
 doc/Release.md
