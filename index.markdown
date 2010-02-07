@@ -19,7 +19,7 @@ Index
 
 About
 ----
->Athenry uses the system configuration files that you supply, to build a custom installable tarball, or chroot to the freshly rolled install of your distribution.
+>Athenry uses the system configuration files that you supply, to build a custom installable tarball, or chroot.
 
 * For me information please refer to the [about](http://gregf.github.com/athenry/about/) page.
 
