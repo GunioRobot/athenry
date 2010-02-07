@@ -2,7 +2,7 @@
 *~
 *.bak
 *.old
-meta/**
+yarddocs/**
 .yardoc
 config.sh
 _site
