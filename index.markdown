@@ -3,6 +3,9 @@ layout: default
 title: Main Page
 ---
 
+## Version 0.2.5 Released
+[Whats New?]({{ site.url }}/whatsnew/) 
+
 Index
 -----
 
