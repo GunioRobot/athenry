@@ -9,7 +9,7 @@ module Athenry
       args.each { |cmd| send(cmd) }
     end
 
-    # If stage file is not found it fetches one from $stageurl, then extracts the file.
+    # If stage file is not found it fetches one from $stageurl
     # @return [String]
     def fetchstage
       announcing 'Fetching stage tarball' do
@@ -20,6 +20,8 @@ module Athenry
       send_to_state('setup', 'fetchstage')
     end
 
+    # Extracts the stage file we downloaded.
+    # @return [String]
     def extractstage
       announcing 'Extracting stage tarball' do
         unless File.exists?("#{$chrootdir}/root/")
@@ -42,6 +44,8 @@ module Athenry
       send_to_state('setup', 'fetchsnapshot')
     end
 
+    # Extracts the snapshot tarball
+    # @return [String]
     def extractsnapshot
       announcing 'Extracting portage snapshot' do
         unless File.exists?("#{SNAPSHOTCACHE}/portage/")
@@ -52,6 +56,8 @@ module Athenry
       send_to_state('setup', 'extractsnapshot')
     end
 
+    # Uses rsync and RConfig.gentoo.sync to update the snapshot cache
+    # @return [String]
     def updatesnapshot
       announcing "Updating snapshot cache" do
         if safe_sync 
@@ -64,7 +70,9 @@ module Athenry
       end
       send_to_state('setup', 'updatesnapshot')
     end
-    
+   
+    # Copies the snapshot cache into your chroot directory
+    # @return [String]
     def copysnapshot
       announcing 'Copying snapshot to chroot' do
         Athenry::sync(:options => "--verbose --progress --recursive --links --safe-links --perms\

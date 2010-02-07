@@ -209,11 +209,17 @@ module Athenry
       yield
     end 
 
+    # Renders an erb template and prints it to stdout
+    # @param [String] template Name of the erb template to render
+    # @return [String]
     def display_erb(template)
       template = Erubis::Eruby.new(File.read("#{ATHENRY_ROOT}/lib/athenry/templates/#{template}"))
       puts template.result(binding())
     end
 
+    # Checks portage/metadata/timestamp, if it's been over 24 hours then we sync again, 
+    # other wise display the warning message Using FORCESYNC will override the check.
+    # @return [String]
     def safe_sync
       lastsync = Time.parse(File.read("#{SNAPSHOTCACHE}/portage/metadata/timestamp")) 
       nextsync = lastsync + (60 * 60 * 24) #24 hours

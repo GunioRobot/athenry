@@ -3,6 +3,9 @@ module Athenry
 
     attr_accessor :uri, :location, :output, :filename, :force
 
+    # @param [String] uri URI to the file you want to download
+    # @param [String] location Where to save the file
+    # @param [String] output Optional name to save the file as
     def initialize(opts={})
       self.uri = URI.parse(opts[:uri])
       self.filename = URI.parse(opts[:uri]).path[%r{[^/]+\z}]
@@ -15,15 +18,18 @@ module Athenry
       end
     end
 
+    # If the file is alreay download return true, if not donload the file
+    # @return [True,String]
     def fetch_file
-      if check_file || !force
+      if check_file 
         success "#{filename} already exists, skipping"
         return true
       else
         download
       end
     end
-    
+   
+    # Fetches the file
     def download
       begin
         fetch = File.open(File.join(location, output), 'w')
@@ -45,6 +51,8 @@ module Athenry
 
     protected 
 
+    # If the file exists and the file size is the same return true else return false
+    # @return [True,False]
     def check_file
       if File.exists?("#{location}/#{output}") && check_size
         return true
@@ -53,6 +61,8 @@ module Athenry
       end 
     end
 
+    # Checks the size of the file at the uri and locally to see if we have the whole file.
+    # @return [True,False]
     def check_size
       Net::HTTP.start(uri.host) do |http|
         httpsize ||= http.head(uri.path).content_length

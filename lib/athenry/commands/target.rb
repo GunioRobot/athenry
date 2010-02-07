@@ -24,6 +24,9 @@ module Athenry
       Athenry::build.target("install_pkgmgr", "update_everything", "rebuild", "update_configs", "install_overlays", "install_sets", "rebuild")
     end
 
+    # Steps required to setup a chroot
+    # @see Athenry::setup
+    # @return [String]
     def setup
       Athenry::setup.target("fetchstage", "extractstage", "fetchsnapshot", "updatesnapshot", "copysnapshot", "copy_scripts", "copy_configs")
     end

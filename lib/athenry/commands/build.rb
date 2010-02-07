@@ -20,7 +20,7 @@ module Athenry
       send_to_state('build', 'sync')
     end
     
-    # Installs the package manager set via CONFIG.pkgmgr
+    # Installs the package manager set via RCONFIG.athenry.package_manager
     # @return [String]
     def install_pkgmgr
       announcing 'Installing Package Manager' do

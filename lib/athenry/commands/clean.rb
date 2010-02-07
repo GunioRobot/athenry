@@ -19,6 +19,9 @@ module Athenry
       end
     end
 
+    # Remove temporary files within your chroot.
+    # This means /tmp /var/tmp /usr/portage/distfiles  as well as
+    # the /scripts we installed during the setup
     def tmp
       announcing "Removing temporary files from #{$chrootname}" do
         if File.exists?("#{$chrootdir}") then
@@ -30,6 +33,7 @@ module Athenry
       end
     end
 
+    # Destroys the chrootdir by running rm -rf after it's unmounted.
     def destroy
       announcing "Removing #{$chrootname}" do
         print 7.chr

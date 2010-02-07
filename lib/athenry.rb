@@ -81,18 +81,26 @@ module Athenry
       Run.new
     end
 
+    # Initiates Extract [Class]
+    # @see Athenry::Extract
     def self.extract(*args)
       Extract.new(*args).deflate
     end
-
+  
+    # Initiates Checksum [Class]
+    # @see Athenry::Checksum
     def self.md5sum(*args)
       Checksum.new(*args).md5
     end
 
+    # Initiates Fetch [Class]
+    # @see Athenry::Fetch
     def self.fetch(*args)
       Fetch.new(*args).fetch_file
     end
 
+    # Initiates Sync [Class]
+    # @see Athenry::Sync
     def self.sync(*args)
       Sync.new(*args).files
     end
