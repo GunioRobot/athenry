@@ -4,21 +4,21 @@ Quickstart Guide
 Quickstart Index
 ----------------
 
-* [Where to download?](#where_to_download)
-* [Installation](#installation)
-* [Configuration](#configuration)
-    * [Emerge](#emerge)
-* [Usage](#usage)
-* [Commands](#commands)
-    * [setup](#setup)
-    * [build](#build)
-    * [target](#target)
-    * [rescue](#rescue)
-    * [resume](#resume)
-    * [freshen](#freshen)
-    * [clean](#clean)
-    * [shell](#shell)
-* [Notes](#notes)
+- [Where to download?](#where_to_download)  
+- [Installation](#installation)  
+- [Configuration](#configuration)  
+    - [Emerge](#emerge)  
+- [Usage](#usage)  
+- [Commands](#commands)  
+    - [setup](#setup)  
+    - [build](#build)  
+    - [target](#target)  
+    - [rescue](#rescue)  
+    - [resume](#resume)   
+    - [freshen](#freshen)  
+    - [clean](#clean)  
+- [shell](#shell)  
+- [Notes](#notes)  
 
 Where to download?
 ------------------
@@ -42,28 +42,27 @@ Configuration
 -------------
 
 Athenry stores all configuration data in a plain text config file. During
-Athenry's first installation, config.rb.example is copied to
-/etc/athenry/config.rb.example. Athenry will not run until this file is
-reviewed and then renamed to config.rb. The default configuration options
-provided in /etc/athenry/config.rb.example are sane defaults that the developers
-chose. These settings should work for most anyone that would like to give
-Athenry a try.
+Athenry's first installation, athenry.conf is copied to
+/etc/athenry/athenry.conf. The default configuration options provided in
+/etc/athenry/athenry.conf are sane defaults that the developers chose.
+These settings should work for most anyone that would like to give Athenry a
+try.
 
 With that said, it is a good idea to review the config file to see if there are
-configuration options that may work better for you such as the working directory,
-your timezone, and even what mirrors to use. As the config.rb in /etc are settings
-the developers consider sane defaults, it is highly recommend that config.rb
-be copied to ~/.config/athenry/config.rb. Athenry actually checks for
-~/.config/athenry/config.rb for it's configuration settings before looking
-in /etc/athenry/config.rb. All changes to Athenry's configuration and settings
-should be made to this local configuration file. That way /etc/athenry/config.rb
-will always be there for reference in case you make a change and Athenry no
-longer does what is expected. Another detail to keep in mind is every time
-Athenry is updated, /etc/athenry/config.rb is overwritten with any new
-configuration options, deprecated options are removed, any changes that the
-developers may think are better defaults now will be updated. To put it simply,
-any personal changes made to the config in /etc will be overwritten with
-Athenry's updated config.
+configuration options that may work better for you such as the working
+directory, your timezone, and even what mirrors to use. As the athenry.conf in
+/etc are settings the developers consider sane defaults, it is highly recommend
+that athenry.conf be copied to ~/.config/athenry/athenry.conf. Athenry actually
+checks for ~/.config/athenry/athenry.conf for it's configuration settings
+before looking in /etc/athenry/athenry.conf. All changes to Athenry's
+configuration and settings should be made to this local configuration file.
+That way /etc/athenry/athenry.conf will always be there for reference in case
+you make a change and Athenry no longer does what is expected. Another detail
+to keep in mind is every time Athenry is updated, /etc/athenry/athenry.conf is
+overwritten with any new configuration options, deprecated options are removed,
+any changes that the developers may think are better defaults now will be
+updated. To put it simply, any personal changes made to the config in /etc will
+be overwritten with Athenry's updated config.
 
 The developers recommend that you update Athenry regularly, then diff the local
 Athenry config file in ~/ to the Athenry config in /etc. Think of this as a
@@ -74,23 +73,42 @@ deprecated and/or removed
 The following is the list of Athenry's currently sane defaults and available
 settings.
 
-###config.rb:
-
-    CONFIG.workdir = "/var/tmp/athenry/"
-    CONFIG.stageurl = "http://mirrors.kernel.org/gentoo/releases/amd64/autobuilds/current-stage3/stage3-amd64-20091112.tar.bz2"
-    CONFIG.snapshoturl = "http://mirrors.kernel.org/gentoo/snapshots/portage-latest.tar.bz2"
-    CONFIG.arch = "amd64"
-    CONFIG.verbose = "true"
-    CONFIG.pkgmanager = "paludis"
-    CONFIG.sets = %w[stage4 games]
-    CONFIG.timezone = "EST5EDT"
-    CONFIG.overlays = {
-        :mpd => "http://github.com/gregf/mpd/raw/master/mpd.xml",
-        :sunrise => nil,
-        }
+###athenry.conf:
+    [general]
+    workdir = /var/tmp/athenry
+    timezone = EST5EDT
+    verbose = true
+    arch = amd64
+     
+    [stage]
+    url = http://gentoo.osuosl.org/releases/amd64/current-stage3/stage3-amd64-20100121.tar.bz2
+     
+    [snapshot]
+    url = http://gentoo.osuosl.org/snapshots/portage-latest.tar.bz2
+     
+    [overlays]
+    sunrise =
+    mpd = git://github.com/gregf/mpd.git
+     
+    [gentoo]
+    sync = rsync://rsync.gentoo.org/gentoo-portage
+    sets = stage4 stage5
+    package\_manager = paludis
+    profile = default/linux/amd64/10.0
+ 
 
 **workdir**
 : This is the root directory where created stages, logs, the state file, and downloaded files will be stored.
+
+**timezone**
+: Timezone to be set for the chroot.
+
+**verbose**
+: Does just what it implies, toggles verbosity. Even with this set to
+false you can tail the log file to see Athenry's progress.
+
+**arch**
+: This is the architecture you plan on building for.
 
 **stageurl**
 : This is the url where Athenry will grab the stage seed from.
@@ -98,27 +116,23 @@ settings.
 **snapshoturl**
 : This is the url where Athenry will grab the portage snapshot from.
 
-**arch**
-: This is the architecture you plan on building for.
-
-**verbose**
-: Does just what it implies, toggles verbosity. Even with this set to
-false you can tailf the log file to see Athenry's progress.
-
 **overlays**
-: This takes a hash of overlays you would like to use. You can optionally
-specify an additional overlay url to be pulled in. This hash is then passed
-onto either layman or playman.
+: This takes a list of overlays you would like to use. You can optionally
+specify an additional overlay url to be pulled in.
 
-**pkgmanager**
-: This can be set to either paludis or emerge.
+**sync**
+: Sets the default rsync mirror for the portage tree.
 
 **sets**
-: An array listing set files to install. This is how packages to be installed
-into the chroot is handled.
+: A listing of set files to install. This is how packages to be installed
+into the chroot are handled.
 
-**timezone**
-: Timezone to be set for the chroot.
+**package\_manager**
+: This can be set to either paludis or emerge.
+
+**profile**
+: Default gentoo profile to use, this does not override configuration settings you may have set, 
+this is only to assure the make.profile symlink is set correctly.
 
 ###Emerge
 
@@ -129,13 +143,15 @@ This is a trival task. All that needs to be done is to add the following line to
 package.unmask in the chroot that Athenry is using.
 
 ###package.unmask
->=sys-apps/portage-2.2_rc33
+    >=sys-apps/portage-2.2_rc33
 
 The following documentation describes how to use sets in emerge;
 
-[Portage Manual](http://dev.gentoo.org/~zmedico/portage/doc/ch02s03.html)
-[Gentoo-User Discussion](http://www.linux-archive.org/gentoo-user/250682-portage-sets.html)
-[Example Set File](http://github.com/gregf/athenryconfigs/blob/master/etc/amd64/portage/sets/stage4)
+1. [Portage Manual](http://dev.gentoo.org/~zmedico/portage/doc/ch02s03.html)
+2. [Help writing /etc/portage/sets.conf](http://forums.gentoo.org/viewtopic-t-706642.html)
+3. [Portage 2.2, the new features](http://forums.gentoo.org/viewtopic-p-5127806.html)
+5. [Gentoo-User Discussion](http://www.linux-archive.org/gentoo-user/250682-portage-sets.html)
+6. [Example Set File](http://github.com/gregf/athenryconfigs/blob/master/etc/amd64/portage/sets/stage4)
 
 
 Usage
@@ -163,9 +179,6 @@ Usage
 
   GLOBAL OPTIONS:
 
-    -c, --config FILE
-        Load the specified configuration file for Athenry to use
-
     -h, --help
         Display help documentation
 
@@ -186,12 +199,39 @@ Commands
 ###setup:
 ________
 
-The setup command does a number of things automatically. It fetches the stage
-file and a portage snapshot. It checks the md5sums of those files. The setup
-command also creates the necessary directory structure for Athenry to properly
-operate.
+The setup command does a number of things. It fetches the stage file and a
+portage snapshot. It checks the md5sums of those files, and extracts them.
+Creating the necessary directory structure for Athenry to properly operate.
 
-    $ athenry setup
+Athenry automatically runs the setup process when any stage is built.
+Alternatively you can run the `target setup` command to do just the setup
+process. You can also run individual setup commands if you wish. For example:
+
+    $ athenry setup fetchstage
+
+**fetchstage**
+: Fetches the stage from the stage url.
+
+**extractstage**
+: Extracts the stage tarball into your chroot while checking the md5sum.
+
+**fetchsnapshot**
+: Fetches the snapshot tarball.
+
+**extractsnapshot**
+: Extracts the snapshot tarball while checking the md5sum.
+
+**updatesnapshot**
+: If the snapshot cache has not been updated within 24 hours update it again using rsync.
+
+**copysnapshot**
+: Copies the snapshot cache into your chrootdir.
+
+**copy\_scripts**
+: Copies the scripts needed to build your stage into your chroot.
+
+**copy\_configs**
+: Copies user defined configuration files into your chroot for use.
 
 ###build:
 _________
@@ -217,15 +257,16 @@ a list of commands that can be run.
 : Updates any out of date configuration files in the specified chroot.
 
 **install\_overlays**
-: Installs overlays that have been specified in config.rb
+: Installs overlays that have been specified in athenry.conf
 
 **install\_sets**
-: Installs sets that have been specified in config.rb
+: Installs sets that have been specified in athenry.conf
 
 **rebuild**
 : Rebuilds packages with broken linkage, also runs python-updater.
 
 ###target:
+__________
 
 The target command is used to build an entire stage tarball in one swoop.
 It runs setup if it has not already been run. It will then go through all the
@@ -233,8 +274,11 @@ necessary build steps in the correct order to build the specified stage.
 
     $ athenry target stage3
 
+**setup**
+: Runs commands necessary for initial setup.
+
 **stage3**
-: Builds a stage3
+: Builds a stage3.
 
 **custom**
 : Builds a custom stage using sets and overlays.
@@ -257,10 +301,8 @@ happened to be fixed. Athenry can then resume from where the problem occured.
 ###resume:
 __________
 
-The resume command should pick up where Athenry left off. Currently there is a
-small limitation on resume support. If Athenry is stopped at the last step of
-setup Athenry will not know to start running build. This will be resolved in a
-future release.
+The resume command should pick up where Athenry left off. Resuming can only be
+done from a target command. 
 
     $ athenry resume
 
@@ -269,7 +311,7 @@ ___________
 
 Freshen will update the specified chroot.
 
-    $ athenry freshen <chroot>
+    $ athenry freshen 
 
 ###clean:
 _________
@@ -286,50 +328,8 @@ _________
 
 The shell command is one of Athenry's most powerful features. This will allow
 you to run each step of building a stage from an irb like shell. This makes
-going back and copying newer configs or debugging an issue painless.
-
-    $ athenry shell
-
-    Type help for a list of commands:
-    >>
-    help
-    Athenry Shell Help:
-    ===================
-    * help
-    * quit
-
-    Setup:
-    ---------------
-    * generate_bashscripts
-    * stage
-    * snapshot
-    * copy_configs
-    * copy_scripts
-
-
-    Build:
-    ---------------
-    * install_overlays
-    * etc_update
-    * rebuild
-    * update_everything
-    * sync
-    * install_sets
-    * install_pkgmgr
-
-    Target:
-    ---------------
-    * stage3
-    * custom
-
-    Freshen:
-    ---------------
-    * update
-
-    Clean:
-    ---------------
-    * unmount
-    >>
+going back and copying newer configs or debugging an issue painless.  Commands
+are tab completed using ruby readline.
 
 Notes
 -----
