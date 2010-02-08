@@ -31,7 +31,7 @@ module Athenry
     SNAPSHOTCACHE = "#{WORKDIR}/#{RConfig.internal.paths.snapshotdir}/#{RConfig.internal.paths.snapshotcache}"
     SYNC = "#{RConfig.athenry.gentoo.sync}"
     HTTP_PROXY = "#{RConfig.athenry.proxy.http_proxy}"
-    FTP_PROXY = "#{RConifg.athenry.proxy.ftp_proxy}"
+    FTP_PROXY = "#{RConfig.athenry.proxy.ftp_proxy}"
 
   end
 end
