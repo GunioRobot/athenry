@@ -21,7 +21,7 @@ module Athenry
     # @return [String]
     def md5 
       unverified_digest = Digest::MD5.hexdigest(File.read("#{path}/#{filename}"))
-      verified_digest = File.read("#{path}/#{filename}.#{digest}").match('^([a-zA-z0-9]){32}')
+      verified_digest = File.read("#{path}/#{filename}.#{digest}").match('\b([a-zA-z0-9]){32}\b')
       if "#{unverified_digest}" == "#{verified_digest}"
         success "md5sum of #{filename} passsed"
       else
@@ -30,5 +30,17 @@ module Athenry
       end
     end
 
+    # Checks the sha1 of a file, if the checksum does not pass it exists 1
+    # @return [String]
+    def sha1 
+      unverified_digest = Digest::SHA1.hexdigest(File.read("#{path}/#{filename}"))
+      verified_digest = File.read("#{path}/#{filename}.#{digest}").match('\b([a-f0-9]{40})\b')
+      if "#{unverified_digest}" == "#{verified_digest}"
+        success "sha1 of #{filename} passsed"
+      else
+        raise "sha1 of #{filename} failed!"
+        exit 1
+      end
+    end
   end
 end
