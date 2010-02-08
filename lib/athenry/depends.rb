@@ -3,8 +3,10 @@ require 'erubis'
 require 'readline'
 require 'fileutils'
 require 'digest/md5' 
+require 'digest/sha1'
 require 'net/http'
 require 'time'
+require 'ostruct'
 
 begin
   gem 'rconfig', '>= 0.3.2'

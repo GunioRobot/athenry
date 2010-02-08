@@ -1,7 +1,7 @@
 module Athenry
   class Fetch
 
-    attr_accessor :uri, :location, :output, :filename, :force
+    attr_accessor :uri, :location, :output, :filename, :force, :fetch, :progress_bar, :proxy
 
     # @param [String] uri URI to the file you want to download
     # @param [String] location Where to save the file
@@ -12,6 +12,9 @@ module Athenry
       self.location = opts[:location]
       self.output = opts[:output]
       self.force = opts[:force]
+      self.fetch = File.open(File.join(location, output), 'w')
+      self.progress_bar = nil
+      self.proxy = HTTP_PROXY ? URI.parse(HTTP_PROXY) : OpenStruct.new
 
       unless self.output
         self.output = self.filename
@@ -32,9 +35,7 @@ module Athenry
     # Fetches the file
     def download
       begin
-        fetch = File.open(File.join(location, output), 'w')
-        progress_bar = nil
-        Net::HTTP.start(uri.host) do |http|
+        Net::HTTP::Proxy(proxy.host, proxy.port, proxy.user, proxy.password).start(uri.host) do |http|
           progress_bar = ProgressBar.new('progress', http.head(uri.path).content_length)
           progress_bar.file_transfer_mode
           http.get(uri.path) do |data|
@@ -50,6 +51,10 @@ module Athenry
     end
 
     protected 
+
+    def http_proxy
+        proxy = URI.parse(HTTP_PROXY)
+    end
 
     # If the file exists and the file size is the same return true else return false
     # @return [True,False]

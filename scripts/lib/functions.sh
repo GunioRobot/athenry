@@ -90,6 +90,13 @@ function setup_chroot {
     env-update
     source /etc/profile
     export PS1="(chroot) $PS1"
+
+    if [ -n "${HTTP_PROXY}" ]; then
+        export HTTP_PROXY="${HTTP_PROXY}"
+    fi
+    if [ -n "${FTP_PROXY}" ]; then
+        export FTP_PROXY="${FTP_PROXY}"
+    fi
 }
 
 # Syncs the portage tree
