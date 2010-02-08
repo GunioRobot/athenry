@@ -21,6 +21,8 @@ require 'rbconfig'
   :confdirs   => ['etc', 'etc/x86', 'etc/amd64'],
   :conffiles  => ['athenry.conf', 'internal.conf'],
   :mandir     => '/usr/local/man/man1',
+  :zshdir     => '/usr/share/zsh/site-functions',
+  :zshcomp_files => [ '_athenry' ],
   :manpages   => ['athenry.1', 'athenry-build.1', 'athenry-clean.1', 'athenry-rescue.1', 'athenry-resume.1', 'athenry-setup.1', 'athenry-target.1']
 }
 
@@ -63,6 +65,11 @@ def uninstall
   @options[:manpages].each do |page|
     FileUtils.rm_f("#{@options[:mandir]}/#{page}", :verbose => true)
   end
+
+  @options[:zshcomp_files].each do |file|
+    FileUtils.rm_f("#{@options[:zshdir]}/#{file}", :verbose => true)
+  end
+
   puts "Files in #{@options[:sysconfdir]} are saved, remove them if you wish"
 end
 
@@ -98,5 +105,9 @@ def install
   FileUtils.chown_R('root', 'root', "#{@options[:sysconfdir]}", :verbose => true)
   FileUtils.chown_R('root', 'root', "#{@options[:destdir]}/#{@options[:prefix]}", :verbose => true)
   FileUtils.chown('root', 'root', "#{@options[:bindir]}/athenry", :verbose=> true)
+
+  @options[:zshcomp_files].each do |file|
+    FileUtils.install("#{ENV['PWD']}/zsh-completion/#{file}", "#{@options[:zshdir]}", :mode => 0644, :verbose => true)
+  end
 
 end
