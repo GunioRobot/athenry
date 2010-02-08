@@ -3,21 +3,15 @@ TODO
 
 Release 0.3.0
 --------------
-* proxy support
-    export http_proxy="http://proxy.server.com:port"
-    export ftp_proxy="http://proxy.server.com:port"
-    [network]
-    http_proxy
-    ftp_proxy
-* sha1 support in Checksum class
+* Complete chroots from chrootdir in zsh completion
+* athenry info chroots will give us the list and eventually show other info
 * build should create a tarball (pull mkstage5 into project)
     - Look into doing this from outside the chroot using ruby
 * Stage 2 support
-* Rename arch to be less confusing, think of this more as a configuration profile
+* it's portage not emerge fix references
 
 Next
 ----
-* zsh and bash completion
 * Stage 1 support
 * Defined verbosity levels
 * Check config for errors and die quickly 
