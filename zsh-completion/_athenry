@@ -59,13 +59,11 @@ _athenry_help() {
   _wanted help_cmds expl help compadd $expl -a help_cmds
 }
 
-
-
-_arguments \
+_arguments -C -s\
   '-c[set chroot name]:_chroots' \
   '-s[set stage url]' \
   '-p[set snapshot url]' \
-  '-v[display version]' \
-  '-h[display help]' \
-  '-t[trace]' \
+  '(-v --version)'{-v,--version}'[display version]' \
+  '(-h --help)'{-h,--help}'[display help]' \
+  '(-t --trace)'{-t,--trace}'[trace]' \
   '*::athenry command:_athenry_command'
