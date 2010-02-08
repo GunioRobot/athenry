@@ -8,9 +8,9 @@ module Athenry
     end
 
     if File.exists?("#{ENV['HOME']}/.config/athenry/athenry.conf")
-      CONFIGS = "#{ENV['HOME']}/.config/athenry/etc/#{RConfig.athenry.general.arch}"
+      CONFIGS = "#{ENV['HOME']}/.config/athenry/etc/#{RConfig.athenry.general.config_profile}"
     else
-      CONFIGS = "/etc/athenry/etc/#{RConfig.athenry.general.arch}"
+      CONFIGS = "/etc/athenry/etc/#{RConfig.athenry.general.config_profile}"
     end
 
     $stageurl = "#{RConfig.athenry.stage.url}" unless $stageurl
