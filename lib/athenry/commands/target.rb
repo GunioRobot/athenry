@@ -1,9 +1,6 @@
 module Athenry
   class Target 
 
-    def initialize
-    end
-
     def build(*args)
       args.each { |cmd| send(cmd) }
     end
@@ -12,8 +9,9 @@ module Athenry
     # @see Athenry::build
     # @return [String]
     def stage3
+      set_target
       set_temp_options(:nopaludis => true) do
-        Athenry::build.target("install_pkgmgr", "update_everything", "update_configs", "rebuild")
+        Athenry::build.target("install_pkgmgr", "update_everything", "etc_update", "rebuild")
       end
     end
 
@@ -21,14 +19,23 @@ module Athenry
     # @see Athenry::build
     # @return [String]
     def custom
-      Athenry::build.target("install_pkgmgr", "update_everything", "rebuild", "update_configs", "install_overlays", "install_sets", "rebuild")
+      set_target
+      Athenry::build.target("install_pkgmgr", "update_everything", "rebuild", "etc_update", "install_overlays", "install_sets", "rebuild")
     end
 
     # Steps required to setup a chroot
     # @see Athenry::setup
     # @return [String]
     def setup
-      Athenry::setup.target("fetchstage", "extractstage", "fetchsnapshot", "updatesnapshot", "copysnapshot", "copy_scripts", "copy_configs")
+      set_target
+      Athenry::setup.target("fetchstage", "extractstage", "fetchsnapshot", "extractsnapshot", "updatesnapshot", "copysnapshot", "copy_scripts", "copy_configs")
+    end
+
+    def freshen
+      set_target
+      set_temp_options(:freshen => true) do
+        Athenry::build.target("update_everything", "etc_update", "rebuild")
+      end
     end
 
   end

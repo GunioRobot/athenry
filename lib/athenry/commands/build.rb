@@ -17,7 +17,7 @@ module Athenry
       announcing 'Syncing Portage Tree' do
         chroot 'sync'
       end
-      send_to_state('build', 'sync')
+      set_state
     end
     
     # Installs the package manager set via RCONFIG.athenry.package_manager
@@ -26,7 +26,7 @@ module Athenry
       announcing 'Installing Package Manager' do
         chroot 'install_pkgmgr'
       end
-      send_to_state('build', 'install_pkgmgr')
+      set_state
     end
 
     # Updates world and system
@@ -35,7 +35,7 @@ module Athenry
       announcing 'Updating All Packages' do
         chroot 'update_everything'
       end
-      send_to_state('build', 'update_everything')
+      set_state
     end
 
     # Runs etc-update to update your config files
@@ -44,7 +44,7 @@ module Athenry
       announcing 'Running etc-update' do
         system("chroot #{$chrootdir} /scripts/run.sh update_configs")
       end
-      send_to_state('build', 'etc_update')
+      set_state
     end
 
     # Installs any overlays you have specified via CONFIG.overlays 
@@ -54,7 +54,7 @@ module Athenry
       announcing 'Installing Overlays' do
         chroot 'install_overlays'
       end
-      send_to_state('build', 'install_overlays')
+      set_state
     end
 
     # Installs sets you have specified via CONFIG.sets
@@ -63,7 +63,7 @@ module Athenry
       announcing 'Installing Sets' do
         chroot 'install_sets'
       end
-      send_to_state('build', 'install_sets')
+      set_state
     end
 
     # This attempts to fix any problems in your chroot by running
@@ -78,7 +78,7 @@ module Athenry
       announcing 'Rebuilding' do
         chroot 'rebuild'
       end
-      send_to_state('build', 'rebuild')
+      set_state
     end
 
   end

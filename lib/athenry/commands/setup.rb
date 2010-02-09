@@ -17,7 +17,7 @@ module Athenry
           Athenry::fetch(:uri => "#{$stageurl}.DIGESTS", :location => STAGEDIR)
           Athenry::fetch(:uri => "#{$stageurl}.CONTENTS", :location => STAGEDIR)
       end
-      send_to_state('setup', 'fetchstage')
+      set_state
     end
 
     # Extracts the stage file we downloaded.
@@ -29,7 +29,7 @@ module Athenry
           Athenry::extract(:uri => $stageurl, :path => STAGEDIR, :location => $chrootdir)
         end
       end
-      send_to_state('setup', 'extractstage')
+      set_state
     end
 
     # Fetches a portage snapshot and extracts it to $chrootdir/usr/
@@ -41,7 +41,7 @@ module Athenry
           Athenry::fetch(:uri => "#{$snapshoturl}.md5sum", :location => SNAPSHOTDIR)
         end
       end
-      send_to_state('setup', 'fetchsnapshot')
+      set_state
     end
 
     # Extracts the snapshot tarball
@@ -53,7 +53,7 @@ module Athenry
           Athenry::extract(:uri => $snapshoturl, :path => SNAPSHOTDIR, :location => SNAPSHOTCACHE)
         end
       end
-      send_to_state('setup', 'extractsnapshot')
+      set_state
     end
 
     # Uses rsync and RConfig.gentoo.sync to update the snapshot cache
@@ -68,7 +68,7 @@ module Athenry
                         :output => "#{SANPSHOTCACHE}/portage/")
         end
       end
-      send_to_state('setup', 'updatesnapshot')
+      set_state
     end
    
     # Copies the snapshot cache into your chroot directory
@@ -80,7 +80,7 @@ module Athenry
                       :uri => "#{SNAPSHOTCACHE}/portage/", 
                       :output => "#{$chrootdir}/usr/portage/")
       end
-      send_to_state('setup', 'copysnapshot')
+      set_state
     end
 
     # Copies build scripts into $chrootdir/root
@@ -89,7 +89,7 @@ module Athenry
       announcing 'Copying scripts into chroot' do
         update_scripts
       end
-      send_to_state('setup', 'copy_scripts')
+      set_state
     end
 
     # Copies user config files into $chrootdir/etc
@@ -98,7 +98,7 @@ module Athenry
       announcing 'Copying configs into chroot' do
         update_configs
       end
-      send_to_state('setup', 'copy_configs')
+      set_state
     end
     
   end
