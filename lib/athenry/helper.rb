@@ -69,19 +69,30 @@ module Athenry
     end
 
     # if the last command was sucessfull write the current state to file
-    # @param [String] stage
-    # @param [String] step
-    # @example
-    #   send_to_state("Setup", "copy_scripts")
     # @return [String]
-    def send_to_state(stage, step)
+    def set_state
       if $? == 0
         begin
+          step = caller_method_name
           statefile = File.new("#{$statefile}", 'w')
-          statefile.puts(%Q{#{stage}:#{STATE["#{stage}"]["#{step}"]}})
+          statefile.puts(%Q{#{$target}:#{STATE["#{$target}"]["#{step}"]}})
         ensure
           statefile.try(:close)
         end
+      end
+    end
+
+    def set_target
+      $target = caller_method_name
+    end
+
+    # Loads the current state into an instance variable
+    # @example
+    #   load_state #=> Setup:2
+    # @return [String]
+    def load_state
+      if File.file?("#{$statefile}") && File.readable?("#{$statefile}") 
+        @current_state = File.read("#{$statefile}").strip.split(':')
       end
     end
    
@@ -133,7 +144,7 @@ module Athenry
         if File.exists?("#{dir}")
           next
         else
-          if run.nil? then raise("Must run setup first!") end
+          if run.nil? then raise MustRunSetup end
           Athenry::target.setup
         end
       end
@@ -146,10 +157,10 @@ module Athenry
     end
 
     # Checks if the Process.uid is run by root. If not raise an error and die. 
-    # @raise "Must run as root"
+    # @raise MustRunAsRoot 
     # @return [String]
     def must_be_root
-      raise 'Must run as root' unless Process.uid == 0
+      raise MustRunAsRoot unless Process.uid == 0
     end
 
     # Takes a block with options. Runs any commands inside the block with the
@@ -303,7 +314,7 @@ module Athenry
             if $verbose then puts "#{line}" end
           }
         ensure
-          pipe.close
+          pipe.try(:close)
         end
       end
       exit && die("#{command} Failed to complete successfully") 
