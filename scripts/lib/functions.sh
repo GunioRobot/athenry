@@ -43,20 +43,20 @@ function die() {
 }
 
 # Sets the package manager based on some constants
-# If NOPALUDIS is set it will default to emerge for the duration.
+# If NOPALUDIS is set it will default to portage for the duration.
 # If FRESHEN is set it will check to be sure paludis is installed, 
-# if not fall back to emerge
+# if not fall back to portage 
 # @param [String] PKG_MANAGER The package manager we are using
 # @param [Optional, [true,false]] FRESHEN Weather or not we should verify paludis is actually installed.
 # @param NOPALUDIS [Optional, [true,false]] NOPALUDIS Never use paludis
 function set_pkgmanager {
     if [ "${NOPALUDIS}" == "true" ]; then
-        PKG_MANAGER="emerge"
+        PKG_MANAGER="portage"
     fi
     
     if [[ "${FRESHEN}" == "true" && "${PKG_MANAGER}" == "paludis" ]]; then
         if [[ ! -x /usr/bin/paludis ]]; then
-            PKG_MANAGER="emerge"
+            PKG_MANAGER="portage"
         fi 
     fi
 
@@ -67,7 +67,7 @@ function set_pkgmanager {
         PKG_SYNC="paludis -s"
         PKG_UPDATE="paludis -i everything"
     ;;
-    emerge)
+    portage)
         PKG_INSTALL="emerge"
         PKG_REMOVE="emerge -C"
         PKG_SYNC="emerge --sync"
@@ -125,7 +125,7 @@ function rebuild_cache {
 }
 
 function add_to_make_conf {
-    if [ ${PKG_MANAGER} == "emerge" ]; then
+    if [ ${PKG_MANAGER} == "portage" ]; then
         if [ -f /var/lib/layman/make.conf ]; then
             echo 'source "/var/lib/layman/make.conf"' >> /etc/make.conf
         elif [ -f /usr/portage/local/layman/make.conf ]; then

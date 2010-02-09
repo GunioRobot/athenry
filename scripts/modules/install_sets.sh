@@ -4,7 +4,7 @@ do
     paludis)
         ${PKG_INSTALL} "${_set}" || die "Failed installing set: ${_set}"
         ;;
-    emerge)
+    portage)
         ${PKG_INSTALL} "@${_set}" || die "Failed installing set: @${_set}"
         ;;
     *)

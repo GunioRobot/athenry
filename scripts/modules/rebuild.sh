@@ -4,7 +4,7 @@ case ${PKG_MANAGER} in
         reconcilio || die "reconcilio failed!"
         python-updater -P paludis || die "python updater failed!"
     ;;
-    emerge)
+    portage)
         emerge @preserved-rebuild
         revdep-rebuild || die "revdep-rebuild failed!"
         python-updater -P portage || die "python updater failed!"

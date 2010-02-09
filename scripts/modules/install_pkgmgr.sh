@@ -2,7 +2,7 @@ case ${PKG_MANAGER} in
 paludis)
     emerge --noreplace --newuse sys-apps/paludis || die "Failed installing paludis"
     ;;
-emerge)
+portage)
     emerge --noreplace --newuse sys-apps/portage app-portage/gentoolkit app-portage/layman || die "Failed installing portage"
     ;;
 *)

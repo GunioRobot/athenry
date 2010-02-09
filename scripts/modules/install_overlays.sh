@@ -14,7 +14,7 @@ if [ "${OVERLAYKEY}" ]; then
             paludis -s x-"${OVERLAYKEY[$x]}" || die "Failed syncing x-${OVERLAYKEY[$x]}"
             mkdir -p /var/paludis/repositories/"${OVERLAYKEY[$x]}"/.cache/names/
       ;; 
-        emerge)
+        portage)
             # execute first command
             if [ -z ${OVERLAYVAL[$x]} ]; then
                 layman -a "${OVERLAYKEY[$x]}" || die "Failed adding overlay ${OVERLAYKEY[$x]}"
