@@ -1,0 +1,1 @@
+class InvalidResumePoint < StandardError; end 
