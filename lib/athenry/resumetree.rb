@@ -9,14 +9,18 @@ module Athenry
       '6' => [ 'copy_scripts', 'copy_configs'  ],
       '7' => [ 'copy_configs'  ],
     },
-    'build' => {
-      '1' => [ 'sync', 'install_pkgmgr', 'update_everything', 'etc_update', 'install_overlays', 'install_sets', 'rebuild'  ],
-      '2' => [ 'install_pkgmgr', 'update_everything', 'etc_update', 'install_overlays', 'install_sets', 'rebuild'  ],
-      '3' => [ 'update_everything', 'etc_update', 'install_overlays', 'install_sets', 'rebuild'  ],
-      '4' => [ 'etc_update', 'install_overlays', 'install_sets', 'rebuild'  ],
-      '5' => [ 'install_overlays', 'install_sets', 'rebuild'  ],
-      '6' => [ 'install_sets', 'rebuild'  ],
-      '7' => [ 'rebuild'  ],
+    'custom' => {
+      '1' => [ 'update_everything', 'rebuild', 'etc_update', 'install_overlays', 'install_sets', 'rebuild' ],
+      '2' => [ 'rebuild', 'etc_update', 'install_overlays', 'install_sets', 'rebuild' ],
+      '3' => [ 'etc_update', 'install_overlays', 'install_sets', 'rebuild' ],
+      '4' => [ 'install_overlays', 'install_sets', 'rebuild' ],
+      '5' => [ 'install_sets', 'rebuild' ],
+      '6' => [ 'rebuild' ],
+    },
+    'stage3' => {
+      '1' => [ 'update_everything', 'etc_update', 'rebuild' ], 
+      '2' => [ 'etc_update', 'rebuild' ], 
+      '3' => [ 'rebuild' ], 
     },
   }
 end
