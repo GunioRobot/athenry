@@ -1,6 +1,8 @@
 ATHENRY_ROOT = "#{File.dirname(__FILE__)}/.." unless defined?(ATHENRY_ROOT)
 
 require 'athenry/core_ext/object'
+require 'athenry/core_ext/kernel'
+require 'athenry/errors.rb'
 require 'athenry/depends'
 require 'athenry/version'
 require 'athenry/config'
@@ -21,7 +23,6 @@ require 'athenry/fetch'
 # * {Athenry::Build} is the class used to mount and chroot into your stage for building one command at a time.
 # * {Athenry::Resume} is the class that allows you to resume from your previous state.
 # * {Athenry::Target} is the class that allows you to build a full target stage, stage3 or custom.
-# * {Athenry::Freshen} is the class that will update an existing chroot
 # * {Athenry::Rescue} is the class that will chroot you into an existing chrootdir to preform manual repairs/commands
 # * {Athenry::Clean} is the class that will unmount and clean up temp files.
 # * {Athenry::Shell} is the class that gives you an irb like shell.
@@ -45,12 +46,6 @@ module Athenry
       Target.new
     end
  
-    # Initiates Freshen [Class]
-    # @see Athenry::Freshen
-    def self.freshen
-      Freshen.new
-    end   
-    
     # Initiates Resume [Class]
     # @see Athenry::Resume
     def self.resume

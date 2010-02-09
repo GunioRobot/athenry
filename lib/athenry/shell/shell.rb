@@ -64,7 +64,7 @@ module Athenry
     end
 
     def generate_list
-      list ||= [].concat([@setup, @build, @target, @freshen, @clean, @help]).flatten.sort
+      list ||= [].concat([@setup, @build, @target, @clean, @help]).flatten.sort
       comp ||= proc { |s| list.grep( /^#{Regexp.escape(s)}/ ) }
     end
 
@@ -72,7 +72,6 @@ module Athenry
       @setup    ||= Athenry::Setup.instance_methods(false)
       @build    ||= Athenry::Build.instance_methods(false)
       @target   ||= Athenry::Target.instance_methods(false)
-      @freshen  ||= Athenry::Freshen.instance_methods(false)
       @clean    ||= Athenry::Clean.instance_methods(false)
       @help     ||= ["debug", "help", "quit"]
     end

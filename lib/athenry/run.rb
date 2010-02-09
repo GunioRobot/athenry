@@ -30,12 +30,6 @@ module Athenry
       Athenry::target.build(*args)
     end
 
-    # Updates an existing chroot 
-    # @see Athenry::Freshen
-    def freshen(args)
-      Athenry::freshen.update(*args)
-    end
-
     # Executes steps to cleanup
     # @see Athenry::Clean
     def clean(args)
