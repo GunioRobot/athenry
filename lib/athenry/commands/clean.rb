@@ -39,13 +39,15 @@ module Athenry
         print 7.chr
         warning "Sleeping for 10 seconds..."
         warning "*******************************************************************"
-        warning "You are about to completley remove #{$chrootname} from your system"
+        warning "You are about to completely remove #{$chrootname} from your system"
         warning "If you wish to cancel hit ctrl-c now!"
         warning "*******************************************************************"
         sleep(10)
         if File.exists?("#{$chrootdir}")
           unmount
           FileUtils.rm_rf("#{$chrootdir}", :verbose => $verbose)
+          FileUtils.rm("#{$statefile}", :verbose => $verbose)
+          FileUtils.rm("#{$logfile}", :verbose => $verbose)
         end
       end
     end
