@@ -9,7 +9,6 @@ _athenry_command() {
         target:"Builds a specific target"
         resume:"Resume from last saved state"
         rescue:"Chroot into the current stage to perform commands manually"
-        freshen:"Updates an existing chroot"
         shell:"Run Athenry commands directly through an irb like shell"
         clean:"Cleans up any mess made"
         help:"Display global or [command] help documentation"
@@ -31,7 +30,7 @@ _athenry_command() {
 
 _athenry_target() {
   local expl target_cmds
-  target_cmds=(setup stage3 custom)
+  target_cmds=(setup stage3 custom freshen)
   _wanted target_cmds expl target compadd $expl -a target_cmds
 }
 
@@ -55,14 +54,18 @@ _athenry_clean() {
 
 _athenry_help() {
   local expl help_cmds
-  help_cmds=(setup build target resume rescue freshen shell clean help)
+  help_cmds=(setup build target resume rescue shell clean help)
   _wanted help_cmds expl help compadd $expl -a help_cmds
 }
 
+_chroots() {
+    _wanted file expl 'chroot name' _files -W "/storage/athenry/builds" 
+}
+
 _arguments -C -s\
-  '-c[set chroot name]:_chroots' \
-  '-s[set stage url]' \
-  '-p[set snapshot url]' \
+  '(-c --chroot)'{-c,--chroot}'[set chroot name]:file:_chroots'\
+  '(-s --stageurl)'{-s,--stageurl}'[set stage url]' \
+  '(-p --snapshoturl)'{-p,--snapshoturl}'[set snapshot url]' \
   '(-v --version)'{-v,--version}'[display version]' \
   '(-h --help)'{-h,--help}'[display help]' \
   '(-t --trace)'{-t,--trace}'[trace]' \
