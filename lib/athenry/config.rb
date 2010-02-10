@@ -1,14 +1,20 @@
 module Athenry
   module Config
 
+    if ENV['XDG_CONFIG_HOME'].nil?
+      XDG_CONFIG_HOME ="#{ENV['HOME']}/.config/athenry"
+    else
+      XDG_CONFIG_HOME="#{ENV['XDG_CONFIG_HOME']}/athenry"
+    end
+    
     begin
-      RConfig.config_paths = ["#{ENV['HOME']}/.config/athenry/", "/etc/athenry/"]
+      RConfig.config_paths = ["#{XDG_CONFIG_HOME}", "/etc/athenry/"]
     rescue ConfigError 
       $stderr.puts "No configuration file found"
     end
 
-    if File.exists?("#{ENV['HOME']}/.config/athenry/athenry.conf")
-      CONFIGS = "#{ENV['HOME']}/.config/athenry/etc/#{RConfig.athenry.general.config_profile}"
+    if File.exists?("#{XDG_CONFIG_HOME}/athenry.conf")
+      CONFIGS = "#{XDG_CONFIG_HOME}/etc/#{RConfig.athenry.general.config_profile}"
     else
       CONFIGS = "/etc/athenry/etc/#{RConfig.athenry.general.config_profile}"
     end
