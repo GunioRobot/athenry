@@ -59,7 +59,9 @@ _athenry_help() {
 }
 
 _chroots() {
-    _wanted file expl 'chroot name' _files -W "/storage/athenry/builds" 
+    local expl chroots
+    chroots=(`athenry info list`)
+    _wanted chroots expl chroots compadd $expl -a chroots
 }
 
 _arguments -C -s\
