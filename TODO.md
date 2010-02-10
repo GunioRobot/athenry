@@ -3,12 +3,16 @@ TODO
 
 Release 0.3.0
 --------------
-* Complete chroots from chrootdir in zsh completion
-* athenry info chroots will give us the list and eventually show other info
+* Athenry info
+    - chroots lists chroots
+    - failures displays date/time and the command it was on during the failure
+    - latest builds
+    - env prints out variables (extra arg for this to specify one)
+    - lastsync displays the last time the portage cache was updated
+    - No input should display most of this formated nicely
 * build should create a tarball (pull mkstage5 into project)
     - Look into doing this from outside the chroot using ruby
 * Stage 2 support
-* it's portage not emerge fix references
 
 Next
 ----
