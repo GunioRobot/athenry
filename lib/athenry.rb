@@ -69,6 +69,12 @@ module Athenry
     def self.rescue
       Rescue.new
     end
+
+    # Initiates Info [Class]
+    # @see Athenry::Info
+    def self.info
+      Info.new
+    end
     
     # Initiates Run [Class]
     # @see Athenry::Run

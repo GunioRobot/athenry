@@ -81,3 +81,11 @@ command :rescue do |c|
     Athenry::run.rescue
   end
 end
+
+command :info do |c|
+  c.syntax = 'athenry info [options]'
+  c.description = 'Displays information about athenry and its chroots'
+  c.action do |args, options|
+    Athenry::run.info(args)
+  end
+end

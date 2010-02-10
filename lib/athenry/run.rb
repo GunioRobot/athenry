@@ -35,6 +35,12 @@ module Athenry
     def clean(args)
       Athenry::clean.target(*args)
     end
+
+    # Executes the info command
+    # @see Athenry::Info
+    def info(args)
+      Athenry::info.target(*args)
+    end
   
     # Executes steps to chroot into shell
     # @see Athenry::Rescue
