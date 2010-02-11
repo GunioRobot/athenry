@@ -1,6 +1,6 @@
 module Athenry
   STATE = {
-    'setup' => {
+    :setup => {
       'fetchstage' => 1,
       'extractstage' => 2,
       'fetchsnapshot' => 3,
@@ -10,7 +10,7 @@ module Athenry
       'copy_scripts' => 7,
       'copy_configs' => 8,
     },
-    'custom' => {
+    :custom => {
       'install_pkgmgr' => 1,
       'update_everything' => 2,
       'rebuild' => 3,
@@ -19,7 +19,7 @@ module Athenry
       'install_sets' => 6,
       'rebuild' => 7,
     },
-    'stage3' => {
+    :stage3 => {
       'install_pkgmgr' => 1,
       'update_everything' => 2,
       'etc_update' => 3,
