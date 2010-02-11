@@ -63,9 +63,9 @@ module Athenry
     # @return [Boolean] true/false
     def is_mounted?
       if mtab =~ /#{$chrootdir}\/(dev|proc|sys)/
-        return true
+        true
       else
-        return false
+        false
       end
       mtab.try(:close)
     end
@@ -254,12 +254,12 @@ module Athenry
     # @return [String]
     def safe_sync
       if lastsync >= nextsync && (ENV['FORCESYNC'] == "true" || ENV['forcesync'] == "true")
-        return true
+        true
       else
         warning "Gentoo Etiquette says we should not sync more than once every 24 hours. However,"
         warning "You may export FORCESYNC=yes to force a sync each time the script is run."
         warning "This is not recommended and may get you BANNED from Gentoo mirrors!"
-        return false
+        false
       end
     end
 
