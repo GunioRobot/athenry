@@ -66,7 +66,7 @@ _athenry_info() {
 
 _chroots() {
     local expl chroots
-    chroots=(`athenry info list`)
+    chroots=(`athenry info chroots`)
     _wanted chroots expl chroots compadd $expl -a chroots
 }
 
