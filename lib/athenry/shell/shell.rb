@@ -8,11 +8,10 @@ module Athenry
       $shell_is_running = true
       debug = false
       
-      must_be_root
+      greeting
       aliases
       help_data
       generate_list
-      greeting
     end
 
     # Exits the shell
@@ -25,7 +24,7 @@ module Athenry
     # Loads the help template and prints to stdout
     # @return [String]
     def help
-      display_erb("help.erb")
+      display_erb('help.erb')
     end
 
     def debug
@@ -68,7 +67,7 @@ module Athenry
       comp ||= proc { |s| list.grep( /^#{Regexp.escape(s)}/ ) }
     end
 
-    def help_data
+   def help_data
       @setup    ||= Athenry::Setup.instance_methods(false)
       @build    ||= Athenry::Build.instance_methods(false)
       @target   ||= Athenry::Target.instance_methods(false)
