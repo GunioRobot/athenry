@@ -312,6 +312,36 @@ module Athenry
       end
     end
 
+    def print_overlays
+      RConfig.athenry.overlays.each do |name,url|
+        row name, url
+      end
+    end
+
+    def chroot_dirs
+      chroot_names = []
+      Dir.glob("#{WORKDIR}/builds/*").each do |dir|
+        chroot_names.push(dir)
+      end
+      chroot_names
+    end
+
+    def heading(msg)
+      $stdout.puts "\e[32m#{msg}\e[0m "
+    end
+
+    def row(var, val)
+      $stdout.puts "\s\s\e[33m#{var}\e[0m: #{val}"
+    end
+
+    def latest_builds
+      chroot_dirs.each do |name|
+        if File.exists?("#{name}/root/") 
+          row File.basename(name), File.stat(name).mtime
+        end
+      end
+    end
+   
     # Loops through *args and uses method.send to evaluate the ruby methods.
     # @param [Array] commands List of commands to run
     def execute(*args)
