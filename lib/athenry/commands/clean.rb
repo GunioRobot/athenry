@@ -13,8 +13,7 @@ module Athenry
         warning('dev, sys, and proc are already unmounted')
       else
         announcing 'Unmounting dev, sys, and proc' do
-          dirs = %w[ dev sys proc ]
-          dirs.each{|dir| cmd("umount -l #{$chrootdir}/#{dir}", exit=false) }
+          %w[dev sys proc].each{|dir| cmd("umount -l #{$chrootdir}/#{dir}", exit=false) }
         end
       end
     end
@@ -45,9 +44,9 @@ module Athenry
         sleep(10)
         if File.exists?("#{$chrootdir}")
           unmount
-          FileUtils.rm_rf("#{$chrootdir}", :verbose => $verbose)
-          FileUtils.rm("#{$statefile}", :verbose => $verbose)
-          FileUtils.rm("#{$logfile}", :verbose => $verbose)
+          [$chrootdir, $statefile, $logfile].each do |file|
+            if File.exists?("#{file}") then FileUtils.rm_rf("#{file}", :verbose => $verbose) end
+          end
         end
       end
     end
