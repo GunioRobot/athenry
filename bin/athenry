@@ -14,6 +14,9 @@ begin
   gem "commander", ">= 4.0"
   require "commander/import"
 rescue Gem::LoadError
+  $stdout.puts "Please install the commander gem by running the following:"
+  $stdout.puts "gem install commander"
+  exit 1
 end
 require 'athenry'
 
