@@ -21,7 +21,7 @@ module Athenry
     end
     
     def klasses
-      @klasses = [Athenry::Setup, Athenry::Build, Athenry::Clean, Athenry::Target]
+      [Athenry::Setup, Athenry::Build, Athenry::Clean, Athenry::Target]
     end 
   
   end
