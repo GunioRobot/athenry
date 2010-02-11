@@ -23,9 +23,10 @@ program :description, 'Creates a Gentoo chroot and automates stage building'
 program :help, 'Author', 'Greg Fitzgerald <netzdamon@gmail.com>'
 program :help, 'See Also', 'http://gregf.github.com/athenry/'
 
-global_option('-c', '--chroot NAME', 'Use the specified chroot directory.') { |name| $chrootname = "#{name}" }
-global_option('-s', '--stageurl URL', 'Use the specified stage url.') { |url| $stageurl = "#{url}" }
-global_option('-p', '--snapshoturl URL', 'Use the specified snapshot url.') { |url| $snapshoturl = "#{url}" }
+global_option('--config PATH', 'Specify the default config path') { |path| $configpath = path }
+global_option('-c', '--chroot NAME', 'Use the specified chroot directory.') { |name| $chrootname = name }
+global_option('-s', '--stageurl URL', 'Use the specified stage url.') { |url| $stageurl = url }
+global_option('-p', '--snapshoturl URL', 'Use the specified snapshot url.') { |url| $snapshoturl = url }
 
 command :setup do |c|
   c.syntax = 'athenry setup [options]'
