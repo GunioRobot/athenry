@@ -48,7 +48,7 @@ module Athenry
     # @return [String]
     def setup
       set_target
-      Athenry::setup.target("fetchstage", "extractstage", "fetchsnapshot", "extractsnapshot", "updatesnapshot", "copysnapshot", "copy_scripts", "copy_configs")
+      Athenry::setup.target("fetchsnapshot", "extractsnapshot", "updatesnapshot", "fetchstage", "extractstage", "copysnapshot", "copy_scripts", "copy_configs")
     end
 
     def freshen
