@@ -21,6 +21,7 @@ program :name, 'Athenry'
 program :version, Athenry::Version::STRING
 program :description, 'Creates a Gentoo chroot and automates stage building'
 program :help, 'Author', 'Greg Fitzgerald <netzdamon@gmail.com>'
+program :help, 'See Also', 'http://gregf.github.com/athenry/'
 
 global_option('-c', '--chroot NAME', 'Use the specified chroot directory.') { |name| $chrootname = "#{name}" }
 global_option('-s', '--stageurl URL', 'Use the specified stage url.') { |url| $stageurl = "#{url}" }
