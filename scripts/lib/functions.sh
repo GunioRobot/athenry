@@ -79,6 +79,10 @@ function set_pkgmanager {
     esac
 }
 
+function run_module {
+    source "${MODULES}/${1}.sh"
+}
+
 # Sets up the environment for the chroot
 # @param [String] TIMEZONE The timezone to use for our chroot 
 # @see ls /usr/share/zoneinfo/ to choose

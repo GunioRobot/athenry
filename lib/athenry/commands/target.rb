@@ -23,6 +23,26 @@ module Athenry
       Athenry::build.target("install_pkgmgr", "update_everything", "rebuild", "etc_update", "install_overlays", "install_sets", "rebuild")
     end
 
+    # Steps required to build a stage1
+    # @see athenry::build
+    # @return [String]
+    def stage1
+      set_target
+      set_temp_options(:nopaludis => true) do
+        Athenry::build.target("bootstrap", "rebuild", "etc_update" )
+      end
+    end
+
+    # Steps required to build a stage2
+    # @see athenry::build
+    # @return [String]
+    def stage2
+      set_target
+      set_temp_options(:nopaludis => true) do
+        Athenry::build.target("emerge_system", "update_everything", "rebuild", "etc_update")
+      end
+    end
+
     # Steps required to setup a chroot
     # @see Athenry::setup
     # @return [String]

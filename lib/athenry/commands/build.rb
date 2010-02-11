@@ -38,6 +38,20 @@ module Athenry
       set_state
     end
 
+    def emerge_system
+      announcing "Installing system packages" do
+        chroot 'emerge_system'
+      end
+    set_state
+    end
+
+    def bootstrap
+      announcing "Bootstraping" do
+        chroot 'bootstrap'
+      end
+      set_state
+    end
+
     # Runs etc-update to update your config files
     # @return [String]
     def etc_update 

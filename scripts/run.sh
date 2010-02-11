@@ -15,34 +15,37 @@ set_pkgmanager
 
 case "${ACTION}" in
     sync)
-        source "${MODULES}/sync.sh"
+        run_module sync
     ;;
     update_pkgmgr)
-        source "${MODULES}/update_pkgmgr.sh"
+        run_module update_pkgmgr
     ;;
     rebuild)
-        source "${MODULES}/rebuild.sh"
+        run_module rebuild
     ;;
     rescue)
         bash --rcfile "${MODULES}/rescue.sh"
     ;;
     update_configs)
-        source "${MODULES}/update_configs.sh"
+        run_module update_configs
     ;;
     install_sets)
-        source "${MODULES}/install_sets.sh"
+        run_module install_sets
     ;;
     update_everything)
-        source "${MODULES}/update_everything.sh"
-    ;;
-    tar)
-        source "${MODULES}/tar.sh"
+        run_module update_everything
     ;;
     install_overlays)
-        source "${MODULES}/install_overlays.sh"
+        run_module install_overlays
     ;;
     install_pkgmgr)
-        source "${MODULES}/install_pkgmgr.sh"
+        run_module install_pkgmgr
+    ;;
+    emerge_system)
+        run_module emerge_system
+    ;;
+    bootstrap)
+        run_module bootstrap
     ;;
     *)
         die "Invalid action!"
