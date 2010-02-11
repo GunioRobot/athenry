@@ -328,6 +328,7 @@ module Athenry
 
     def heading(msg)
       $stdout.puts "\e[32m#{msg}\e[0m "
+      yield
     end
 
     def row(var, val)
