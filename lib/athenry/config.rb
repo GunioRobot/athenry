@@ -19,8 +19,8 @@ module Athenry
       CONFIGS = "/etc/athenry/etc/#{RConfig.athenry.general.config_profile}"
     end
 
-    $stageurl = "#{RConfig.athenry.stage.url}" unless $stageurl
-    $snapshoturl = "#{RConfig.athenry.snapshot.url}" unless $snapshoturl
+    $stageurl = RConfig.athenry.stage.url unless $stageurl
+    $snapshoturl = RConfig.athenry.snapshot.url unless $snapshoturl
 
     $shell_is_running = false
     $verbose = RConfig.athenry.general.verbose
@@ -28,16 +28,16 @@ module Athenry
     $nopaludis = RConfig.internal.bools.nopaludis
     $freshen = RConfig.internal.bools.freshen
     
-    WORKDIR = "#{RConfig.athenry.general.workdir}"
+    WORKDIR = RConfig.athenry.general.workdir
     SCRIPTS = "#{ATHENRY_ROOT}/scripts"
     LOGDIR = "#{WORKDIR}/#{RConfig.internal.paths.logdir}"
     STATEDIR = "#{WORKDIR}/#{RConfig.internal.paths.statedir}"
     STAGEDIR = "#{WORKDIR}/#{RConfig.internal.paths.stagedir}"
     SNAPSHOTDIR = "#{WORKDIR}/#{RConfig.internal.paths.snapshotdir}"
     SNAPSHOTCACHE = "#{WORKDIR}/#{RConfig.internal.paths.snapshotdir}/#{RConfig.internal.paths.snapshotcache}"
-    SYNC = "#{RConfig.athenry.gentoo.sync}"
-    HTTP_PROXY = "#{RConfig.athenry.proxy.http_proxy}"
-    FTP_PROXY = "#{RConfig.athenry.proxy.ftp_proxy}"
+    SYNC = RConfig.athenry.gentoo.sync
+    HTTP_PROXY = RConfig.athenry.proxy.http_proxy
+    FTP_PROXY = RConfig.athenry.proxy.ftp_proxy
 
   end
 end
