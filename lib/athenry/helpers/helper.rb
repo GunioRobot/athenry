@@ -70,22 +70,24 @@ module Athenry
       mtab.try(:close)
     end
 
+    def statefile
+      File.new($statefile, 'w')
+    end
+
+    def set_target
+      $target = caller_method_name
+    end
+
     # if the last command was sucessfull write the current state to file
     # @return [String]
     def set_state
       if $? == 0
         begin
-          step = caller_method_name
-          statefile = File.new("#{$statefile}", 'w')
-          statefile.puts(%Q{#{$target}:#{STATE["#{$target}"]["#{step}"]}})
+          statefile.puts "#{$target}:#{STATE[$target][caller_method_name]}"
         ensure
           statefile.try(:close)
         end
       end
-    end
-
-    def set_target
-      $target = caller_method_name
     end
 
     # Loads the current state into an instance variable
@@ -93,8 +95,10 @@ module Athenry
     #   load_state #=> Setup:2
     # @return [String]
     def load_state
-      if File.file?("#{$statefile}") && File.readable?("#{$statefile}") 
-        @current_state = File.read("#{$statefile}").strip.split(':')
+      begin
+        File.read($statefile).strip.split(':')
+      rescue Errno::ENOENT
+         raise MissingStateFile
       end
     end
    
@@ -112,7 +116,7 @@ module Athenry
     def filename(uri)
       URI.parse(uri).path[%r{[^/]+\z}]
     end
-    
+
     # Takes a erb template file and output file, to generate bash from ruby.
     # @param [File, #open] template Template file to open.
     # @param [File, #read] outfile Filename to write to.
@@ -128,6 +132,12 @@ module Athenry
         outfile.close
       end
     end
+
+    def check_dirs
+      [$chrootdir, LOGDIR, STAGEDIR, SNAPSHOTDIR, 
+       "#{$chrootdir}/scripts/run.sh", "#{$chrootdir}/bin/bash", 
+       "#{$chrootdir}/dev/null", "#{$chrootdir}/usr/portage/skel.ebuild"]
+    end
     
     # Checks to make sure setup was run before any build command is ran.
     # Looks for #{WORKDIR} and #{$chrootdir} to verify.
@@ -140,10 +150,8 @@ module Athenry
     #   check_for_setup
     # @return [String]
     def check_for_setup(run = nil)
-      dirs = [ $chrootdir, LOGDIR, STAGEDIR, SNAPSHOTDIR, "#{$chrootdir}/scripts/run.sh", "#{$chrootdir}/bin/bash", "#{$chrootdir}/dev/null", "#{$chrootdir}/usr/portage/skel.ebuild" ]
-      
-      dirs.each do |dir|
-        if File.exists?("#{dir}")
+      check_dirs.each do |dir|
+        if File.exists?(dir)
           next
         else
           if run.nil? then raise MustRunSetup end
@@ -152,10 +160,13 @@ module Athenry
       end
     end
 
+    def setup_dirs
+      [ $chrootdir, LOGDIR, STATEDIR, SNAPSHOTDIR, STAGEDIR, SNAPSHOTCACHE ]
+    end
+
     # Creates necessary dirs to setup our chroot.
     def setup_environment
-      dirs = [ $chrootdir, LOGDIR, STATEDIR, SNAPSHOTDIR, STAGEDIR, SNAPSHOTCACHE ]
-      dirs.each { |dir| FileUtils.mkdir_p("#{dir}") }
+      setup_dirs.each { |dir| FileUtils.mkdir_p(dir) }
     end
 
     # Checks if the Process.uid is run by root. If not raise an error and die. 
@@ -230,12 +241,18 @@ module Athenry
       puts template.result(binding())
     end
 
+    def lastsync
+      Time.parse(File.read("#{SNAPSHOTCACHE}/portage/metadata/timestamp")) 
+    end
+
+    def nextsync
+      lastsync + (60 * 60 * 24) #24 hours
+    end
+
     # Checks portage/metadata/timestamp, if it's been over 24 hours then we sync again, 
     # other wise display the warning message Using FORCESYNC will override the check.
     # @return [String]
     def safe_sync
-      lastsync = Time.parse(File.read("#{SNAPSHOTCACHE}/portage/metadata/timestamp")) 
-      nextsync = lastsync + (60 * 60 * 24) #24 hours
       if lastsync >= nextsync && (ENV['FORCESYNC'] == "true" || ENV['forcesync'] == "true")
         return true
       else
@@ -310,10 +327,10 @@ module Athenry
     def cmd(command, exit=true)
       logger do
         begin
-          pipe = IO.popen("#{command}")
+          pipe = IO.popen(command)
           pipe.each_line { |line|
-            if @logfile then @logfile.puts "#{line}" end
-            if $verbose then puts "#{line}" end
+            if @logfile then @logfile.puts line end
+            if $verbose then puts line end
           }
         ensure
           pipe.try(:close)
