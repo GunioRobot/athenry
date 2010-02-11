@@ -12,11 +12,12 @@ Release 0.3.0
     - No input should display most of this formated nicely
 * build should create a tarball (pull mkstage5 into project)
     - Look into doing this from outside the chroot using ruby
-* Stage 2 support
+* Refactor most of helper.rb move into directory/seperate files
+* Use RConfig.add_config_path to provide --config option again.
 
 Next
 ----
-* Stage 1 support
+* Shell command needs a way to specify the chrootname you want to work on
 * Defined verbosity levels
 * Check config for errors and die quickly 
     "fooexample.com" =~ /@(.*)/ and $1 or raise "bad email" 
