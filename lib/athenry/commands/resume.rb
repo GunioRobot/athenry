@@ -3,14 +3,13 @@ module Athenry
     
     def initialize
       aliases
-      load_state
     end
 
     # Runs steps required to execute from last step.
     # @return [String]
     def from
       begin
-        send(RESUMETREE["#{@current_state.first}"]["#{@current_state.last}"])
+        send(RESUMETREE[load_state.first.to_sym][load_state.last.to_i])
       rescue
         raise InvalidResumePoint
       end
