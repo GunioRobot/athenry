@@ -1,6 +1,5 @@
 module Athenry
   module Helper
-    include Athenry::Config
 
     # Displays an error message
     # @param [String] msg Error message to be displayed.
@@ -55,11 +54,14 @@ module Athenry
       end
     end
 
+    def mtab
+      mtab ||= File.read('/etc/mtab')
+    end
+
     # Looks at /etc/mtab on the host system and checks to see if dev,proc,sys
     # are mounted.
     # @return [Boolean] true/false
     def is_mounted?
-      mtab ||= File.read("/etc/mtab")
       if mtab =~ /#{$chrootdir}\/(dev|proc|sys)/
         return true
       else
