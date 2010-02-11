@@ -25,7 +25,7 @@ module Athenry
     def fetch_file
       if check_file 
         success "#{filename} already exists, skipping"
-        return true
+        true
       else
         download
       end
@@ -60,9 +60,9 @@ module Athenry
     # @return [True,False]
     def check_file
       if File.exists?("#{location}/#{output}") && check_size
-        return true
+        true
       else
-        return false
+        false
       end 
     end
 
@@ -73,9 +73,9 @@ module Athenry
         httpsize ||= http.head(uri.path).content_length
         localsize ||= File.stat("#{location}/#{output}").size
         if httpsize == localsize
-          return true
+          true
         else
-          return false
+          false
         end
       end
     end
