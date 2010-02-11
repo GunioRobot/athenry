@@ -11,6 +11,7 @@ _athenry_command() {
         rescue:"Chroot into the current stage to perform commands manually"
         shell:"Run Athenry commands directly through an irb like shell"
         clean:"Cleans up any mess made"
+        info:"Displays information about athenry and the build process"
         help:"Display global or [command] help documentation"
     )
 
@@ -24,7 +25,6 @@ _athenry_command() {
 
     local curcontext="${curcontext%:*}:athenry-${cmd}"
     _call_function ret _athenry_$cmd
-
 
 }
 
@@ -56,6 +56,12 @@ _athenry_help() {
   local expl help_cmds
   help_cmds=(setup build target resume rescue shell clean help)
   _wanted help_cmds expl help compadd $expl -a help_cmds
+}
+
+_athenry_info() {
+    local expl info_cmds
+    info_cmds=(env builds chroots sync errors)
+    _wanted info_cmds expl info compadd $expl -a info_cmds
 }
 
 _chroots() {
