@@ -83,7 +83,7 @@ module Athenry
     def set_state
       if $? == 0
         begin
-          statefile.puts "#{$target}:#{STATE[$target.to_sym][caller_method_name]}"
+          statefile.puts "#{$target}:#{STATE[$target][caller_method_name]}"
         ensure
           statefile.try(:close)
         end
