@@ -2,7 +2,15 @@ module Athenry
   class Info
     
     def target(*args)
-      args.each { |cmd| send(cmd) }
+      args.empty? ? all : args.each {|cmd| send(cmd)}
+    end
+
+    def all
+      heading 'Athenry Info' do
+        row 'Version', Athenry::Version::STRING
+      end
+      sync
+      builds
     end
 
     def chroots 
