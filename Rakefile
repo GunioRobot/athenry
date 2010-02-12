@@ -58,7 +58,11 @@ end
 
 desc "install gems"
 task 'install:gems' do
-  @gems.each {|gem| system("sudo gem install #{gem}") }
+  @gems.each do |gem|
+    unless Gem.available?(gem)
+      system("sudo gem install #{gem}")
+    end
+  end
 end
 
 # =======================
