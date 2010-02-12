@@ -13,8 +13,8 @@ module Athenry
 
     def sync 
       heading 'Last & Next Sync' do
-        row 'Last Sync', lastsync
-        row 'Next Sync', nextsync
+        row 'Last Sync', lastsync.strftime(RConfig.athenry.general.datetime_format)
+        row 'Next Sync', nextsync.strftime(RConfig.athenry.general.datetime_format)
       end
     end
 

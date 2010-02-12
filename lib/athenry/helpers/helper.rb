@@ -50,8 +50,12 @@ module Athenry
     # @return [String]
     def send_to_log(msg, level="error")
       logger do
-          if @logfile then @logfile.puts "#{level.upcase}: #{msg} [#{Time.now}]\n" end
+          if @logfile then @logfile.puts "#{level.upcase}: #{msg} [#{datetime}]\n" end
       end
+    end
+
+    def datetime
+      Time.now.strftime(RConfig.athenry.general.datetime_format)
     end
 
     def mtab
@@ -227,7 +231,7 @@ module Athenry
     # @return [String]
     def announcing(msg)
       logger do
-        if @logfile then @logfile.puts "* #{msg} [#{Time.now}]\n" end
+        if @logfile then @logfile.puts "* #{msg} [#{datetime}]\n" end
       end
       success("#{msg} \n")
       yield
@@ -332,13 +336,13 @@ module Athenry
     end
 
     def row(var, val)
-      $stdout.puts "\s\s\e[33m#{var}\e[0m: #{val}"
+      $stdout.puts "\s\s\e[33m#{var}\e[35m:\e[0m #{val}"
     end
 
     def latest_builds
       chroot_dirs.each do |name|
         if File.exists?("#{name}/root/") 
-          row File.basename(name), File.stat(name).mtime
+          row File.basename(name), "\t#{File.stat(name).mtime.strftime(RConfig.athenry.general.datetime_format)}"
         end
       end
     end
