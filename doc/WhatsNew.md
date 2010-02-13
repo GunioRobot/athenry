@@ -1,6 +1,29 @@
 Whats New?
 ==========
 
+v0.3.0
+------
+###Core
+* \[core\] Merged freshen command into target
+* \[core\] Stage1 and Stage2 installs added to build
+* \[core\] Customizable date and time format in config file
+* \[core\] Renamed arch to config\_profile
+* \[core\] Log files and State files are now stored in /var by default
+* \[core\] Added info command to display information about chroots, and user settings
+* \[core\] Support for http\_proxy and ftp\_proxy exports
+
+###Scripts
+* \[scripts\] Support for Stage1 and Stage2 builds
+* \[scripts\] Added run\_modules helper
+
+###Installer
+* \[installer\] Installs logrotate script
+* \[installer\] Makes sure we are in the correct directory before we copy files
+* \[installer\] Installs zsh-completion file
+
+###Manpages
+* \[manpages\] Added athenry-info manpage
+
 v0.2.5
 ------
 ###Core
