@@ -78,7 +78,8 @@ settings.
     workdir = /var/tmp/athenry
     timezone = EST5EDT
     verbose = true
-    arch = amd64
+    config_profile = amd64
+    datetime_format = %a %b %d, %I:%M%p
      
     [stage]
     url = http://gentoo.osuosl.org/releases/amd64/current-stage3/stage3-amd64-20100121.tar.bz2
