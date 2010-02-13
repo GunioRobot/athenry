@@ -121,4 +121,8 @@ def install
     FileUtils.install("#{ENV['PWD']}/zsh-completion/#{file}", "#{@options[:zshdir]}", :mode => 0644, :verbose => true)
   end
 
+  if File.directory?("/etc/logrotate.d")
+    FileUtils.install("#{ENV['PWD']}/logrotate.d/athenry", "/etc/logrotate.d/", :mode => 0644, :verbose => true)
+  end
+
 end
