@@ -41,8 +41,8 @@ module Athenry
     
     WORKDIR = RConfig.athenry.general.workdir
     SCRIPTS = "#{ATHENRY_ROOT}/scripts"
-    LOGDIR = "#{WORKDIR}/#{RConfig.internal.paths.logdir}"
-    STATEDIR = "#{WORKDIR}/#{RConfig.internal.paths.statedir}"
+    LOGDIR = RConfig.internal.paths.logdir
+    STATEDIR = RConfig.internal.paths.statedir
     STAGEDIR = "#{WORKDIR}/#{RConfig.internal.paths.stagedir}"
     SNAPSHOTDIR = "#{WORKDIR}/#{RConfig.internal.paths.snapshotdir}"
     SNAPSHOTCACHE = "#{WORKDIR}/#{RConfig.internal.paths.snapshotdir}/#{RConfig.internal.paths.snapshotcache}"
