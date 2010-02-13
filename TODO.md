@@ -3,12 +3,8 @@ TODO
 
 Release 0.3.0
 --------------
-* Athenry info
-    - failures displays date/time and the command it was on during the failure
-    - No input should display most of this formated nicely
 * build should create a tarball (pull mkstage5 into project)
     - Look into doing this from outside the chroot using ruby
-* Refactor most of helper.rb move into directory/seperate files
 * Use RConfig.add_config_path to provide --config option again.
 
 Next
