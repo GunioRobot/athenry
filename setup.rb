@@ -1,12 +1,6 @@
 #!/usr/bin/env ruby
 # vim: set sw=2 sts=2 et tw=80 :
 
-require 'rubygems'
-begin
-  gem "commander", ">= 4.0"
-  require "commander/import"
-rescue Gem::LoadError
-end
 require 'fileutils'
 require 'rbconfig'
 
@@ -23,12 +17,29 @@ require 'rbconfig'
   :mandir     => '/usr/local/man/man1',
   :zshdir     => '/usr/share/zsh/site-functions',
   :zshcomp_files => [ '_athenry' ],
-  :manpages   => ['athenry.1', 'athenry-build.1', 'athenry-clean.1', 'athenry-rescue.1', 'athenry-resume.1', 'athenry-setup.1', 'athenry-target.1']
+  :manpages   => ['athenry.1', 'athenry-build.1', 'athenry-clean.1', 'athenry-rescue.1', 'athenry-resume.1', 'athenry-setup.1', 'athenry-target.1'],
+  :filecheck => ['setup.rb', 'Rakefile', 'bin/athenry', 'conf/athenry.conf'],
 }
 
 unless Process.uid == 0
   puts "Must be root to install"
   exit 1
+end
+
+@options[:filecheck].each do |file|
+  unless File.exists?(file)
+    $stdout.puts 'You must run setup.rb from inside the athenry directory'
+    exit 1
+  end
+end
+
+require 'rubygems'
+begin
+  gem "commander", ">= 4.0"
+  require "commander/import"
+rescue Gem::LoadError
+    puts "You must install the commander gem to run setup"
+    puts "sudo gem install commander"
 end
 
 program :name, 'setup'
