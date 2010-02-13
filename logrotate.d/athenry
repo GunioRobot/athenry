@@ -1,9 +1,9 @@
 /var/log/athenry/*.log {
     compress
-	rotate 4
+    rotate 4
     weekly
-	missingok
-	notifempty
+    missingok
+    notifempty
     copytruncate
     size 50M 
 }
