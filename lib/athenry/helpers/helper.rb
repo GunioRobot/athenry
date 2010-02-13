@@ -55,7 +55,7 @@ module Athenry
     end
 
     def datetime
-      Time.now.strftime(RConfig.athenry.general.datetime_format)
+      Time.now.strftime(DATETIME_FORMAT)
     end
 
     def mtab
@@ -276,8 +276,22 @@ module Athenry
     def die(msg)
       unless $? == 0
         error("#{msg} \n")
+        add_to_failures unless $shell_is_running
         exit 1 unless $shell_is_running
       end
+    end
+
+    def add_to_failures
+      error_file.puts "#{$target} | #{Time.now} | #{$chrootname}"
+      error_file.try(:close)
+    end
+
+    def error_file
+      File.new(ERRORFILE, 'w')
+    end
+
+    def read_error
+      File.read(ERRORFILE)
     end
     
     # Copies build scripts into #{$chrootdir}/root
@@ -342,8 +356,17 @@ module Athenry
     def latest_builds
       chroot_dirs.each do |name|
         if File.exists?("#{name}/root/") 
-          row File.basename(name), "\t#{File.stat(name).mtime.strftime(RConfig.athenry.general.datetime_format)}"
+          row File.basename(name), "\t#{File.stat(name).mtime.strftime(DATETIME_FORMAT)}"
         end
+      end
+    end
+
+    def latest_failures
+      read_error.each_line do |errors|
+        errors = errors.split('|')
+        row errors.last.strip, ''
+        row "\tDoing", errors.first.strip
+        row "\tAt", Time.parse(errors[1].strip).strftime(DATETIME_FORMAT)
       end
     end
    

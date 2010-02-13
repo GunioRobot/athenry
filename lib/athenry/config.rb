@@ -1,16 +1,17 @@
 module Athenry
   module Config
 
-    if RConfig[:XDG_CONFIG_HOME].nil?
-      XDG_CONFIG_HOME ="#{RConfig[:HOME]}/.config/athenry"
+    if ENV['XDG_CONFIG_HOME'].blank?
+      XDG_CONFIG_HOME ="#{ENV['HOME']}/.config/athenry"
     else
-      XDG_CONFIG_HOME="#{RConfig[:XDG_CONFIG_HOME]}/athenry"
+      XDG_CONFIG_HOME="#{ENV['XDG_CONFIG_HOME']}/athenry"
     end
     
     begin
       RConfig.config_paths = ["#{XDG_CONFIG_HOME}", "/etc/athenry/"]
     rescue ConfigError 
       $stderr.puts "No configuration file found"
+      exit 1
     end
 
     unless $configpath.nil?
@@ -48,6 +49,8 @@ module Athenry
     SYNC = RConfig.athenry.gentoo.sync
     HTTP_PROXY = RConfig[:HTTP_PROXY]
     FTP_PROXY = RConfig[:FTP_PROXY]
+    ERRORFILE = "#{LOGDIR}/failures.log"
+    DATETIME_FORMAT = RConfig.athenry.general.datetime_format
 
   end
 end

@@ -11,11 +11,18 @@ module Athenry
       end
       sync
       builds
+      errors
     end
 
     def chroots 
       chroot_dirs.each do |chroot|
         puts File.basename(chroot)
+      end
+    end
+
+    def errors
+      heading 'Failed Builds' do
+        latest_failures
       end
     end
 
