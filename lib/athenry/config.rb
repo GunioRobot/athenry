@@ -1,10 +1,10 @@
 module Athenry
   module Config
 
-    if ENV['XDG_CONFIG_HOME'].nil?
-      XDG_CONFIG_HOME ="#{ENV['HOME']}/.config/athenry"
+    if RConfig[:XDG_CONFIG_HOME].nil?
+      XDG_CONFIG_HOME ="#{RConfig[:HOME]}/.config/athenry"
     else
-      XDG_CONFIG_HOME="#{ENV['XDG_CONFIG_HOME']}/athenry"
+      XDG_CONFIG_HOME="#{RConfig[:XDG_CONFIG_HOME]}/athenry"
     end
     
     begin
@@ -13,7 +13,17 @@ module Athenry
       $stderr.puts "No configuration file found"
     end
 
-    if File.exists?("#{XDG_CONFIG_HOME}/athenry.conf")
+    unless $configpath.nil?
+      if File.directory?($configpath) 
+        @userconfig = RConfig.add_config_path($configpath)
+      else
+        @userconfig = RConfig.add_config_path(File.dirname($configpath))
+      end
+    end
+
+    if File.exists?("#{@userconfig}/athenry.conf")
+      CONFIGS = "#{@userconfig}/athenry.conf"
+    elsif File.exists?("#{XDG_CONFIG_HOME}/athenry.conf")
       CONFIGS = "#{XDG_CONFIG_HOME}/etc/#{RConfig.athenry.general.config_profile}"
     else
       CONFIGS = "/etc/athenry/etc/#{RConfig.athenry.general.config_profile}"
@@ -36,8 +46,8 @@ module Athenry
     SNAPSHOTDIR = "#{WORKDIR}/#{RConfig.internal.paths.snapshotdir}"
     SNAPSHOTCACHE = "#{WORKDIR}/#{RConfig.internal.paths.snapshotdir}/#{RConfig.internal.paths.snapshotcache}"
     SYNC = RConfig.athenry.gentoo.sync
-    HTTP_PROXY = RConfig.athenry.proxy.http_proxy
-    FTP_PROXY = RConfig.athenry.proxy.ftp_proxy
+    HTTP_PROXY = RConfig[:HTTP_PROXY]
+    FTP_PROXY = RConfig[:FTP_PROXY]
 
   end
 end
