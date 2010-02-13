@@ -1,0 +1,45 @@
+.TH athenry-info "Jan 30 2010" "" "Athenry"
+
+.SH NAME:
+athenry target [OPTIONS] [COMMAND]
+.SH DESCRIPTION:
+Displays some useful information about athenry its chroots
+.SH GLOBAL OPTIONS:
+.TP
+.BI -c, --chroot 
+Use the specified chroot directory.
+.TP
+.BI -p, --snapshoturl
+ Use the specified snapshot url.
+.TP
+.BI  -s, --stageurl
+Use the specified stage url.
+.TP
+.BI -v, --version
+Display version information
+.TP
+.BI h, --help
+Show an overview of the commandline options.
+.TP
+.BI -t, --trace
+Display backtrace when an error occurs
+.SH COMMANDS:
+.TP
+.BI env
+Print Athenry's settings
+.TP
+.BI chroots 
+Prints a simple list of chroots on your system
+.TP
+.BI sync 
+Displays the last time the portage tree was updated and the next safe update
+.TP
+.BI errors
+Displays the last five build failures
+.TP
+.BI builds
+List of all your chroots and when they were last modified
+.SH SEE ALSO
+Website: http://gregf.github.com/athenry/
+.SH AUTHOR
+Athenry was written by Greg Fitzgerald <netzdamon@gmail.com>
