@@ -15,7 +15,7 @@ Quickstart Index
     - [target](#target)  
     - [rescue](#rescue)  
     - [resume](#resume)   
-    - [freshen](#freshen)  
+    - [info](#info)  
     - [clean](#clean)  
 - [shell](#shell)  
 - [Notes](#notes)  
@@ -78,8 +78,8 @@ settings.
     workdir = /var/tmp/athenry
     timezone = EST5EDT
     verbose = true
-    config_profile = amd64
-    datetime_format = %a %b %d, %I:%M%p
+    config\_profile = amd64
+    datetime\_format = %a %b %d, %I:%M%p
      
     [stage]
     url = http://gentoo.osuosl.org/releases/amd64/current-stage3/stage3-amd64-20100121.tar.bz2
@@ -108,8 +108,11 @@ settings.
 : Does just what it implies, toggles verbosity. Even with this set to
 false you can tail the log file to see Athenry's progress.
 
-**arch**
-: This is the architecture you plan on building for.
+**config\_profile**
+: This is the user provided scripts subdirectory you would like to copy files from.
+
+**datetime\_format**
+: Format for date and time in strftime
 
 **stageurl**
 : This is the url where Athenry will grab the stage seed from.
@@ -170,11 +173,11 @@ Usage
 
     build                Executes a single command on the given chroot [command]
     clean                Cleans up any mess made [options]
-    freshen              Updates an existing chroot
+    info                 Display useful information about the current chroot
     help                 Display global or [command] help documentation.
     rescue               Chroot into the current stage to perform commands manually
     resume               Resume from last saved state
-    setup                Fetches files and creates necessary directories
+    setup                Executes a single command for the setup process [command] 
     shell                Run Athenry commands directly through an irb like shell
     target               Starts building the target stage specified
 
@@ -278,11 +281,20 @@ necessary build steps in the correct order to build the specified stage.
 **setup**
 : Runs commands necessary for initial setup.
 
+**stage1**
+: Builds a stage1.
+
+**stage2**
+: Builds a stage2.
+
 **stage3**
 : Builds a stage3.
 
 **custom**
 : Builds a custom stage using sets and overlays.
+
+**freshen**
+: Updates the specified chroot.
 
 Currently stage3 and custom are the only stages supported. For now, the custom
 target must be used if any sets or custom overlays are to be installed.
@@ -307,12 +319,13 @@ done from a target command.
 
     $ athenry resume
 
-###freshen:
+###info:
 ___________
 
-Freshen will update the specified chroot.
+Info displays useful information about chroots, possible build failures, and
+currently loaded configuration options.
 
-    $ athenry freshen 
+    $ athenry info
 
 ###clean:
 _________
