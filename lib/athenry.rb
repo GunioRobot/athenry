@@ -16,6 +16,7 @@ require 'athenry/sync'
 require 'athenry/checksum'
 require 'athenry/extract'
 require 'athenry/fetch'
+require 'athenry/compress'
 
 # This module contains everything Athenry related
 #
@@ -75,6 +76,12 @@ module Athenry
     def self.info
       Info.new
     end
+ 
+    # Initiates Make [Class]
+    # @see Athenry::Make
+    def self.make
+      Make.new
+    end   
     
     # Initiates Run [Class]
     # @see Athenry::Run
@@ -104,5 +111,13 @@ module Athenry
     # @see Athenry::Sync
     def self.sync(*args)
       Sync.new(*args).files
+    end
+
+    def self.gzip(*args)
+      Compress.new(*args).gzip
+    end
+
+    def self.bzip2(*args)
+      Compress.new(*args).bzip2
     end
 end

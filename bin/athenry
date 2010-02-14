@@ -94,3 +94,11 @@ command :info do |c|
     Athenry::run.info(args)
   end
 end
+
+command :make do |c|
+  c.syntax = 'athenry make [options]'
+  c.description = 'Archives your chroot'
+  c.action do |args, options|
+    Athenry::run.make(args)
+  end
+end

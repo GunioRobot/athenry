@@ -1,15 +1,15 @@
 module Athenry
   class Run
-
     attr_accessor :chrootname, :chrootdir, :statefile, :logfile
 
     def initialize
       must_be_root
       
-      $chrootname = "chroot" unless $chrootname
-      $chrootdir = "#{WORKDIR}/builds/#{$chrootname}"
-      $statefile = "#{STATEDIR}/#{$chrootname}.state" 
-      $logfile = "#{LOGDIR}/#{$chrootname}.log"
+      $chrootname   = "chroot" unless $chrootname
+      $chrootdir    = "#{WORKDIR}/builds/#{$chrootname}"
+      $statefile    = "#{STATEDIR}/#{$chrootname}.state" 
+      $logfile      = "#{LOGDIR}/#{$chrootname}.log"
+      $imagedir     = "#{WORKDIR}/builds/finished"
     end
     
     # Executes steps for setup
@@ -41,7 +41,13 @@ module Athenry
     def info(args)
       Athenry::info.target(*args)
     end
-  
+ 
+    # Executes the make command
+    # @see Athenry::Make
+    def make(args)
+      Athenry::make.target(*args)
+    end
+ 
     # Executes steps to chroot into shell
     # @see Athenry::Rescue
     def rescue
