@@ -3,9 +3,12 @@ TODO
 
 Release 0.3.0
 --------------
-* build should create a tarball (pull mkstage5 into project)
-    - Look into doing this from outside the chroot using ruby
 * Use RConfig.add\_config\_path to provide --config option again.
+* Test builds, fix any bugs
+* Update Docs
+* Update manpages
+* Update website
+* Release
 
 Release 0.4.0
 -------------
@@ -23,11 +26,11 @@ Next
     "fooexample.com" =~ /@(.*)/ and $1 or raise "bad email" 
 * Make use of EMERGE\_DEFAULT\_OPTS
 * Split helper into separate files so we can include less/more as needed
-    - Model this after paludis hooks
+* Ability for users to add bash code to be executed before and after our main scripts
+ - Model this after paludis hooks
     - before\_sync, after\_sync like directories, any scripts in these directories get executed
       at the specified point.
     - Force prefix that they are running
-* Ability for users to add bash code to be executed before and after our main scripts
 * Ability to build Exherbo stages (2.x)
     - Split modules into 3 categories
         - Gentoo
