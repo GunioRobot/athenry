@@ -40,7 +40,7 @@ module Athenry
     $freshen = RConfig.internal.bools.freshen
     
     WORKDIR = RConfig.athenry.general.workdir
-    SCRIPTS = "#{ATHENRY_ROOT}/scripts"
+    SCRIPTS = "#{ATHENRY_ROOT}/#{RConfig.internal.paths.scripts}"
     LOGDIR = RConfig.internal.paths.logdir
     STATEDIR = RConfig.internal.paths.statedir
     STAGEDIR = "#{WORKDIR}/#{RConfig.internal.paths.stagedir}"
@@ -49,7 +49,7 @@ module Athenry
     SYNC = RConfig.athenry.gentoo.sync
     HTTP_PROXY = RConfig[:HTTP_PROXY]
     FTP_PROXY = RConfig[:FTP_PROXY]
-    ERRORFILE = "#{LOGDIR}/failures.log"
+    ERRORFILE = "#{LOGDIR}/#{RConfig.internal.files.errors}"
     DATETIME_FORMAT = RConfig.athenry.general.datetime_format
 
   end
