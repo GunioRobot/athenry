@@ -138,9 +138,11 @@ module Athenry
     end
 
     def check_dirs
-      [$chrootdir, LOGDIR, STAGEDIR, SNAPSHOTDIR, 
-       "#{$chrootdir}/scripts/run.sh", "#{$chrootdir}/bin/bash", 
-       "#{$chrootdir}/dev/null", "#{$chrootdir}/usr/portage/skel.ebuild"]
+      checkdirs = [$chrootdir, LOGDIR, 
+                   STAGEDIR, SNAPSHOTDIR, 
+                   "#{$chrootdir}/scripts/run.sh", "#{$chrootdir}/bin/bash", 
+                   "#{$chrootdir}/dev/null", "#{$chrootdir}/usr/portage/skel.ebuild",
+                   $imagedir]
     end
     
     # Checks to make sure setup was run before any build command is ran.
@@ -165,7 +167,7 @@ module Athenry
     end
 
     def setup_dirs
-      [ $chrootdir, LOGDIR, STATEDIR, SNAPSHOTDIR, STAGEDIR, SNAPSHOTCACHE ]
+      [ $chrootdir, LOGDIR, STATEDIR, SNAPSHOTDIR, STAGEDIR, SNAPSHOTCACHE, $imagedir ]
     end
 
     # Creates necessary dirs to setup our chroot.
