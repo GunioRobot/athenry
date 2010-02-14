@@ -4,11 +4,11 @@ module Athenry
     attr_accessor :uri, :path, :location, :filename, :filetype
 
     def initialize(opts={})
-      self.uri = URI.parse(opts[:uri])
-      self.filename = URI.parse(opts[:uri]).path[%r{[^/]+\z}]
-      self.path = opts[:path]
-      self.location = opts[:location]
-      self.filetype = File.extname(opts[:uri])
+      self.uri        = URI.parse(opts[:uri])
+      self.filename   = URI.parse(opts[:uri]).path[%r{[^/]+\z}]
+      self.path       = opts[:path]
+      self.location   = opts[:location]
+      self.filetype   = File.extname(opts[:uri])
     end
     
     # Extracts the filename from a url, and extracts it to the specified path.
