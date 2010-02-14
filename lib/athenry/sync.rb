@@ -7,9 +7,9 @@ module Athenry
     # @param [String] output Location to copy files
     # @param [String] options Options to pass to rsync
     def initialize(opts={})
-      self.uri = opts[:uri]
-      self.output = opts[:output]
-      self.options = opts[:options]
+      self.uri      = opts[:uri]
+      self.output   = opts[:output]
+      self.options  = opts[:options]
     end
     
     def files
