@@ -3,51 +3,51 @@
 .SH NAME:
 athenry setup [OPTIONS] [COMMAND]
 .SH DESCRIPTION:
-Populates the chroot with the stage tarball, copys over scripts and configuration files as well as the latest portage snapshot.
+Populates the chroot with the stage tarball, copies over scripts and configuration files, as well as the latest portage snapshot.
 .SH GLOBAL OPTIONS:
 .TP
 .BI -c, --chroot 
 Use the specified chroot directory.
 .TP
 .BI -p, --snapshoturl
- Use the specified snapshot url.
+Use the specified snapshot url.
 .TP
 .BI  -s, --stageurl
 Use the specified stage url.
 .TP
 .BI -v, --version
-Display version information
+Display version information.
 .TP
 .BI h, --help
 Show an overview of the commandline options.
 .TP
 .BI -t, --trace
-Display backtrace when an error occurs
+Display a backtrace when an error occurs.
 .SH COMMANDS:
 .TP
 .BI fetchstage 
-Fetches the stage specified by stageurl in athenry.conf
+Fetches the stage specified by stageurl in athenry.conf.
 .TP
 .BI extractstage 
-Extracts the stage tarball into the specified chroot
+Extracts the stage tarball into the specified chroot.
 .TP
 .BI fetchsnapshot 
-Fetches the latest portage snapshot specified in athenry.conf
+Fetches the latest portage snapshot specified in athenry.conf.
 .TP
 .BI extractsnapshot 
-Extracts the snapshot tarball into the portage cache directory
+Extracts the snapshot tarball into the portage cache directory.
 .TP
 .BI updatesnapshot
-If the snapshot cache has not been updated in the last 24 hours this will update it using rsync
+If the snapshot cache has not been updated in the last 24 hours, updatesnapshot will update it using rsync.
 .TP
 .BI copysnapshot 
-Copies the snapshot cache into your chroot directory
+Copies the snapshot cache into your chroot directory.
 .TP
 .BI copy_scripts 
-Copies the needed scripts and bash configuration files into the chroot
+Copies the needed scripts and bash configuration files into the chroot.
 .TP
 .BI copy_configs
-Copies user provided configuration files into the chroots /etc directory
+Copies user provided configuration files into the chroot's /etc directory.
 .SH SEE ALSO
 Website: http://gregf.github.com/athenry/
 .SH AUTHOR

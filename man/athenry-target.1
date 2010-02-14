@@ -3,39 +3,37 @@
 .SH NAME:
 athenry target [OPTIONS] [COMMAND]
 .SH DESCRIPTION:
-Unlike build and setup which only run a single command at a time target runs a group of commands to build an entire stage.
+Unlike build and setup which only runs a single command at a time, target runs a group of commands to build an entire stage.
 .SH GLOBAL OPTIONS:
 .TP
 .BI -c, --chroot 
 Use the specified chroot directory.
 .TP
 .BI -p, --snapshoturl
- Use the specified snapshot url.
+Use the specified snapshot url.
 .TP
 .BI  -s, --stageurl
 Use the specified stage url.
 .TP
 .BI -v, --version
-Display version information
+Display version information.
 .TP
 .BI h, --help
 Show an overview of the commandline options.
 .TP
 .BI -t, --trace
-Display backtrace when an error occurs
+Display a backtrace when an error occurs.
 .SH COMMANDS:
 .TP
 .BI stage3
-Runs all the commands to build a stage3
+Runs all the commands to build a stage3.
 .TP
 .BI custom
-Custom runs the smae commands as stage3 plus installs overlays and sets you may have specified
+Runs the same commands as stage3, plus installs any overlays and sets you may have specified.
 .TP
 .BI setup 
-Populates the initial chroot directory with your stage tarball and portage snapshot
+Populates the initial chroot directory with your stage tarball and portage snapshot.
 .TP
-.BI freshen
-Updates chroot
 .SH SEE ALSO
 Website: http://gregf.github.com/athenry/
 .SH AUTHOR
