@@ -17,7 +17,7 @@ require 'rbconfig'
   :mandir     => '/usr/local/man/man1',
   :zshdir     => '/usr/share/zsh/site-functions',
   :zshcomp_files => [ '_athenry' ],
-  :manpages   => ['athenry.1', 'athenry-build.1', 'athenry-clean.1', 'athenry-rescue.1', 'athenry-resume.1', 'athenry-setup.1', 'athenry-target.1', 'athenry-info.1'],
+  :manpages   => ['athenry.1', 'athenry-build.1', 'athenry-clean.1', 'athenry-rescue.1', 'athenry-resume.1', 'athenry-setup.1', 'athenry-target.1', 'athenry-info.1', 'athenry-make.1'],
   :filecheck => ['setup.rb', 'Rakefile', 'bin/athenry', 'conf/athenry.conf'],
 }
 
