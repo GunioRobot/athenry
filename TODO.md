@@ -18,9 +18,12 @@ Release 0.4.0
 * Shell command needs a way to specify the chrootname you want to work on
 * Ability to build a chroot based on the current machines world file, parse /var/lib/portage/world
     - Make this a target command possibly clone with the optional path to a world file
+* Usage examples in the man pages
 
 Next
 ----
+* Use Bundler
+* Use newly created lockfile gem
 * Defined verbosity levels
 * Check config for errors and die quickly 
     "fooexample.com" =~ /@(.*)/ and $1 or raise "bad email" 
