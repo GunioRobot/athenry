@@ -21,9 +21,10 @@ module Athenry
     # Remove temporary files within your chroot.
     # This means /tmp /var/tmp /usr/portage/distfiles  as well as
     # the /scripts we installed during the setup
+    # @return [String]
     def tmp
       announcing "Removing temporary files from #{$chrootname}" do
-        if File.exists?("#{$chrootdir}") then
+        if File.exists?($chrootdir) then
           FileUtils.rm_rf(Dir.glob("#{$chrootdir}/tmp/*"), :verbose => $verbose)
           FileUtils.rm_rf(Dir.glob("#{$chrootdir}/var/tmp/*"), :verbose => $verbose)
           FileUtils.rm_rf(Dir.glob("#{$chrootdir}/usr/portage/distfiles/*"), :verbose => $verbose)
@@ -33,6 +34,7 @@ module Athenry
     end
 
     # Destroys the chrootdir by running rm -rf after it's unmounted.
+    # @returns [String]
     def destroy
       announcing "Removing #{$chrootname}" do
         print 7.chr
@@ -42,10 +44,10 @@ module Athenry
         warning "If you wish to cancel hit ctrl-c now!"
         warning "*******************************************************************"
         sleep(10)
-        if File.exists?("#{$chrootdir}")
+        if File.exists?($chrootdir)
           unmount
-          [$chrootdir, $statefile, $logfile].each do |file|
-            if File.exists?("#{file}") then FileUtils.rm_rf("#{file}", :verbose => $verbose) end
+          %w[$chrootdir $statefile $logfile].each do |file|
+            if File.exists?(file) then FileUtils.rm_rf(file, :verbose => $verbose) end
           end
         end
       end
