@@ -59,7 +59,7 @@ module Athenry
     end
 
     def mtab
-      mtab ||= File.read('/etc/mtab')
+      File.read('/etc/mtab')
     end
 
     # Looks at /etc/mtab on the host system and checks to see if dev,proc,sys
@@ -71,7 +71,6 @@ module Athenry
       else
         false
       end
-      mtab.try(:close)
     end
 
     def statefile
@@ -87,7 +86,9 @@ module Athenry
     def set_state
       if $? == 0
         begin
-          statefile.puts "#{$target}:#{STATE[$target.to_sym][caller_method_name]}"
+          unless $target.blank?
+            statefile.puts("#{$target}" + ':' + "#{STATE[$target.to_sym][caller_method_name]}")
+          end
         ensure
           statefile.try(:close)
         end
@@ -133,7 +134,7 @@ module Athenry
         parse = Erubis::Eruby.new(erbfile)
         outfile.puts "#{parse.result(binding())}"
       ensure
-        outfile.close
+        outfile.try(:close)
       end
     end
 
@@ -239,6 +240,10 @@ module Athenry
       yield
     end 
 
+    def destroy_dirs
+      dirs ||= ["#{$chrootdir}", "#{$statefile}", "#{$logfile}"]
+    end
+
     # Renders an erb template and prints it to stdout
     # @param [String] template Name of the erb template to render
     # @return [String]
@@ -248,11 +253,11 @@ module Athenry
     end
 
     def lastsync
-      Time.parse(File.read("#{SNAPSHOTCACHE}/portage/metadata/timestamp")) 
+        Time.parse(File.read("#{SNAPSHOTCACHE}/portage/metadata/timestamp"))
     end
 
     def nextsync
-      lastsync + (60 * 60 * 24) #24 hours
+        lastsync + (60 * 60 * 24) #24 hours
     end
 
     # Checks portage/metadata/timestamp, if it's been over 24 hours then we sync again, 
@@ -364,11 +369,14 @@ module Athenry
     end
 
     def latest_failures
-      read_error.each_line do |errors|
-        errors = errors.split('|')
-        row errors.last.strip, ''
-        row "\tDoing", errors.first.strip
-        row "\tAt", Time.parse(errors[1].strip).strftime(DATETIME_FORMAT)
+      begin
+        read_error.each_line do |errors|
+          errors = errors.split('|')
+          row errors.last.strip, ''
+          row "\tDoing", errors.first.strip
+          row "\tAt", Time.parse(errors[1].strip).strftime(DATETIME_FORMAT)
+        end
+      rescue
       end
     end
    
