@@ -20,7 +20,7 @@ Release 0.4.0
     - Make this a target command possibly clone with the optional path to a world file
 * Usage examples in the man pages
 * Most commands should always check if we can sync and do so if we can, then copy the updated try into athenry. Avoid ever running a full sync from the chroot if possible. 
-* Switch to autoload http://www.subelsky.com/2008/05/using-rubys-autoload-method-to.html
+* Switch to [autoload](http://www.subelsky.com/2008/05/using-rubys-autoload-method-to.html)
 
 Next
 ----
@@ -28,7 +28,6 @@ Next
 * Use newly created lockfile gem
 * Defined verbosity levels
 * Check config for errors and die quickly 
-    "fooexample.com" =~ /@(.*)/ and $1 or raise "bad email" 
 * Make use of EMERGE\_DEFAULT\_OPTS
 * Split helper into separate files so we can include less/more as needed
 * Ability for users to add bash code to be executed before and after our main scripts
