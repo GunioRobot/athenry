@@ -4,8 +4,8 @@ Athenry
 **Homepage**:   [http://gregf.github.com/athenry] (http://gregf.github.com/athenry)  
 **Git**:        [http://github.com/gregf/athenry] (http://github.com/gregf/athenry)  
 **Author**:     Greg Fitzgerald  
-**Copyright**:  2009-2010 
-**License**:    MIT License
+**Copyright**:  2009-2010   
+**License**:    MIT License  
 
 Index
 -----
@@ -43,11 +43,9 @@ You can also clone the project with Git by running:
 Install
 -------
 
-    $ gem install rconfig 
-    $ gem install commander
-    $ gem install progressbar
     $ git clone git://github.com/gregf/athenry
     $ cd athenry
+    $ rake install:gems
     $ ./setup.rb install
 
 Support
