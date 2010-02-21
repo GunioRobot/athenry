@@ -11,7 +11,7 @@ module Athenry
     def stage3
       set_target
       set_temp_options(:nopaludis => true) do
-        Athenry::build.target("install_pkgmgr", "update_everything", "etc_update", "rebuild")
+        Athenry::build.target("emerge_system", "install_pkgmgr", "update_everything", "etc_update", "rebuild")
       end
     end
 
@@ -20,17 +20,7 @@ module Athenry
     # @return [String]
     def custom
       set_target
-      Athenry::build.target("install_pkgmgr", "update_everything", "rebuild", "etc_update", "install_overlays", "install_sets", "rebuild")
-    end
-
-    # Steps required to build a stage1
-    # @see athenry::build
-    # @return [String]
-    def stage1
-      set_target
-      set_temp_options(:nopaludis => true) do
-        Athenry::build.target("bootstrap", "rebuild", "etc_update" )
-      end
+      Athenry::build.target("emerge_system", "install_pkgmgr", "update_everything", "rebuild", "etc_update", "install_overlays", "install_sets", "rebuild")
     end
 
     # Steps required to build a stage2
