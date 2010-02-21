@@ -1,0 +1,87 @@
+athenry(1) -- build custom chroots 
+===================================
+
+## SYNOPSIS
+ 
+`athenry` [ <OPTIONS> ] [ <COMMAND> ] [ <ARGS> ]   
+`athenry` build <ARGS>  
+`athenry` clean <ARGS>  
+`athenry` help <ARGS>  
+`athenry` rescue <ARGS>  
+`athenry` resume <ARGS>  
+`athenry` setup <ARGS>  
+`athenry` shell  
+`athenry` target <ARGS>  
+
+## DESCRIPTION
+
+Athenry uses the system configuration files that you supply, to build a custom installable tarball or chroot.
+
+## Global Options
+
+* `-c`, `--chroot`:
+Use the specified chroot directory.
+
+* `-p`, `--snapshoturl`:
+Use the specified snapshot url.
+
+* `-s`, `--stageurl`:
+Use the specified stage url.
+
+* `-v`, `--version`:
+Display version information.
+
+* `-h`, `--help`:
+Show an overview of the commandline options.
+
+* `-t`, `--trace`:
+Display a backtrace when an error occurs.
+
+## COMMANDS
+
+* `build`:
+Executes a single command on the given chroot <STEP>.
+
+* `clean`:
+Cleans up any mess made.
+
+* `help`:
+Display global or <COMMAND> help documentation.
+
+* `rescue`:
+Chroot into the current stage to perform commands manually.
+
+* `resume`:
+Resume from last saved state.
+
+* `setup`:
+Fetches files and creates necessary directories.
+
+* `shell`:
+Run Athenry commands directly through an irb like shell.
+
+* `target`:
+Starts building the target stage specified.
+
+## ENVIRONMENT
+
+* `HTTP_PROXY`:
+Sets the http proxy to be used.
+
+* `FTP_PROXY`:
+Sets the ftp proxy to be used.
+
+## Bugs
+
+If you think you have found a bug please report it to the bugtracker: 
+
+[http://github.com/gregf/athenry/issues](http://github.com/gregf/athenry/issues)
+
+
+## SEE ALSO
+
+Website: [http://gregf.github.com/athenry/](http://gregf.github.com/athenry/)
+
+## COPYRIGHT
+ 
+Athenry is Copyright (C) 2009-2010 Greg Fitzgerald <netzdamon@gmail.com>
