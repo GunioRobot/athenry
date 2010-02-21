@@ -95,10 +95,10 @@ command :info do |c|
   end
 end
 
-command :make do |c|
-  c.syntax = 'athenry make [options]'
-  c.description = 'Archives your chroot'
+command :create do |c|
+  c.syntax = 'athenry create [options]'
+  c.description = 'Creates various archive types'
   c.action do |args, options|
-    Athenry::run.make(args)
+    Athenry::run.create(args)
   end
 end

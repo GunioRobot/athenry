@@ -77,10 +77,10 @@ module Athenry
       Info.new
     end
  
-    # Initiates Make [Class]
-    # @see Athenry::Make
-    def self.make
-      Make.new
+    # Initiates Create [Class]
+    # @see Athenry::Create
+    def self.create
+      Create.new
     end   
     
     # Initiates Run [Class]
