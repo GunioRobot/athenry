@@ -13,7 +13,7 @@ v0.3.0
 * \[core\] Support for http\_proxy and ftp\_proxy exports
 
 ###Scripts
-* \[scripts\] Support for Stage1 and Stage2 builds
+* \[scripts\] Support for Stage2 builds
 * \[scripts\] Added run\_modules helper
 
 ###Installer
@@ -23,6 +23,8 @@ v0.3.0
 
 ###Manpages
 * \[manpages\] Added athenry-info manpage
+* \[manpages\] Added athenry-create manpage
+* \[manpages\] Now using [ron](http://github.com/rtomayko/ron) to build manpages 
 
 v0.2.5
 ------

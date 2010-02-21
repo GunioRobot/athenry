@@ -33,10 +33,11 @@ Installation
 
 After checking out a fresh copy of Athenry from git or extracting a previously
 downloaded tarball, Athenry needs to be installed. To install Athenry run
-install.rb.
+setup.rb.
 
     $ cd athenry
-    $ ./install.rb
+    $ rake install:gems
+    $ ./setup.rb install
 
 Configuration
 -------------
@@ -89,7 +90,7 @@ settings.
      
     [overlays]
     sunrise =
-    mpd = git://github.com/gregf/mpd.git
+    mpd = http://github.com/gregf/mpd/raw/master/mpd.xml 
      
     [gentoo]
     sync = rsync://rsync.gentoo.org/gentoo-portage
@@ -173,6 +174,7 @@ Usage
 
     build                Executes a single command on the given chroot [command]
     clean                Cleans up any mess made [options]
+    create               Creates various archive types
     info                 Display useful information about the current chroot
     help                 Display global or [command] help documentation.
     rescue               Chroot into the current stage to perform commands manually
@@ -257,6 +259,9 @@ a list of commands that can be run.
 **update\_everything**
 : Updates all packages in the specified chroot.
 
+**emerge\_system**
+: Update the system set. 
+
 **etc\_update**
 : Updates any out of date configuration files in the specified chroot.
 
@@ -269,6 +274,7 @@ a list of commands that can be run.
 **rebuild**
 : Rebuilds packages with broken linkage, also runs python-updater.
 
+
 ###target:
 __________
 
@@ -280,9 +286,6 @@ necessary build steps in the correct order to build the specified stage.
 
 **setup**
 : Runs commands necessary for initial setup.
-
-**stage1**
-: Builds a stage1.
 
 **stage2**
 : Builds a stage2.
@@ -333,7 +336,29 @@ _________
 The clean command currently only performs an unmount of /dev, /proc, and /sys.
 It is fairly useless in it's current state.
 
-    $ athenry clean
+    $ athenry clean destroy
+
+**unmount**
+: Unmount /dev, /proc, and sys filesystems from the chroot.
+
+**clean**
+: Removes temporary files within the chroot.
+
+**destroy**
+: Permanently deletes the specified chroot and related files.
+
+###create:
+_________
+
+The create command will make archives of your chroot. It defaults to bzip2.
+
+    $ athenry create
+
+**bzip2**
+: Creates a bzip2 archive of the specified chroot.
+
+**gzip**
+: Creates a gzip archive of the specified chroot.
 
 ###shell:
 _________
