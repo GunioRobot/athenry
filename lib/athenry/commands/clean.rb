@@ -46,8 +46,8 @@ module Athenry
         sleep(10)
         if File.exists?($chrootdir)
           unmount
-          %w[$chrootdir $statefile $logfile].each do |file|
-            if File.exists?(file) then FileUtils.rm_rf(file, :verbose => $verbose) end
+          destroy_dirs.each do |dir|
+            if File.exists?(dir) then FileUtils.rm_rf(dir, :verbose => $verbose) end
           end
         end
       end
