@@ -19,6 +19,8 @@ Release 0.4.0
 * Ability to build a chroot based on the current machines world file, parse /var/lib/portage/world
     - Make this a target command possibly clone with the optional path to a world file
 * Usage examples in the man pages
+* Most commands should always check if we can sync and do so if we can, then copy the updated try into athenry. Avoid ever running a full sync from the chroot if possible. 
+* Switch to autoload http://www.subelsky.com/2008/05/using-rubys-autoload-method-to.html
 
 Next
 ----
