@@ -1,5 +1,5 @@
 module Athenry
-  class Target 
+  class Target
 
     def initialize
     end

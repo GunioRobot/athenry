@@ -3,7 +3,7 @@ module Athenry
 
     begin
       RConfig.config_paths = ["#{ENV['HOME']}/.config/athenry/", "/etc/athenry/"]
-    rescue ConfigError 
+    rescue ConfigError
       $stderr.puts "No configuration file found"
     end
 
@@ -21,7 +21,7 @@ module Athenry
 
     $nopaludis = RConfig.internal.bools.nopaludis
     $freshen = RConfig.internal.bools.freshen
-    
+
     WORKDIR = "#{RConfig.athenry.general.workdir}"
     SCRIPTS = "#{ATHENRY_ROOT}/scripts"
     LOGDIR = "#{WORKDIR}/#{RConfig.internal.paths.logdir}"

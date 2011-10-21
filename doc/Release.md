@@ -12,4 +12,4 @@ Steps
 * git push --tags
 * git checkout -b v0.1a
 * git push --all
-* Update website 
+* Update website

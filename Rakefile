@@ -70,7 +70,7 @@ namespace :build do
     task :tar do
       system("tar -cjf athenry-latest.tar.bz2 ../athenry --exclude 'athenry-latest.tar.bz2' --exclude '.git' --exclude='.yardoc' --exclude '.gitignore' --exclude '.gitmodules' --exclude 'yarddocs'")
   end
-  
+
   desc "Generate Yard Diagram"
     task :diagram do
       system("yard-graph --dependencies --full | dot -T png -o diagram.png")

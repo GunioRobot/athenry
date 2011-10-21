@@ -1,5 +1,5 @@
 module Athenry
-  class Sync 
+  class Sync
 
     attr_accessor :uri, :output, :options
 
@@ -11,7 +11,7 @@ module Athenry
       self.output = opts[:output]
       self.options = opts[:options]
     end
-    
+
     def files
       cmd "rsync #{options} #{uri} #{output}"
     end

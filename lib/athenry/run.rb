@@ -5,13 +5,13 @@ module Athenry
 
     def initialize
       must_be_root
-      
+
       $chrootname = "chroot" unless $chrootname
       $chrootdir = "#{WORKDIR}/builds/#{$chrootname}"
-      $statefile = "#{STATEDIR}/#{$chrootname}.state" 
+      $statefile = "#{STATEDIR}/#{$chrootname}.state"
       $logfile = "#{LOGDIR}/#{$chrootname}.log"
     end
-    
+
     # Executes steps for setup
     # @see Athenry::Setup
     def setup(args)
@@ -30,7 +30,7 @@ module Athenry
       Athenry::target.build(*args)
     end
 
-    # Updates an existing chroot 
+    # Updates an existing chroot
     # @see Athenry::Freshen
     def freshen(args)
       Athenry::freshen.update(*args)
@@ -41,13 +41,13 @@ module Athenry
     def clean(args)
       Athenry::clean.target(*args)
     end
-  
+
     # Executes steps to chroot into shell
     # @see Athenry::Rescue
     def rescue
       Athenry::rescue.chroot
     end
-    
+
     # Executes the shell
     # @see Athenry::Shell
     def shell

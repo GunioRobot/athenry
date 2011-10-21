@@ -19,7 +19,7 @@ module Athenry
 
     # Checks the md5sum of a file, if the checksum does not pass it exists 1
     # @return [String]
-    def md5 
+    def md5
       unverified_digest = Digest::MD5.hexdigest(File.read("#{path}/#{filename}"))
       verified_digest = File.read("#{path}/#{filename}.#{digest}").match('^([a-zA-z0-9]){32}')
       if "#{unverified_digest}" == "#{verified_digest}"

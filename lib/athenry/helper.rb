@@ -28,7 +28,7 @@ module Athenry
     def warning(msg)
       puts "\e[33m*\e[0m #{msg} \n"
     end
-   
+
     # Writes verbose output to #{$logfile} unless #{$logfile} is nil
     # @yield [String] All contents of yield are logged to the logfile.
     # @return [String]
@@ -84,8 +84,8 @@ module Athenry
         end
       end
     end
-   
-    # Takes RConfig.athenry.overlays and builds an array usable by our erb template, 
+
+    # Takes RConfig.athenry.overlays and builds an array usable by our erb template,
     # this is then used to generate a configuration file for bash.
     # @return [Array]
     def overlays_basharray
@@ -99,7 +99,7 @@ module Athenry
     def filename(uri)
       URI.parse(uri).path[%r{[^/]+\z}]
     end
-    
+
     # Takes a erb template file and output file, to generate bash from ruby.
     # @param [File, #open] template Template file to open.
     # @param [File, #read] outfile Filename to write to.
@@ -115,7 +115,7 @@ module Athenry
         outfile.close
       end
     end
-    
+
     # Checks to make sure setup was run before any build command is ran.
     # Looks for #{WORKDIR} and #{$chrootdir} to verify.
     # @raise "Must run setup before build"
@@ -128,7 +128,7 @@ module Athenry
     # @return [String]
     def check_for_setup(run = nil)
       dirs = [ $chrootdir, LOGDIR, STAGEDIR, SNAPSHOTDIR, "#{$chrootdir}/scripts/run.sh", "#{$chrootdir}/bin/bash", "#{$chrootdir}/dev/null", "#{$chrootdir}/usr/portage/skel.ebuild" ]
-      
+
       dirs.each do |dir|
         if File.exists?("#{dir}")
           next
@@ -145,7 +145,7 @@ module Athenry
       dirs.each { |dir| FileUtils.mkdir_p("#{dir}") }
     end
 
-    # Checks if the Process.uid is run by root. If not raise an error and die. 
+    # Checks if the Process.uid is run by root. If not raise an error and die.
     # @raise "Must run as root"
     # @return [String]
     def must_be_root
@@ -182,7 +182,7 @@ module Athenry
     end
 
     # Resets the options set from set_temp_options to the default setting, false.
-    # @see Athenry::Helper#set_temp_options 
+    # @see Athenry::Helper#set_temp_options
     def reset_temp_options
       $nopaludis=false
       $freshen=false
@@ -190,7 +190,7 @@ module Athenry
 
     # Accepts a action to pass to the chroot
     # @param [String] action The command to be run
-    # @example 
+    # @example
     #   chroot 'install_pkgmgr'
     # @return [String]
     def chroot(action)
@@ -207,7 +207,7 @@ module Athenry
       end
       success("#{msg} \n")
       yield
-    end 
+    end
 
     # Renders an erb template and prints it to stdout
     # @param [String] template Name of the erb template to render
@@ -217,11 +217,11 @@ module Athenry
       puts template.result(binding())
     end
 
-    # Checks portage/metadata/timestamp, if it's been over 24 hours then we sync again, 
+    # Checks portage/metadata/timestamp, if it's been over 24 hours then we sync again,
     # other wise display the warning message Using FORCESYNC will override the check.
     # @return [String]
     def safe_sync
-      lastsync = Time.parse(File.read("#{SNAPSHOTCACHE}/portage/metadata/timestamp")) 
+      lastsync = Time.parse(File.read("#{SNAPSHOTCACHE}/portage/metadata/timestamp"))
       nextsync = lastsync + (60 * 60 * 24) #24 hours
       if lastsync >= nextsync && (ENV['FORCESYNC'] == "true" || ENV['forcesync'] == "true")
         return true
@@ -245,7 +245,7 @@ module Athenry
         exit 1 unless $shell_is_running
       end
     end
-    
+
     # Copies build scripts into #{$chrootdir}/root
     # @return [String]
     def update_scripts
@@ -267,7 +267,7 @@ module Athenry
       update_scripts
       update_configs
     end
-    
+
     # First checks if dev,proc,sys are mounted if not, mount them.
     # @return [String]
     def mount
@@ -287,7 +287,7 @@ module Athenry
     def execute(*args)
       args.each { |method| send(method) }
     end
-    
+
     # Takes a shell command to run, decides verbose level, optionally logs
     # output, and dies if the exit status was not 0
     # @param [String] command Shell command to be run.
@@ -306,7 +306,7 @@ module Athenry
           pipe.close
         end
       end
-      exit && die("#{command} Failed to complete successfully") 
+      exit && die("#{command} Failed to complete successfully")
     end
   end
 end

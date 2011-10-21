@@ -2,7 +2,7 @@ require 'uri'
 require 'erubis'
 require 'readline'
 require 'fileutils'
-require 'digest/md5' 
+require 'digest/md5'
 require 'net/http'
 require 'time'
 

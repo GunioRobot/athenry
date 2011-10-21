@@ -1,10 +1,10 @@
 Athenry
 ========
 
-**Homepage**:   [http://gregf.github.com/athenry] (http://gregf.github.com/athenry)  
-**Git**:        [http://github.com/gregf/athenry] (http://github.com/gregf/athenry)  
-**Author**:     Greg Fitzgerald  
-**Copyright**:  2009-2010 
+**Homepage**:   [http://gregf.github.com/athenry] (http://gregf.github.com/athenry)
+**Git**:        [http://github.com/gregf/athenry] (http://github.com/gregf/athenry)
+**Author**:     Greg Fitzgerald
+**Copyright**:  2009-2010
 **License**:    MIT License
 
 Index
@@ -36,14 +36,14 @@ Download
 
 You can download this project in either [zip](http://github.com/gregf/athenry/zipball/master) or [tar](http://github.com/gregf/athenry/tarball/master) formats.
 
-You can also clone the project with Git by running: 
+You can also clone the project with Git by running:
 
     $ git clone git://github.com/gregf/athenry
 
 Install
 -------
 
-    $ gem install rconfig 
+    $ gem install rconfig
     $ gem install commander
     $ gem install progressbar
     $ git clone git://github.com/gregf/athenry

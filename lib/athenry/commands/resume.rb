@@ -1,7 +1,7 @@
 module Athenry
   class Resume
     include ShellAliases
-    
+
     def initialize
       check_for_setup
       aliases
@@ -26,7 +26,7 @@ module Athenry
     # @return [String]
     def load_state
       begin
-        if File.file?("#{$statefile}") && File.readable?("#{$statefile}") 
+        if File.file?("#{$statefile}") && File.readable?("#{$statefile}")
           @current_state = File.read("#{$statefile}").strip.split(':')
         end
       rescue
@@ -34,6 +34,6 @@ module Athenry
         exit 1
       end
     end
-    
+
   end
 end

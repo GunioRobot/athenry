@@ -1,12 +1,12 @@
 module Athenry
-  class Rescue 
+  class Rescue
 
     def initialize
       check_for_setup
       mount
     end
-  
-    # Executes the rescue shell on an existing chroot. Allows uses to perform 
+
+    # Executes the rescue shell on an existing chroot. Allows uses to perform
     # commands manually if they choose, great for rescue operations.
     #
     # We use system here instead of our normal Athenry::Helper#cmd so we can

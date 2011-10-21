@@ -7,7 +7,7 @@ module Athenry
     def initialize
       $shell_is_running = true
       debug = false
-      
+
       must_be_root
       aliases
       help_data
@@ -18,7 +18,7 @@ module Athenry
     # Exits the shell
     def quit
       announcing 'Exiting Athenry shell' do
-        exit 0 
+        exit 0
       end
     end
 
@@ -37,8 +37,8 @@ module Athenry
       Readline.completion_proc = generate_list
 
       begin
-        while cmd = history_management 
-          execute(cmd.rstrip) 
+        while cmd = history_management
+          execute(cmd.rstrip)
         end
       rescue NoMethodError, ArgumentError => e
         if cmd.length > 0 then puts "#{cmd} is a invalid command" end
@@ -46,7 +46,7 @@ module Athenry
         shellinput
       end
     end
-    
+
     private
 
     def history_management

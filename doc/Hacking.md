@@ -34,7 +34,7 @@ These restraints are mostly in place to keep code clean and consistent:
 Restraints for working with bash
 --------------------------------
 
-In order to stay posix compliant the following constraints should be enforced: 
+In order to stay posix compliant the following constraints should be enforced:
 
 * Set vim to use ts=4 sw=4 noet, or equivalents in your editor
 * variables should be quoted and bracketed "${SOMEVAR}"

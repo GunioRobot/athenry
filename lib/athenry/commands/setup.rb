@@ -1,10 +1,10 @@
 module Athenry
   class Setup
-    
+
     def initialize
       setup_environment
     end
-    
+
     def target(*args)
       args.each { |cmd| send(cmd) }
     end
@@ -60,24 +60,24 @@ module Athenry
     # @return [String]
     def updatesnapshot
       announcing "Updating snapshot cache" do
-        if safe_sync 
+        if safe_sync
           Athenry::sync(:options => "--recursive --links --safe-links --perms --times --compress --force\
                         --whole-file --delete --stats --timeout=180 --exclude=/distfiles --exclude=/local\
-                        --exclude=/packages", 
-                        :uri => "#{SYNC}", 
+                        --exclude=/packages",
+                        :uri => "#{SYNC}",
                         :output => "#{SANPSHOTCACHE}/portage/")
         end
       end
       send_to_state('setup', 'updatesnapshot')
     end
-   
+
     # Copies the snapshot cache into your chroot directory
     # @return [String]
     def copysnapshot
       announcing 'Copying snapshot to chroot' do
         Athenry::sync(:options => "--verbose --progress --recursive --links --safe-links --perms\
                       --times --force --whole-file --delete --stats",
-                      :uri => "#{SNAPSHOTCACHE}/portage/", 
+                      :uri => "#{SNAPSHOTCACHE}/portage/",
                       :output => "#{$chrootdir}/usr/portage/")
       end
       send_to_state('setup', 'copysnapshot')
@@ -100,6 +100,6 @@ module Athenry
       end
       send_to_state('setup', 'copy_configs')
     end
-    
+
   end
 end

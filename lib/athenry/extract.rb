@@ -10,7 +10,7 @@ module Athenry
       self.location = opts[:location]
       self.filetype = File.extname(opts[:uri])
     end
-    
+
     # Extracts the filename from a url, and extracts it to the specified path.
     # @param [String] url URL to extract filename from.
     # @param [String] path Path to extract file to.

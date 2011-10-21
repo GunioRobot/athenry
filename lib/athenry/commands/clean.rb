@@ -1,10 +1,10 @@
 module Athenry
   class Clean
-    
+
     def target(*args)
       args.each { |cmd| send(cmd) }
     end
-    
+
     # First we check if dev,sys,proc are already mounted, if
     # they are we unmount them.
     # @return [String]

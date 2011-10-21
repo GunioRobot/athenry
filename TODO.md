@@ -20,8 +20,8 @@ Next
 * zsh and bash completion
 * Stage 1 support
 * Defined verbosity levels
-* Check config for errors and die quickly 
-    "fooexample.com" =~ /@(.*)/ and $1 or raise "bad email" 
+* Check config for errors and die quickly
+    "fooexample.com" =~ /@(.*)/ and $1 or raise "bad email"
 * default to pbzip2 if installed, else use tar
 * Make use of EMERGE\_DEFAULT\_OPTS
 * Split helper into separate files so we can include less/more as needed
@@ -41,7 +41,7 @@ Next
       Possible solutions:
       1. Rerun the bash function that adds this line each time we chroot in.
       2. Let users know this happens let them handle it
-      3. Don't always copy user configs each time and make sure users know if they update 
+      3. Don't always copy user configs each time and make sure users know if they update
          there configs this could happen.
       4. Ideas? Profit??
 

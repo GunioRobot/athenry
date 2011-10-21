@@ -4,21 +4,21 @@ Quickstart Guide
 Quickstart Index
 ----------------
 
-- [Where to download?](#where_to_download)  
-- [Installation](#installation)  
-- [Configuration](#configuration)  
-    - [Emerge](#emerge)  
-- [Usage](#usage)  
-- [Commands](#commands)  
-    - [setup](#setup)  
-    - [build](#build)  
-    - [target](#target)  
-    - [rescue](#rescue)  
-    - [resume](#resume)   
-    - [freshen](#freshen)  
-    - [clean](#clean)  
-- [shell](#shell)  
-- [Notes](#notes)  
+- [Where to download?](#where_to_download)
+- [Installation](#installation)
+- [Configuration](#configuration)
+    - [Emerge](#emerge)
+- [Usage](#usage)
+- [Commands](#commands)
+    - [setup](#setup)
+    - [build](#build)
+    - [target](#target)
+    - [rescue](#rescue)
+    - [resume](#resume)
+    - [freshen](#freshen)
+    - [clean](#clean)
+- [shell](#shell)
+- [Notes](#notes)
 
 Where to download?
 ------------------
@@ -79,23 +79,23 @@ settings.
     timezone = EST5EDT
     verbose = true
     arch = amd64
-     
+
     [stage]
     url = http://gentoo.osuosl.org/releases/amd64/current-stage3/stage3-amd64-20100121.tar.bz2
-     
+
     [snapshot]
     url = http://gentoo.osuosl.org/snapshots/portage-latest.tar.bz2
-     
+
     [overlays]
     sunrise =
     mpd = git://github.com/gregf/mpd.git
-     
+
     [gentoo]
     sync = rsync://rsync.gentoo.org/gentoo-portage
     sets = stage4 stage5
     package\_manager = paludis
     profile = default/linux/amd64/10.0
- 
+
 
 **workdir**
 : This is the root directory where created stages, logs, the state file, and downloaded files will be stored.
@@ -131,7 +131,7 @@ into the chroot are handled.
 : This can be set to either paludis or emerge.
 
 **profile**
-: Default gentoo profile to use, this does not override configuration settings you may have set, 
+: Default gentoo profile to use, this does not override configuration settings you may have set,
 this is only to assure the make.profile symlink is set correctly.
 
 ###Emerge
@@ -302,7 +302,7 @@ happened to be fixed. Athenry can then resume from where the problem occured.
 __________
 
 The resume command should pick up where Athenry left off. Resuming can only be
-done from a target command. 
+done from a target command.
 
     $ athenry resume
 
@@ -311,7 +311,7 @@ ___________
 
 Freshen will update the specified chroot.
 
-    $ athenry freshen 
+    $ athenry freshen
 
 ###clean:
 _________

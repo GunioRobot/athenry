@@ -21,14 +21,14 @@ module Athenry
     # If the file is alreay download return true, if not donload the file
     # @return [True,String]
     def fetch_file
-      if check_file 
+      if check_file
         success "#{filename} already exists, skipping"
         return true
       else
         download
       end
     end
-   
+
     # Fetches the file
     def download
       begin
@@ -38,7 +38,7 @@ module Athenry
           progress_bar = ProgressBar.new('progress', http.head(uri.path).content_length)
           progress_bar.file_transfer_mode
           http.get(uri.path) do |data|
-            fetch.write(data) 
+            fetch.write(data)
             progress_bar.inc(data.size)
           end
         end
@@ -49,7 +49,7 @@ module Athenry
       end
     end
 
-    protected 
+    protected
 
     # If the file exists and the file size is the same return true else return false
     # @return [True,False]
@@ -58,7 +58,7 @@ module Athenry
         return true
       else
         return false
-      end 
+      end
     end
 
     # Checks the size of the file at the uri and locally to see if we have the whole file.

@@ -38,19 +38,19 @@ module Athenry
     def self.build
       Build.new
     end
-    
+
     # Initiates Target [Class]
     # @see Athenry::Target
     def self.target
       Target.new
     end
- 
+
     # Initiates Freshen [Class]
     # @see Athenry::Freshen
     def self.freshen
       Freshen.new
-    end   
-    
+    end
+
     # Initiates Resume [Class]
     # @see Athenry::Resume
     def self.resume
@@ -60,7 +60,7 @@ module Athenry
     # Initiates Clean [Class]
     # @see Athenry::Clean
     def self.clean
-      Clean.new 
+      Clean.new
     end
 
     # Initiates Shell [Class]
@@ -68,13 +68,13 @@ module Athenry
     def self.shell
       Shell.new
     end
-    
+
     # Initiates Rescue [Class]
     # @see Athenry::Rescue
     def self.rescue
       Rescue.new
     end
-    
+
     # Initiates Run [Class]
     # @see Athenry::Run
     def self.run
@@ -86,7 +86,7 @@ module Athenry
     def self.extract(*args)
       Extract.new(*args).deflate
     end
-  
+
     # Initiates Checksum [Class]
     # @see Athenry::Checksum
     def self.md5sum(*args)

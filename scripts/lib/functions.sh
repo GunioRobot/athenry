@@ -39,12 +39,12 @@ function die() {
         msg = "Some asshole ran die without setting a message, something broke is all I can tell you. Sorry dude!"
     fi
     error "${msg}"
-    exit 1 
+    exit 1
 }
 
 # Sets the package manager based on some constants
 # If NOPALUDIS is set it will default to emerge for the duration.
-# If FRESHEN is set it will check to be sure paludis is installed, 
+# If FRESHEN is set it will check to be sure paludis is installed,
 # if not fall back to emerge
 # @param [String] PKG_MANAGER The package manager we are using
 # @param [Optional, [true,false]] FRESHEN Weather or not we should verify paludis is actually installed.
@@ -53,14 +53,14 @@ function set_pkgmanager {
     if [ "${NOPALUDIS}" == "true" ]; then
         PKG_MANAGER="emerge"
     fi
-    
+
     if [[ "${FRESHEN}" == "true" && "${PKG_MANAGER}" == "paludis" ]]; then
         if [[ ! -x /usr/bin/paludis ]]; then
             PKG_MANAGER="emerge"
-        fi 
+        fi
     fi
 
-    case ${PKG_MANAGER} in 
+    case ${PKG_MANAGER} in
     paludis)
         PKG_INSTALL="paludis -i"
         PKG_REMOVE="paludis -u"
@@ -80,10 +80,10 @@ function set_pkgmanager {
 }
 
 # Sets up the environment for the chroot
-# @param [String] TIMEZONE The timezone to use for our chroot 
+# @param [String] TIMEZONE The timezone to use for our chroot
 # @see ls /usr/share/zoneinfo/ to choose
 function setup_chroot {
-    if [ -e /usr/share/zoneinfo/"${TIMEZONE}" ]; then 
+    if [ -e /usr/share/zoneinfo/"${TIMEZONE}" ]; then
         cp /usr/share/zoneinfo/"${TIMEZONE}" /etc/localtime
     fi
     eselect profile set "${PROFILE}"

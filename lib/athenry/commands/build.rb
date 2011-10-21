@@ -6,11 +6,11 @@ module Athenry
       update_chroot
       mount
     end
-    
+
     def target(*args)
       args.each { |cmd| send(cmd) }
     end
-    
+
     # Syncs the portage tree within your chroot
     # @return [String]
     def sync
@@ -19,7 +19,7 @@ module Athenry
       end
       send_to_state('build', 'sync')
     end
-    
+
     # Installs the package manager set via RCONFIG.athenry.package_manager
     # @return [String]
     def install_pkgmgr
@@ -40,14 +40,14 @@ module Athenry
 
     # Runs etc-update to update your config files
     # @return [String]
-    def etc_update 
+    def etc_update
       announcing 'Running etc-update' do
         system("chroot #{$chrootdir} /scripts/run.sh update_configs")
       end
       send_to_state('build', 'etc_update')
     end
 
-    # Installs any overlays you have specified via CONFIG.overlays 
+    # Installs any overlays you have specified via CONFIG.overlays
     # using either playman or layman.
     # @return [String]
     def install_overlays

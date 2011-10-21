@@ -49,4 +49,4 @@ v0.1.1
 
 v0.1a
 -----
-* Initial alpha release for testing, can build stage4's from a stage3. Basic resume support. 
+* Initial alpha release for testing, can build stage4's from a stage3. Basic resume support.

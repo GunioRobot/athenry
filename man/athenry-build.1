@@ -6,7 +6,7 @@ athenry build [OPTIONS] [COMMAND]
 Runs commands inside the chroot
 .SH GLOBAL OPTIONS:
 .TP
-.BI -c, --chroot 
+.BI -c, --chroot
 Use the specified chroot directory.
 .TP
 .BI -p, --snapshoturl
@@ -28,22 +28,22 @@ Display backtrace when an error occurs
 .BI sync
 Runs your specified package managers sync command to update the portage tree
 .TP
-.BI install_pkgmgr 
+.BI install_pkgmgr
 Installs the package manager specified in athenry.conf
 .TP
-.BI update_everything 
+.BI update_everything
 Updates all installed packages in your chroot
 .TP
-.BI etc_update 
+.BI etc_update
 Updates all configuration files in your chroot
 .TP
-.BI install_overlays 
+.BI install_overlays
 Installs the overlays specified in athenry.conf using either playman or layman
 .TP
-.BI install_sets 
+.BI install_sets
 Installs the specified sets in athenry.conf
 .TP
-.BI rebuild 
+.BI rebuild
 Rebuild tries to make sure your system has no linkage problems. This runs revdep-rebuld or reconcilla as well as other tools like python-updater and perl-cleaner
 .SH SEE ALSO
 Website: http://gregf.github.com/athenry/

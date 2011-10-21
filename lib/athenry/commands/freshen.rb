@@ -1,5 +1,5 @@
 module Athenry
-  class Freshen 
+  class Freshen
 
     def initialize
       check_for_setup(:run)
@@ -17,6 +17,6 @@ module Athenry
         Athenry::build.rebuild
       end
     end
-  
+
   end
 end
